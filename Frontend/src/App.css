@@ -1,42 +1,208 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.registration-container {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+
+}
+
+
+.left-section {
+  flex: 1;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  height: auto;
+
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.form-select option {
+  transition: background-color 0.3s;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.form-select option:hover {
+  background-color: #FE512E;
+  color: white;
+
+}
+
+label {
+  text-align: left;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #202224;
+
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.image-container img {
+  max-width: 80%;
+  height: auto;
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px;
+  background-image: url("./assets/back.png");
+  background-size: cover;
+
+
+}
+
+.form-wrapper {
+  max-width: 700px;
+  width: 100%;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 2px #bfbcbc;
+
+}
+
+.form-check {
+  text-align: left;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form-wrapper {
+    max-width: 400px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .logo-text {
+    font-size: 2.2rem;
+  }
+
+  .form-section,
+  .left-section {
+    padding: 10px;
+  }
+
+  .form-control {
+    font-size: 0.9rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 600px) and (max-width: 900px) {
+  .dropdown {
+    width: 70%;
+  }
+
+  .form-select {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .dropdown-item {
+    padding: 12px;
+  }
+
+  .dropdown-item:hover {
+    background: linear-gradient(90deg, #FE512E, #F09619);
+    color: white;
   }
 }
 
-.card {
-  padding: 2em;
+
+@media (max-width: 768px) {
+  .registration-container {
+    flex-direction: column;
+  }
+
+  .left-section {
+    height: auto;
+  }
+
+  .form-section {
+    height: auto;
+  }
+
+  .form-wrapper {
+    padding: 1rem;
+  }
+
+  .logo-text {
+    font-size: 2rem;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+
+
+.sidebar {
+  background-color: #f8f9fa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+
+.sidebar-header {
+  justify-content: center;
+}
+
+.sidebar-title {
+  margin: 0 auto;
+}
+
+.sidebar-menu {
+  padding: 0;
+}
+
+.sidebar-item {
+  padding: 17px;
+  border-radius: 0.25rem;
+  transition: all 1s;
+}
+
+.sidebar-item:hover span {
+  background: linear-gradient(90deg, #FE512E 0%, #F09619 100%);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+
+.mainColor {
+  background-color: #e9ecef;
+}
+
+
+.icon {
+  margin-right: 1rem;
+}
+
+.text-dark {
+  color: #343a40;
+}
+
+
+.logout {
+  color: #dc3545;
 }
