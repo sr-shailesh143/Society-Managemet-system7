@@ -201,7 +201,9 @@ body {
 .text-dark {
   color: #343a40;
 }
-
+.text-color{
+  color: #A7A7A7;
+}
 
 .logout {
   color: #dc3545;
@@ -254,6 +256,7 @@ body {
 }
 .component-layout{
  background-color: #F0F5FB;
+ padding: 24px;
 }
 
 
@@ -305,11 +308,34 @@ body {
      background-color: #f9f9f9;
  }
 }
+.search-icon{
+  display: none !important;
+}
+.app-bar{
+  display: none !important;
+}
 @media (max-width: 768px) {
  .layout{
      display: none !important;
  }
- .app-bars{
+ .app-bar{
      display: block !important;
  }
+ .search-icon{
+  display: block !important;
+ }
+ .search{
+  display: none !important;
+ }
+ .lile{
+  display: none !important;
+ }
+ .component-layout{
+  padding: 10px;
+ }
+ 
+}
+.link-tag{
+  text-decoration: none;
+  color: black;
 }
