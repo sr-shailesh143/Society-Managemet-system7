@@ -23,6 +23,7 @@ function App() {
         {/* layout */}
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
         <Route path='/resident' element={<Layout/>}/>
+        <Route path='/financial' element={<Layout/>}/>
       </Routes>
     </BrowserRouter>
   );
