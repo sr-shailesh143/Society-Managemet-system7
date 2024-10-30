@@ -13,14 +13,25 @@ import { GrUserPolice } from "react-icons/gr";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { TbLogout } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
-export default function Layout({component}) {
+
+
+export default function Layout({ component }) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
 
     const SearchBar = styled.input`
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: none;
   width: 250px;
 background-color: #F6F8FB;
 
@@ -75,24 +86,16 @@ color:white;
   padding: 20px;
   text-align: center;
 `;
-
-
-
     return (
         <div className='container-fulid' style={{ overflow: "hidden" }}>
             <div className="row d-flex">
                 <div className="  layout  col-12 col-md-3  ">
                     <Logo className="mt-1">
                         <Link to={"/deshbord"}>
-                        <img className='h-75 w-75' src="src/assets/Logo.png" alt="Logo" />
-                        
+                            <img className='h-75 w-75' src="src/assets/Logo.png" alt="Logo" />
                         </Link>
-
-
                         <center>
-
                             <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
-
                             </div>
                         </center>
                     </Logo>
@@ -111,17 +114,51 @@ color:white;
                 <div className="col-12 col-md-9">
                     <div style={{ borderLeft: "2px solid #F6F8FB" }} className="navbar p-4">
                         <div className="app-bar ">
-                            <FaBarsStaggered />
+                            <FaBarsStaggered variant="primary" onClick={handleShow} />
+                            <Offcanvas show={show} onHide={handleClose}>
+                                <Offcanvas.Header closeButton className='fs-3' />
+                                <Offcanvas.Title>
+                                    <Logo className="mt-1">
+                                        <Link to={"/deshbord"}>
+                                            <img className='h-75 w-75' src="src/assets/Logo.png" alt="Logo" />
+                                        </Link>
+                                        <center>
+                                            <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
+                                            </div>
+                                        </center>
+                                    </Logo>
+                                </Offcanvas.Title>
+                                <Offcanvas.Body>
+                                    <NavLinks>
+                                        <Link className='link-tag' to={"/deshbord"}  >  <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>  <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
+                                        <Link className='link-tag' to={"/resident"} > <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
+                                        <Link className='link-tag' to={"/financial"} >   <NavLink style={{ background: location.pathname === "/financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink></Link>
+                                        <Link className='link-tag' to={"/facility"} >  <NavLink className=' d-flex gap-3 radious'><PiBuildingsFill style={{ background: location.pathname === "/facility" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/facility" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Facility Management</NavLink></Link>
+                                        <Link className='link-tag' to={"/complaint"} > <NavLink className=' d-flex gap-3 radious'><MdAttachEmail style={{ background: location.pathname === "/complaint" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/complaint" ? "white" : "", textDecoration: "none" }} className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
+                                        <Link className='link-tag' to={"/security"} > <NavLink className=' d-flex gap-3 radious'><SiSpringsecurity style={{ background: location.pathname === "/security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/security" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Security Management</NavLink></Link>
+                                        <Link className='link-tag' to={"/SecurityGuard"} > <NavLink className=' d-flex gap-3 radious'> <GrUserPolice style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
+                                        <Link className='link-tag' to={"/Announcement"} >   <NavLink className=' d-flex gap-3 radious'><TfiAnnouncement style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' /> Announcement</NavLink></Link>
+                                        <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px" }}> <TbLogout className='fs-3' />  Logout</p>
+                                    </NavLinks>
+                                </Offcanvas.Body>
+                            </Offcanvas>
                         </div>
                         <div className="search">
-                            <SearchBar placeholder="Search Here" />
+                            <SearchBar className='perent-search' type='search' placeholder=" 🔍    Search Here" />
+                            {/* <CiSearch className=' child-search fs-3 ' /> */}
                         </div>
-
                         <UserInfo>
                             <Search_Icon className='search-icon'>
                                 <CiSearch className='fs-2' />
                             </Search_Icon>
-                            <Notifiction><MdNotificationImportant className='fs-2 mx-2' /></Notifiction>
+                            <Notifiction>
+
+                                <MdNotificationImportant className='fs-2 mx-2' />
+
+
+
+                            </Notifiction>
+
                             <div className="lile border   " style={{ height: "40px" }}>
 
                             </div>
@@ -136,6 +173,7 @@ color:white;
                     <div className="component-layout  h-100 W-100 ">
                         <div className="container h-100 w-100">
                             {component}
+
                         </div>
 
                     </div>
