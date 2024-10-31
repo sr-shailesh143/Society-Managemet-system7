@@ -10,6 +10,7 @@ import OTPVerification from './components/otp';
 import ResetPassword from './components/ResetPassword';
 import Layout from './Layout/Layout';
 import Dashbord from './page/Dashbord';
+import Layout1 from './practise/layout2';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
         <Route path='/resident' element={<Layout/>}/>
         <Route path='/financial' element={<Layout/>}/>
+        <Route path='/layout' element={<Layout1/>}/>
       </Routes>
     </BrowserRouter>
   );

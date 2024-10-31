@@ -30,7 +30,7 @@ function RegistrationPage() {
       return;
     }
     console.log(data);
-    navigate('/Dashboard');
+    navigate('/deshbord');
   };
 
   const togglePasswordVisibility = () => {
@@ -273,6 +273,7 @@ function RegistrationPage() {
                 padding: "10px",
                 cursor: "pointer"
               }}
+            
             >
               Register
             </button>
