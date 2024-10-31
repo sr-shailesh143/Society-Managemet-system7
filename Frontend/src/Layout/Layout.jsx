@@ -26,6 +26,17 @@ export default function Layout({ component }) {
     const handleShow = () => setShow(true);
 
 
+    // const [show2, setShow2] = useState(false);
+    const [showFinancialSubmenu2, setShowFinancialSubmenu2] = useState(false);
+    const [showFinancialSubmenu3, setShowFinancialSubmenu3] = useState(false);
+
+
+
+
+    // Toggle Financial Management submenu
+    const toggleFinancialSubmenu = () => setShowFinancialSubmenu2(!showFinancialSubmenu2);
+    const toggleFinancialSubmenu1 = () => setShowFinancialSubmenu3(!showFinancialSubmenu3);
+
 
 
     const SearchBar = styled.input`
@@ -62,6 +73,18 @@ background-color: #F6F8FB;
   margin-left: 14px;
  
 
+
+`;
+    const Submenu = styled.ul`
+list-style-type: none;
+padding-left: 20px;
+margin-top: 5px;
+`;
+
+    const SubmenuItem = styled.li`
+padding: 10px;
+color: #202224;
+cursor: pointer;
 
 `;
     const NavLinks = styled.ul`
@@ -102,11 +125,35 @@ color:white;
                     <NavLinks>
                         <Link className='link-tag' to={"/deshbord"}  >  <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>  <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
                         <Link className='link-tag' to={"/resident"} > <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
-                        <Link className='link-tag' to={"/financial"} >  <NavLink style={{ background: location.pathname === "/financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink> </Link>
+                        <Link className='link-tag' to={"/financial"} onClick={toggleFinancialSubmenu} >  <NavLink style={{ background: location.pathname === "/financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink> </Link>
+                        {/* acoding */}
+
+                        {showFinancialSubmenu2 && (
+                            <Submenu>
+                                <SubmenuItem>   <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}> Income</span></SubmenuItem>
+                                <SubmenuItem> <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}>Expense</span></SubmenuItem>
+                                <SubmenuItem> <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}>Note</span></SubmenuItem>
+                            </Submenu>
+                        )}
+
                         <Link className='link-tag' to={"/facility"} >  <NavLink className=' d-flex gap-3 radious'><PiBuildingsFill style={{ background: location.pathname === "/facility" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/facility" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Facility Management</NavLink></Link>
-                        <Link className='link-tag' to={"/complaint"} > <NavLink className=' d-flex gap-3 radious'><MdAttachEmail style={{ background: location.pathname === "/complaint" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/complaint" ? "white" : "", textDecoration: "none" }} className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
-                        <Link className='link-tag' to={"/security"} > <NavLink className=' d-flex gap-3 radious'><SiSpringsecurity style={{ background: location.pathname === "/security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/security" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Security Management</NavLink></Link>
-                        <Link className='link-tag' to={"/SecurityGuard"} > <NavLink className=' d-flex gap-3 radious'> <GrUserPolice style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
+                        <Link className='link-tag' to={"/complaint"} onClick={toggleFinancialSubmenu1}  > <NavLink className=' d-flex gap-3 radious'><MdAttachEmail style={{ background: location.pathname === "/complaint" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/complaint" ? "white" : "", textDecoration: "none" }} className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
+                        {showFinancialSubmenu3 && (
+                            <Submenu>
+                                <SubmenuItem>Income</SubmenuItem>
+                                <SubmenuItem>Expense</SubmenuItem>
+                                {/* <SubmenuItem>Note</SubmenuItem> */}
+                            </Submenu>
+                        )}
+                        <Link className='link-tag' to={"/security"} onClick={toggleFinancialSubmenu1} > <NavLink className=' d-flex gap-3 radious'><SiSpringsecurity style={{ background: location.pathname === "/security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/security" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Security Management</NavLink></Link>
+                        {showFinancialSubmenu3 && (
+                            <Submenu>
+                                <SubmenuItem>Income</SubmenuItem>
+                                <SubmenuItem>Expense</SubmenuItem>
+                                {/* <SubmenuItem>Note</SubmenuItem> */}
+                            </Submenu>
+                        )}
+                        <Link className='link-tag' to={"/SecurityGuard"}   > <NavLink className=' d-flex gap-3 radious'> <GrUserPolice style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
                         <Link className='link-tag' to={"/Announcement"} >   <NavLink className=' d-flex gap-3 radious'><TfiAnnouncement style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' /> Announcement</NavLink></Link>
                         <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px" }}> <TbLogout className='fs-3' />  Logout</p>
                     </NavLinks>
@@ -129,6 +176,7 @@ color:white;
                                     </Logo>
                                 </Offcanvas.Title>
                                 <Offcanvas.Body>
+                                    {/* sidebar for A mobail sceen */}
                                     <NavLinks>
                                         <Link className='link-tag' to={"/deshbord"}  >  <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>  <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
                                         <Link className='link-tag' to={"/resident"} > <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
