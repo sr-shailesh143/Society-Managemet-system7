@@ -1,7 +1,7 @@
 const Society = require("../models/societymodel")
 
 //create society 
-exports.AddSociety = async (req,res)=>{
+exports.createSociety = async (req,res)=>{
    try {
      const {Society_Name ,  Society_Address , Country_Name ,State_Name, City_Name, ZipCode_Number}=req.body
      if(!Society_Name || !Society_Address || !Country_Name || !State_Name || !City_Name || !ZipCode_Number)
@@ -24,31 +24,31 @@ exports.AddSociety = async (req,res)=>{
       if(!createsociety){
          return res.status(400).json({
              success:false,
-             message:"Something went wrong Please retry"
+             message:"Something went wrong Please try Again 🤷‍♂️"
          })
       }
       return res.status(200).json({
          success:true,
-         message:"Society Are Created successfully" 
+         message:"Society Are Created successfully 👍" 
       })
    } catch (error) {
     console.log(error);
     
     return res.status(500).json({
         success:false,
-        message:" We got Internal server error"
+        message:" We got Internal server error 😒"
     })
    }
 }
 
 //view  society 
-exports.GetSociety= async(req,res)=>{
+exports.viewSociety= async(req,res)=>{
     try {
         const findSociety= await Society.find();
         if(!findSociety){
             return res.status(400).json({
                 success:false,
-                message:"No Society Found Hear"
+                message:"No Society Found Hear 😒"
             })
         }
     
@@ -61,7 +61,7 @@ exports.GetSociety= async(req,res)=>{
     
     return res.status(500).json({
         success:false,
-        message:" We got Internal server error"
+        message:" We got Internal server error 😒"
     })
     }
 }
