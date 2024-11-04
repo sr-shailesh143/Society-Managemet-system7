@@ -20,19 +20,9 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions));
-const Societyroute = require("./src/routes/societyroute.js");
-const Userroute = require("./src/routes/userroute");
-const Numberroute = require("./src/routes/numberroute");
-const Residentroute = require("./src/routes/residentroute");
+const Societyroute = require("./src/routes/societyroute.js")
 
-//user registration and login part
-app.use("/api/auth", Userroute);
-
-app.use("/api/society", Societyroute);
-//Important Number
-app.use("/api/number", Numberroute);
-//resident
-app.use("/api/resident", Residentroute);
+app.use("/api/society",Societyroute)
 
 
 app.get('/', (req, res) => res.send('Hello World!'))

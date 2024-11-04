@@ -1,5 +1,5 @@
 const SocietyController=require("../controllers/societycontroller")
 const router=require("express").Router();
-router.post("/createSociety",SocietyController.createSociety)
-router.get("/viewSociety",SocietyController.viewSociety)
+router.post("/addSociety",SocietyController.AddSociety)
+router.get("/viewSociety",SocietyController.GetSociety)
 module.exports=router;
