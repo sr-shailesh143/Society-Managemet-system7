@@ -12,15 +12,17 @@ import { SiSpringsecurity } from "react-icons/si";
 import { GrUserPolice } from "react-icons/gr";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { TbLogout } from "react-icons/tb";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { IoMdClose } from "react-icons/io";
 
 
 
 
 export default function Layout({ component }) {
     const [show, setShow] = useState(false);
+    const naviget = useNavigate()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -38,6 +40,55 @@ export default function Layout({ component }) {
     const toggleFinancialSubmenu1 = () => setShowFinancialSubmenu3(!showFinancialSubmenu3);
 
 
+
+    // notification 
+
+
+    const [isOpen, setIsOpen] = useState(false);
+
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+    const handleAccept = (id) => {
+        alert(`Accepted notification with ID ${id}`);
+    };
+
+    const handleDecline = (id) => {
+        alert(`Declined notification with ID ${id}`);
+    };
+
+    const clearAll = () => {
+        setNotifications([]);
+    };
+
+
+    const [notifications, setNotifications] = useState([
+        {
+            id: 1,
+            title: "Evelyn Harper (A-101)",
+            time: "Monday 11:41 AM",
+            message: "Evelyn Harper gave a fund of 1000 rupees for Navratri.",
+            linkText: "1000 rupees",
+            timeAgo: "32 Minutes ago",
+        },
+        {
+            id: 2,
+            title: "Maintenance (A-101)",
+            time: "Tuesday 11:41 AM",
+            message: "Evelyn Harper gave a Maintenance of 1000 rupees.",
+            linkText: "Maintenance of 1000 rupees",
+            timeAgo: "2 days ago",
+        },
+        {
+            id: 3,
+            title: "Ganesh Chaturthi (A-101)",
+            time: "Saturday 11:41 AM",
+            message: "Per Person Amount : ₹1,500\nThe celebration of Ganesh Chaturthi involves the installation of clay idols of Lord Ganesa in OurResident.",
+            linkText: "₹1,500",
+            timeAgo: "2 days ago",
+        },
+    ]);
 
     const SearchBar = styled.input`
   padding: 8px;
@@ -92,6 +143,7 @@ cursor: pointer;
   padding: 0;
 `;
 
+
     const NavLink = styled.li`
   padding: 14px ;
   margin:10px;
@@ -100,9 +152,10 @@ cursor: pointer;
   cursor: pointer;
   &:hover {
    background: linear-gradient(90deg, #FE512E 0%, #F09619 100%);
-color:white;
+  color:white;
   }
 `;
+
     const Logo = styled.div`
   font-size: 24px;
   font-weight: bold;
@@ -112,7 +165,7 @@ color:white;
     return (
         <div className='container-fulid' style={{ overflow: "hidden" }}>
             <div className="row d-flex">
-                <div className="  layout  col-12 col-md-3  ">
+                <div className="  layout  col-12 col-md-3   ">
                     <Logo className="mt-1">
                         <Link to={"/deshbord"}>
                             <img className='h-75 w-75' src="src/assets/Logo.png" alt="Logo" />
@@ -130,9 +183,9 @@ color:white;
 
                         {showFinancialSubmenu2 && (
                             <Submenu>
-                                <SubmenuItem>   <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}> Income</span></SubmenuItem>
-                                <SubmenuItem> <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}>Expense</span></SubmenuItem>
-                                <SubmenuItem> <span className='p-1' style={{borderLeft:location.pathname === "/income" ? "2px solid black" : "2px solid gray"  }}>Note</span></SubmenuItem>
+                                <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}> Income</span></SubmenuItem>
+                                <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Expense</span></SubmenuItem>
+                                <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Note</span></SubmenuItem>
                             </Submenu>
                         )}
 
@@ -155,10 +208,10 @@ color:white;
                         )}
                         <Link className='link-tag' to={"/SecurityGuard"}   > <NavLink className=' d-flex gap-3 radious'> <GrUserPolice style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
                         <Link className='link-tag' to={"/Announcement"} >   <NavLink className=' d-flex gap-3 radious'><TfiAnnouncement style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' /> Announcement</NavLink></Link>
-                        <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px" }}> <TbLogout className='fs-3' />  Logout</p>
+                        <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px", cursor: "pointer" }}> <TbLogout className='fs-3' />  Logout</p>
                     </NavLinks>
                 </div>
-                <div className="col-12 col-md-9">
+                <div  className="col-12 col-md-9 ">
                     <div style={{ borderLeft: "2px solid #F6F8FB" }} className="navbar p-4">
                         <div className="app-bar ">
                             <FaBarsStaggered variant="primary" onClick={handleShow} />
@@ -186,7 +239,7 @@ color:white;
                                         <Link className='link-tag' to={"/security"} > <NavLink className=' d-flex gap-3 radious'><SiSpringsecurity style={{ background: location.pathname === "/security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/security" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' />  Security Management</NavLink></Link>
                                         <Link className='link-tag' to={"/SecurityGuard"} > <NavLink className=' d-flex gap-3 radious'> <GrUserPolice style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
                                         <Link className='link-tag' to={"/Announcement"} >   <NavLink className=' d-flex gap-3 radious'><TfiAnnouncement style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }} className='fs-3 mb-1' /> Announcement</NavLink></Link>
-                                        <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px" }}> <TbLogout className='fs-3' />  Logout</p>
+                                        <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px", cursor: "pointer" }}> <TbLogout className='fs-3' />  Logout</p>
                                     </NavLinks>
                                 </Offcanvas.Body>
                             </Offcanvas>
@@ -199,18 +252,87 @@ color:white;
                             <Search_Icon className='search-icon'>
                                 <CiSearch className='fs-2' />
                             </Search_Icon>
-                            <Notifiction>
+                            <Notifiction >
 
-                                <MdNotificationImportant className='fs-2 mx-2' />
+                                <MdNotificationImportant style={{ cursor: "pointer" }} onClick={toggleDropdown} className='fs-2 mx-2' />
+
+                                {
+                                    isOpen && (
+                                        <div className="notifications-container">
+                                            <div className="notifications-header">
+                                                <h2>Notification</h2>
+                                                {
+                                                    notifications.length > 0 ? <button className="clear-all" onClick={clearAll}>Clear all</button> : <IoMdClose className='fs-3 mb-1' style={{ cursor: "pointer" }} onClick={toggleDropdown} />
+                                                }
+                                            </div>
+                                            <div className="notifications-list col-12">
+                                                {notifications.length > 0 ? notifications.map((notification) => (
+                                                    <div key={notification.id} className="notification-item">
+                                                        <div className="notification-content">
+                                                            <h3>{notification.title}</h3>
+                                                            <p className="notification-time">{notification.time}</p>
+                                                            <p>
+                                                                {notification.message.replace(notification.linkText, '')}
+                                                                <a href="#">{notification.linkText}</a>
+                                                            </p>
+                                                        </div>
+                                                        <div className="notification-actions">
+                                                            <button onClick={() => handleAccept(notification.id)} className="accept-btn">Accept</button>
+                                                            <button onClick={() => handleDecline(notification.id)} className="decline-btn">Decline</button>
+                                                            <span className="time-ago">{notification.timeAgo}</span>
+                                                        </div>
+                                                    </div>
+                                                )) : <img width={"100%"} src='src/assets/notification.png' />}
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    isOpen && (
+                                        <div className="notifications-mobile d-sm-block d-md-none" >
+                                            <div className="row">
+                                                <div className="col-12 w-100">
+                                                    <div className="notifications-header">
+                                                        <h2 className='ms-2'>Notification</h2>
+                                                        {
+                                                            notifications.length > 0 ? <button className="clear-all mx-3" onClick={clearAll}>Clear all</button> : <IoMdClose className='fs-3 mb-1 mx-3' style={{ cursor: "pointer" }} onClick={toggleDropdown} />
+                                                        }
+
+                                                    </div>
+                                                    <div className="notifications-list col-12">
+                                                        {notifications.length > 0 ? notifications.map((notification) => (
+                                                            <div key={notification.id} className="notification-item">
+                                                                <div className="notification-content">
+                                                                    <h3>{notification.title}</h3>
+                                                                    <p className="notification-time">{notification.time}</p>
+                                                                    <p>
+                                                                        {notification.message.replace(notification.linkText, '')}
+                                                                        <a href="#">{notification.linkText}</a>
+                                                                    </p>
+                                                                </div>
+                                                                <div className="notification-actions">
+                                                                    <button onClick={() => handleAccept(notification.id)} className="accept-btn">Accept</button>
+                                                                    <button onClick={() => handleDecline(notification.id)} className="decline-btn">Decline</button>
+                                                                    <span className="time-ago">{notification.timeAgo}</span>
+                                                                </div>
+                                                            </div>
+                                                        )) : <img width={"100%"} src='src/assets/notification.png' />}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                }
 
 
 
                             </Notifiction>
-
                             <div className="lile border   " style={{ height: "40px" }}>
-
                             </div>
-                            <UserAvatar className='' src="https://s3-alpha-sig.figma.com/img/0f9b/81fa/21460d39cd98ccca0d3fa906d5718aa3?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oNTPeM6vloIXEbk16p-TPHtaOf~txT2cNV3l566txULpzAiTqkjHx4obo3JYC9MOX2lmBBCihAl7K~uz0OA~pT61Fud2tAvlgf7pz1NFrV9GV6ptIJFZwK6U5UhU9Za~gZFJxXHt7QeueIGljRFF9kn1lIpNoLOFIePH9Y3fqTkN3ldOaKmvgA6cJahEmIfQwraOAUzKYnqZDBS4bcxYBVCpxQSrZ1f2P06Bc3q72NhOh1dQkVz5wOEfKrSoZ0HzPcVbRbpMuTmtFnLwN~~ZDviAQxfSEXszNPZmmScQGaFqkORB30bNoG2TjgUwWwDq3LSBf~PpfO6FmT~YLW5Dag__" alt="User" />
+                           
+                                <UserAvatar onClick={()=>naviget("/profile")} className='' src="" alt="User" style={{cursor:"pointer"}} />
+        
+
                             <UserName className=' search'>Moni Roy
                                 <br />
                                 <span className='mx-1 text-color '>admin</span>
@@ -219,11 +341,7 @@ color:white;
                         </UserInfo>
                     </div>
                     <div className="component-layout  h-100 W-100 ">
-                        <div className="container h-100 w-100">
-                            {component}
-
-                        </div>
-
+                        {component}
                     </div>
                 </div>
             </div>

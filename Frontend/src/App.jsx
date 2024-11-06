@@ -10,7 +10,9 @@ import OTPVerification from './components/otp';
 import ResetPassword from './components/ResetPassword';
 import Layout from './Layout/Layout';
 import Dashbord from './page/Dashbord';
-import Layout1 from './practise/layout2';
+import ProfileEditForm from './page/Profile';
+import UpdateProfile from './page/UpdateProfile';
+import ResidentManageMent from './page/ResidentManageMent';
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
         <Route path='/resetpassword' element={ <ResetPassword/>}/>
         {/* layout */}
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
-        <Route path='/resident' element={<Layout/>}/>
+        <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
         <Route path='/financial' element={<Layout/>}/>
-        <Route path='/layout' element={<Layout1/>}/>
+        {/* profile */}
+        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
+        <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
       </Routes>
     </BrowserRouter>
   );

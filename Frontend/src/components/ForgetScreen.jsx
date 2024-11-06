@@ -85,7 +85,7 @@ export default function ForgetScreen() {
                         </div>
 
                         <div className="col-12 text-center mt-3">
-                            <Link to={'/'} className='text-decoration-none'>
+                            <Link to={'/login'} className='text-decoration-none'>
                                 <span className='text-danger' style={{ cursor: "pointer" }}>Back to Login</span>
                             </Link>
                         </div>

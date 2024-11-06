@@ -30,7 +30,7 @@ export default function Login() {
     };
 
     return (
-        <div className='container-fluid container-img' style={{ overflow: "hidden" }}>
+        <div className='container-fluid container-img' >
             <div className="col-12 d-sm-block d-md-none mt-5 text-center">
                 <img className='w-50 h-50 img-fluid mb-5' src="src/assets/Logo.png" alt="Logo" />
             </div>
