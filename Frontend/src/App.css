@@ -223,8 +223,20 @@ body {
   /* height: 1064px; */
 }
 
+.from-c {
+  position: relative;
+}
+
+.hide {
+  position: fixed;
+  top: 52%;
+  right: 9%;
+
+
+}
+
 .container-img {
-  background-image: url("./Images/RegFormBackImg.png") !important;
+  background-image: url("./assets/RegFormBackImg.png") !important;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -267,6 +279,20 @@ body {
   border-radius: 10px;
 }
 
+.side-bar {
+  width: 22% !important;
+  height: 20% !important;
+}
+
+.component-layout {
+  width: 104% !important;
+}
+.side-design{
+  position: absolute;
+  top: 4px;
+
+}
+
 .text-decoretion {
   text-decoration: none;
 }
@@ -290,6 +316,12 @@ body {
   width: 265px;
   height: 52px;
 }
+.show-password{
+  position: sticky;
+ margin-top: -41px;
+ margin-left: 90%;
+}
+
 
 
 @media only screen and (max-width: 768px) {
@@ -302,11 +334,19 @@ body {
   .logo {
     margin-top: 50px !important;
   }
+
+  .hide {
+    display: none;
+  }
 }
 
 /* Login.css */
 .login-container {
   height: 100vh;
+}
+
+.hide1 {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -317,6 +357,15 @@ body {
   .form-container {
     width: 100%;
     padding: 20px;
+  }
+
+  .hide1 {
+    display: block;
+    position: sticky;
+    margin-top: -40px;
+    margin-right: 20px;
+    float: right;
+
   }
 }
 
@@ -393,6 +442,7 @@ body {
 .link-tag {
   text-decoration: none;
   color: black;
+  position: relative;
 }
 <<<<<<< Updated upstream
 
@@ -650,7 +700,7 @@ input[type="email"] {
     font-size: 1.2rem;
 
   }
- 
+
 
 
   .profile-name {
@@ -726,6 +776,7 @@ input[type="email"] {
 .owner {
   background-color: rgba(30, 136, 229, 0.1);
   color: #1e88e5;
+<<<<<<< Updated upstream
 }
 
 
@@ -892,4 +943,7 @@ input[type="email"] {
 
 
 /* Dashbord css end*/
+>>>>>>> Stashed changes
+=======
+}
 >>>>>>> Stashed changes

@@ -42,15 +42,15 @@ export default function ForgetScreen() {
 
                 <div className="col-12 col-md-6 d-none d-md-block bg-color">
                     <div className="logo">
-                        <img className='w-25 h-25 mt-4 ms-4' src="src/assets/Logo.png" alt="Logo" />
+                        <img className='w-25 h-25 mt-5 ms-4' src="src/assets/Logo.png" alt="Logo" />
                     </div>
-                    <div className="mailImg mt-5 text-center">
-                        <img className="img-fluid" style={{ width: "100%", maxWidth: "507px", height: "auto" }} src="src/assets/forget-img.png" alt="Forget" />
+                    <div className="mailImg mt-4 text-center">
+                        <img  className="img-fluid mt-4" style={{ width: "100%", maxWidth: "507px", height: "auto"  ,position:"sticky"}} src="src/assets/forget-img.png" alt="Forget" />
                     </div>
                 </div>
 
                 <div className="col-12 col-md-6 mt-5 d-flex justify-content-center align-items-center">
-                    <from className="from1 row mb-5 p-3">
+                    <from className="from1 row mb-5 mt-5 p-3">
                         <div className="col-12 d-sm-block d-md-none mb-4 text-center">
                             <img style={{ height: "332.99px", width: "355.11px" }} className='img-fluid' src="src/assets/forget-img.png" alt="Forget" />
                         </div>
@@ -58,7 +58,7 @@ export default function ForgetScreen() {
                         <h3 className='mt-5 mb-4'>Forget Password</h3>
                         <p className='text-center'>Enter your email and we'll send you an OTP to reset your password</p>
 
-                        <div className="col-12 mt-3 mb-2">
+                        <div className="col-12 mt-3 mb-2 ">
                             <label style={{ fontWeight: "500" }} htmlFor="email">
                                 Email <span className='text-danger'>*</span>
                             </label>
@@ -80,7 +80,7 @@ export default function ForgetScreen() {
                                 className='btn text-white radious l-btn w-100 p-3'
                                 disabled={!values.Email || errors.Email}
                             >
-                                Send OTP
+                                Get OTP
                             </button>
                         </div>
 
