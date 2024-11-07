@@ -1,5 +1,5 @@
 import React from 'react';
-import {  BrowserRouter,Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,16 +20,23 @@ function App() {
       <Routes>
         <Route path="/" element={<RegistrationPage />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/forget' element={<ForgetScreen/>} />
+        <Route path='/forget' element={<ForgetScreen />} />
         <Route path='/otp' element={<OTPVerification />} />
-        <Route path='/resetpassword' element={ <ResetPassword/>}/>
+        <Route path='/resetpassword' element={<ResetPassword />} />
         {/* layout */}
+<<<<<<< Updated upstream
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
         <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
         <Route path='/financial' element={<Layout/>}/>
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
+=======
+        <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
+        <Route path='/resident' element={<Layout />} />
+        <Route path='/financial' element={<Layout />} />
+        <Route path='/layout' element={<Layout1 />} />
+>>>>>>> Stashed changes
       </Routes>
     </BrowserRouter>
   );

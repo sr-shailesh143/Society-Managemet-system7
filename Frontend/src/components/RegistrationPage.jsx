@@ -72,7 +72,7 @@ function RegistrationPage() {
         <div className="content text-center" style={{ marginTop: "60px" }}>
           <h1 className="logo-text text-start" style={{ color: '#F48020', paddingLeft: "50px" }}>Dash<span style={{ color: 'black' }}>Stack</span></h1>
           <div className="image-container">
-            <img src={img} alt="Logo" className="img-fluid" style={{ width: "668px", height: "622px" }} /> {/* Use the imported image */}
+            <img src={img} alt="Logo" className="img-fluid" style={{ width: "668px" }} />
           </div>
         </div>
       </div>
@@ -80,11 +80,11 @@ function RegistrationPage() {
 
       <div className="form-section">
         <div className="form-wrapper">
-          <h2 style={{ color: "black" }} className='text-start m-3'>Registration</h2>
+          <h2 style={{ color: "black",marginLeft:"-5px" }} className='text-start'>Registration</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
               <div className="col-md-6 mb-3">
-                <label>First Name</label>
+                <label>First Name<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
                   className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
@@ -96,7 +96,7 @@ function RegistrationPage() {
               </div>
 
               <div className="col-md-6 mb-3">
-                <label>Last Name</label>
+                <label>Last Name<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
                   className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
@@ -107,9 +107,10 @@ function RegistrationPage() {
                 {errors.lastName && <p className="text-danger">{errors.lastName.message}</p>}
               </div>
             </div>
+
             <div className="row">
               <div className="col-md-6 mb-3">
-                <label>Email Address</label>
+                <label>Email Address<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="email"
                   className={`form-control ${errors.email ? 'is-invalid' : ''}`}
@@ -121,7 +122,7 @@ function RegistrationPage() {
               </div>
 
               <div className="col-md-6 mb-3">
-                <label>Phone Number</label>
+                <label>Phone Number<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="tel"
                   className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
@@ -135,7 +136,7 @@ function RegistrationPage() {
 
             <div className="row">
               <div className="col-md-4 mb-3">
-                <label>Country</label>
+                <label>Country<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
                   className={`form-control ${errors.country ? 'is-invalid' : ''}`}
@@ -149,7 +150,7 @@ function RegistrationPage() {
               </div>
 
               <div className="col-md-4 mb-3">
-                <label>State</label>
+                <label>State<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
                   className={`form-control ${errors.state ? 'is-invalid' : ''}`}
@@ -163,7 +164,7 @@ function RegistrationPage() {
               </div>
 
               <div className="col-md-4 mb-3">
-                <label>City</label>
+                <label>City<span style={{ color: "red" }}>*</span></label>
                 <input
                   type="text"
                   className={`form-control ${errors.city ? 'is-invalid' : ''}`}
@@ -178,7 +179,7 @@ function RegistrationPage() {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="selectSociety" className="form-label">Select Society</label>
+              <label htmlFor="selectSociety" className="form-label">Select Society<span style={{ color: "red" }}>*</span></label>
               <select
                 className={`form-select ${errors.society ? 'is-invalid' : ''}`}
                 id="selectSociety"
@@ -195,58 +196,78 @@ function RegistrationPage() {
                     {society.name}
                   </option>
                 ))}
-                <option value="">Arice western</option>
-                <option value="">Escon</option>
-                <option value="">Keishna Tounship</option>
-
+                <option >arice western</option>
+                <option >twin towr</option>
                 <option value="create" className="gradient-option" style={{ color: "white", fontSize: "20px", backgroundColor: "#FE512E" }}>Create a new society</option>
+
+
               </select>
               {errors.society && <p className="text-danger">{errors.society.message}</p>}
             </div>
 
-            <div className=" mb-3">
-              <label>Password</label>
-              <div className="input-group">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                  placeholder="Enter Password"
-                  style={{ borderRadius: "15px", border: "1px solid #D3D3D3" }}
-                  {...register('password', { required: 'Password is required' })}
-                />
-                <span
-                  className="input-group-text"
-                  onClick={togglePasswordVisibility}
-                  style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
-                >
-                  <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                </span>
-              </div>
+            <div className="mb-3" style={{ position: 'relative' }}>
+              <label>Password<span style={{ color: "red" }}>*</span></label>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                placeholder="Enter Password"
+                style={{
+                  borderRadius: "15px",
+                  border: "1px solid #D3D3D3",
+                  paddingRight: '40px'
+                }}
+                {...register('password', { required: 'Password is required' })}
+              />
+              <span
+                className="input-group-text"
+                onClick={togglePasswordVisibility}
+                style={{
+                  cursor: 'pointer',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  position: 'absolute',
+                  right: '10px',
+                  top: '70%',
+                  transform: 'translateY(-50%)',
+                }}
+              >
+                <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+              </span>
               {errors.password && <p className="text-danger">{errors.password.message}</p>}
             </div>
 
-            <div className=" mb-3">
-              <label>Confirm Password</label>
-              <div className="input-group">
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                  placeholder="Confirm Password"
-                  style={{ borderRadius: "15px", border: "1px solid #D3D3D3" }}
-                  {...register('confirmPassword', {
-                    required: 'Confirm password is required',
-                    validate: (value) => value === watch('password') || "Passwords do not match",
-                  })}
-                />
-                <span
-                  className="input-group-text"
-                  onClick={toggleConfirmPasswordVisibility}
-                  style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
-                >
-                  <i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                </span>
-              </div>
-              {errors.confirmPassword && <p className="text-danger">{errors.confirmPassword.message}</p>}
+
+            <div className="mb-3" style={{ position: 'relative' }}>
+              <label htmlFor="">Confirm password <span style={{ color: "red" }}>*</span></label>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                placeholder="Confirm Password"
+                style={{
+                  borderRadius: "15px",
+                  border: "1px solid #D3D3D3",
+                  paddingRight: '40px'
+                }}
+                {...register('confirmPassword', {
+                  required: 'Confirm password is required',
+                  validate: (value) => value === watch('password') || "Passwords do not match",
+                })}
+              />
+              <span
+                className="input-group-text"
+                onClick={toggleConfirmPasswordVisibility}
+                style={{
+                  cursor: 'pointer',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  position: 'absolute',
+                  right: '10px',
+                  top: '70%',
+                  transform: 'translateY(-50%)',
+                }}
+              >
+                <i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+              </span>
             </div>
 
 
@@ -257,7 +278,7 @@ function RegistrationPage() {
                 onChange={(e) => setIsAgreed(e.target.checked)}
               />
               <label className="form-check-label" htmlFor="agreeTerms">
-                I agree to the terms and <span className='text-danger'> privacy policeis</span>
+                I agree to the terms and <span className='text-danger'> privacy policies</span>
               </label>
             </div>
 
@@ -266,18 +287,19 @@ function RegistrationPage() {
               className="btn"
               style={{
                 width: "100%",
-                background: "linear-gradient(90deg, #F09619, #FE512E)",
+                background: !Object.keys(errors).length && isAgreed ? "linear-gradient(90deg, #F09619, #FE512E)" : "lightgrey",
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
                 padding: "10px",
-                cursor: "pointer"
+                cursor: !Object.keys(errors).length && isAgreed ? "pointer" : "not-allowed",
               }}
-            
+              disabled={Object.keys(errors).length > 0 || !isAgreed}
             >
               Register
             </button>
           </form>
+
 
           <div className="text-center mt-3">
             <Link to="/login" style={{ textDecoration: "none", color: "black" }}>Already have an account?<span className='text-danger'>Login</span> </Link>
@@ -285,78 +307,103 @@ function RegistrationPage() {
         </div>
       </div>
 
-
       <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create a New Society</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="mb-3">
-            <label>Society Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={societyName}
-              onChange={(e) => setSocietyName(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label>Society Address</label>
-            <input
-              type="text"
-              className="form-control"
-              value={societyAddress}
-              onChange={(e) => setSocietyAddress(e.target.value)}
-            />
-          </div>
-          <div className="row">
-            <div className="col-md-4 mb-3">
-              <label>Country</label>
+        <Modal.Dialog className="modal-dialog-centered">
+          <Modal.Header>
+            <Modal.Title>Create a New Society</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="mb-3">
+              <label>Society Name <span style={{ color: "red" }}>*</span></label>
               <input
                 type="text"
                 className="form-control"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
+                value={societyName}
+                onChange={(e) => setSocietyName(e.target.value)}
               />
             </div>
-            <div className="col-md-4 mb-3">
-              <label>State</label>
+            <div className="mb-3">
+              <label>Society Address<span style={{ color: "red" }}>*</span></label>
               <input
                 type="text"
                 className="form-control"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
+                value={societyAddress}
+                onChange={(e) => setSocietyAddress(e.target.value)}
               />
             </div>
-            <div className="col-md-4 mb-3">
-              <label>City</label>
+            <div className="row">
+              <div className="col-md-4 mb-3">
+                <label>Country<span style={{ color: "red" }}>*</span></label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                />
+              </div>
+              <div className="col-md-4 mb-3">
+                <label>State<span style={{ color: "red" }}>*</span></label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                />
+              </div>
+              <div className="col-md-4 mb-3">
+                <label>City<span style={{ color: "red" }}>*</span></label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="mb-3">
+              <label>ZIP Code<span style={{ color: "red" }}>*</span></label>
               <input
                 type="text"
                 className="form-control"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={zipCode}
+                onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
-          </div>
-          <div className="mb-3">
-            <label>ZIP Code</label>
-            <input
-              type="text"
-              className="form-control"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
-            />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCreateSociety}>
-            Create Society
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Button
+              style={{
+                backgroundColor: 'transparent',
+                color: 'black',
+                border: '1px solid grey',
+                width: '48%',
+              }}
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleCreateSociety}
+              style={{
+                background: (societyName && societyAddress && country && state && city && zipCode)
+                  ? 'linear-gradient(90deg, #F09619, #FE512E)'
+                  : 'lightgrey',
+                width: '48%',
+                border: 'none',
+                cursor: (societyName && societyAddress && country && state && city && zipCode)
+                  ? 'pointer'
+                  : 'not-allowed',
+              }}
+              disabled={!societyName || !societyAddress || !country || !state || !city || !zipCode}
+            >
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
       </Modal>
+
+
+
     </div>
   );
 }

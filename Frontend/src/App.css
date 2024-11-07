@@ -1,7 +1,8 @@
 .registration-container {
   display: flex;
   flex-direction: row;
-  height: auto;
+  height: 
+  1064px;
 
 }
 
@@ -393,6 +394,7 @@ body {
   text-decoration: none;
   color: black;
 }
+<<<<<<< Updated upstream
 
 
 
@@ -728,3 +730,166 @@ input[type="email"] {
 
 
 
+=======
+/*Dashbord css*/
+.balance-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 350px;
+  position: relative;
+  height: 75px;
+}
+
+.balance-card::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 0;
+  bottom: 0;
+  width: 8px;
+  height: 40px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+
+.balance-card-orange::before {
+  background-color: #FFA64D; 
+}
+
+.balance-card-green::before {
+  background-color: #4CAF50; 
+}
+
+.balance-card-blue::before {
+  background-color: #869ff3; 
+}
+
+.balance-card-pink::before {
+  background-color: #eb37c3; 
+}
+
+.balance-info {
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+
+
+.icon-container img {
+  width: 40px;
+  height: 40px;
+}
+.balance-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 350px;
+  position: relative;
+  height: 75px;
+  background-size: cover; 
+}
+
+
+.balance-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px; 
+  width: 40px; 
+  background-color: transparent;
+  border-top: 4px solid; 
+  border-right: 4px solid; 
+  border-top-right-radius: 12px;
+}
+
+
+.balance-card-orange::after {
+  border-color: #FFA64D; 
+}
+
+.balance-card-green::after {
+  border-color: #4CAF50; 
+}
+
+.balance-card-blue::after {
+  border-color: #869ff3; 
+}
+
+.balance-card-pink::after {
+  border-color: #eb37c3; 
+}
+
+.balance-info {
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+
+.icon-container img {
+  width: 40px;
+  height: 40px;
+}
+
+.custom-dropdown {
+  appearance: none; 
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+
+.custom-dropdown::after {
+  content: '▼';
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  margin: 0;
+
+}
+.custom-scroll {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto; /* Enables vertical scrolling */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #888 #f1f1f1; /* For Firefox */
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 8px; /* Thin scrollbar */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar thumb color */
+  border-radius: 10px; /* Scrollbar thumb rounded edges */
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Scrollbar track color */
+}
+
+
+/* Dashbord css end*/
+>>>>>>> Stashed changes
