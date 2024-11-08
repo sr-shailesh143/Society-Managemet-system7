@@ -24,14 +24,19 @@ function App() {
         <Route path='/otp' element={<OTPVerification />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         {/* layout */}
-        <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
-        <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
+
+        <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
+        <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
+        <Route path='/financial' element={<Layout/>}/>
+        {/* profile */}
+        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
+        <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
+        
+       
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
 
-        <Route path='/financial' element={<Layout />} />
-        {/* profile */}
-        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
-        <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
+    
+        
       </Routes>
     </BrowserRouter>
   );
