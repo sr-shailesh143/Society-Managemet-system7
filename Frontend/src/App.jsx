@@ -24,19 +24,12 @@ function App() {
         <Route path='/otp' element={<OTPVerification />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         {/* layout */}
-<<<<<<< Updated upstream
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
         <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
         <Route path='/financial' element={<Layout/>}/>
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
-=======
-        <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
-        <Route path='/resident' element={<Layout />} />
-        <Route path='/financial' element={<Layout />} />
-        <Route path='/layout' element={<Layout1 />} />
->>>>>>> Stashed changes
       </Routes>
     </BrowserRouter>
   );

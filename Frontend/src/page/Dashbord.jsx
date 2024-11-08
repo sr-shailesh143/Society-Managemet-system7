@@ -89,19 +89,14 @@ export default function Dashboard() {
   const handleEditContact = (index) => {
     setEditIndex(index);
     setShowModal(true);
-    setModalData(contacts[index]);
+    // setModalData(contacts[index]);
   };
 
   return (
     <div className="container-fluid p-4">
       {/* Statistics  */}
       <div className="row mb-4">
-<<<<<<< Updated upstream
-        <StatCard className="col-12  col-md-4" title="Total Balance" value="₹ 22,520" borderColor="#6a5acd" />
-        <StatCard className="col-12  col-md-4" title="Total Income" value="₹ 55,000" borderColor="#28a745" />
-        <StatCard className="col-12  col-md-4" title="Total Expense" value="₹ 20,550" borderColor="#dc3545" />
-        <StatCard className="col-12  col-md-4" title="Total Unit" value="₹ 20,550" borderColor="#ffc107" />
-=======
+       
         <StatCard
           title="Total Balance"
           value="₹ 2,22,520"
@@ -127,7 +122,6 @@ export default function Dashboard() {
           cardClass="balance-card-pink"
         />
 
->>>>>>> Stashed changes
       </div>
 
       {/* Total Balance Chart */}

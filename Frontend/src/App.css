@@ -444,7 +444,6 @@ body {
   color: black;
   position: relative;
 }
-<<<<<<< Updated upstream
 
 
 
@@ -776,12 +775,11 @@ input[type="email"] {
 .owner {
   background-color: rgba(30, 136, 229, 0.1);
   color: #1e88e5;
-<<<<<<< Updated upstream
 }
 
 
 
-=======
+
 /*Dashbord css*/
 .balance-card {
   background-color: #ffffff;
@@ -942,8 +940,3 @@ input[type="email"] {
 }
 
 
-/* Dashbord css end*/
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
