@@ -96,10 +96,14 @@ export default function Dashboard() {
     <div className="container-fluid p-4">
       {/* Statistics  */}
       <div className="row mb-4">
+
         <StatCard className="col-12  col-md-4" title="Total Balance" value="₹ 22,520" borderColor="#6a5acd" />
         <StatCard className="col-12  col-md-4" title="Total Income" value="₹ 55,000" borderColor="#28a745" />
         <StatCard className="col-12  col-md-4" title="Total Expense" value="₹ 20,550" borderColor="#dc3545" />
         <StatCard className="col-12  col-md-4" title="Total Unit" value="₹ 20,550" borderColor="#ffc107" />
+  
+
+
       </div>
 
       {/* Total Balance Chart */}
@@ -130,7 +134,7 @@ export default function Dashboard() {
               <div className="card-body" style={{ paddingBottom: "0" }}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h6 className="card-title">Important Numbers</h6>
-                  {/* Button outside scrollable area */}
+
                   <Button
                     onClick={toggleModal}
                     className="btn mb-4"
@@ -141,8 +145,8 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "8px",
-                      position: "static", // Keep button static in place, don't make it sticky
-                      marginBottom: "15px", // Space between button and the content below
+                      position: "static",
+                      marginBottom: "15px",
                     }}
                   >
                     <FaPlus />
@@ -150,7 +154,7 @@ export default function Dashboard() {
                   </Button>
                 </div>
 
-                {/* Scrollable area for contacts */}
+
                 <div
                   style={{
                     maxHeight: "300px",
@@ -214,7 +218,7 @@ export default function Dashboard() {
                   <option>Last Year</option>
                 </select>
               </div>
-              <div style={{ maxHeight: "250px", overflowY: "auto" }}>  {/* Set max height for the table container */}
+              <div style={{ maxHeight: "250px", overflowY: "auto" }}>
                 <ComplaintTable />
               </div>
             </div>
@@ -228,7 +232,7 @@ export default function Dashboard() {
             <div className="card-body">
               <div className='d-flex'>
                 <h4 className="card-title p-2">Upcoming Activities</h4>
-                <select className="form-select mb-2 position-absolute top-0 end-0 m-1 p-2" style={{ width: 'auto' }}>
+                <select className="form-select mb-2 position-absolute top-0 end-0 m-3 p-2" style={{ width: 'auto' }}>
                   <option>Month</option>
                   <option>Last week</option>
                   <option>Last month</option>
@@ -453,10 +457,10 @@ const MaintenanceCard = ({ name, amount, photo }) => {
 
 const ComplaintTable = () => {
   const [complaints, setComplaints] = useState([
-    { id: 1, name: 'John Doe', complaint: 'Unethical Behavior', date: '2024-11-01', status: 'Open', priority: 'Medium', profilePhoto: 'path/to/photo1.jpg' },
-    { id: 2, name: 'Jane Smith', complaint: 'Noise Complaint', date: '2024-11-01', status: 'Pending', priority: 'High', profilePhoto: 'path/to/photo2.jpg' },
-    { id: 3, name: 'Alex Johnson', complaint: 'Pothole Issue', date: '2024-11-01', status: 'Solved', priority: 'Low', profilePhoto: 'path/to/photo3.jpg' },
-    { id: 4, name: ' Johnson', complaint: 'Pothole ', date: '2024-11-01', status: 'Solved', priority: 'Low', profilePhoto: 'path/to/photo3.jpg' },
+    { id: 1, name: 'John Doe', complaint: 'Unethical Behavior', date: '2024-11-01', status: 'Open', priority: 'Medium', profilePhoto: 'https://www.shutterstock.com/image-vector/vector-illustration-color-avatar-user-260nw-2463110233.jpg' },
+    { id: 2, name: 'Jane Smith', complaint: 'Noise Complaint', date: '2024-11-01', status: 'Pending', priority: 'High', profilePhoto: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbC_i3mdPG4rauxrzDGjwL1QHiqtDVuHbcifrdanG8VzxmqSQEvmEl3tpynyz0yiV7Y00&usqp=CAU' },
+    { id: 3, name: 'Alex Johnson', complaint: 'Pothole Issue', date: '2024-11-01', status: 'Solved', priority: 'Low', profilePhoto: 'https://img.freepik.com/premium-photo/stylish-man-flat-vector-profile-picture-ai-generated_606187-310.jpg' },
+    { id: 4, name: ' Johnson', complaint: 'Pothole ', date: '2024-11-01', status: 'Solved', priority: 'Low', profilePhoto: 'https://img.freepik.com/premium-photo/orange-white-picture-man-with-beard-smile_745528-17296.jpg' },
 
   ]);
   const [editData, setEditData] = useState(null);
@@ -501,117 +505,125 @@ const ComplaintTable = () => {
 
   return (
     <div className="table-responsive" style={{ borderRadius: "15px" }}>
-      <table className="table table-bordered" style={{ borderRadius: "15px" }}>
-        <thead className="table-header">
-          <tr>
-
-            <th style={{ backgroundColor: '#F0F3FE' }}>Complainer Name</th>
-            <th style={{ backgroundColor: '#F0F3FE' }}>Complaint Name</th>
-            <th style={{ backgroundColor: '#F0F3FE' }}>Date</th>
-            <th style={{ backgroundColor: '#F0F3FE' }}>Priority</th>
-            <th style={{ backgroundColor: '#F0F3FE' }}>Status</th>
-
-            <th style={{ backgroundColor: '#F0F3FE' }}>Action</th>
+      <table className="table table-hover table-striped" style={{ borderCollapse: 'separate', borderSpacing: '0' }}>
+        <thead>
+          <tr style={{ textAlign: 'center' }}>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Complainer Name</th>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Complaint Name</th>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Date</th>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Priority</th>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Status</th>
+            <th style={{ backgroundColor: "#E5E8FD" }}>Action</th>
           </tr>
         </thead>
         <tbody>
           {complaints.map((comp) => (
-            <tr key={comp.id} style={{ borderBottom: 'none' }}>
-              <td style={{ border: 'none' }}>
+            <tr className="no-shadow"
+              key={comp.id}
+              style={{
+                boxShadow: "none",
+                textAlign: 'center',
+                boxShadow: 'none',  // Remove the inset box-shadow here
+
+              }}
+            >
+              <td
+                style={{
+                  boxShadow: "none",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  border: 'none',
+                }}
+              >
                 <img
-                  src="https://img.freepik.com/premium-photo/stylish-man-flat-vector-profile-picture-ai-generated_606187-310.jpg?semt=ais_hybrid"
+                  src={comp.profilePhoto}
                   alt="Profile"
                   style={{
-                    width: '50px',
-                    height: '50px',
+                    width: '45px',
+                    height: '45px',
                     borderRadius: '50%',
                     marginRight: '10px',
                   }}
                 />
-                {comp.name}
+                <span style={{ border: 'none', boxShadow: "none" }}>{comp.name}</span>
               </td>
 
-              <td style={{ border: 'none' }}>{comp.complaint}</td>
-              <td style={{ border: 'none' }}>{comp.date}</td>
-              <td style={{ border: 'none' }}>
+              <td style={{ border: 'none', boxShadow: "none" }}>{comp.complaint}</td>
+              <td style={{ border: 'none', boxShadow: "none" }}>{comp.date}</td>
+              <td style={{ border: 'none', boxShadow: "none" }}>
                 <span
-                  className={`text-${comp.priority === 'High' ? 'light' : comp.priority === 'Medium' ? 'light' : 'light'}`}
                   style={{
-                    padding: '5px',
-                    borderRadius: '15px',
-                    backgroundColor: comp.priority === 'High'
-                      ? '#c82333'
-                      : comp.priority === 'Medium'
-                        ? '#5678E9'
-                        : '#28a745',
+                    boxShadow: "none",
+                    display: 'inline-block',
+                    padding: '5px 10px',
+                    borderRadius: '12px',
+                    backgroundColor: comp.priority === 'High' ? '#E74C3C' : comp.priority === 'Medium' ? '#5678E9' : '#39973D',
+                    color: 'white',
                     width: '80px',
                     textAlign: 'center',
-                    display: 'inline-block',
-                    color: 'white',
                   }}
                 >
                   {comp.priority}
                 </span>
               </td>
-              <td style={{ border: 'none' }}>
+              <td style={{ border: 'none', boxShadow: "none" }}>
                 <span
-                  className={`text-${comp.status === 'Pending' ? 'danger' : comp.status === 'High' ? 'danger' : comp.priority === 'Medium' ? 'warning' : 'success'}`}
                   style={{
-                    padding: '5px',
-                    borderRadius: '15px',
-                    backgroundColor: comp.priority === 'High'
-                      ? '#f8d7da'
-                      : comp.priority === 'Medium'
-                        ? '#fff3cd'
-                        : '#d4edda',
-                    width: '80px',
+                    boxShadow: "none",
+                    padding: '5px 10px',
+                    borderRadius: '12px',
+                    backgroundColor: comp.status === 'Open' ? '#b2f0b2' : comp.status === 'Pending' ? '#fff9c4' : '#cce7ff',
+                    color: comp.status === 'Open' ? '#006400' : comp.status === 'Pending' ? '#f57f17' : '#1e3a8a',
+                    minWidth: '80px',
                     textAlign: 'center',
-                    display: 'inline-block'
+                    display: 'inline-block',
                   }}
                 >
                   {comp.status}
                 </span>
               </td>
-              <td style={{ border: 'none' }}>
+              <td style={{ border: 'none', boxShadow: "none" }}>
                 <FaRegEdit
                   className="text-success"
                   onClick={() => handleEditClick(comp)}
                   style={{
-                    cursor: 'pointer',
                     marginRight: '10px',
-                    backgroundColor: '#f0f0f0',
-                    padding: '5px',
+                    padding: '8px',
                     borderRadius: '30%',
-                    fontSize: "30px",
+                    fontSize: '35px',
+                    backgroundColor: '#f5f5f5',
                   }}
                 />
                 <FaEye
                   className="text-primary"
                   onClick={() => handleViewClick(comp)}
                   style={{
-                    cursor: 'pointer',
                     marginRight: '10px',
-                    backgroundColor: '#f0f0f0',
-                    padding: '5px',
+                    padding: '8px',
                     borderRadius: '30%',
-                    fontSize: "30px"
+                    fontSize: '35px',
+                    backgroundColor: '#f5f5f5',
                   }}
                 />
                 <MdOutlineDeleteOutline
                   className="text-danger"
                   onClick={() => handleDeleteClick(comp)}
                   style={{
-                    cursor: 'pointer',
-                    backgroundColor: '#f0f0f0',
-                    padding: '5px',
+                    padding: '8px',
                     borderRadius: '30%',
-                    fontSize: "30px"
+                    fontSize: '35px',
+                    backgroundColor: '#f5f5f5',
+                    boxShadow: 'none', // Ensure no box-shadow
+                    outline: 'none', // Remove outline as well
                   }}
                 />
               </td>
             </tr>
           ))}
         </tbody>
+
+
 
       </table>
 
@@ -820,7 +832,7 @@ const ComplaintTable = () => {
 
                   <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
                     <img
-                      src="https://img.freepik.com/premium-photo/stylish-man-flat-vector-profile-picture-ai-generated_606187-310.jpg?semt=ais_hybrid"
+                      src={complaintToView.profilePhoto} // Use the profilePhoto from the selected complaint
                       alt={`${complaintToView.name}'s profile`}
                       style={{
                         width: '60px',
@@ -830,10 +842,15 @@ const ComplaintTable = () => {
                       }}
                     />
                     <div>
-                      <p style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '0' }}>{complaintToView.name}</p>
-                      <p style={{ color: '#888', fontSize: '0.9rem' }}>{complaintToView.date}</p>
+                      <p style={{ fontWeight: 'bold', fontSize: '1.1rem', margin: '0' }}>
+                        {complaintToView.name}
+                      </p>
+                      <p style={{ color: '#888', fontSize: '0.9rem' }}>
+                        {complaintToView.date}
+                      </p>
                     </div>
                   </div>
+
 
 
                   <div style={{ marginBottom: '15px' }}>
@@ -1106,9 +1123,5 @@ function ActivityList() {
         <span className="text-muted" style={{ marginLeft: "auto" }}>{`24-09-2024`}</span>
       </li>
     </ul>
-
-
-
-
   );
 }
