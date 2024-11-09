@@ -521,9 +521,8 @@ const ComplaintTable = () => {
             <tr className="no-shadow"
               key={comp.id}
               style={{
-                boxShadow: "none",
                 textAlign: 'center',
-                boxShadow: 'none',  // Remove the inset box-shadow here
+                boxShadow: 'none',
 
               }}
             >

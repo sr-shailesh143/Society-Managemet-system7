@@ -14,6 +14,7 @@ import ProfileEditForm from './page/Profile';
 import UpdateProfile from './page/UpdateProfile';
 import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
+import Owner from './page/Owner';
 function App() {
   return (
     <BrowserRouter>
@@ -31,7 +32,8 @@ function App() {
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
-        
+        {/* resident */}
+        <Route path='/owner' element={<Layout component={<Owner/>} />}/>
        
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
 
