@@ -116,7 +116,7 @@ export default function Dashboard() {
         />
         <StatCard
           title="Total Unit"
-          value="20,550"
+          value="₹ 20,550"
           iconSrc="src/Assets/button4.png"
           cardClass="balance-card-pink"
         />
@@ -587,7 +587,7 @@ fontSize:"16px"
                     height: '45px',
                     borderRadius: '50%',
                     marginRight: '10px',
-                    width:"40px",
+                    
                     fontSize:"13px"
                   }}
                 />
@@ -1039,41 +1039,14 @@ fontSize:"16px"
 function ActivityList() {
   return (
     <ul className="list-group custom-scroll" style={{ height: "250px" }}>
-      <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-      <div className="d-flex align-items-center w-75">
-        <h6
-          style={{
-            backgroundColor: "#E6BBAD",
-            width: "40px",
-            height: "40px",
-            textAlign: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: "bold",
-            color: "DarkOrange",
-            marginRight: "10px",
-          }}
-        >
-          H
-        </h6>
-        <div className="d-flex flex-column">
-          <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Holi Festival</span>
-          <p style={{ fontSize: "0.8em", margin: 0, color: "gray", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>10 AM to 3 PM</p>
-        </div>
-      </div>
-      <span className="text-muted" style={{ marginLeft: "auto", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{`24-09-2024`}</span>
-    </li>
-  
-    {/* Repeat for other list items */}
     <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-      <div className="d-flex align-items-center w-75">
+      <div className="d-flex align-items-center w-100">
         <h6
           style={{
             backgroundColor: "#E6BBAD",
-            width: "40px",
-            height: "40px",
+            width: "30px",
+            padding: "2px",
+            height: "30px",
             textAlign: "center",
             justifyContent: "center",
             borderRadius: "50%",
@@ -1082,20 +1055,118 @@ function ActivityList() {
             fontWeight: "bold",
             color: "DarkOrange",
             marginRight: "10px",
+            fontSize: "0.9em",
           }}
         >
           H
         </h6>
-        <div className="d-flex flex-column">
-          <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Holi Festival</span>
-          <p style={{ fontSize: "0.8em", margin: 0, color: "gray", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>10 AM to 3 PM</p>
+  
+        <div className="d-flex flex-column flex-grow-1">
+          <div className="d-flex align-items-center justify-content-between w-100">
+            <span
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                marginRight: '10px',
+                flex: 1
+              }}
+            >
+              Holi Festival
+            </span>
+            <span
+              className="text-muted"
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                fontSize: "13px"
+              }}
+            >
+              {`24-09-2024`}
+            </span>
+          </div>
+          <p
+            style={{
+              fontSize: "0.8em",
+              margin: 0,
+              color: "gray",
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
+            10 AM to 3 PM
+          </p>
         </div>
       </div>
-      <span className="text-muted" style={{ marginLeft: "auto", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{`24-09-2024`}</span>
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+      <div className="d-flex align-items-center w-100">
+        <h6
+          style={{
+            backgroundColor: "#E6BBAD",
+            width: "30px",
+            padding: "2px",
+            height: "30px",
+            textAlign: "center",
+            justifyContent: "center",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            fontWeight: "bold",
+            color: "DarkOrange",
+            marginRight: "10px",
+            fontSize: "0.9em",
+          }}
+        >
+          H
+        </h6>
+  
+        <div className="d-flex flex-column flex-grow-1">
+          <div className="d-flex align-items-center justify-content-between w-100">
+            <span
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                marginRight: '10px',
+                flex: 1
+              }}
+            >
+              Holi Festival
+            </span>
+            <span
+              className="text-muted"
+              style={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                fontSize: "13px"
+              }}
+            >
+              {`24-09-2024`}
+            </span>
+          </div>
+          <p
+            style={{
+              fontSize: "0.8em",
+              margin: 0,
+              color: "gray",
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
+            10 AM to 3 PM
+          </p>
+        </div>
+      </div>
     </li>
   
-    {/* Repeat for the remaining items */}
+   
   </ul>
+  
   
   );
 }
