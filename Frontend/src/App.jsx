@@ -14,7 +14,7 @@ import ProfileEditForm from './page/Profile';
 import UpdateProfile from './page/UpdateProfile';
 import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
-
+import SecurityGuard from './page/SecurityGuard';
 
 import FacilityManagement from './page/FacilityManagement';
 
@@ -34,7 +34,7 @@ function App() {
         <Route path='/deshbord' element={<Layout component={<Dashbord/>} />}/>
         <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement/>}/>}/>
-      
+        <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard/>}/>}/>
 
         <Route path='/financial' element={<Layout/>}/>
         {/* profile */}
