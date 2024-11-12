@@ -114,8 +114,11 @@ const Announcement = () => {
     announcementForm.date.trim() !== '' &&
     announcementForm.time.trim() !== '';
   return (
+    <div className="container-fluid p-4" style={{ minHeight: '100vh', backgroundColor: '#f7f9fc' }}>
     <div className="container-fluid d-flex flex-column bg-light shadow p-0">
+    
       <div className="d-flex justify-content-between align-items-center mb-3 p-3">
+        
         <h2>Announcement</h2>
         <Button
           style={{
@@ -295,8 +298,9 @@ const Announcement = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-    </div>
+      </div>
+      </div>
+ 
   );
 };
 
