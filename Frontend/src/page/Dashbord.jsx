@@ -93,7 +93,11 @@ export default function Dashboard() {
   };
 
   return (
+
     <div className="container-fluid pt-4"style={{width:"100%"}}>
+
+    <div className="container-fluid pt-4">
+
       {/* Statistics  */}
       <div className="row mb-4">
         <StatCard

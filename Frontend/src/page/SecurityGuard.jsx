@@ -34,6 +34,10 @@ const SecurityGuard = () => {
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
 
+
+    { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
+
+
     
 
     
