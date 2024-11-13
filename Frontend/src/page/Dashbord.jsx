@@ -89,10 +89,16 @@ export default function Dashboard() {
   const handleEditContact = (index) => {
     setEditIndex(index);
     setShowModal(true);
-    setModalData(contacts[index]);
+    // setModalData(contacts[index]);
   };
 
   return (
+
+    <div className="container-fluid p-4">
+      {/* Statistics  */}
+      <div className="row mb-4">
+       
+
 
     <div className="container-fluid pt-4"style={{width:"100%"}}>
 
@@ -100,6 +106,7 @@ export default function Dashboard() {
 
       {/* Statistics  */}
       <div className="row mb-4">
+
         <StatCard
           title="Total Balance"
           value="₹ 2,22,520"
@@ -120,7 +127,10 @@ export default function Dashboard() {
         />
         <StatCard
           title="Total Unit"
+          value="20,550"
+
           value="₹ 20,550"
+
           iconSrc="src/Assets/button4.png"
           cardClass="balance-card-pink"
         />

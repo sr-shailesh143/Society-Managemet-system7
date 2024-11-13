@@ -2,7 +2,7 @@ const UserController = require("../controllers/usercontroller");
 const router = require("express").Router();
 router.post("/signup", UserController.Register);
 router.post("/login", UserController.login);
-router.get("/logout", UserController.logout);
+router.post("/logout", UserController.logout);
 router.post("/GetOtp", UserController.GetOtp);
 router.post("/Otpverification", UserController.Otpverification);
 //reset password

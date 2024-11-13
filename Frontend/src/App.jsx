@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import toast, { Toaster } from 'react-hot-toast';
+
 import RegistrationPage from './components/RegistrationPage';
 import Login from './components/Login';
 import ForgetScreen from './components/ForgetScreen';
@@ -27,12 +30,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RegistrationPage />} />
-        <Route path='/login' element={<Login />} />
+        <Route path="/Registration" element={<RegistrationPage />} />
+        <Route path='/' element={<Login />} />
         <Route path='/forget' element={<ForgetScreen />} />
         <Route path='/otp' element={<OTPVerification />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         {/* layout */}
+
+       
+        <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
+        <Route path='/financial' element={<Layout/>}/>
+
         
         {/* DASHBORD */}
         <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
@@ -58,6 +66,7 @@ function App() {
 
 
         <Route path='/Financial' element={<Layout component={<Financial/>}/>}/>
+
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
@@ -68,6 +77,7 @@ function App() {
 
 
       </Routes>
+      <Toaster/>
     </BrowserRouter>
   );
 }
