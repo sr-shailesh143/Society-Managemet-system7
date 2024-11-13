@@ -93,7 +93,11 @@ export default function Dashboard() {
   };
 
   return (
+
+    <div className="container-fluid pt-4"style={{width:"100%"}}>
+
     <div className="container-fluid pt-4">
+
       {/* Statistics  */}
       <div className="row mb-4">
         <StatCard
@@ -130,12 +134,34 @@ export default function Dashboard() {
             <div className="card-body">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h3 className="card-title me-3">Total Balance</h3>
-                <select className="form-select mb-2" style={{ width: 'auto' }}>
-                  <option > Month</option>
-                  <option >Last week</option>
-                  <option>Last month</option>
-                  <option>Last Year</option>
-                </select>
+                <select
+  className="form-select position-absolute top-0 end-0 m-2 p-1"
+  style={{
+    width: 'auto', 
+    minWidth: '100px', 
+    height: '44px', 
+    fontSize: '13px', 
+    appearance: 'none', 
+    MozAppearance: 'none', 
+    WebkitAppearance: 'none', 
+    border: '1px solid #ccc', 
+    borderRadius: '10px', 
+    paddingTop: '12px', 
+    paddingRight: '14px', 
+    paddingBottom: '12px', 
+    paddingLeft: '14px', 
+    gap: '10px',
+  }}
+>
+  <option>Month</option>
+  <option>Last week</option>
+  <option>Last month</option>
+  <option>Last Year</option>
+</select>
+
+
+        
+
               </div>
               <div style={{ height: '300px' }}>
                 <Line data={data} options={options} />
@@ -151,7 +177,7 @@ export default function Dashboard() {
     <div className="card h-100" style={{ marginRight: "5px", borderRadius: "15px" }}>
       <div className="card-body" style={{ paddingBottom: "0" }}>
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h6 className="card-title"style={{fontSize:"13px"}}>Important Numbers</h6>
+          <h6 className="card-title"style={{fontSize:"16px",fontWeight:"bold"}}>Important Numbers</h6>
           <Button
             onClick={toggleModal}
             className="btn "
@@ -198,7 +224,7 @@ export default function Dashboard() {
     <div className="card h-100" style={{ borderRadius: "15px" }}>
     <div className="card-body" style={{ paddingBottom: "0" }}>
   <div className="d-flex justify-content-between align-items-center mb-3">
-    <h6 className="card-title" style={{ fontSize: "13px" }}>Pending Maintenances</h6>
+    <h6 className="card-title" style={{ fontSize: "13px",fontWeight:"bold" }}>Pending Maintenances</h6>
     <a href="#" className="text-primary" style={{ textDecoration: "none" }}>View all</a>
   </div>
 
@@ -224,12 +250,31 @@ export default function Dashboard() {
       <div className="card-body p-0">
         <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
           <h5 className="card-title p-2" style={{ marginBottom: "0" }}>Complaint List</h5>
-          <select className="form-select mb-0 position-absolute top-0 end-0 m-2" style={{ width: 'auto' }}>
-            <option>Month</option>
-            <option>Last week</option>
-            <option>Last month</option>
-            <option>Last Year</option>
-          </select>
+          <select
+  className="form-select position-absolute top-0 end-0 m-2 p-1"
+  style={{
+    width: 'auto', 
+    minWidth: '100px', 
+    height: '44px', 
+    fontSize: '13px', 
+    appearance: 'none', 
+    MozAppearance: 'none', 
+    WebkitAppearance: 'none', 
+    border: '1px solid #ccc', 
+    borderRadius: '10px', 
+    paddingTop: '12px', 
+    paddingRight: '14px', 
+    paddingBottom: '12px', 
+    paddingLeft: '14px', 
+    gap: '10px',
+  }}
+>
+  <option>Month</option>
+  <option>Last week</option>
+  <option>Last month</option>
+  <option>Last Year</option>
+</select>
+
         </div>
         <div style={{ maxHeight: "250px", overflowY: "auto" }}>
           <ComplaintTable />
@@ -243,16 +288,33 @@ export default function Dashboard() {
     <div className="card h-100" style={{ borderRadius: "15px" }}>
     <div className="card-body p-0">
     <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
-    <h6 className="card-title p-2" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" ,fontSize:"12px"}}>Upcoming Activities</h6>
+    <h6 className="card-title p-2" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" ,fontSize:"12px",fontWeight:"bold"}}>Upcoming Activities</h6>
     <select
-          className="form-select  position-absolute top-0 end-0 m-2 p-1"
-          style={{ width: 'auto', fontSize: '13px',  }}
-        >
-            <option>Month</option>
-            <option>Last week</option>
-            <option>Last month</option>
-            <option>Last Year</option>
-          </select>
+  className="form-select position-absolute top-0 end-0 m-2 p-1"
+  style={{
+    width: 'auto', 
+    minWidth: '100px', 
+    height: '44px', 
+    fontSize: '13px', 
+    appearance: 'none', 
+    MozAppearance: 'none', 
+    WebkitAppearance: 'none', 
+    border: '1px solid #ccc', 
+    borderRadius: '10px', 
+    paddingTop: '12px', 
+    paddingRight: '14px', 
+    paddingBottom: '12px', 
+    paddingLeft: '14px', 
+    gap: '10px',
+  }}
+>
+  <option>Month</option>
+  <option>Last week</option>
+  <option>Last month</option>
+  <option>Last Year</option>
+</select>
+
+
         </div>
         <div style={{ maxHeight: "250px", overflowY: "auto", paddingTop: "10px" }}>
           <ActivityList />
@@ -418,35 +480,45 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
       <span style={{ color: "black",fontSize:"11px" }}>Phone:-</span><span style={{fontSize:"13px"}}> {phone}</span>
     </p>
     {/* Edit and Delete buttons next to phone */}
-    <div className="ms-2 d-flex align-items-center" style={{ whiteSpace: "nowrap" }}>
-      <Button
-        onClick={onEdit}
-        style={{
-          color: "green",
-          backgroundColor: "transparent",
-          border: "none",
-          width: "30px",
-          height: "30px",
-        }}
-        size="sm"
-      >
-        <FaRegEdit />
-      </Button>
-      <Button
-        onClick={handleShowDeleteModal}
-        style={{
-          color: "red",
-          backgroundColor: "transparent",
-          border: "none",
-          width: "30px",
-          height: "30px",
-        }}
-        size="sm"
-        className="ms-2"
-      >
-        <MdOutlineDeleteOutline />
-      </Button>
+    <div>
+      <div>
+
+      </div>
+      <div>
+        
+      </div>
     </div>
+    <div className="ms-2 d-flex align-items-center justify-content-end" style={{ whiteSpace: "nowrap" }}>
+  <Button
+    onClick={onEdit}
+    style={{
+      color: "green",
+      backgroundColor: "transparent",
+      border: "none",
+      padding: "0",
+    
+    }}
+    size="sm"
+  >
+    <FaRegEdit />
+  </Button>
+
+  <Button
+    onClick={handleShowDeleteModal}
+    style={{
+      color: "red",
+      backgroundColor: "transparent",
+      border: "none",
+      padding: "0",
+    }}
+    size="sm"
+  >
+    <MdOutlineDeleteOutline />
+  </Button>
+</div>
+
+
+
   </div>
   <p style={{ color: "grey" }}>
     <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
@@ -488,7 +560,8 @@ const MaintenanceCard = ({ name, amount, photo }) => {
           <span>{name}</span>
           <p style={{ fontSize: "0.8em", color: "gray", margin: 0 }}>2 months</p>
         </div>
-        <span style={{ color: "red" }}>{amount}</span>
+        <span style={{ color: "red", fontWeight: "bold" }}>{amount}</span>
+
       </div>
     </div>
   );
@@ -544,11 +617,11 @@ const ComplaintTable = () => {
   };
 
   return (
-    <div className="table-responsive" style={{ borderRadius: "15px" }}>
-      <table className="table table-hover table-striped" style={{  borderSpacing: '0' }}>
-        <thead>
+    <div className="table-responsive  radius" style={{ borderRadius: "20px" }}>
+      <table className="table table-hover table-striped " >
+        <thead  style={{  borderSpacing: '0',borderRadius: "20px" }}>
           <tr style={{ textAlign: 'center' }}>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Complainer Name</th>
+            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px", }}>Complainer Name</th>
             <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Complaint Name</th>
             <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Date</th>
             <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Priority</th>
@@ -557,124 +630,163 @@ const ComplaintTable = () => {
           </tr>
         </thead>
         <tbody>
-          {complaints.map((comp) => (
-            <tr className="no-shadow"
-              key={comp.id}
-              style={{
-                textAlign: 'center',
-
-
-                boxShadow: 'none',  // Remove the inset box-shadow here
-fontSize:"16px"
-
-              }}
-            >
-              <td
-                style={{
-                  boxShadow: "none",
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  border: 'none',
-                  fontSize:"16px"
-                }}
-              >
-                <img
-                  src={comp.profilePhoto}
-                  alt="Profile"
-                  style={{
-                    width: '45px',
-                    height: '45px',
-                    borderRadius: '50%',
-                    marginRight: '10px',
-                    
-                    fontSize:"13px"
-                  }}
-                />
-                <span style={{ border: 'none', boxShadow: "none" }}>{comp.name}</span>
-              </td>
-
-              <td style={{ border: 'none', boxShadow: "none" ,fontSize:"16px" }}>{comp.complaint}</td>
-              <td style={{ border: 'none', boxShadow: "none", fontSize:"16px" }}>{comp.date}</td>
-              <td style={{ border: 'none', boxShadow: "none" }}>
-                <span
-                  style={{
-                    boxShadow: "none",
-                    display: 'inline-block',
-                    padding: '5px 10px',
-                    borderRadius: '12px',
-                    backgroundColor: comp.priority === 'High' ? '#E74C3C' : comp.priority === 'Medium' ? '#5678E9' : '#39973D',
-                    color: 'white',
-                    width: '80px',
-                    textAlign: 'center',
-                    fontSize:"13px"
-                  }}
-                >
-                  {comp.priority}
-                </span>
-              </td>
-              <td style={{ border: 'none', boxShadow: "none" }}>
-                <span
-                  style={{
-                    boxShadow: "none",
-                    padding: '5px 10px',
-                    borderRadius: '12px',
-                    backgroundColor: comp.status === 'Open' ? '#b2f0b2' : comp.status === 'Pending' ? '#fff9c4' : '#cce7ff',
-                    color: comp.status === 'Open' ? '#006400' : comp.status === 'Pending' ? '#f57f17' : '#1e3a8a',
-                    minWidth: '80px',
-                    textAlign: 'center',
-                    display: 'inline-block',
-                    fontSize:"13px"
-                  }}
-                >
-                  {comp.status}
-                </span>
-              </td>
-              <td style={{ border: 'none', boxShadow: 'none', padding: '0' }}>
-  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-    <FaRegEdit
-      className="text-success"
-      onClick={() => handleEditClick(comp)}
+  {complaints.map((comp) => (
+    <tr
+      className="no-shadow"
+      key={comp.id}
       style={{
-        marginRight: '10px',
-        padding: '8px',
-        borderRadius: '30%',
-        fontSize: '30px',
-        backgroundColor: '#f5f5f5',
-        boxShadow: 'none', // Ensure no box-shadow
-      }}
-    />
-    <FaEye
-      className="text-primary"
-      onClick={() => handleViewClick(comp)}
-      style={{
-        marginRight: '10px',
-        padding: '8px',
-        borderRadius: '30%',
-        fontSize: '30px',
-        backgroundColor: '#f5f5f5',
+        textAlign: 'center',
         boxShadow: 'none',
+        fontSize: "16px",
+        padding: '10px 0',
       }}
-    />
-    <MdOutlineDeleteOutline
-      className="text-danger"
-      onClick={() => handleDeleteClick(comp)}
-      style={{
-        textAlign:"center",
-        padding: '8px',
-        borderRadius: '30%',
-        fontSize: '30px',
-        backgroundColor: '#f5f5f5',
-        boxShadow: 'none', // Ensure no box-shadow
-        outline: 'none',
-      }}
-    />
-  </div>
-</td>
+    >
+      <td
+        style={{
+          boxShadow: "none",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          border: 'none',
+          fontSize: "16px",
+          padding: '8px 15px',
+          verticalAlign: 'middle',
+          marginLeft: '20px',
+        }}
+      >
+        <img
+          src={comp.profilePhoto}
+          alt="Profile"
+          style={{
+            width: '45px',
+            height: '45px',
+            borderRadius: '50%',
+            marginRight: '10px',
+            fontSize: "13px"
+          }}
+        />
+        <span>{comp.name}</span>
+      </td>
 
-            </tr>
-          ))}
-        </tbody>
+      <td style={{
+        border: 'none', 
+        boxShadow: "none", 
+        fontSize: "16px", 
+        padding: '8px 15px', 
+        marginLeft: '20px', 
+        verticalAlign: 'middle',
+      }}>
+        {comp.complaint}
+      </td>
+      <td style={{
+        border: 'none', 
+        boxShadow: "none", 
+        fontSize: "16px", 
+        padding: '8px 15px', 
+        marginLeft: '20px', 
+        verticalAlign: 'middle',
+      }}>
+        {comp.date}
+      </td>
+      <td style={{
+        border: 'none', 
+        boxShadow: "none", 
+        padding: '8px 15px', 
+        marginLeft: '20px', 
+        verticalAlign: 'middle',
+      }}>
+        <span
+          style={{
+            boxShadow: "none",
+            display: 'inline-block',
+            padding: '5px 10px',
+            borderRadius: '12px',
+            backgroundColor: comp.priority === 'High' ? '#E74C3C' : comp.priority === 'Medium' ? '#5678E9' : '#39973D',
+            color: 'white',
+            width: '80px',
+            textAlign: 'center',
+            fontSize: "13px"
+          }}
+        >
+          {comp.priority}
+        </span>
+      </td>
+      <td style={{
+        border: 'none', 
+        boxShadow: "none", 
+        padding: '8px 15px', 
+        marginLeft: '20px', 
+        verticalAlign: 'middle',
+      }}>
+        <span
+          style={{
+            boxShadow: "none",
+            padding: '5px 10px',
+            borderRadius: '12px',
+            backgroundColor: comp.status === 'Open' ? '#b2f0b2' : comp.status === 'Pending' ? '#fff9c4' : '#cce7ff',
+            color: comp.status === 'Open' ? '#006400' : comp.status === 'Pending' ? '#f57f17' : '#1e3a8a',
+            minWidth: '80px',
+            textAlign: 'center',
+            display: 'inline-block',
+            fontSize: "13px"
+          }}
+        >
+          {comp.status}
+        </span>
+      </td>
+      <td style={{
+        border: 'none', 
+        boxShadow: 'none', 
+        padding: '0', 
+        verticalAlign: 'middle',
+        textAlign: 'center',
+      }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center', // Align icons and status horizontally
+          gap: '10px', // Adds space between icons
+        }}>
+          <FaRegEdit
+            className="text-success"
+            onClick={() => handleEditClick(comp)}
+            style={{
+              padding: '8px',
+              borderRadius: '30%',
+              fontSize: '30px',
+              backgroundColor: '#f5f5f5',
+              boxShadow: 'none',
+            }}
+          />
+          <FaEye
+            className="text-primary"
+            onClick={() => handleViewClick(comp)}
+            style={{
+              padding: '8px',
+              borderRadius: '30%',
+              fontSize: '30px',
+              backgroundColor: '#f5f5f5',
+              boxShadow: 'none',
+            }}
+          />
+          <MdOutlineDeleteOutline
+            className="text-danger"
+            onClick={() => handleDeleteClick(comp)}
+            style={{
+              padding: '8px',
+              borderRadius: '30%',
+              fontSize: '30px',
+              backgroundColor: '#f5f5f5',
+              boxShadow: 'none',
+            }}
+          />
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+
 
 
 

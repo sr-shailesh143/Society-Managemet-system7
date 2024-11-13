@@ -17,7 +17,7 @@ import Announcement from './page/Announcement';
 import SecurityGuard from './page/SecurityGuard';
 
 import FacilityManagement from './page/FacilityManagement';
-
+import Financial from './page/Financial';
 import Owner from './page/Owner';
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement/>}/>}/>
         <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard/>}/>}/>
 
-        <Route path='/financial' element={<Layout/>}/>
+        <Route path='/Financial' element={<Layout component={<Financial/>}/>}/>
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
