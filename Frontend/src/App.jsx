@@ -18,9 +18,9 @@ import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
 import SecurityGuard from './page/SecurityGuard';
 import FacilityManagement from './page/FacilityManagement';
-
-
 import Financial from './page/Financial';
+
+
 
 import Owner from './page/Owner';
 import CompleteTraking from './page/CompleteTraking';
@@ -39,8 +39,8 @@ function App() {
 
        
         <Route path='/resident' element={<Layout component={<ResidentManageMent/>}/>}/>
-        <Route path='/financial' element={<Layout/>}/>
 
+      
         
         {/* DASHBORD */}
         <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
@@ -50,7 +50,7 @@ function App() {
         <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
         <Route path='/owner' element={<Layout component={<Owner />} />} />
         {/* financial */}
-        <Route path='/financial' element={<Layout />} />
+        <Route path='/Financial' element={<Layout component={<Financial/>}/>}/>
         {/* FacilityManagement */}
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}

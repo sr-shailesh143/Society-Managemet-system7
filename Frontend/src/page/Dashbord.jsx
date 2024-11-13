@@ -89,24 +89,13 @@ export default function Dashboard() {
   const handleEditContact = (index) => {
     setEditIndex(index);
     setShowModal(true);
-    // setModalData(contacts[index]);
+    setModalData(contacts[index]);
   };
 
   return (
-
-    <div className="container-fluid p-4">
+    <div className="container-fluid pt-4" style={{ width: "100%" }}>
       {/* Statistics  */}
       <div className="row mb-4">
-       
-
-
-    <div className="container-fluid pt-4"style={{width:"100%"}}>
-
-    <div className="container-fluid pt-4">
-
-      {/* Statistics  */}
-      <div className="row mb-4">
-
         <StatCard
           title="Total Balance"
           value="₹ 2,22,520"
@@ -127,10 +116,7 @@ export default function Dashboard() {
         />
         <StatCard
           title="Total Unit"
-          value="20,550"
-
           value="₹ 20,550"
-
           iconSrc="src/Assets/button4.png"
           cardClass="balance-card-pink"
         />
@@ -145,32 +131,32 @@ export default function Dashboard() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h3 className="card-title me-3">Total Balance</h3>
                 <select
-  className="form-select position-absolute top-0 end-0 m-2 p-1"
-  style={{
-    width: 'auto', 
-    minWidth: '100px', 
-    height: '44px', 
-    fontSize: '13px', 
-    appearance: 'none', 
-    MozAppearance: 'none', 
-    WebkitAppearance: 'none', 
-    border: '1px solid #ccc', 
-    borderRadius: '10px', 
-    paddingTop: '12px', 
-    paddingRight: '14px', 
-    paddingBottom: '12px', 
-    paddingLeft: '14px', 
-    gap: '10px',
-  }}
->
-  <option>Month</option>
-  <option>Last week</option>
-  <option>Last month</option>
-  <option>Last Year</option>
-</select>
+                  className="form-select position-absolute top-0 end-0 m-2 p-1"
+                  style={{
+                    width: 'auto',
+                    minWidth: '100px',
+                    height: '44px',
+                    fontSize: '13px',
+                    appearance: 'none',
+                    MozAppearance: 'none',
+                    WebkitAppearance: 'none',
+                    border: '1px solid #ccc',
+                    borderRadius: '10px',
+                    paddingTop: '12px',
+                    paddingRight: '14px',
+                    paddingBottom: '12px',
+                    paddingLeft: '14px',
+                    gap: '10px',
+                  }}
+                >
+                  <option>Month</option>
+                  <option>Last week</option>
+                  <option>Last month</option>
+                  <option>Last Year</option>
+                </select>
 
 
-        
+
 
               </div>
               <div style={{ height: '300px' }}>
@@ -182,157 +168,178 @@ export default function Dashboard() {
 
         {/* Important Numbers and Pending Maintenance */}
         <div className="col-lg-6 d-flex flex-wrap">
-  {/* Important Numbers Section */}
-  <div className="col-lg-6 col-md-6 mb-4" style={{ marginLeft: "-10px", marginRight: "2px" }}>
-    <div className="card h-100" style={{ marginRight: "5px", borderRadius: "15px" }}>
-      <div className="card-body" style={{ paddingBottom: "0" }}>
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h6 className="card-title"style={{fontSize:"16px",fontWeight:"bold"}}>Important Numbers</h6>
-          <Button
-            onClick={toggleModal}
-            className="btn "
-            style={{
-              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-              color: "white",
-              border: "none",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-          
-              textAlign:"center",
-              justifyContent:"center",
-              position: "static",
-              marginBottom: "15px",
-            }}
-          >
-            <FaPlus  />
-            Add
-          </Button>
+          {/* Important Numbers Section */}
+          <div className="col-lg-6 col-md-6 mb-4" style={{ marginLeft: "-10px", marginRight: "2px" }}>
+            <div className="card h-100" style={{ marginRight: "5px", borderRadius: "15px" }}>
+              <div className="card-body" style={{ paddingBottom: "0" }}>
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h6 className="card-title" style={{ fontSize: "16px", fontWeight: "bold" }}>Important Numbers</h6>
+                  <Button
+                    onClick={toggleModal}
+                    className="btn "
+                    style={{
+                      background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+                      color: "white",
+                      border: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+
+                      textAlign: "center",
+                      justifyContent: "center",
+                      position: "static",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    <FaPlus />
+                    Add
+                  </Button>
+                </div>
+                <div style={{ overflowY: "auto" }}>
+                  <ContactCard name="Hanna Donin" phone="98595733657" work="Plumber" />
+                  <ContactCard name="Hanna Donin" phone="98595733657" work="Plumber" />
+
+
+
+                  {contacts.map((contact, index) => (
+                    <ContactCard
+                      key={index}
+                      name={contact.fullName}
+                      phone={contact.phoneNumber}
+                      work={contact.work}
+                      onEdit={() => handleEditContact(index)}
+                      onDelete={() => handleDeleteContact(index)}
+                    />
+                  ))}
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* Pending Maintenances Section */}
+          <div className="col-lg-6 col-md-6 mb-4" style={{ marginLeft: "7px" }}>
+            <div className="card h-100" style={{ borderRadius: "15px" }}>
+              <div className="card-body" style={{ paddingBottom: "0" }}>
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h6 className="card-title" style={{ fontSize: "13px", fontWeight: "bold" }}>
+                    Pending Maintenances
+                  </h6>
+                  <a href="#" className="text-primary" style={{ textDecoration: "none" }}>
+                    View all
+                  </a>
+                </div>
+
+                {/* Mapping over maintenanceData array */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                  {maintenanceData.map((item) => (
+                    <MaintenanceCard
+                      key={item.id}
+                      name={item.name}
+                      amount={item.amount}
+                      photo={item.photo}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div style={{ overflowY: "auto" }}>
-  <ContactCard name="Hanna Donin" phone="98595733657" work="Plumber" />
-  <ContactCard name="Jane Doe" phone="9123456789" work="Electrician" />
-
-  {contacts.map((contact, index) => (
-    <ContactCard
-      key={index}
-      name={contact.fullName}
-      phone={contact.phoneNumber}
-      work={contact.work}
-      onEdit={() => handleEditContact(index)}
-      onDelete={() => handleDeleteContact(index)}
-    />
-  ))}
-</div>
-
-      </div>
-    </div>
-  </div>
-
-  {/* Pending Maintenances Section */}
-  <div className="col-lg-6 col-md-6 mb-4" style={{ marginLeft: "7px" }}>
-    <div className="card h-100" style={{ borderRadius: "15px" }}>
-    <div className="card-body" style={{ paddingBottom: "0" }}>
-  <div className="d-flex justify-content-between align-items-center mb-3">
-    <h6 className="card-title" style={{ fontSize: "13px",fontWeight:"bold" }}>Pending Maintenances</h6>
-    <a href="#" className="text-primary" style={{ textDecoration: "none" }}>View all</a>
-  </div>
-
-  <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-    <MaintenanceCard name="Roger Lubin" amount="₹ 5,000" photo="path_to_roger_photo.jpg" />
-    <MaintenanceCard name="Mark Smith" amount="₹ 7,500" photo="path_to_mark_photo.jpg" />
-    <MaintenanceCard name="John Doe" amount="₹ 10,000" photo="path_to_john_photo.jpg" />
-  </div>
-</div>
-
-    </div>
-  </div>
-</div>
 
 
       </div>
 
 
       <div className="row">
-  {/* Complaint List Section */}
-  <div className="col-lg-9 mb-4" style={{ height: "361px", overflowY: "auto" }}> {/* Increased width */}
-    <div className="card h-100" style={{ borderRadius: "15px" }}>
-      <div className="card-body p-0">
-        <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
-          <h5 className="card-title p-2" style={{ marginBottom: "0" }}>Complaint List</h5>
-          <select
-  className="form-select position-absolute top-0 end-0 m-2 p-1"
-  style={{
-    width: 'auto', 
-    minWidth: '100px', 
-    height: '44px', 
-    fontSize: '13px', 
-    appearance: 'none', 
-    MozAppearance: 'none', 
-    WebkitAppearance: 'none', 
-    border: '1px solid #ccc', 
-    borderRadius: '10px', 
-    paddingTop: '12px', 
-    paddingRight: '14px', 
-    paddingBottom: '12px', 
-    paddingLeft: '14px', 
-    gap: '10px',
-  }}
->
-  <option>Month</option>
-  <option>Last week</option>
-  <option>Last month</option>
-  <option>Last Year</option>
-</select>
+        {/* Complaint List Section */}
+        <div className="col-lg-9 mb-4" style={{ height: "361px", overflowY: "auto" }}> {/* Increased width */}
+          <div className="card h-100" style={{ borderRadius: "15px" }}>
+            <div className="card-body p-0">
+              <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
+                <h5 className="card-title p-2" style={{ marginBottom: "0" }}>Complaint List</h5>
+                <select
+                  className="form-select position-absolute top-0 end-0 m-2 p-1"
+                  style={{
+                    width: 'auto',
+                    minWidth: '100px',
+                    height: '44px',
+                    fontSize: '13px',
+                    appearance: 'none',
+                    MozAppearance: 'none',
+                    WebkitAppearance: 'none',
+                    border: '1px solid #ccc',
+                    borderRadius: '10px',
+                    paddingTop: '12px',
+                    paddingRight: '14px',
+                    paddingBottom: '12px',
+                    paddingLeft: '14px',
+                    gap: '10px',
+                  }}
+                >
+                  <option>Month</option>
+                  <option>Last week</option>
+                  <option>Last month</option>
+                  <option>Last Year</option>
+                </select>
 
+              </div>
+              <div style={{ maxHeight: "250px", overflowY: "auto" }}>
+                <ComplaintTable />
+              </div>
+            </div>
+          </div>
         </div>
-        <div style={{ maxHeight: "250px", overflowY: "auto" }}>
-          <ComplaintTable />
+
+        {/* Upcoming Activities Section */}
+        <div className="col-lg-3 mb-4" style={{ height: '361px', overflowY: 'auto' }}>
+          <div className="card h-100" style={{ borderRadius: '15px' }}>
+            <div className="card-body p-0">
+              <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: '0' }}>
+                <h6
+                  className="card-title p-2"
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Upcoming Activities
+                </h6>
+                <select
+                  className="form-select position-absolute top-0 end-0 m-2 p-1"
+                  style={{
+                    width: 'auto',
+                    minWidth: '100px',
+                    height: '44px',
+                    fontSize: '13px',
+                    appearance: 'none',
+                    MozAppearance: 'none',
+                    WebkitAppearance: 'none',
+                    border: '1px solid #ccc',
+                    borderRadius: '10px',
+                    paddingTop: '12px',
+                    paddingRight: '14px',
+                    paddingBottom: '12px',
+                    paddingLeft: '14px',
+                    gap: '10px',
+                  }}
+                >
+                  <option>Month</option>
+                  <option>Last week</option>
+                  <option>Last month</option>
+                  <option>Last Year</option>
+                </select>
+              </div>
+              <div style={{ maxHeight: '250px', overflowY: 'auto', paddingTop: '10px' }}>
+                <ActivityList />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  {/* Upcoming Activities Section */}
-  <div className="col-lg-3 mb-4" style={{ height: "361px", overflowY: "auto" }}>
-    <div className="card h-100" style={{ borderRadius: "15px" }}>
-    <div className="card-body p-0">
-    <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
-    <h6 className="card-title p-2" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" ,fontSize:"12px",fontWeight:"bold"}}>Upcoming Activities</h6>
-    <select
-  className="form-select position-absolute top-0 end-0 m-2 p-1"
-  style={{
-    width: 'auto', 
-    minWidth: '100px', 
-    height: '44px', 
-    fontSize: '13px', 
-    appearance: 'none', 
-    MozAppearance: 'none', 
-    WebkitAppearance: 'none', 
-    border: '1px solid #ccc', 
-    borderRadius: '10px', 
-    paddingTop: '12px', 
-    paddingRight: '14px', 
-    paddingBottom: '12px', 
-    paddingLeft: '14px', 
-    gap: '10px',
-  }}
->
-  <option>Month</option>
-  <option>Last week</option>
-  <option>Last month</option>
-  <option>Last Year</option>
-</select>
-
-
-        </div>
-        <div style={{ maxHeight: "250px", overflowY: "auto", paddingTop: "10px" }}>
-          <ActivityList />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
       {/* Modal Form */}
@@ -475,134 +482,85 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   const handleDelete = () => {
-    onDelete(id);
-    setShowDeleteModal(false);
+    onDelete(id); // Call the onDelete function passed from the parent
+    setShowDeleteModal(false); // Close the modal after deleting
   };
 
   return (
-    <div className="  border-bottom pb-2" style={{ borderRadius: "15px" }}>
-    
-
-
-<div className="importent-number">
-  <div className="row">
-    <div className="col-12 col-md-6">
-    <p style={{ color: "grey", marginBottom: "0" }}>
-    <span style={{ color: "black",fontSize:"11px" }}>Name:-</span><span  style={{fontSize:"13px"}}>{name}</span> 
-  </p>
-  <p style={{ color: "grey", marginBottom: "0" }}>
-      <span style={{ color: "black",fontSize:"11px" }}>Phone:-</span><span style={{fontSize:"13px"}}> {phone}</span>
-    </p>
-
-    <p style={{ color: "grey" }}>
-    <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
-  </p>
+    <div className="importent-number" style={{ overflowX: "hidden" }}>
+      <div className="row">
+        <div className="col-12 col-md-6">
+          <p style={{ color: "grey", marginBottom: "0" }}>
+            <span style={{ color: "black", fontSize: "11px" }}>Name:</span>
+            <span style={{ fontSize: "13px" }}>{name}</span>
+          </p>
+          <p style={{ color: "grey", marginBottom: "0" }}>
+            <span style={{ color: "black", fontSize: "11px" }}>Phone:</span>
+            <span style={{ fontSize: "13px" }}> {phone}</span>
+          </p>
+          <p style={{ color: "grey" }}>
+            <span style={{ color: "black", fontSize: "11px" }}>Work:</span>
+            <span style={{ fontSize: "13px" }}> {work}</span>
+          </p>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="button-icon ms-5">
+            <Button
+              onClick={onEdit}
+              style={{
+                color: "green",
+                backgroundColor: "transparent",
+                border: "none",
+                width: "30px",
+                height: "30px",
+              }}
+              size="sm"
+            >
+              <FaRegEdit className="fs-4" />
+            </Button>
+            <Button
+              onClick={handleShowDeleteModal}
+              style={{
+                color: "red",
+                backgroundColor: "transparent",
+                border: "none",
+                width: "30px",
+                height: "30px",
+              }}
+              size="sm"
+            >
+              <MdOutlineDeleteOutline className="fs-4" />
+            </Button>
+          </div>
+          <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Are you sure you want to delete this number?
+            </Modal.Body>
+            <Modal.Footer>
+              <Button style={{ backgroundColor: "transparent", border: "1px solid grey", color: "black" }} onClick={handleCloseDeleteModal}>
+                Cancel
+              </Button>
+              <Button variant="danger" onClick={handleDelete}>
+                Delete
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      </div>
     </div>
-    <div className="col-12 col-md-6">
-    <div className="button-icon ms-5">
-      <Button
-        onClick={onEdit}
-        style={{
-          color: "green",
-          backgroundColor: "transparent",
-          border: "none",
-          width: "30px",
-          height: "30px",
-        }}
-        className=''
-        size="sm"
-      >
-        <FaRegEdit className='fs-4 ' />
-      </Button>
-      <Button
-        onClick={handleShowDeleteModal}
-        style={{
-          color: "red",
-          backgroundColor: "transparent",
-          border: "none",
-          width: "30px",
-          height: "30px",
-        }}
-        size="sm"
-        className=""
-      >
-        <MdOutlineDeleteOutline className='fs-4' />
-      </Button>
-      </div>
-      </div>
 
-    {/* Edit and Delete buttons next to phone */}
-    <div>
-      <div>
-
-      </div>
-      <div>
-        
-      </div>
-    </div>
-    <div className="ms-2 d-flex align-items-center justify-content-end" style={{ whiteSpace: "nowrap" }}>
-  <Button
-    onClick={onEdit}
-    style={{
-      color: "green",
-      backgroundColor: "transparent",
-      border: "none",
-      padding: "0",
-    
-    }}
-    size="sm"
-  >
-    <FaRegEdit />
-  </Button>
-
-  <Button
-    onClick={handleShowDeleteModal}
-    style={{
-      color: "red",
-      backgroundColor: "transparent",
-      border: "none",
-      padding: "0",
-    }}
-    size="sm"
-  >
-    <MdOutlineDeleteOutline />
-  </Button>
-</div>
-
-
-
-
-  </div>
-
-</div>
-
-
-      {/* Delete Confirmation Modal */}
-      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete this number?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button style={{ backgroundColor: "transparent", border: "1px solid grey", color: "black" }} onClick={handleCloseDeleteModal}>
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
-            Delete
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
   );
 }
 
 const MaintenanceCard = ({ name, amount, photo }) => {
   return (
     <div className="d-flex align-items-center mb-3 w-100">
+      {/* Use a local image from the public folder */}
       <img
-        src="https://pics.craiyon.com/2023-11-26/oMNPpACzTtO5OVERUZwh3Q.webp"
+        src={photo}  // Image placed in the public folder
         alt={name}
         style={{ width: "50px", borderRadius: "50%", marginRight: "10px" }}
       />
@@ -612,11 +570,31 @@ const MaintenanceCard = ({ name, amount, photo }) => {
           <p style={{ fontSize: "0.8em", color: "gray", margin: 0 }}>2 months</p>
         </div>
         <span style={{ color: "red", fontWeight: "bold" }}>{amount}</span>
-
       </div>
     </div>
   );
 };
+
+const maintenanceData = [
+  {
+    id: 1,
+    name: "Building Maintenance",
+    amount: "$5000",
+    photo: "https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png"
+  },
+  {
+    id: 2,
+    name: "Plumbing",
+    amount: "$2000",
+    photo: "https://png.pngtree.com/png-vector/20240204/ourmid/pngtree-avatar-job-student-flat-portrait-of-man-png-image_11606888.png"
+  },
+  {
+    id: 3,
+    name: "Electrical Repair",
+    amount: "$3000",
+    photo: "https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp"
+  }
+];
 
 
 const ComplaintTable = () => {
@@ -670,28 +648,26 @@ const ComplaintTable = () => {
   return (
     <div className="table-responsive  radius" style={{ borderRadius: "20px" }}>
       <table className="table table-hover table-striped " >
-        <thead  style={{  borderSpacing: '0',borderRadius: "20px" }}>
+        <thead style={{ borderSpacing: '0', borderRadius: "20px" }}>
           <tr style={{ textAlign: 'center' }}>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px", }}>Complainer Name</th>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Complaint Name</th>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Date</th>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Priority</th>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13x" }}>Status</th>
-            <th style={{ backgroundColor: "#E5E8FD",fontSize:"13px" }}>Action</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13px", }}>Complainer Name</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13px" }}>Complaint Name</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13px" }}>Date</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13px" }}>Priority</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13x" }}>Status</th>
+            <th style={{ backgroundColor: "#E5E8FD", fontSize: "13px" }}>Action</th>
           </tr>
         </thead>
         <tbody>
-
           {complaints.map((comp) => (
-            <tr className="no-shadow"
+            <tr
+              className="no-shadow"
               key={comp.id}
               style={{
                 textAlign: 'center',
-
-
-                boxShadow: 'none',  // Remove the inset box-shadow here
-fontSize:"16px"
-
+                boxShadow: 'none',
+                fontSize: "16px",
+                padding: '10px 0',
               }}
             >
               <td
@@ -701,7 +677,10 @@ fontSize:"16px"
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   border: 'none',
-                  fontSize:"16px"
+                  fontSize: "16px",
+                  padding: '8px 15px',
+                  verticalAlign: 'middle',
+                  marginLeft: '20px',
                 }}
               >
                 <img
@@ -712,16 +691,39 @@ fontSize:"16px"
                     height: '45px',
                     borderRadius: '50%',
                     marginRight: '10px',
-                    
-                    fontSize:"13px"
+                    fontSize: "13px"
                   }}
                 />
-                <span style={{ border: 'none', boxShadow: "none" }}>{comp.name}</span>
+                <span>{comp.name}</span>
               </td>
 
-              <td style={{ border: 'none', boxShadow: "none" ,fontSize:"16px" }}>{comp.complaint}</td>
-              <td style={{ border: 'none', boxShadow: "none", fontSize:"16px" }}>{comp.date}</td>
-              <td style={{ border: 'none', boxShadow: "none" }}>
+              <td style={{
+                border: 'none',
+                boxShadow: "none",
+                fontSize: "16px",
+                padding: '8px 15px',
+                marginLeft: '20px',
+                verticalAlign: 'middle',
+              }}>
+                {comp.complaint}
+              </td>
+              <td style={{
+                border: 'none',
+                boxShadow: "none",
+                fontSize: "16px",
+                padding: '8px 15px',
+                marginLeft: '20px',
+                verticalAlign: 'middle',
+              }}>
+                {comp.date}
+              </td>
+              <td style={{
+                border: 'none',
+                boxShadow: "none",
+                padding: '8px 15px',
+                marginLeft: '20px',
+                verticalAlign: 'middle',
+              }}>
                 <span
                   style={{
                     boxShadow: "none",
@@ -732,13 +734,19 @@ fontSize:"16px"
                     color: 'white',
                     width: '80px',
                     textAlign: 'center',
-                    fontSize:"13px"
+                    fontSize: "13px"
                   }}
                 >
                   {comp.priority}
                 </span>
               </td>
-              <td style={{ border: 'none', boxShadow: "none" }}>
+              <td style={{
+                border: 'none',
+                boxShadow: "none",
+                padding: '8px 15px',
+                marginLeft: '20px',
+                verticalAlign: 'middle',
+              }}>
                 <span
                   style={{
                     boxShadow: "none",
@@ -749,186 +757,63 @@ fontSize:"16px"
                     minWidth: '80px',
                     textAlign: 'center',
                     display: 'inline-block',
-                    fontSize:"13px"
+                    fontSize: "13px"
                   }}
                 >
                   {comp.status}
                 </span>
               </td>
-              <td style={{ border: 'none', boxShadow: 'none', padding: '0' }}>
-  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-    <FaRegEdit
-      className="text-success fs-1"
-      onClick={() => handleEditClick(comp)}
-      style={{
-        marginRight: '10px',
-        padding: '8px',
-        borderRadius: '30%',
-        fontSize: '30px',
-        backgroundColor: '#f5f5f5',
-        boxShadow: 'none', // Ensure no box-shadow
-      }}
-    />
-    <FaEye
-      className="text-primary"
-      onClick={() => handleViewClick(comp)}
-
-  {complaints.map((comp) => (
-    <tr
-      className="no-shadow"
-      key={comp.id}
-
-      style={{
-        textAlign: 'center',
-        boxShadow: 'none',
-        fontSize: "16px",
-        padding: '10px 0',
-      }}
-    >
-      <td
-        style={{
-          boxShadow: "none",
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          border: 'none',
-          fontSize: "16px",
-          padding: '8px 15px',
-          verticalAlign: 'middle',
-          marginLeft: '20px',
-        }}
-      >
-        <img
-          src={comp.profilePhoto}
-          alt="Profile"
-          style={{
-            width: '45px',
-            height: '45px',
-            borderRadius: '50%',
-            marginRight: '10px',
-            fontSize: "13px"
-          }}
-        />
-        <span>{comp.name}</span>
-      </td>
-
-      <td style={{
-        border: 'none', 
-        boxShadow: "none", 
-        fontSize: "16px", 
-        padding: '8px 15px', 
-        marginLeft: '20px', 
-        verticalAlign: 'middle',
-      }}>
-        {comp.complaint}
-      </td>
-      <td style={{
-        border: 'none', 
-        boxShadow: "none", 
-        fontSize: "16px", 
-        padding: '8px 15px', 
-        marginLeft: '20px', 
-        verticalAlign: 'middle',
-      }}>
-        {comp.date}
-      </td>
-      <td style={{
-        border: 'none', 
-        boxShadow: "none", 
-        padding: '8px 15px', 
-        marginLeft: '20px', 
-        verticalAlign: 'middle',
-      }}>
-        <span
-          style={{
-            boxShadow: "none",
-            display: 'inline-block',
-            padding: '5px 10px',
-            borderRadius: '12px',
-            backgroundColor: comp.priority === 'High' ? '#E74C3C' : comp.priority === 'Medium' ? '#5678E9' : '#39973D',
-            color: 'white',
-            width: '80px',
-            textAlign: 'center',
-            fontSize: "13px"
-          }}
-        >
-          {comp.priority}
-        </span>
-      </td>
-      <td style={{
-        border: 'none', 
-        boxShadow: "none", 
-        padding: '8px 15px', 
-        marginLeft: '20px', 
-        verticalAlign: 'middle',
-      }}>
-        <span
-          style={{
-            boxShadow: "none",
-            padding: '5px 10px',
-            borderRadius: '12px',
-            backgroundColor: comp.status === 'Open' ? '#b2f0b2' : comp.status === 'Pending' ? '#fff9c4' : '#cce7ff',
-            color: comp.status === 'Open' ? '#006400' : comp.status === 'Pending' ? '#f57f17' : '#1e3a8a',
-            minWidth: '80px',
-            textAlign: 'center',
-            display: 'inline-block',
-            fontSize: "13px"
-          }}
-        >
-          {comp.status}
-        </span>
-      </td>
-      <td style={{
-        border: 'none', 
-        boxShadow: 'none', 
-        padding: '0', 
-        verticalAlign: 'middle',
-        textAlign: 'center',
-      }}>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center', // Align icons and status horizontally
-          gap: '10px', // Adds space between icons
-        }}>
-          <FaRegEdit
-            className="text-success"
-            onClick={() => handleEditClick(comp)}
-            style={{
-              padding: '8px',
-              borderRadius: '30%',
-              fontSize: '30px',
-              backgroundColor: '#f5f5f5',
-              boxShadow: 'none',
-            }}
-          />
-          <FaEye
-            className="text-primary"
-            onClick={() => handleViewClick(comp)}
-            style={{
-              padding: '8px',
-              borderRadius: '30%',
-              fontSize: '30px',
-              backgroundColor: '#f5f5f5',
-              boxShadow: 'none',
-            }}
-          />
-          <MdOutlineDeleteOutline
-            className="text-danger"
-            onClick={() => handleDeleteClick(comp)}
-            style={{
-              padding: '8px',
-              borderRadius: '30%',
-              fontSize: '30px',
-              backgroundColor: '#f5f5f5',
-              boxShadow: 'none',
-            }}
-          />
-        </div>
-      </td>
-    </tr>
-  ))}
-</tbody>
+              <td style={{
+                border: 'none',
+                boxShadow: 'none',
+                padding: '0',
+                verticalAlign: 'middle',
+                textAlign: 'center',
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center', // Align icons and status horizontally
+                  gap: '10px', // Adds space between icons
+                }}>
+                  <FaRegEdit
+                    className="text-success"
+                    onClick={() => handleEditClick(comp)}
+                    style={{
+                      padding: '8px',
+                      borderRadius: '30%',
+                      fontSize: '30px',
+                      backgroundColor: '#f5f5f5',
+                      boxShadow: 'none',
+                    }}
+                  />
+                  <FaEye
+                    className="text-primary"
+                    onClick={() => handleViewClick(comp)}
+                    style={{
+                      padding: '8px',
+                      borderRadius: '30%',
+                      fontSize: '30px',
+                      backgroundColor: '#f5f5f5',
+                      boxShadow: 'none',
+                    }}
+                  />
+                  <MdOutlineDeleteOutline
+                    className="text-danger"
+                    onClick={() => handleDeleteClick(comp)}
+                    style={{
+                      padding: '8px',
+                      borderRadius: '30%',
+                      fontSize: '30px',
+                      backgroundColor: '#f5f5f5',
+                      boxShadow: 'none',
+                    }}
+                  />
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
 
 
 
@@ -1292,137 +1177,83 @@ fontSize:"16px"
   );
 };
 //  upcoming activity list
-function ActivityList() {
+const ActivityList = () => {
+  const activities = [
+    { id: 1, initial: 'A', name: 'Activity 1', date: '2024-11-01', time: '10:00 AM' },
+    { id: 2, initial: 'B', name: 'Activity 2', date: '2024-11-02', time: '11:00 AM' },
+    { id: 3, initial: 'C', name: 'Activity 3', date: '2024-11-03', time: '12:00 PM' },
+    // Add more activities as needed
+  ];
+
   return (
-    <ul className="list-group custom-scroll" style={{ height: "250px" }}>
-    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-      <div className="d-flex align-items-center w-100">
-        <h6
-          style={{
-            backgroundColor: "#E6BBAD",
-            width: "30px",
-            padding: "2px",
-            height: "30px",
-            textAlign: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: "bold",
-            color: "DarkOrange",
-            marginRight: "10px",
-            fontSize: "0.9em",
-          }}
+    <ul className="list-group custom-scroll" style={{ height: '250px' }}>
+      {activities.map((activity) => (
+        <li
+          key={activity.id}
+          className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
         >
-          H
-        </h6>
-  
-        <div className="d-flex flex-column flex-grow-1">
-          <div className="d-flex align-items-center justify-content-between w-100">
-            <span
+          <div className="d-flex align-items-center w-100">
+            <h6
               style={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                backgroundColor: '#E6BBAD',
+                width: '30px',
+                padding: '2px',
+                height: '30px',
+                textAlign: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                fontWeight: 'bold',
+                color: 'DarkOrange',
                 marginRight: '10px',
-                flex: 1
+                fontSize: '0.9em',
               }}
             >
-              Holi Festival
-            </span>
-            <span
-              className="text-muted"
-              style={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                fontSize: "13px"
-              }}
-            >
-              {`24-09-2024`}
-            </span>
+              {activity.initial}
+            </h6>
+
+            <div className="d-flex flex-column flex-grow-1">
+              <div className="d-flex align-items-center justify-content-between w-100">
+                <span
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    marginRight: '10px',
+                    flex: 1,
+                  }}
+                >
+                  {activity.name}
+                </span>
+                <span
+                  className="text-muted"
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    fontSize: '13px',
+                  }}
+                >
+                  {activity.date}
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: '0.8em',
+                  margin: 0,
+                  color: 'gray',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {activity.time}
+              </p>
+            </div>
           </div>
-          <p
-            style={{
-              fontSize: "0.8em",
-              margin: 0,
-              color: "gray",
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-          >
-            10 AM to 3 PM
-          </p>
-        </div>
-      </div>
-    </li>
-    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-      <div className="d-flex align-items-center w-100">
-        <h6
-          style={{
-            backgroundColor: "#E6BBAD",
-            width: "30px",
-            padding: "2px",
-            height: "30px",
-            textAlign: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: "bold",
-            color: "DarkOrange",
-            marginRight: "10px",
-            fontSize: "0.9em",
-          }}
-        >
-          H
-        </h6>
-  
-        <div className="d-flex flex-column flex-grow-1">
-          <div className="d-flex align-items-center justify-content-between w-100">
-            <span
-              style={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                marginRight: '10px',
-                flex: 1
-              }}
-            >
-              Holi Festival
-            </span>
-            <span
-              className="text-muted"
-              style={{
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                fontSize: "13px"
-              }}
-            >
-              {`24-09-2024`}
-            </span>
-          </div>
-          <p
-            style={{
-              fontSize: "0.8em",
-              margin: 0,
-              color: "gray",
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-          >
-            10 AM to 3 PM
-          </p>
-        </div>
-      </div>
-    </li>
-  
-   
-  </ul>
-  
-  
+        </li>
+      ))}
+    </ul>
   );
-}
+};
