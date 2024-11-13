@@ -470,15 +470,57 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
   };
 
   return (
-    <div className="d-flex justify-content-between align-items-center  border-bottom pb-2" style={{ borderRadius: "15px" }}>
-     <div>
-  <p style={{ color: "grey", marginBottom: "0" }}>
+    <div className="  border-bottom pb-2" style={{ borderRadius: "15px" }}>
+    
+
+
+<div className="importent-number">
+  <div className="row">
+    <div className="col-12 col-md-6">
+    <p style={{ color: "grey", marginBottom: "0" }}>
     <span style={{ color: "black",fontSize:"11px" }}>Name:-</span><span  style={{fontSize:"13px"}}>{name}</span> 
   </p>
-  <div className="d-flex align-items-center">
-    <p style={{ color: "grey", marginBottom: "0" }}>
+  <p style={{ color: "grey", marginBottom: "0" }}>
       <span style={{ color: "black",fontSize:"11px" }}>Phone:-</span><span style={{fontSize:"13px"}}> {phone}</span>
     </p>
+
+    <p style={{ color: "grey" }}>
+    <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
+  </p>
+    </div>
+    <div className="col-12 col-md-6">
+    <div className="button-icon ms-5">
+      <Button
+        onClick={onEdit}
+        style={{
+          color: "green",
+          backgroundColor: "transparent",
+          border: "none",
+          width: "30px",
+          height: "30px",
+        }}
+        className=''
+        size="sm"
+      >
+        <FaRegEdit className='fs-4 ' />
+      </Button>
+      <Button
+        onClick={handleShowDeleteModal}
+        style={{
+          color: "red",
+          backgroundColor: "transparent",
+          border: "none",
+          width: "30px",
+          height: "30px",
+        }}
+        size="sm"
+        className=""
+      >
+        <MdOutlineDeleteOutline className='fs-4' />
+      </Button>
+      </div>
+      </div>
+
     {/* Edit and Delete buttons next to phone */}
     <div>
       <div>
@@ -519,10 +561,9 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
 
 
 
+
   </div>
-  <p style={{ color: "grey" }}>
-    <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
-  </p>
+
 </div>
 
 
@@ -630,10 +671,103 @@ const ComplaintTable = () => {
           </tr>
         </thead>
         <tbody>
+
+          {complaints.map((comp) => (
+            <tr className="no-shadow"
+              key={comp.id}
+              style={{
+                textAlign: 'center',
+
+
+                boxShadow: 'none',  // Remove the inset box-shadow here
+fontSize:"16px"
+
+              }}
+            >
+              <td
+                style={{
+                  boxShadow: "none",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  border: 'none',
+                  fontSize:"16px"
+                }}
+              >
+                <img
+                  src={comp.profilePhoto}
+                  alt="Profile"
+                  style={{
+                    width: '45px',
+                    height: '45px',
+                    borderRadius: '50%',
+                    marginRight: '10px',
+                    
+                    fontSize:"13px"
+                  }}
+                />
+                <span style={{ border: 'none', boxShadow: "none" }}>{comp.name}</span>
+              </td>
+
+              <td style={{ border: 'none', boxShadow: "none" ,fontSize:"16px" }}>{comp.complaint}</td>
+              <td style={{ border: 'none', boxShadow: "none", fontSize:"16px" }}>{comp.date}</td>
+              <td style={{ border: 'none', boxShadow: "none" }}>
+                <span
+                  style={{
+                    boxShadow: "none",
+                    display: 'inline-block',
+                    padding: '5px 10px',
+                    borderRadius: '12px',
+                    backgroundColor: comp.priority === 'High' ? '#E74C3C' : comp.priority === 'Medium' ? '#5678E9' : '#39973D',
+                    color: 'white',
+                    width: '80px',
+                    textAlign: 'center',
+                    fontSize:"13px"
+                  }}
+                >
+                  {comp.priority}
+                </span>
+              </td>
+              <td style={{ border: 'none', boxShadow: "none" }}>
+                <span
+                  style={{
+                    boxShadow: "none",
+                    padding: '5px 10px',
+                    borderRadius: '12px',
+                    backgroundColor: comp.status === 'Open' ? '#b2f0b2' : comp.status === 'Pending' ? '#fff9c4' : '#cce7ff',
+                    color: comp.status === 'Open' ? '#006400' : comp.status === 'Pending' ? '#f57f17' : '#1e3a8a',
+                    minWidth: '80px',
+                    textAlign: 'center',
+                    display: 'inline-block',
+                    fontSize:"13px"
+                  }}
+                >
+                  {comp.status}
+                </span>
+              </td>
+              <td style={{ border: 'none', boxShadow: 'none', padding: '0' }}>
+  <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+    <FaRegEdit
+      className="text-success fs-1"
+      onClick={() => handleEditClick(comp)}
+      style={{
+        marginRight: '10px',
+        padding: '8px',
+        borderRadius: '30%',
+        fontSize: '30px',
+        backgroundColor: '#f5f5f5',
+        boxShadow: 'none', // Ensure no box-shadow
+      }}
+    />
+    <FaEye
+      className="text-primary"
+      onClick={() => handleViewClick(comp)}
+
   {complaints.map((comp) => (
     <tr
       className="no-shadow"
       key={comp.id}
+
       style={{
         textAlign: 'center',
         boxShadow: 'none',

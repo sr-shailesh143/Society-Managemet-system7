@@ -24,9 +24,9 @@ export default function Owner() {
         },
     });
 
-       const [vaicalCount, setvaicalCount] = useState(2); // Default to 2 members
+    const [vaicalCount, setvaicalCount] = useState(2); // Default to 2 members
     const totalvaical = 5; // Total number of rows available
-       const [memberCount, setMemberCount] = useState(2); // Default to 2 members
+    const [memberCount, setMemberCount] = useState(2); // Default to 2 members
     const totalRows = 5; // Total number of rows available
 
     const handleMemberCountChange = (event) => {
@@ -36,7 +36,8 @@ export default function Owner() {
         setvaicalCount(Number(event.target.value));
     };
     return (
-        <>
+        <div div className=''>
+           
             <div className='row'>
                 <div className="d-flex mt-4 ">
                     <div style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
@@ -94,7 +95,7 @@ export default function Owner() {
 
                                     {isOpen && (
                                         <div className="dropdown-options input-style  ">
-                                             <option>Select Gender</option>
+                                            <option>Select Gender</option>
                                             {["Male", "Female", "Other"].map((option) => (
                                                 <div
                                                     key={option}
@@ -209,115 +210,115 @@ export default function Owner() {
 
             </div>
             <div className="section-2 mt-3">
-            <div className=" mt-3">
-                <div className="header d-flex justify-content-between align-items-center">
-                    <h6 className='MEMBER-TEX'>Member Counting: <span className='othe-text'>(Other Members)</span></h6>
-                    <div className="select-member">
-                        <label className="me-2 SELECT-MEMBER">Select Member</label>
-                        <select value={memberCount} onChange={handleMemberCountChange} className="form-select ">
-                            {[...Array(totalRows).keys()].map((num) => (
-                                <option key={num} value={num + 1}>{num + 1}</option>
-                            ))}
-                        </select>
+                <div className=" mt-3">
+                    <div className="header d-flex justify-content-between align-items-center">
+                        <h6 className='MEMBER-TEX'>Member Counting: <span className='othe-text'>(Other Members)</span></h6>
+                        <div className="select-member">
+                            <label className="me-2 SELECT-MEMBER">Select Member</label>
+                            <select value={memberCount} onChange={handleMemberCountChange} className="form-select ">
+                                {[...Array(totalRows).keys()].map((num) => (
+                                    <option key={num} value={num + 1}> <span className='ms-3'>    {   num + 1}</span></option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="member-rows mt-3">
+                        {[...Array(totalRows).keys()].map((index) => (
+                            <div
+                                key={index}
+                                className={`row gy-3 member-row ${index < memberCount ? '' : 'd-none'}`}
+                            >
+                                <div className="col-md-2 col-12">
+                                    <label className='text-wrap '>Full Name <span className='text-danger1 '>*</span></label>
+                                    <input type="text" className="form-control  input-text input-style" placeholder="Enter Full Name" required />
+                                </div>
+                                <div className="col-md-2 col-12">
+                                    <label className='text-wrap'>Phone No<span className='text-danger1 '>*</span></label>
+                                    <input type="tel" className="form-control  input-text input-style" placeholder="+91" required />
+                                </div>
+                                <div className="col-md-2 col-12">
+                                    <label className='text-wrap'>Email</label>
+                                    <input type="email" className="form-control  input-text input-style" placeholder="Enter Email Address" />
+                                </div>
+                                <div className="col-md-1 col-12">
+                                    <label className='text-wrap'>Age<span className='text-danger1  '>*</span></label>
+                                    <input type="number" className="form-control  input-text mt-1 input-style " placeholder=" Age" required />
+                                </div>
+                                <div className="col-md-2 col-10">
+                                    <label className='text-wrap'>Gender<span className='text-danger1 '>*</span></label>
+                                    <select className="form-select  input-text mt-1 input-style" required>
+                                        <option>Select Gender</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div className="col-md-2 col-12">
+                                    <label className='text-wrap'>Relation<span className='text-danger1 '>*</span></label>
+                                    <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-
-                <div className="member-rows mt-3">
-                    {[...Array(totalRows).keys()].map((index) => (
-                        <div
-                            key={index}
-                            className={`row gy-3 member-row ${index < memberCount ? '' : 'd-none'}`}
-                        >
-                            <div className="col-md-2 col-12">
-                                <label className='text-wrap '>Full Name <span className='text-danger1 '>*</span></label>
-                                <input type="text" className="form-control  input-text input-style" placeholder="Enter Full Name" required />
-                            </div>
-                            <div className="col-md-2 col-12">
-                                <label className='text-wrap'>Phone No<span className='text-danger1 '>*</span></label>
-                                <input type="tel" className="form-control  input-text input-style" placeholder="+91" required />
-                            </div>
-                            <div className="col-md-2 col-12">
-                                <label className='text-wrap'>Email</label>
-                                <input type="email" className="form-control  input-text input-style" placeholder="Enter Email Address" />
-                            </div>
-                            <div className="col-md-1 col-12">
-                                <label className='text-wrap'>Age<span className='text-danger1  '>*</span></label>
-                                <input type="number" className="form-control  input-text mt-1 input-style " placeholder=" Age" required />
-                            </div>
-                            <div className="col-md-2 col-10">
-                                <label className='text-wrap'>Gender<span className='text-danger1 '>*</span></label>
-                                <select className="form-select  input-text mt-1 input-style" required>
-                                    <option>Select Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div className="col-md-2 col-12">
-                                <label className='text-wrap'>Relation<span className='text-danger1 '>*</span></label>
-                                <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
-                            </div>
-                        </div>
-                    ))}
-                </div>
             </div>
-        </div>
             <div className="section-2 mt-3">
-            <div className=" mt-3">
-                <div className="header d-flex justify-content-between align-items-center">
-                    <h6 className='MEMBER-TEX'>Vehicle Counting :  </h6>
-                    <div className="select-member">
-                        <label className="me-2 SELECT-MEMBER">Select Vehicle</label>
-                        <select value={vaicalCount} onChange={handlevaicalCountchange} className="form-select ">
-                            {[...Array(totalvaical).keys()].map((num) => (
-                                <option key={num} value={num + 1}>{num + 1}</option>
-                            ))}
-                        </select>
+                <div className=" mt-3">
+                    <div className="header d-flex justify-content-between align-items-center">
+                        <h6 className='MEMBER-TEX'>Vehicle Counting :  </h6>
+                        <div className="select-member">
+                            <label className="me-2 SELECT-MEMBER">Select Vehicle</label>
+                            <select value={vaicalCount} onChange={handlevaicalCountchange} className="form-select ">
+                                {[...Array(totalvaical).keys()].map((num) => (
+                                    <option key={num} value={num + 1}>{num + 1}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="member-rows mt-3">
+                        {[...Array(totalvaical).keys()].map((index) => (
+                            <div
+                                key={index}
+                                className={`row gy-3  member-row ${index < vaicalCount ? '' : 'd-none'}`}
+                            >
+
+
+
+                                <div className="col-md-3 col-12">
+                                    <label className='text-wrap'>Vehicle Type<span className='text-danger1 '>*</span></label>
+                                    <select className="form-select  input-text mt-1 input-style" required>
+                                        <option>Select Vehicle</option>
+                                        <option>Two Wheelers</option>
+                                        <option>Four Wheeler</option>
+
+                                    </select>
+                                </div>
+                                <div className="col-md-4 col-12">
+                                    <label className='text-wrap'>Vehicle Name</label>
+                                    <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
+                                </div>
+                                <div className="col-md-3 col-12">
+                                    <label className='text-wrap'>Vehicle Number</label>
+                                    <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
+            </div>
 
-                <div className="member-rows mt-3">
-                    {[...Array(totalvaical).keys()].map((index) => (
-                        <div
-                            key={index}
-                            className={`row gy-3  member-row ${index < vaicalCount ? '' : 'd-none'}`}
-                        >
-                          
-                    
-                            
-                            <div className="col-md-3 col-12">
-                                <label className='text-wrap'>Vehicle Type<span className='text-danger1 '>*</span></label>
-                                <select className="form-select  input-text mt-1 input-style" required>
-                                    <option>Select Vehicle</option>
-                                    <option>Two Wheelers</option>
-                                    <option>Four Wheeler</option>
-                                   
-                                </select>
-                            </div>
-                            <div className="col-md-4 col-12">
-                                <label className='text-wrap'>Vehicle Name</label>
-                                <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
-                            </div>
-                            <div className="col-md-3 col-12">
-                                <label className='text-wrap'>Vehicle Number</label>
-                                <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
-                            </div>
-                        </div>
-                    ))}
+            <div className=" row  section-button d-flex gap-3 mt-3">
+                <div className="col-12 col-md-4  ">
+                    <button className='Cancel-btn  '>Cancel</button>
                 </div>
+                <div className="col-12 col-md-4  ">
+                    <button disabled className='Create-btn '>Create</button>
+                </div>
+
             </div>
         </div>
-
-<div className=" row  section-button d-flex gap-3 mt-3">
-<div className="col-12 col-md-4  ">
-    <button className='Cancel-btn  '>Cancel</button>
-</div>
-<div className="col-12 col-md-4  ">
-    <button disabled  className='Create-btn '>Create</button>
-</div>
-
-</div>
-        </>
 
     )
 }
