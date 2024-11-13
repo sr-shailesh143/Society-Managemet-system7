@@ -12,9 +12,11 @@ import { RiShieldUserFill } from "react-icons/ri";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 
 const ResidentManageMent = () => {
-   const naviget = useNavigate()
+    const naviget = useNavigate()
     // Sample Data
     const rows = [
         { id: 1, fullName: 'Evelyn Harper', unitNumber: '1001', wing: "A", unitStatus: 'Occupied', residentStatus: 'Tenant', phoneNumber: '97687 85628', members: 0, vehicles: 1, img: "src/assets/notification-img.png" },
@@ -138,15 +140,17 @@ const ResidentManageMent = () => {
                 <div>
                     {
                         params.row.fullName === "" && params.row.residentStatus === "" && params.row.phoneNumber === "" ? <span>--</span> : <span>
-                            <span className=''>
-                                <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3' />
+                            <span className='' onClick={handleShow}>
+                                <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3 ' />
                             </span>
-                            <span>
+                            <span onClick={handleShow1}>
                                 <VisibilityIcon style={{ cursor: "pointer" }} className='bg-primary p-1 radious text-white' />
                             </span>
                         </span>
 
                     }
+
+
 
 
                 </div>
@@ -166,17 +170,17 @@ const ResidentManageMent = () => {
 
     const handleStatusChange = (event) => setStatus(event.target.value);
     const handleAgreementChange = () => setIsAgreed(!isAgreed);
-    
+
 
     // form page route  function 
 
     function HandleSubmit() {
         try {
-            if(status=== "Occupied"){
+            if (status === "Occupied") {
 
-                naviget("/owner") 
+                naviget("/owner")
                 setShow(false)
-            } 
+            }
             // if(status=== "Vacant") {
             //      naviget("/rent")
             //      setShow(false)
@@ -184,9 +188,14 @@ const ResidentManageMent = () => {
         } catch (error) {
             console.log(error)
         }
-    } 
-    
-    
+    }
+
+
+    const [show1, setShow1] = useState(false);
+
+    const handleClose1 = () => setShow1(false);
+    const handleShow1 = () => setShow1(true);
+
 
     return (
         <>
@@ -196,7 +205,7 @@ const ResidentManageMent = () => {
                         <h5 className='fs-4'>Resident Tenant and Owner Details</h5>
                     </div>
                     <div className="col-12 col-md-4 mt-2 d-flex justify-content-md-end">
-                        <Button onClick={handleShow}
+                        <Button onClick={() => naviget("/owner")}
                             startIcon={<CiSquarePlus className="fs-2" />}
                             className="l-btn text-white w-100 w-md-auto"
                         >
@@ -246,11 +255,72 @@ const ResidentManageMent = () => {
                     }}
                 />
             </Box>
+
+            {/* open a view section */}
+
+            <Offcanvas show={show1} placement={"end"} >
+                <div className="show-layout">
+                    <div className="show-layout-body">
+                        <div className="show-layout-header d-flex gap-4 mt-3">
+                            <img className='mb-2 ms-3' src="/src/assets/closearo.png" alt="" onClick={handleClose1} />
+                            <h4 className='mt-1 header-text'>View Owner Details</h4>
+                        </div>
+
+                        <div className="view-layour-body mt-3">
+                            <div className="iew-layout-profile mt-4">
+                                <center>
+                                    <img width={"90px"} height={"90px"} src="/src/assets/Avatar.png" className='fs-1' alt="" />
+                                    <h5 className='view-name mt-1'>Roger Lubin</h5>
+                                    <p className='view-email'>RogerLubin@gmail.com</p>
+                                </center>
+                            </div>
+                            <center>
+
+                                <div className="viwe-detels-layout ">
+                                    <div className="profile-detels ">
+                                        <p className='ms-3  text-1'>Wing</p>
+                                        <p className='mx-3 text-2'>A</p>
+                                    </div>
+                                    <div className="line"></div>
+                                    <div className="profile-detels mt-2 ">
+                                        <p className='ms-3  text-1'>Unit</p>
+                                        <p className='mx-3 text-2'>101</p>
+                                    </div>
+                                    <div className="line"></div>
+                                    <div className="profile-detels ">
+                                        <p className='ms-3  text-1'>Age</p>
+                                        <p className='mx-3 text-2'>20</p>
+                                    </div>
+                                    <div className="line"></div>
+                                    <div className="profile-detels mt-2">
+                                        <p className='ms-3  text-1'>Gender</p>
+                                        <p className='mx-3 text-2'>Male</p>
+                                    </div>
+                                    <div className="line"></div>
+                                </div>
+                            </center>
+                            <center>
+                                <div className="viwe-detels-layout mt-3 ">
+                                    <div className="profile-detels ">
+                                        <h5 className='ms-3'>Document</h5>
+
+                                    </div>
+                                  
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </Offcanvas>
+
+
+
+            {/* open model */}
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
                     show={show}
-                    onHide={handleClose}
+
                     centered
                 >
                     <Modal.Header >
@@ -317,11 +387,11 @@ const ResidentManageMent = () => {
                             Cancel
                         </Button>
                         <Button
-                            className="save-btn radious "
+                            className="save-btn radious l-btn "
                             style={{
                                 background: "linear-gradient(90deg, #FE512E, #F09619)",
                                 border: "none",
-                                width: "175px", cursor: "pointer"
+                                cursor: "pointer"
                             }}
 
                             onClick={HandleSubmit}

@@ -408,17 +408,25 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
   };
 
   return (
-    <div className="d-flex justify-content-between align-items-center  border-bottom pb-2" style={{ borderRadius: "15px" }}>
-     <div>
-  <p style={{ color: "grey", marginBottom: "0" }}>
+    <div className="  border-bottom pb-2" style={{ borderRadius: "15px" }}>
+    
+
+
+<div className="importent-number">
+  <div className="row">
+    <div className="col-12 col-md-6">
+    <p style={{ color: "grey", marginBottom: "0" }}>
     <span style={{ color: "black",fontSize:"11px" }}>Name:-</span><span  style={{fontSize:"13px"}}>{name}</span> 
   </p>
-  <div className="d-flex align-items-center">
-    <p style={{ color: "grey", marginBottom: "0" }}>
+  <p style={{ color: "grey", marginBottom: "0" }}>
       <span style={{ color: "black",fontSize:"11px" }}>Phone:-</span><span style={{fontSize:"13px"}}> {phone}</span>
     </p>
-    {/* Edit and Delete buttons next to phone */}
-    <div className="ms-2 d-flex align-items-center" style={{ whiteSpace: "nowrap" }}>
+    <p style={{ color: "grey" }}>
+    <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
+  </p>
+    </div>
+    <div className="col-12 col-md-6">
+    <div className="button-icon ms-5">
       <Button
         onClick={onEdit}
         style={{
@@ -428,9 +436,10 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
           width: "30px",
           height: "30px",
         }}
+        className=''
         size="sm"
       >
-        <FaRegEdit />
+        <FaRegEdit className='fs-4 ' />
       </Button>
       <Button
         onClick={handleShowDeleteModal}
@@ -442,15 +451,14 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
           height: "30px",
         }}
         size="sm"
-        className="ms-2"
+        className=""
       >
-        <MdOutlineDeleteOutline />
+        <MdOutlineDeleteOutline className='fs-4' />
       </Button>
-    </div>
+      </div>
+      </div>
   </div>
-  <p style={{ color: "grey" }}>
-    <span style={{ color: "black", marginBottom: "0",fontSize:"11px" }}>Work:-</span><span style={{fontSize:"13px"}}> {work}</span>
-  </p>
+
 </div>
 
 
@@ -633,7 +641,7 @@ fontSize:"16px"
               <td style={{ border: 'none', boxShadow: 'none', padding: '0' }}>
   <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
     <FaRegEdit
-      className="text-success"
+      className="text-success fs-1"
       onClick={() => handleEditClick(comp)}
       style={{
         marginRight: '10px',
