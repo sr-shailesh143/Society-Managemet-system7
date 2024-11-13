@@ -1,53 +1,43 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { resetpass } from '../apiservices/Authentication';
+import toast from 'react-hot-toast';
 
 export default function ResetPassword() {
+    const navigate = useNavigate();
+    const [newPassword, setnewPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
-    const togglePasswordVisibility = () => {
-      setShowPassword(prev => !prev);
+    const [confirmPassword, setconfirmPassword] = useState("");
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
+    const handleToggleNewPasswordVisibility = () => {
+      setShowNewPassword((show) => !show);
     };
-    const naviget = useNavigate()
-    const [password, setPassword] = useState({
+    
+    const toggleConfirmPasswordVisibility = () => {
+      setShowConfirmPassword((show) => !show);
+    };
+
+    const [errors] = useState({
         newPassword: "",
         confirmPassword: ""
     });
-    const [errors, setErrors] = useState({
-        newPassword: "",
-        confirmPassword: ""
-    });
-
-    const validatePassword = () => {
-        let valid = true;
-        let newErrors = { newPassword: "", confirmPassword: "" };
-
-        // Check if new password meets length requirements
-        if (password.newPassword.length < 8) {
-            newErrors.newPassword = "Password must be at least 8 characters long.";
-            valid = false;
-        }
-
-        // Check if passwords match
-        if (password.newPassword !== password.confirmPassword) {
-            newErrors.confirmPassword = "Passwords don't match.";
-            valid = false;
-        }
-
-        setErrors(newErrors);
-        return valid;
+  
+    const setNewPassword = async () => {
+      const email = localStorage.getItem("EmailOrPhone");
+      try {
+        const response = await resetpass({ newPassword, confirmPassword, email });
+        toast.success(response.data.message);
+        localStorage.clear("EmailOrPhone");
+        navigate("/");
+      } catch (error) {
+        toast.error(error.response.data.message);
+      } finally {
+        setnewPassword("");
+        setconfirmPassword("");
+      }
     };
-
-    async function setNewPassword() {
-        if (validatePassword()) {
-            try {
-                // Add further password update logic here (e.g., API call)
-                // alert("Password reset successful!");
-                naviget("/login")
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
 
     return (
         <div className='container-fluid'>
@@ -85,22 +75,21 @@ export default function ResetPassword() {
                             </label>
                             <input
                                 id="newPassword"
-                                type={showPassword ? 'text' : 'password'}
-                                onChange={(e) => setPassword({
-                                    ...password, newPassword: e.target.value
-                                })}
+                                type={showNewPassword ? 'text' : 'password'}
+                                value={newPassword}
+                                onChange={(e) => setnewPassword(e.target.value)}
                                 className='form-control radious p-3 mt-2'
                                 placeholder="Enter your new password"
                             />
                             <span
                                 className="input-group-text show-password"
-                                onClick={togglePasswordVisibility}
+                                onClick={handleToggleNewPasswordVisibility}
                                 style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
                             >
-                                <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                                <i className={`fas ${showNewPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
                             </span>
                             <br />
-                            {errors.newPassword && <small className="text-danger ">{errors.newPassword}</small>}
+                            {errors.showNewPassword && <small className="text-danger ">{errors.showNewPassword}</small>}
                         </div>
 
                         {/* Confirm Password Input Field */}
@@ -110,16 +99,15 @@ export default function ResetPassword() {
                             </label>
                             <input
                                 id="confirmPassword"
-                                type={showPassword ? 'text' : 'password'}
-                                onChange={(e) => setPassword({
-                                    ...password, confirmPassword: e.target.value
-                                })}
+                                type={showConfirmPassword ? 'text' : 'password'}
+                                 value={confirmPassword}
                                 className='form-control radious p-3 mt-2'
                                 placeholder="Confirm your password"
+                                onChange={(e) => setconfirmPassword(e.target.value)}
                             />
                              <span
                                 className="input-group-text show-password"
-                                onClick={togglePasswordVisibility}
+                                onClick={toggleConfirmPasswordVisibility}
                                 style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
                             >
                                 <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
@@ -130,7 +118,7 @@ export default function ResetPassword() {
 
                         {/* Submit Button */}
                         <div className="col-12  mt-3">
-                            <button disabled={!password.newPassword || ! password.confirmPassword} onClick={setNewPassword} className='btn text-white l-btn w-100 p-3'>
+                            <button disabled={!newPassword || !confirmPassword} onClick={setNewPassword} className='btn text-white l-btn w-100 p-3'>
                                 Reset Password
                             </button>
                         </div>

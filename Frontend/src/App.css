@@ -235,7 +235,20 @@ body {
 
 }
 
+.from-c {
+  position: relative;
+}
+
+.hide {
+  position: fixed;
+  top: 52%;
+  right: 9%;
+
+
+}
+
 .container-img {
+  background-image: url("./assets/RegFormBackImg.png") !important;
   background-image: url("./assets/RegFormBackImg.png") !important;
   background-repeat: no-repeat;
   background-size: cover;
@@ -293,6 +306,20 @@ body {
 
 }
 
+.side-bar {
+  width: 22% !important;
+  height: 20% !important;
+}
+
+.component-layout {
+  width: 104% !important;
+}
+.side-design{
+  position: absolute;
+  top: 4px;
+
+}
+
 .text-decoretion {
   text-decoration: none;
 }
@@ -322,6 +349,12 @@ body {
  margin-left: 90%;
 }
 
+.show-password{
+  position: sticky;
+ margin-top: -41px;
+ margin-left: 90%;
+}
+
 
 
 @media only screen and (max-width: 768px) {
@@ -338,11 +371,19 @@ body {
   .hide {
     display: none;
   }
+
+  .hide {
+    display: none;
+  }
 }
 
 /* Login.css */
 .login-container {
   height: 100vh;
+}
+
+.hide1 {
+  display: none;
 }
 
 .hide1 {
@@ -367,12 +408,44 @@ body {
     float: right;
 
   }
+
+  .hide1 {
+    display: block;
+    position: sticky;
+    margin-top: -40px;
+    margin-right: 20px;
+    float: right;
+
+  }
+}
+.R-title{
+  display: flex;
 }
 
 @media (min-width: 768px) {
   .form-container {
     max-width: 450px;
   }
+.wing{
+  background-color: #F6F8FB;
+  width:28px;
+  height:28px;
+  position: relative;
+  border-radius: 50%;
+}
+.r-btn{
+  background-color: #F6F8FB;
+ 
+  position: relative;
+  /* border-radius: 50%; */
+}
+.wing-chile{
+  position: fixed;
+  margin-top: -11px;
+  margin-left: 9px;
+  color: #5678E9;
+  /* top:-10% ; */
+}
 
   .bg-color {
     background-color: #f9f9f9;
@@ -442,6 +515,7 @@ body {
 .link-tag {
   text-decoration: none;
   color: black;
+  position: relative;
   position: relative;
 }
 
@@ -702,6 +776,7 @@ input[type="email"] {
 
 
 
+
   .profile-name {
     font-size: 1rem;
   }
@@ -854,11 +929,11 @@ input[type="email"] {
   position: absolute;
   top: 0;
   right: 0;
-  height: 40px; 
-  width: 40px; 
+  height: 48px; 
+  width: 45px; 
   background-color: transparent;
-  border-top: 4px solid; 
-  border-right: 4px solid; 
+  border-top: 2px solid; 
+  border-right: 2px solid; 
   border-top-right-radius: 12px;
 }
 

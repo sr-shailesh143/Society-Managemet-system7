@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useForm from "/src/hooks/useForm";
+import { login } from '../apiservices/Authentication';
+import { useDispatch } from "react-redux";
+import toast from 'react-hot-toast';
+import { StoreUser } from '../redux/authslice';
+
 
 export default function Login() {
-    const { values, errors, handleChange, handleError, clearError } = useForm({
-        email: "",
+    const {  errors, handleError, clearError } = useForm({
+        EmailOrPhone: "",
         password: ""
     });
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+      EmailOrPhone: "",
+      password: "",
+    });
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+      };
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -14,26 +31,22 @@ export default function Login() {
       setShowPassword(prev => !prev);
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        if (!values.email) {
-            handleError("email", "Email or phone number is required.");
-            return;
-        } else {
-            clearError("email");
+        try {
+          const response = await login(user);
+          toast.success(response.data.message);
+          dispatch(StoreUser(response.data.user));
+          navigate("/deshbord");
+        } catch (error) {
+          toast.error(error.response.data.message);
+        } finally {
+          setUser({
+            EmailOrPhone: "",
+            password: "",
+          });
         }
-
-        if (!values.password) {
-            handleError("password", "Password is required.");
-            return;
-        } else {
-            clearError("password");
-        }
-
-        // Proceed with login logic here
-        console.log("Login successful:", values);
-    };
+      };
 
     return (
         <div className='container-fluid container-img ' >
@@ -64,11 +77,11 @@ export default function Login() {
                                 </label>
                                 <input
                                     id="email"
-                                    name="email"
+                                    name="EmailOrPhone"
                                     type="text"
                                     className='form-control radious p-3 mt-2'
                                     placeholder="Enter your email or phone"
-                                    value={values.email}
+                                    value={user.EmailOrPhone}
                                     onChange={handleChange}
                                 />
                                 {errors.email && <span className='text-danger'>{errors.email}</span>}
@@ -84,7 +97,7 @@ export default function Login() {
                                     type={showPassword ? 'text' : 'password'}
                                     className='form-control radious p-3 mt-2'
                                     placeholder="Enter your password"
-                                    value={values.password}
+                                    value={user.password}
                                     onChange={handleChange}
                                 />
                                 <span
@@ -121,14 +134,14 @@ export default function Login() {
                             </div>
 
                             <div className="col-12 mt-3">
-                                <button disabled={!values.email || !values.password} type="submit" className='btn text-white l-btn w-100 p-3'>
+                                <button disabled={!user.EmailOrPhone || !user.password} type="submit" className='btn text-white l-btn w-100 p-3'>
                                     Sign In
                                 </button>
                             </div>
 
                             <div className="col-12 text-center mt-3">
                                 <p style={{ textDecoration: "none" }}>
-                                    Don't have an account? <Link to={"/"} className='text-danger text-decoretion' style={{ cursor: "pointer" }}>Register</Link>
+                                    Don't have an account? <Link to={"/Registration"} className='text-danger text-decoretion' style={{ cursor: "pointer" }}>Register</Link>
                                 </p>
                             </div>
                         </div>

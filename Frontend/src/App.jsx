@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import toast, { Toaster } from 'react-hot-toast';
 import RegistrationPage from './components/RegistrationPage';
 import Login from './components/Login';
 import ForgetScreen from './components/ForgetScreen';
@@ -13,13 +13,13 @@ import Dashbord from './page/Dashbord';
 import ProfileEditForm from './page/Profile';
 import UpdateProfile from './page/UpdateProfile';
 import ResidentManageMent from './page/ResidentManageMent';
-
+import Announcement from './page/Announcement';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RegistrationPage />} />
-        <Route path='/login' element={<Login />} />
+        <Route path="/Registration" element={<RegistrationPage />} />
+        <Route path='/' element={<Login />} />
         <Route path='/forget' element={<ForgetScreen />} />
         <Route path='/otp' element={<OTPVerification />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
@@ -30,7 +30,14 @@ function App() {
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
+        
+       
+        <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
+
+    
+        
       </Routes>
+      <Toaster/>
     </BrowserRouter>
   );
 }

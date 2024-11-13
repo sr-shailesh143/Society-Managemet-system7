@@ -19,9 +19,9 @@ exports.Register = async (req, res) => {
       SurName,
       Email,
       Phone_Number,
-      Country_Name,
-      State_Name,
-      City_Name,
+      Country,
+      State,
+      City,
       select_society,
       password,
       Cpassword,
@@ -33,16 +33,16 @@ exports.Register = async (req, res) => {
       !SurName ||
       !Email ||
       !Phone_Number ||
-      !Country_Name ||
-      !State_Name ||
-      !City_Name ||
+      !Country ||
+      !State ||
+      !City ||
       !select_society ||
       !password ||
       !Cpassword
     ) {
       return res.status(400).json({
         success: false,
-        message: "All fields are required in this Form",
+        message: "All fields are required in this Form🤨",
       });
     }
 
@@ -99,9 +99,9 @@ exports.Register = async (req, res) => {
       SurName,
       Email,
       Phone_Number,
-      Country_Name,
-      State_Name,
-      City_Name,
+      Country,
+      State,
+      City,
       select_society,
       password: hashpassword,
     });
@@ -181,9 +181,7 @@ exports.logout = async (req, res) => {
       secure: process.env.NODE_ENV !== "development",
     });
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Logged out successfully" });
+    return res.status(200).json({ success: true, message: "Logged out successfully" });
   } catch (error) {
     console.log("Error in logout controller", error.message);
     return res.status(500).json({
@@ -337,16 +335,16 @@ exports.Otpverification = async (req, res) => {
 };
 exports.ResetingPassword = async (req, res) => {
   try {
-    const { email, new_pass, confirm_pass } = req.body;
+    const { email, newPassword, confirmPassword } = req.body;
     const id = req.params.id;
 
-    if (new_pass.length < 6) {
+    if (newPassword.length < 6) {
       return res.status(400).json({
         success: false,
         message: "password must be at letest MEN 6 characters",
       });
     }
-    if (confirm_pass.length < 6) {
+    if (confirmPassword.length < 6) {
       return res.status(400).json({
         success: false,
         message: "password must be at letest MEN 6 characters",
@@ -357,7 +355,7 @@ exports.ResetingPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    if (new_pass != confirm_pass) {
+    if (newPassword != confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "Password and confirm password are not match",
@@ -365,7 +363,7 @@ exports.ResetingPassword = async (req, res) => {
     }
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(new_pass, salt);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
 
     finddata.password = hashedPassword;
 
@@ -384,9 +382,9 @@ exports.Updateform = async (req, res) => {
         SurName,
         Email,
         Phone_Number,
-        Country_Name,
-        State_Name,
-        City_Name,
+        Country,
+        State,
+        City,
         select_society,
         password,
         Cpassword,
@@ -396,9 +394,9 @@ exports.Updateform = async (req, res) => {
       !SurName ||
       !Email ||
       !Phone_Number ||
-      !Country_Name ||
-      !State_Name ||
-      !City_Name ||
+      !Country ||
+      !State ||
+      !City ||
       !select_society ||
       !password ||
       !Cpassword
@@ -437,9 +435,9 @@ exports.Updateform = async (req, res) => {
         SurName,
         Email,
         Phone_Number,
-        Country_Name,
-        State_Name,
-        City_Name,
+        Country,
+        State,
+        City,
         select_society,
       password: hashpassword,
       Cpassword: hashpassword,

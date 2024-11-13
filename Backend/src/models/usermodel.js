@@ -23,21 +23,20 @@ const userSchema=new Schema({
        required:true,
        unique:true
     },
-    Country_Name:{
+    Country:{
         type:String,
         required:true,
     },
-    State_Name:{
+    State:{
        type:String,
        required:true
     },
-    City_Name:{
+    City:{
        type:String,
        required:true
     },
     select_society:{
             type: mongoose.Schema.Types.ObjectId, 
-            required: true, 
             ref: 'Society' 
         
     },
