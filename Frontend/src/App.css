@@ -1,8 +1,7 @@
 .registration-container {
   display: flex;
   flex-direction: row;
-  height: 
-  1064px;
+  height: 1064px;
 
 }
 
@@ -26,6 +25,14 @@
 
 .form-select option {
   transition: background-color 0.3s;
+
+
+}
+.form-select{
+  width: 71px !important;
+  height: 42px !important;
+  border-radius: 10px;
+  padding: 8px 14px 8px 14px;
 }
 
 
@@ -188,6 +195,10 @@ body {
   padding: 0.5rem;
   border-radius: 0.25rem;
 }
+.sidebar-logo{
+width: 162px ;
+
+}
 
 
 .mainColor {
@@ -293,9 +304,34 @@ body {
 }
 
 .side-bar {
-  width: 22% !important;
+  width: 17% !important;
   height: 20% !important;
 }
+
+.component-layout {
+  width: 100vw !important;
+}
+.side-design{
+  position: absolute;
+  top: 4px;
+
+}
+.col-md-9 {
+  flex: 0 0 auto;
+  width: 80% !important;
+}
+
+
+@media (max-width: 768px) {
+  .col-md-9 {
+      flex: 0 0 auto;
+      width: 97% !important;
+  }
+}
+
+
+
+
 
 .component-layout {
   width: 104% !important;
@@ -305,19 +341,8 @@ body {
   top: 4px;
 
 }
-
-.side-bar {
-  width: 22% !important;
-  height: 20% !important;
-}
-
-.component-layout {
-  width: 104% !important;
-}
-.side-design{
-  position: absolute;
-  top: 4px;
-
+.profilePage{
+  width: 16% !important;
 }
 
 .text-decoretion {
@@ -326,7 +351,7 @@ body {
 
 .component-layout {
   background-color: #F0F5FB;
-  padding: 24px;
+ 
 }
 
 
@@ -524,12 +549,12 @@ body {
 /* notifications  */
 
 
-.notifications-container {
+ .notifications-container {
   width: 300px;
   padding: 15px;
   position: absolute;
   z-index: 10;
-  left: 53%;
+  left: 70%;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -565,7 +590,7 @@ body {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 10px;
-  /* overflow-x: hidden !important; */
+  overflow-x: hidden !important;
 }
 
 .notification-content h3 {
@@ -618,7 +643,104 @@ body {
   margin-left: auto;
   font-size: 0.8em;
   color: #888;
+} */
+
+
+/* Base styles for notifications container */
+.notifications-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.notification-content h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.notification-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+/* Media Queries */
+
+/* For small screens like mobile devices */
+@media (max-width: 600px) {
+  .notifications-container {
+      padding: 12px;
+  }
+
+  .notifications-header h2 {
+      font-size: 1.2rem;
+  }
+
+  .notification-item {
+      padding: 10px;
+  }
+
+  .notification-content h3 {
+      font-size: 0.9rem;
+  }
+
+  .notification-actions {
+      flex-direction: column;
+      gap: 8px;
+  }
+
+  .accept-btn, .decline-btn {
+      width: 100%;
+  }
+}
+
+/* For tablets and small desktops */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .notifications-container {
+      padding: 16px;
+      max-width: 90%;
+  }
+
+  .notification-content h3 {
+      font-size: 1rem;
+  }
+}
+
+/* For larger desktops */
+@media (min-width: 1025px) {
+  .notifications-container {
+      max-width: 80%;
+  }
+}
+
 
 /* profile */
 
@@ -714,6 +836,18 @@ input[type="email"] {
     width: auto !important;
     height: 1100px !important;
   }
+  .text-img{
+    display: flex;
+    justify-content: center;
+  }
+  .img-profile{
+    display: flex;
+    justify-content: center;
+ 
+  }
+  .profilePage{
+    width: 100% !important;
+  }
 
 
   .form-row {
@@ -772,6 +906,14 @@ input[type="email"] {
   .profile-page h2 {
     font-size: 1.2rem;
 
+  }
+  .save-btn{
+    width: 100% !important;
+    margin: 10px !important;
+  }
+  .cancel-btn{
+    margin: 10px !important;
+    width: 100% !important;
   }
 
 
@@ -981,8 +1123,8 @@ input[type="email"] {
   content: '▼';
   font-size: 12px;
   position: absolute;
-  right: 10px;
-  top: 50%;
+  right: 20px;
+  top: 68%;
   transform: translateY(-50%);
   color: #888;
 }
@@ -1013,5 +1155,657 @@ input[type="email"] {
 .custom-scroll::-webkit-scrollbar-track {
   background-color: #f1f1f1; /* Scrollbar track color */
 }
+
+/* add residenty */
+
+.status-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.status-radio .form-check-input:checked {
+  background-color: #FE512E ; /* Match the gradient color */
+  border-color:  #FE512E #F09619;
+    /* background: linear-gradient(90deg, #FE512E, #F09619); */
+
+}
+
+.status-radio .form-check-label {
+  font-weight: bold;
+}
+
+.modal-footer .btn-light {
+  color: #A7A7A7;
+  border: 1px solid #ddd;
+}
+
+.modal-footer .btn-primary {
+  color: #A7A7A7;
+}
+
+.modal-footer .btn-primary:disabled {
+  background: #ccc;
+  border: none;
+}
+
+.custom-modal .modal-content {
+  width: 410px;
+  border-radius: 10px;
+}
+
+.status-options .option {
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  width: 150px;
+  height: 41px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+
+
+.status-options .option .form-check-label {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.status-radio .form-check-input:checked {
+  background-color: #fe512e;
+  border-color: #fe512e;
+}
+
+.custom-modal .modal-footer .cancel-btn {
+  color: #333;
+}
+
+.custom-modal .modal-footer .save-btn {
+  color: white;
+}
+
+.save-btn{
+  width:  175px;
+height: 51px;
+padding: 12px 53px 12px 53px;
+gap: 10px;
+border-radius: 10px !important;
+opacity: 0px;
+
+}
+.cancel-btn{
+  width: 175px;
+height: 51px;
+padding: 10px 55px 10px 55px;
+gap: 10px;
+border-radius: 10px  !important;
+border: 1px solid #D3D3D3;
+opacity: 0px;
+
+}
+
+.custom-modal .modal-footer .save-btn:disabled {
+  background: #A7A7A7;
+  border: none;
+}
+.cursor{
+  cursor: pointer;
+}
+
+/* owner form  */
+
+.f-btn{
+  width: 135px !important;
+  height: 49px !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom: 2px solid black ;
+  border-color: #FE512E #F09619;
+  padding: 14px 10px 14px 10px !important;
+  cursor: pointer;
+ 
+}
+
+
+/* section1 */
+
+.section-1{
+  height: auto;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 20px;
+  gap: 10px;
+} 
+.input-style{
+  width: 100%;
+  border-radius: 10px !important;
+  border: 1px solid #D3D3D3;
+  padding: 9px 13px 9px 13px;
+  gap: 5px;
+}
+.labal-name{
+  width: 452px !important;
+  height: 21px;
+  font:"Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.input-section-2 {
+  width: 100%;
+  height: 42px;
+  /* gap: 4px; */
+  border-radius: 10px !important;
+  padding: 9px 13px 9px 13px !important;
+}
+.text-danger1{
+  font-family: 700;
+  color: #E74C3C;
+  font-size: 14px;
+  line-height: 21px;
+
+}
+.genderinput{
+  height: 21px;
+  font:"Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.custom-dropdown {
+  width: 100%;
+  max-width: 250px;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.dropdown-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.required {
+  color: red;
+  margin-left: 4px;
+}
+
+.dropdown-header {
+  padding: 10px;
+  /* border: 1px solid #d3d3d3; */
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #333;
+  background-color: #fff;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  color: #333;
+}
+
+.dropdown-options {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  /* border: 1px solid #d3d3d3; */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  z-index: 10;
+}
+
+.dropdown-option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #333;
+}
+
+.dropdown-option:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-option.selected {
+  font-weight: bold;
+  color: #fe512e;
+}
+
+.radio-icon {
+  margin-right: 8px;
+}
+
+
+/* ADD PHOTO CSS  */
+
+
+
+
+
+
+
+
+.photo-upload input[type="file"] {
+    display: none;
+    cursor: pointer;
+}
+
+.profil-text{
+  color: #5678E9;
+  font: "Poppins";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+/* image upload css  */
+
+.file-upload {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.file-upload:hover {
+  border-color: #5678E9;
+}
+
+.upload-area {
+  color: #333;
+}
+
+.upload-area .icon {
+ 
+  /* color: #007bff; */
+  margin-bottom: 8px;
+}
+.icon{
+ 
+  display: flex;
+  justify-content: center;
+
+
+}
+.miui-icon{
+  width: 100px;
+  height: 36px;
+color: #A7A7A7;
+font-size: 40px;
+}
+
+.upload-area p {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  font: "Poppins";
+  line-height: 21px;
+  color: #4F4F4F;
+}
+
+.upload-area small {
+  font-size: 12px;
+  color: #999;
+}
+
+.img-text{
+  color: #5678E9;
+}
+
+.t-img{
+font-size: small;
+font:"Poppins";
+font-weight: 500;
+line-height: 21px;
+
+}
+
+/* section-2 */
+
+.member-form-container {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* max-width: 1000px; */
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-member {
+  display: flex;
+  align-items: center;
+}
+
+.select-member label {
+  margin-right: 8px;
+}
+
+.select-member select {
+  padding: 4px;
+  font-size: 14px;
+}
+
+.member-rows {
+  margin-top: 20px;
+  display: grid;
+ flex-wrap: wrap !important;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.member-row {
+  display: contents; /* Allows grid display while managing visibility */
+}
+
+.member-row input,
+.member-row select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.MEMBER-TEX{
+  font: "Poppins" !important;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.othe-text{
+font: "Nunito Sans";
+font-weight: 800;
+font-size: 16px;
+line-height: 21.82px;
+letter-spacing: 0.3px;
+color: #A7A7A7;
+}
+
+.line-border{
+  width: 100%;
+  border: 1px solid #7a2929;
+}
+
+
+
+/* General container styling */
+.section-2 {
+  padding: 20px;
+  border-radius: 15px;
+  gap: 10px;
+  background: #FFFFFF;
+
+}
+
+.member-form-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+
+  background-color: #f8f9fa;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.select-member {
+  display: flex;
+  align-items: center;
+}
+
+.select-member label {
+  margin-right: 8px;
+}
+
+.select-member select {
+  padding: 1px;
+  /* font-size: 14px; */
+  cursor: pointer;
+}
+
+/* Flexbox styling for form rows */
+.member-rows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px !important ;
+}
+
+.member-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.member-row input,
+.member-row select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+.input-text{
+  width: 100% !important;
+}
+.text-wrap{
+  text-wrap:wrap;
+}
+
+/* Responsive styling */
+@media (min-width: 768px) {
+  .member-row input,
+  .member-row select {
+      width: 100%; /* Width for 6 columns on larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  /* For mobile screens */
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .member-row {
+      flex-direction: column;
+  }
+
+  .member-row input,
+  .member-row select {
+      width: 100%; /* Full-width on mobile */
+  }
+}
+
+
+.member-form-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.header h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+.select-member label {
+    font-weight: 600;
+    font: "Poppins";
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.section-button{
+float: right;
+}
+.Cancel-btn{
+  width: 93px;
+  height: 51px;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  padding: 12px 14px 12px 14px;
+  gap: 10px;
+}
+.Create-btn{
+  width: 93px;
+  height: 51px;
+  border-radius: 10px;
+  border: none;
+
+  padding: 12px 14px 12px 14px;
+  gap: 10px;
+
+}
+@media  (max-width:786px) {
+  .section-button{
+    float: none;
+    }
+   .Create-btn ,.Cancel-btn{
+      width: 100%;
+    }
+}
+
+
+.button-icon{
+float: right !important;
+}
+/* resident view css  */
+
+.show-layout{
+  /* width: 500px !important; */
+
+
+gap: 0px;
+opacity: 0px;
+
+}
+
+.show-layout-header{
+
+border-bottom: 1px solid #F4F4F4;
+
+}
+.header-text{
+font: "Poppins";
+font-size: 20px;
+font-weight: 600;
+line-height: 30px;
+text-align: left;
+color: #202224 ;
+}
+.view-layour-body{
+border-top: 1px solid #F4F4F4;
+
+}
+
+.view-layout-profile{
+  width: 191px !important;
+height: 164px;
+gap: 12px;
+opacity: 0px;
+
+}
+.view-name{
+  
+font: "Poppins";
+font-size: 24px;
+font-weight: 600;
+line-height: 36px;
+text-align: center;
+text-underline-position: "from-font";
+text-decoration-skip-ink: none;
+
+}
+.view-email{
+
+font: "Poppins";
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+text-align: center;
+text-underline-position:" from-font";
+text-decoration-skip-ink: none;
+color: #4F4F4F;
+
+}
+.viwe-detels-layout{
+  width:90% !important;
+height: auto;
+padding: 15px 0px 0px 0px;
+gap: 10px;
+border-radius: 15px;
+opacity: 0px;
+box-shadow: 0px 0px 35px 0px #0000000F;
+}
+.profile-detels{
+  display: flex;
+justify-content: space-between;
+opacity: 0px;
+}
+.text-1{
+ 
+font: "Poppins";
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+text-align: left;
+text-underline-position: "from-font";
+text-decoration-skip-ink: none;
+color: #202224;
+}
+.text-2{
+font: "Poppins";
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+text-align: right;
+text-underline-position: "from-font";
+text-decoration-skip-ink: none;
+color: #4F4F4F;
+
+}
+.line{
+  border: 1px solid #F0F5FB
+}
+
 
 
