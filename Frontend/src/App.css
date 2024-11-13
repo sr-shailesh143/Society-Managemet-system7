@@ -25,6 +25,14 @@
 
 .form-select option {
   transition: background-color 0.3s;
+
+
+}
+.form-select{
+  width: 71px !important;
+  height: 42px !important;
+  border-radius: 10px;
+  padding: 8px 14px 8px 14px;
 }
 
 
@@ -305,10 +313,7 @@ body {
 
 }
 
-.side-bar {
-  width: 22% !important;
-  height: 20% !important;
-}
+
 
 .component-layout {
   width: 104% !important;
@@ -317,6 +322,9 @@ body {
   position: absolute;
   top: 4px;
 
+}
+.profilePage{
+  width: 16% !important;
 }
 
 .text-decoretion {
@@ -714,6 +722,18 @@ input[type="email"] {
     width: auto !important;
     height: 1100px !important;
   }
+  .text-img{
+    display: flex;
+    justify-content: center;
+  }
+  .img-profile{
+    display: flex;
+    justify-content: center;
+ 
+  }
+  .profilePage{
+    width: 100% !important;
+  }
 
 
   .form-row {
@@ -980,8 +1000,8 @@ input[type="email"] {
   content: '▼';
   font-size: 12px;
   position: absolute;
-  right: 10px;
-  top: 50%;
+  right: 20px;
+  top: 68%;
   transform: translateY(-50%);
   color: #888;
 }
@@ -1102,10 +1122,11 @@ input[type="email"] {
  
 }
 
+
 /* section1 */
 
 .section-1{
-  height: 414px;
+  height: auto;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -1131,7 +1152,7 @@ input[type="email"] {
 .input-section-2 {
   width: 100%;
   height: 42px;
-  gap: 4px;
+  /* gap: 4px; */
   border-radius: 10px !important;
   padding: 9px 13px 9px 13px !important;
 }
@@ -1141,6 +1162,13 @@ input[type="email"] {
   font-size: 14px;
   line-height: 21px;
 
+}
+.genderinput{
+  height: 21px;
+  font:"Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .custom-dropdown {
@@ -1157,6 +1185,7 @@ input[type="email"] {
   margin-bottom: 5px;
   display: flex;
   align-items: center;
+  padding: 20px;
 }
 
 .required {
@@ -1212,6 +1241,328 @@ input[type="email"] {
 .radio-icon {
   margin-right: 8px;
 }
+
+
+/* ADD PHOTO CSS  */
+
+
+
+
+
+
+
+
+.photo-upload input[type="file"] {
+    display: none;
+    cursor: pointer;
+}
+
+.profil-text{
+  color: #5678E9;
+  font: "Poppins";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+/* image upload css  */
+
+.file-upload {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.file-upload:hover {
+  border-color: #5678E9;
+}
+
+.upload-area {
+  color: #333;
+}
+
+.upload-area .icon {
+ 
+  /* color: #007bff; */
+  margin-bottom: 8px;
+}
+.icon{
+ 
+  display: flex;
+  justify-content: center;
+
+
+}
+.miui-icon{
+  width: 100px;
+  height: 36px;
+color: #A7A7A7;
+font-size: 40px;
+}
+
+.upload-area p {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+  font: "Poppins";
+  line-height: 21px;
+  color: #4F4F4F;
+}
+
+.upload-area small {
+  font-size: 12px;
+  color: #999;
+}
+
+.img-text{
+  color: #5678E9;
+}
+
+.t-img{
+font-size: small;
+font:"Poppins";
+font-weight: 500;
+line-height: 21px;
+
+}
+
+/* section-2 */
+
+.member-form-container {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* max-width: 1000px; */
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-member {
+  display: flex;
+  align-items: center;
+}
+
+.select-member label {
+  margin-right: 8px;
+}
+
+.select-member select {
+  padding: 4px;
+  font-size: 14px;
+}
+
+.member-rows {
+  margin-top: 20px;
+  display: grid;
+ flex-wrap: wrap !important;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.member-row {
+  display: contents; /* Allows grid display while managing visibility */
+}
+
+.member-row input,
+.member-row select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.MEMBER-TEX{
+  font: "Poppins" !important;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.othe-text{
+font: "Nunito Sans";
+font-weight: 800;
+font-size: 16px;
+line-height: 21.82px;
+letter-spacing: 0.3px;
+color: #A7A7A7;
+}
+
+.line-border{
+  width: 100%;
+  border: 1px solid #7a2929;
+}
+
+
+
+/* General container styling */
+.section-2 {
+  padding: 20px;
+  border-radius: 15px;
+  gap: 10px;
+  background: #FFFFFF;
+
+}
+
+.member-form-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+
+  background-color: #f8f9fa;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.select-member {
+  display: flex;
+  align-items: center;
+}
+
+.select-member label {
+  margin-right: 8px;
+}
+
+.select-member select {
+  padding: 1px;
+  /* font-size: 14px; */
+  cursor: pointer;
+}
+
+/* Flexbox styling for form rows */
+.member-rows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px !important ;
+}
+
+.member-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.member-row input,
+.member-row select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+.input-text{
+  width: 100% !important;
+}
+.text-wrap{
+  text-wrap:wrap;
+}
+
+/* Responsive styling */
+@media (min-width: 768px) {
+  .member-row input,
+  .member-row select {
+      width: 100%; /* Width for 6 columns on larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  /* For mobile screens */
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .member-row {
+      flex-direction: column;
+  }
+
+  .member-row input,
+  .member-row select {
+      width: 100%; /* Full-width on mobile */
+  }
+}
+
+
+.member-form-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.header h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+.select-member label {
+    font-weight: 600;
+    font: "Poppins";
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.section-button{
+float: right;
+}
+.Cancel-btn{
+  width: 93px;
+  height: 51px;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  padding: 12px 14px 12px 14px;
+  gap: 10px;
+}
+.Create-btn{
+  width: 93px;
+  height: 51px;
+  border-radius: 10px;
+  border: none;
+
+  padding: 12px 14px 12px 14px;
+  gap: 10px;
+
+}
+@media  (max-width:786px) {
+  .section-button{
+    float: none;
+    }
+   .Create-btn ,.Cancel-btn{
+      width: 100%;
+    }
+}
+
+
+
 
 
 
