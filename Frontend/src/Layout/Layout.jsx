@@ -184,7 +184,10 @@ left:-23px;
 `;
     return (
         <div className='container-fulid' style={{ overflow: "hidden" }}>
+
             <div className="row ">
+            <div className="row d-flex">
+
                 <div className="  layout  col-12 col-md-3 side-bar   ">
                     <Logo className="mt-1">
                         <Link to={"/deshbord"}>
@@ -200,7 +203,10 @@ left:-23px;
 
                         <Link className='link-tag' to={"/deshbord"}  > <div className='side-design' style={{ display: location.pathname === "/deshbord" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
                         <Link className='link-tag' to={"/resident"} >  <div className='side-design' style={{ display: location.pathname === "/resident" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
+
                         <Link className='link-tag' to={"/financial"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/financial" ? "block" : "none" }}><SidebarMiniButton /> </div>   <NavLink style={{ background: location.pathname === "/financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink> </Link>
+
+
 
                         {/* acoding */}
 
@@ -404,8 +410,11 @@ left:-23px;
                         </UserInfo>
                     </div>
                     <div className="component-layout  h-100   ">
+
                         <br />
                         <div className="p-4">
+                        <div className="container-fluid">
+
 
                             {component}
                         </div>

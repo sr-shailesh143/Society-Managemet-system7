@@ -105,10 +105,10 @@ const FacilityManagement = () => {
 
  
   return (
-    <div className="container-fluid p-3" style={{ minHeight: '100vh', backgroundColor: '#f7f9fc' }}>
-      <div className="container bg-white p-4 rounded shadow">
+    <div className="container-fluid p-4" style={{ minHeight: '100vh', }}>
+    <div className="container-fluid d-flex flex-column bg-light shadow m-2"style={{width:"100%"}}>
         {/* Header */}
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        <div className="d-flex justify-content-between align-items-center mb-4 p-3">
           <h2>Facility Management</h2>
           <button
             className="btn"
@@ -192,7 +192,7 @@ const FacilityManagement = () => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="facilityName">
-              <Form.Label>Facility Name</Form.Label>
+              <Form.Label>Facility Name<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Facility Name"
@@ -202,7 +202,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="serviceDate">
-              <Form.Label>Service Date</Form.Label>
+              <Form.Label>Service Date<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="date"
                 name="serviceDate"
@@ -211,7 +211,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Description<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
@@ -261,7 +261,7 @@ const FacilityManagement = () => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="facilityName">
-              <Form.Label>Facility Name</Form.Label>
+              <Form.Label>Facility Name<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Facility Name"
@@ -271,7 +271,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="serviceDate">
-              <Form.Label>Service Date</Form.Label>
+              <Form.Label>Service Date<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="date"
                 placeholder="Enter Service Date"
@@ -281,7 +281,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Description<span style={{color:"red"}}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
@@ -326,11 +326,11 @@ const FacilityManagement = () => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <strong>Facility Name: </strong>
+            <strong>Facility Name<span style={{color:"red"}}>*</span> </strong>
             <span>{facilityData.name}</span>
           </div>
           <div>
-            <strong>Service Date: </strong>
+            <strong>Service Date<span style={{color:"red"}}>*</span> </strong>
             <span>{formatDate(facilityData.serviceDate)}</span>
           </div>
           <div>

@@ -15,6 +15,10 @@ import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
 import SecurityGuard from './page/SecurityGuard';
 import FacilityManagement from './page/FacilityManagement';
+
+
+import Financial from './page/Financial';
+
 import Owner from './page/Owner';
 import CompleteTraking from './page/CompleteTraking';
 import SecurityManagement from './page/securityManagement';
@@ -52,6 +56,12 @@ function App() {
 
 
 
+
+        <Route path='/Financial' element={<Layout component={<Financial/>}/>}/>
+        {/* profile */}
+        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm/>} />}/>
+        <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
+        {/* resident */}
 
 
 

@@ -321,12 +321,16 @@ width: 162px ;
   width: 80% !important;
 }
 
+
 @media (max-width: 768px) {
   .col-md-9 {
       flex: 0 0 auto;
       width: 97% !important;
   }
 }
+
+
+
 
 
 .component-layout {
