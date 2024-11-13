@@ -292,27 +292,47 @@ function RegistrationPage() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Select Society<span style={{ color: "red" }}>*</span></label>
-              <select
-            className="form-select"
-            id="selectSociety"
-             name='select_society'
-            value={formData.select_society}
-            {...register('select_society', { required: true })}
-            onChange={handleSocietiesSelect}
-          >
-            <option value="">Choose a society...</option>
-            {societiesList?.map(({ _id, Society_Name }) => (
-              <option key={_id} value={_id}>
-                {Society_Name}
-              </option>
-            ))}
-            <option value="createNew" style={{ backgroundColor: "#FE512E", color: "white" }}>
-              Create a new society
-            </option>
-          </select>
-              {errors.select_society && <p className="text-danger">{errors.select_society.message}</p>}
-            </div>
+  <label className="form-label">Select Society<span style={{ color: "red" }}>*</span></label>
+  <select
+     style={{
+      width: 'auto',
+     minWidth: '100%',
+     height: '44px',
+     fontSize: '13px',
+     appearance: 'none',
+     MozAppearance: 'none',
+     WebkitAppearance: 'none',
+     border: '1px solid #ccc',
+     borderRadius: '10px',
+     paddingTop: '12px',
+     paddingRight: '14px',
+     paddingBottom: '12px',
+     paddingLeft: '14px',
+     gap: '10px', // Ensures full width and allows text to wrap
+     }}
+    className="form-select"
+    id="selectSociety"
+    name="select_society"
+    value={formData.select_society}
+    {...register('select_society', { required: true })}
+    onChange={handleSocietiesSelect}
+  >
+    <option value="">Choose a society...</option>
+    {societiesList?.map(({ _id, Society_Name }) => (
+      <option key={_id} value={_id}>
+        {Society_Name}
+      </option>
+    ))}
+    <option value="">arice western</option>
+    <option value="">iscon heights</option>
+
+    <option value="createNew" style={{ backgroundColor: "#FE512E", color: "white" }}>
+      Create a new society
+    </option>
+  </select>
+  {errors.select_society && <p className="text-danger">{errors.select_society.message}</p>}
+</div>
+
 
             <div className="mb-3" style={{ position: 'relative' }}>
               <label>Password<span style={{ color: "red" }}>*</span></label>

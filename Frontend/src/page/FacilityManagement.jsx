@@ -4,11 +4,11 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { Dropdown, Modal, Button, Form } from 'react-bootstrap';
 
 const FacilityManagement = () => {
-  const [selectedFacility, setSelectedFacility] = useState(false); 
+  const [selectedFacility, setSelectedFacility] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showViewModal, setShowViewModal] = useState(false); 
-  const [showDeleteModal, setShowDeleteModal] = useState(false); 
-  const [showCreateModal, setShowCreateModal] = useState(false); 
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [facilityData, setFacilityData] = useState({
     name: '',
     serviceDate: '',
@@ -35,8 +35,8 @@ const FacilityManagement = () => {
       serviceDate: facility.serviceDate,
       description: facility.description
     });
-    setSelectedFacility(index); 
-    setShowModal(true); 
+    setSelectedFacility(index);
+    setShowModal(true);
   };
 
   const handleView = (facility) => {
@@ -45,27 +45,27 @@ const FacilityManagement = () => {
   };
 
   const handleDelete = (index) => {
-    setSelectedFacility(index); 
-    setShowDeleteModal(true); 
+    setSelectedFacility(index);
+    setShowDeleteModal(true);
   };
 
   const handleDeleteConfirm = () => {
-    const updatedFacilities = facilities.filter((_, index) => index !== selectedFacility); 
-    setFacilities(updatedFacilities); 
-    setShowDeleteModal(false); 
+    const updatedFacilities = facilities.filter((_, index) => index !== selectedFacility);
+    setFacilities(updatedFacilities);
+    setShowDeleteModal(false);
   };
 
   const handleModalClose = () => {
-    setShowModal(false); 
-    setFacilityData({ name: '', serviceDate: '', description: '' }); 
+    setShowModal(false);
+    setFacilityData({ name: '', serviceDate: '', description: '' });
   };
 
   const handleModalSave = () => {
     const updatedFacilities = [...facilities];
     updatedFacilities[selectedFacility] = facilityData;
-    setFacilities(updatedFacilities); 
+    setFacilities(updatedFacilities);
 
-    setShowModal(false); 
+    setShowModal(false);
   };
 
   const handleInputChange = (e) => {
@@ -83,30 +83,30 @@ const FacilityManagement = () => {
     setNewFacilityData({ ...newFacilityData, [name]: value });
   };
 
- 
+
   const handleCreateModalOpen = () => {
     setShowCreateModal(true);
   };
 
   const handleCreateFacility = () => {
     setFacilities([...facilities, newFacilityData]);
-    setShowCreateModal(false); 
-    setNewFacilityData({ name: '', serviceDate: '', description: '' }); 
+    setShowCreateModal(false);
+    setNewFacilityData({ name: '', serviceDate: '', description: '' });
   };
 
-  
+
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString(); 
+    return date.toLocaleDateString();
   };
 
- 
+
   const isCreateButtonDisabled = !newFacilityData.name || !newFacilityData.serviceDate || !newFacilityData.description;
 
- 
+
   return (
-    <div className="container-fluid p-4" style={{ minHeight: '100vh', }}>
-    <div className="container-fluid d-flex flex-column bg-light shadow m-2"style={{width:"100%"}}>
+    <div className="container-fluid " style={{ minHeight: '100vh', }}>
+      <div className="container-fluid d-flex flex-column bg-light shadow " style={{ width: "100%" }}>
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4 p-3">
           <h2>Facility Management</h2>
@@ -115,9 +115,9 @@ const FacilityManagement = () => {
             style={{
               background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
               border: "none",
-              color:"white"
+              color: "white"
             }}
-            onClick={handleCreateModalOpen} 
+            onClick={handleCreateModalOpen}
           >
             Create Facility
           </button>
@@ -139,9 +139,9 @@ const FacilityManagement = () => {
                 }}
               >
                 <div
-                  className="card-header"
+                  className="card-header  bg-primary"
                   style={{
-                    backgroundColor: "#5678E9",
+                   
                     color: 'white',
                     display: 'flex',
                     justifyContent: 'space-between',
@@ -192,65 +192,65 @@ const FacilityManagement = () => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="facilityName">
-              <Form.Label>Facility Name<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Facility Name<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Facility Name"
                 name="name"
-                value={newFacilityData.name}
+
                 onChange={handleNewFacilityChange}
               />
             </Form.Group>
             <Form.Group controlId="serviceDate">
-              <Form.Label>Service Date<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Service Date<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="date"
                 name="serviceDate"
-                value={newFacilityData.serviceDate}
+
                 onChange={handleNewFacilityChange}
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Description<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
                 name="description"
-                value={newFacilityData.description}
+
                 onChange={handleNewFacilityChange}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-  <Button
-    style={{
-      backgroundColor: "transparent",
-      border: "1px solid grey",
-      width: "45%", 
-      color: "black",
-      
-    }}
-    onClick={() => setShowCreateModal(false)}
-  >
-    Cancel
-  </Button>
-  <Button
-    style={{
-      background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-      border: "none",
-      color: "white",
-      width: "45%",
-      
-    }}
-    onClick={() => console.log("Facility Created", newFacilityData)} 
-    disabled={
-      !newFacilityData.name || !newFacilityData.serviceDate || !newFacilityData.description
-    }
-  >
-    Create Facility
-  </Button>
-</Modal.Footer>
+          <Button
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid grey",
+              width: "45%",
+              color: "black",
+
+            }}
+            onClick={() => setShowCreateModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            style={{
+              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+              border: "none",
+              color: "white",
+              width: "45%",
+
+            }}
+            onClick={() => console.log("Facility Created", newFacilityData)}
+            disabled={
+              !newFacilityData.name || !newFacilityData.serviceDate || !newFacilityData.description
+            }
+          >
+            Create Facility
+          </Button>
+        </Modal.Footer>
 
       </Modal>
       {/* Edit Modal */}
@@ -261,7 +261,7 @@ const FacilityManagement = () => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="facilityName">
-              <Form.Label>Facility Name<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Facility Name<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Facility Name"
@@ -271,7 +271,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="serviceDate">
-              <Form.Label>Service Date<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Service Date<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="date"
                 placeholder="Enter Service Date"
@@ -281,7 +281,7 @@ const FacilityManagement = () => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description<span style={{color:"red"}}>*</span></Form.Label>
+              <Form.Label>Description<span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Description"
@@ -294,14 +294,14 @@ const FacilityManagement = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-          style={{
-            backgroundColor: "transparent",
-            border: "1px solid grey",
-            width: "45%", 
-            color: "black",
-            
-          }}
-          variant="secondary" onClick={handleModalClose}>
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid grey",
+              width: "45%",
+              color: "black",
+
+            }}
+            variant="secondary" onClick={handleModalClose}>
             Cancel
           </Button>
           <Button
@@ -310,12 +310,12 @@ const FacilityManagement = () => {
               border: "none",
               color: "white",
               width: "45%",
-              
+
             }}
             onClick={handleModalSave}
             disabled={!facilityData.name || !facilityData.serviceDate || !facilityData.description}
           >
-            Save 
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
@@ -326,19 +326,19 @@ const FacilityManagement = () => {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <strong>Facility Name<span style={{color:"red"}}>*</span> </strong>
+            <strong>Facility Name<span style={{ color: "red" }}>*</span> </strong>
             <span>{facilityData.name}</span>
           </div>
           <div>
-            <strong>Service Date<span style={{color:"red"}}>*</span> </strong>
+            <strong>Service Date<span style={{ color: "red" }}>*</span> </strong>
             <span>{formatDate(facilityData.serviceDate)}</span>
           </div>
           <div>
-            <strong>Description: </strong>
+            <strong>Description<span style={{ color: "red" }}>*</span> </strong>
             <p>{facilityData.description}</p>
           </div>
         </Modal.Body>
-       
+
       </Modal>
 
       {/* Delete Confirmation Modal */}
@@ -359,6 +359,10 @@ const FacilityManagement = () => {
         </Modal.Footer>
       </Modal>
     </div>
+
+
+
+
   );
 };
 
