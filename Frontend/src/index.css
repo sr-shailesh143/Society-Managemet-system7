@@ -117,3 +117,6 @@ button:focus-visible {
 #fileInput {
   display: none;
 }
+.modal-content {
+  width: 344px !important;
+}
