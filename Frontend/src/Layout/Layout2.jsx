@@ -21,7 +21,7 @@ import { FaGreaterThan } from "react-icons/fa6";
 
 
 
-export default function Layout({ component }) {
+export default function Layout2({ component }) {
     const [show, setShow] = useState(false);
     const naviget = useNavigate()
     const [serch, setserch] = useState(0)
@@ -120,8 +120,8 @@ background-color: #F6F8FB;
   font-size: 16px;
 `;
     const Notifiction = styled.span`
-  font-size: 16px;
-  margin-left: 14px;
+font-size: 16px;
+margin-left: 14px;
 
 `;
     const Search_Icon = styled.span`
@@ -146,6 +146,7 @@ cursor: pointer;
     const NavLinks = styled.ul`
   list-style-type: none;
   padding: 0;
+  higth:50vh;
   
 `;
 
@@ -192,20 +193,19 @@ left:-23px;
                     <div className="  layout  col-12 col-md-3 side-bar   ">
                         <Logo className="mt-1">
                             <Link to={"/deshbord"}>
-                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                            <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
                             </Link>
                             <center>
                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
                                 </div>
                             </center>
                         </Logo>
-                        <NavLinks className='h-50'>
+                        <NavLinks className='h-50' style={{ height: "60vh" }}>
 
 
-                            <Link className='link-tag' to={"/deshbord"}  > <div className='side-design' style={{ display: location.pathname === "/deshbord" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
-                            <Link className='link-tag' to={"/resident"} >  <div className='side-design' style={{ display: location.pathname === "/resident" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
 
-                            <Link className='link-tag' to={"/Financial"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Financial" ? "block" : "none" }}><SidebarMiniButton /> </div>   <NavLink style={{ background: location.pathname === "/Financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink> </Link>
+
+                            <Link className='link-tag' to={"/Security"} onClick={toggleFinancialSubmenu} >  <div className='side-design' ><SidebarMiniButton /> </div>   <NavLink style={{ background:"linear-gradient(90deg, #FE512E 0%, #F09619 100%)", color:  "white" , textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' />Security </NavLink> </Link>
 
 
 
@@ -213,36 +213,16 @@ left:-23px;
 
                             {showFinancialSubmenu2 && (
                                 <Submenu>
-                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}> Income</span></SubmenuItem>
-                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Expense</span></SubmenuItem>
-                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Note</span></SubmenuItem>
+                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }}> Visitor Tracking</span></SubmenuItem>
+                                    <SubmenuItem onClick={()=>naviget("/EmergencyManagement")}> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray" }}>Emergency Management</span></SubmenuItem>
                                 </Submenu>
                             )}
 
-                            <Link className='link-tag' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><PiBuildingsFill className='fs-3 mb-1' />  Facility Management</NavLink></Link>
-                            <Link className='link-tag' to={"/traking"} onClick={toggleFinancialSubmenu1}  > <div className='side-design' style={{ display: location.pathname === "/traking" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
-                            {showFinancialSubmenu3 && (
-                                <Submenu>
-                                    <SubmenuItem>Income</SubmenuItem>
-                                    <SubmenuItem>Expense</SubmenuItem>
-                                    {/* <SubmenuItem>Note</SubmenuItem> */}
-                                </Submenu>
-                            )}
-                            <Link className='link-tag' to={"/securitymanagement"} onClick={toggleFinancialSubmenu1} > <div className='side-design' style={{ display: location.pathname === "/securitymanagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/securitymanagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/securitymanagement" ? "white" : "", textDecoration: "none" }}><SiSpringsecurity className='fs-3 mb-1' />  Security Management</NavLink></Link>
-                            {showFinancialSubmenu3 && (
-                                <Submenu>
-                                    <SubmenuItem>Income</SubmenuItem>
-                                    <SubmenuItem>Expense</SubmenuItem>
-                                    {/* <SubmenuItem>Note</SubmenuItem> */}
-                                </Submenu>
-                            )}
-                            <Link className='link-tag' to={"/SecurityGuard"}   > <div className='side-design' style={{ display: location.pathname === "/SecurityGuard" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }} > <GrUserPolice className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
-                            <Link className='link-tag' to={"/Announcement"} >  <div className='side-design' style={{ display: location.pathname === "/Announcement" ? "block" : "none" }}><SidebarMiniButton /> </div>   <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }} ><TfiAnnouncement className='fs-3 mb-1' /> Announcement</NavLink></Link>
+
                             <br />
                             <br />
-                            <br />
-                            <br />
-                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}> <TbLogout className='fs-3' />  Logout</p>
+                           
+                            <p className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "60vh" }}> <TbLogout className='fs-3' />  Logout</p>
                         </NavLinks>
                     </div>
                     <div className="col-12 col-md-9 ">
@@ -254,7 +234,7 @@ left:-23px;
                                     <Offcanvas.Title>
                                         <Logo className="mt-1">
                                             <Link to={"/deshbord"}>
-                                                <img className='h-75 w-75' src="src/assets/Logo.png" alt="Logo" />
+                                            <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
                                             </Link>
                                             <center>
                                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
@@ -270,59 +250,48 @@ left:-23px;
                                         <NavLinks>
 
 
-                                            <Link className='link-tag' to={"/deshbord"}  > <div className='side-design ' style={{ display: location.pathname === "/deshbord" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>    <NavLink style={{ background: location.pathname === "/deshbord" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
-                                            <Link className='link-tag' to={"/resident"} >  <div className='side-design' style={{ display: location.pathname === "/resident" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>  <NavLink style={{ background: location.pathname === "/resident" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
-                                            <Link className='link-tag' to={"/Financial"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Financial" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>   <NavLink style={{ background: location.pathname === "/Financial" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Financial" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management </NavLink> </Link>
+
+                                            <Link className='link-tag' to={"/Security"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Security" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>   <NavLink style={{ background: location.pathname === "/Security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Security" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Security </NavLink> </Link>
                                             {/* acoding */}
 
                                             {showFinancialSubmenu2 && (
                                                 <Submenu>
-                                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}> Income</span></SubmenuItem>
-                                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Expense</span></SubmenuItem>
-                                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/income" ? "2px solid black" : "2px solid gray" }}>Note</span></SubmenuItem>
+                                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }}> Visitor Tracking</span></SubmenuItem>
+                                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray" }}>Emergency Management</span></SubmenuItem>
                                                 </Submenu>
                                             )}
 
-                                            <Link className='link-tag' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><PiBuildingsFill className='fs-3 mb-1' />  Facility Management</NavLink></Link>
-                                            <Link className='link-tag' to={"/traking"} onClick={toggleFinancialSubmenu1}  > <div className='side-design' style={{ display: location.pathname === "/traking" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
-                                            {showFinancialSubmenu3 && (
-                                                <Submenu>
-                                                    <SubmenuItem>Income</SubmenuItem>
-                                                    <SubmenuItem>Expense</SubmenuItem>
-                                                    {/* <SubmenuItem>Note</SubmenuItem> */}
-                                                </Submenu>
-                                            )}
-                                            <Link className='link-tag' to={"/securitymanagement"} onClick={toggleFinancialSubmenu1} > <div className='side-design' style={{ display: location.pathname === "/securitymanagement" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/securitymanagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/securitymanagement" ? "white" : "", textDecoration: "none" }}><SiSpringsecurity className='fs-3 mb-1' />  Security Management</NavLink></Link>
-                                            {showFinancialSubmenu3 && (
-                                                <Submenu>
-                                                    <SubmenuItem>Income</SubmenuItem>
-                                                    <SubmenuItem>Expense</SubmenuItem>
-                                                    {/* <SubmenuItem>Note</SubmenuItem> */}
-                                                </Submenu>
-                                            )}
-                                            <Link className='link-tag' to={"/SecurityGuard"}   > <div className='side-design' style={{ display: location.pathname === "/SecurityGuard" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/SecurityGuard" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/SecurityGuard" ? "white" : "", textDecoration: "none" }}> <GrUserPolice className='fs-3 mb-1 ' /> Security Guard</NavLink></Link>
-                                            <Link className='link-tag' to={"/Announcement"} >  <div className='side-design' style={{ display: location.pathname === "/Announcement" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>   <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/Announcement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Announcement" ? "white" : "", textDecoration: "none" }}><TfiAnnouncement className='fs-3 mb-1' /> Announcement</NavLink></Link>
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
 
-                                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}> <TbLogout className='fs-3' />  Logout</p>
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
+                                          
+                                            
+                                           
+                                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px", cursor: "pointer", borderTop: "1px solid #F4F4F4", }}> <TbLogout className='fs-3' />  Logout</p>
                                         </NavLinks>
                                     </Offcanvas.Body>
                                 </Offcanvas>
                             </div>
                             <div className="search">
-                                {
-                                    location.pathname === "/deshbord" ? <div><SearchBar className='perent-search' onChange={() => setserch(2)} type='search' placeholder="           Search Here" />  <CiSearch className='fs-3 fw-bolde child-search ' style={{ display: serch == 0 ? "block" : "none" }} /> </div> : <div> <span onClick={() => naviget("/deshbord")} style={{ color: "#A7A7A7", cursor: "pointer" }}>Home</span>  <span className='ms-2  mb-2'><FaGreaterThan className='' /></span> <span style={{ color: "#5678E9" }} className='ms-2'>{location.pathname.split("/")}</span></div>
-                                }
+                               
 
 
                             </div>
                             <UserInfo>
-                                <Search_Icon className='search-icon'>
-                                    <CiSearch className='fs-2' />
-                                </Search_Icon>
+                               
                                 <Notifiction >
 
                                     <MdNotificationImportant style={{ cursor: "pointer" }} onClick={toggleDropdown} className='fs-2 mx-2' />
@@ -374,7 +343,7 @@ left:-23px;
                                                             {notifications.length > 0 ? notifications.map((notification) => (
                                                                 <div key={notification.id} className="notification-item">
                                                                     <div className="notification-content">
-                                                                        <h3>{notification.title}</h3>
+                                                                    <h3><img src={notification.img} alt="" /> {notification.title}</h3>
                                                                         <p className="notification-time">{notification.time}</p>
                                                                         <p>
                                                                             {notification.message.replace(notification.linkText, '')}
@@ -415,7 +384,7 @@ left:-23px;
 
                             <br />
                             <div className="p-4">
-                                <div className="container-fluid">
+                                <div className="container-fluid" style={{height:"100vh",overflow:"hidden"}}>
 
 
                                     {component}

@@ -25,6 +25,9 @@ import Financial from './page/Financial';
 import Owner from './page/Owner';
 import CompleteTraking from './page/CompleteTraking';
 import SecurityManagement from './page/securityManagement';
+import Tenant from './page/Tenant';
+import Layout2 from './Layout/Layout2';
+import EmergencyManagement from './page2/EmergencyManagement';
 
 function App() {
   return (
@@ -49,6 +52,7 @@ function App() {
         {/* RESIDEMT MANAGEMENT */}
         <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
         <Route path='/owner' element={<Layout component={<Owner />} />} />
+        <Route path='/Tenant' element={<Layout component={<Tenant />} />} />
         {/* financial */}
         <Route path='/Financial' element={<Layout component={<Financial/>}/>}/>
         {/* FacilityManagement */}
@@ -72,6 +76,18 @@ function App() {
         <Route path='/profile' element={<Layout component={<UpdateProfile/>}/>}/>
         {/* resident */}
 
+
+
+
+
+
+
+
+        {/* Security */}
+
+
+        <Route path="/Security" element={<Layout2 />}/>
+        <Route path="/EmergencyManagement" element={<Layout2  component={<EmergencyManagement/>} />}/>
 
 
 
