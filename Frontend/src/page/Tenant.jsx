@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-export default function Owner() {
+export default function Tenant() {
     const location = useLocation()
     const [selectedOption, setSelectedOption] = useState("Male");
     const [isOpen, setIsOpen] = useState(false);
@@ -38,18 +38,34 @@ export default function Owner() {
     const naviget = useNavigate()
     return (
         <div div className=''>
-           
+
             <div className='row'>
-            <div className="d-flex mt-4 ">
-                    <div onClick={()=>naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                <div className="d-flex mt-4 ">
+                    <div onClick={() => naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Owner</p>
                     </div>
-                    <div  onClick={()=>naviget("/Tenant")} style={{ background: location.pathname === "/Tenant" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Tenant" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                    <div onClick={() => naviget("/Tenant")} style={{ background: location.pathname === "/Tenant" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Tenant" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Tenant</p>
                     </div>
                 </div>
             </div>
-            <div className=" bg-white section-1 ">
+            <div className="bg-white section-1">
+                <div className="row ">
+                    <div className="col-12 col-md-4">
+                        <label html="" className='labal-name'>Owner Full Name <span className='text-danger1'>*</span></label>
+                        <input className='input-style' placeholder='Enter Full Name' type="text" />
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <label html="" className='labal-name'>Owner Phone<span className='text-danger1'>*</span></label>
+                        <input className='input-style' type="text" placeholder='+91' />
+                    </div>
+                    <div className="col-12 col-md-4">
+                        <label html="" className='labal-name'>Owner Full Name <span className='text-danger1'>*</span></label>
+                        <input className='input-style' placeholder='Enter Full Name' type="text" />
+                    </div>
+                </div>
+            </div>
+            <div className=" bg-white section-1 mt-4 ">
                 <div className="row d-flex">
                     <div className="col-12 col-md-1 p-3 profilePage img-profile ">
                         <label className="photo-upload mt-2 ">
@@ -218,7 +234,7 @@ export default function Owner() {
                             <label className="me-2 SELECT-MEMBER">Select Member</label>
                             <select value={memberCount} onChange={handleMemberCountChange} className="form-select ">
                                 {[...Array(totalRows).keys()].map((num) => (
-                                    <option key={num} value={num + 1}> <span className='ms-3'>    {   num + 1}</span></option>
+                                    <option key={num} value={num + 1}> <span className='ms-3'>    {num + 1}</span></option>
                                 ))}
                             </select>
                         </div>
