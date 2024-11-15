@@ -28,9 +28,9 @@ import Tenant from './page/Tenant';
 import Layout2 from './Layout/Layout2';
 import EmergencyManagement from './page2/EmergencyManagement';
 
-
-import Visitor from './Visitor';
+import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
+import VisitorTracking from './page2/Visitortracking';
 
 function App() {
   return (
@@ -69,11 +69,14 @@ function App() {
         {/* Announcement */}
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
         {/* Expence */}
-        <Route path='/Expense' element={<Layout component={<Expense />} />}/>
+        <Route path='/Expense' element={<Layout component={<Expense />} />} />
         {/* Vistiors */}
-        <Route path='/Visitor' element={<Layout component={<Visitor />} />}/>
+        <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
         {/* Securityprotocols */}
-        <Route path='/Securityprotocols' element={<Layout component={<Securityprotocols />} />}/>
+        <Route path='/Securityprotocols' element={<Layout component={<Securityprotocols />} />} />
+        {/* visirtortracking */}
+        <Route path='/VisitorTracking' element={<Layout component={<VisitorTracking />} />} />
+
 
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
 
@@ -92,8 +95,8 @@ function App() {
         {/* Security */}
 
 
-        <Route path="/Security" element={<Layout2 />}/>
-        <Route path="/EmergencyManagement" element={<Layout2  component={<EmergencyManagement/>} />}/>
+        <Route path="/Security" element={<Layout2 />} />
+        <Route path="/EmergencyManagement" element={<Layout2 component={<EmergencyManagement />} />} />
 
 
 

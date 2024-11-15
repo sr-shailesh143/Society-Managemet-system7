@@ -115,7 +115,7 @@ const Announcement = () => {
     announcementForm.time.trim() !== '';
   return (
 
-    <div className="container-fluid p-4" style={{ minHeight: '100vh', }}>
+    <div className="container-fluid " style={{ minHeight: '100vh', }}>
       <div className="container-fluid d-flex flex-column   p-0" style={{ width: "100%" }}>
 
         <div className="container-fluid p-4" style={{ minHeight: '100vh' }}>
