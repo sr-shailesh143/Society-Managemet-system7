@@ -31,6 +31,8 @@ import EmergencyManagement from './page2/EmergencyManagement';
 
 import Visitor from './Visitor';
 import Securityprotocols from './page/Securityprotocols';
+import Icome from './page/Icome';
+import Otherincome from './page/otheincom';
 
 function App() {
   return (
@@ -58,6 +60,9 @@ function App() {
         <Route path='/Tenant' element={<Layout component={<Tenant />} />} />
         {/* financial */}
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
+        <Route path='/Expense' element={<Layout component={<Expense />} />}/>
+        <Route path='/Otherincome' element={<Layout component={<Otherincome />} />}/>
+        <Route path='/Icome' element={<Layout component={<Icome />} />}/>
         {/* FacilityManagement */}
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}
@@ -68,8 +73,7 @@ function App() {
         <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard />} />} />
         {/* Announcement */}
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
-        {/* Expence */}
-        <Route path='/Expense' element={<Layout component={<Expense />} />}/>
+       
         {/* Vistiors */}
         <Route path='/Visitor' element={<Layout component={<Visitor />} />}/>
         {/* Securityprotocols */}

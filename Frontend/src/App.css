@@ -945,20 +945,20 @@ input[type="email"] {
 
   }
 
-  .save-btn {
+  /* .save-btn {
     width: 100% !important;
     margin: 10px !important;
-  }
+  } */
 
   .add-text {
     display: flex;
     justify-content: center;
   }
 
-  .cancel-btn {
+  /* .cancel-btn {
     margin: 10px !important;
-    width: 100% !important;
-  }
+    width: 10% !important;
+  } */
 
   .add-btn {
     text-align: center;
@@ -1254,7 +1254,7 @@ input[type="email"] {
 }
 
 .custom-modal .modal-content {
-  width: 410px;
+  /* width: 400px !important; */
   border-radius: 10px;
 }
 
@@ -1288,7 +1288,7 @@ input[type="email"] {
 }
 
 .save-btn {
-  width: 175px;
+  width: 145px;
   height: 51px;
   padding: 12px 53px 12px 53px;
   gap: 10px;
@@ -1298,7 +1298,7 @@ input[type="email"] {
 }
 
 .cancel-btn {
-  width: 175px;
+  width: 145px;
   height: 51px;
   padding: 10px 55px 10px 55px;
   gap: 10px;
@@ -1757,14 +1757,14 @@ input[type="email"] {
   float: right;
 }
 
-.Cancel-btn {
+/* .Cancel-btn {
   width: 93px;
   height: 51px;
   border-radius: 10px;
   border: 1px solid #D3D3D3;
   padding: 12px 14px 12px 14px;
   gap: 10px;
-}
+} */
 
 .Create-btn {
   width: 93px;
@@ -1841,7 +1841,7 @@ input[type="email"] {
   text-align: center;
   text-underline-position: "from-font";
   text-decoration-skip-ink: none;
- 
+
 
 }
 
@@ -2038,41 +2038,244 @@ input[type="email"] {
   opacity: 0px;
 
 }
-.alert-title{
- 
+
+.alert-title {
+
   font: "Poppins";
   font-size: 34px;
   font-weight: 600;
   line-height: 51px;
   text-underline-position: "from-font";
   text-decoration-skip-ink: none;
-  
+
 }
+
 .alert-labal {
   font: "Poppins";
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-text-align: left;
-text-underline-position: "from-font";
-text-decoration-skip-ink: none;
-color: #202224;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  text-underline-position: "from-font";
+  text-decoration-skip-ink: none;
+  color: #202224;
 
 }
-.alert-univasel{
+
+.alert-univasel {
   font: "Poppins";
-font-size: 14px;
-font-weight: 700;
-line-height: 21px;
-text-align: left;
-text-underline-position: "from-font";
-text-decoration-skip-ink: none;
-color: #E74C3C;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  text-align: left;
+  text-underline-position: "from-font";
+  text-decoration-skip-ink: none;
+  color: #E74C3C;
 
 }
-.alert-send-btn{
+
+.alert-send-btn {
   background: linear-gradient(90deg, #FE512E 0%, #F09619 100%);
   border: none;
   border-radius: 10px;
   color: white;
+}
+
+/* icome css  */
+.belence {
+  width: 1, 580px;
+  display: flex;
+  align-items: center;
+  top: 130px;
+  left: 310px;
+  padding: 20px;
+  gap: 0px;
+  border-radius: 15px;
+  justify-content: space-between;
+  opacity: 0px;
+  background: #FFFFFF;
+
+
+}
+
+
+
+
+
+
+.amount-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  max-width: 236px;
+  position: relative;
+  height: 105px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+
+.amount-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 48px;
+  width: 45px;
+  background-color: transparent;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-top-right-radius: 12px;
+}
+
+.amount-card-pink::after {
+  border-color: #39973D;
+}
+
+.amount-card-pink::before {
+  background-color: #39973D;
+}
+
+.amount-card-red::after {
+  border-color: #E74C3C;
+}
+
+.amount-card-red::before {
+  background-color: #E74C3C;
+}
+
+.amount-card::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: 0;
+  bottom: 0;
+  width: 8px;
+  height: 52px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+
+
+.amount-label {
+
+
+  font: "Poppins";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: " from-font";
+  text-decoration-skip-ink: none;
+
+
+}
+
+.amount-value {
+
+  font-size: 24px;
+  color: #39973D;
+  /* Green color for the amount */
+  font-weight: bold;
+}
+
+.amount-value-red {
+  font-size: 24px;
+  color: #E74C3C;
+  /* Green color for the amount */
+  font-weight: bold;
+}
+
+.amount-box {
+  width: 176px;
+  height: 68px;
+  top: 19px;
+  left: 30px;
+  gap: 134px;
+  opacity: 0px;
+
+}
+
+.setmaintenance {
+
+  padding: 12px 14px 12px 14px;
+  gap: 10px;
+  border-radius: 10px 0px 0px 0px;
+  opacity: 0px;
+
+}
+
+@media (max-width:769px) {
+  .belence {
+    display: block;
+    align-items: center;
+    margin: auto;
+
+
+    text-align: center;
+  }
+
+  .totle-amount {
+    display: block;
+    align-items: center;
+
+    gap: 20px;
+
+
+    text-align: center;
+  }
+}
+
+.model-title {
+  font: "Poppins";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: left;
+  text-underline-position: "from-font";
+  text-decoration-skip-ink: none;
+  color: #202224;
+}
+
+.model-profile {
+  width: 285px;
+  height: 70px;
+  gap: 15px;
+  opacity: 0px;
+
+}
+.mode-date{
+
+font: "Poppins";
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color: #A7A7A7;
+
+}
+.wing-text{
+font: "Poppins";
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color: #A7A7A7;
+}
+
+.status-badge-owner{
+ background:#F1F0FF;
+ /* padding: 5px 10px; */
+ border-radius: 12px;
+ color: #4F46E5;
 }
