@@ -38,7 +38,7 @@ exports.getAllAnnouncements = async(req,res)=>{
       }else{
           res.json({
               success: false,
-              records: "facilities not found",
+              records: "Announcement not found",
           });
       }
   } catch (error) {

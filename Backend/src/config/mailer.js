@@ -14,7 +14,7 @@ async function senData(to, subject, otp) {
     to: to,
     subject: subject,
     html: `<h1>Hello 😊</h1>
-            Your Forgot password Otp was <b>${otp}</b>`,
+            Your Forgot password Otp is <b>${otp}</b>`,
   };
   await transPorter.sendMail(mailFormat, (err, info) => {
     if (err) {

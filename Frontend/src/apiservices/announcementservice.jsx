@@ -2,11 +2,11 @@ import api from "./api";
 
 // create Announcement
 export const createAnnouncement = async (data) =>
-  await api.post("http://localhost:8001/api/create/announcement", data);
+  await api.post("http://localhost:8001/api/createAnnouncement", data);
 
 // get  Announcement
 export const getAnnouncements = async () =>
-  await api.get("http://localhost:8001/api/get/announcement");
+  await api.get("http://localhost:8001/api/announcements/getAllAnnouncements");
 
 // get single Announcement by id
 export const getAnnouncement = async (id) =>

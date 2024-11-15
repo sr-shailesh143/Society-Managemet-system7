@@ -2,10 +2,10 @@ const express = require('express');
 const complaints = require('../controllers/complaintController');
 const router = express.Router();
 
-router.post('/create/complaints',complaints.createComplaint)
-router.get('/get/complaints',complaints.getAllComplaints)
-router.delete('/delete/complaints/:id',complaints.deleteComplaint)
-router.patch('/update/complaints/:id',complaints.updateComplaint)
+router.post('/createComplaint',complaints.createComplaint)
+router.get('/getAllComplaints',complaints.getAllComplaints)
+router.delete('/deleteComplaint/:id',complaints.deleteComplaint)
+router.patch('/updateComplaint/:id',complaints.updateComplaint)
 router.get('/complaints/:id',complaints.getComplaintById)
 
 

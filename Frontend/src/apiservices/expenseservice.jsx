@@ -1,8 +1,8 @@
 import api from "./api";
 
 // create  Expense
-export const createExpense = async (data) => {
-  const response = await api.post("http://localhost:8001/api/create/expense", data, {
+export const addExpense = async (data) => {
+  const response = await api.post("http://localhost:8001/api/addExpense", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -11,8 +11,8 @@ export const createExpense = async (data) => {
 };
 
 // get  Expense
-export const getExpenses = async () =>
-  await api.get("http://localhost:8001/api/get/expense");
+export const getAllExpenses = async () =>
+  await api.get("http://localhost:8001/api/getAllExpenses");
 
 // get single Expense by id
 export const getExpense = async (id) =>
@@ -20,11 +20,11 @@ export const getExpense = async (id) =>
 
 // delete Expense by id
 export const deleteExpense = async (id) =>
-  await api.delete(`http://localhost:8001/api/delete/expense/${id}`);
+  await api.delete(`http://localhost:8001/api/deleteExpense/${id}`);
 
 //update Expense by id
 export const updateExpense = async (id, data) => {
-  const response = await api.patch(`http://localhost:8001/api/update/expense/${id}`, data, {
+  const response = await api.patch(`http://localhost:8001/api/updateExpense/${id}`, data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
