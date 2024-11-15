@@ -1,3 +1,12 @@
+.row{
+  padding-right:0 !important;
+  /* --bs-gutter-x: 0 !important;s */
+  
+}
+*{
+  padding: 0 ;
+}
+
 .registration-container {
   display: flex;
   flex-direction: row;
