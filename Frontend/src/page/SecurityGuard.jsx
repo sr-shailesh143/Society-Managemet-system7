@@ -6,6 +6,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import '../index.css'
+
 const SecurityGuard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);

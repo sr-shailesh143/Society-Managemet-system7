@@ -304,12 +304,13 @@ const Expense = () => {
             </Col>
             <Col md={6}>
             <Form.Group className="mb-3" controlId="formAmount">
-              <Form.Label>Amount<span className="text-danger">*</span></Form.Label>
+              <Form.Label >Amount<span className="text-danger">*</span></Form.Label>
               <Form.Control
                 type="number"
                 name="amount"
                 value={newExpense.amount}
                 onChange={handleInputChange}
+                placeholder='₹ 000'
               />
             </Form.Group>
             </Col>
@@ -373,7 +374,7 @@ const Expense = () => {
               />
             </Form.Group>
             <Row>
-  <Col md={6}> {/* For half-width columns on medium screens and larger */}
+  <Col md={6}> 
     <Form.Group className="mb-3" controlId="formDate">
       <Form.Label>Date<span class="text-danger">*</span></Form.Label>
       <Form.Control
@@ -381,11 +382,12 @@ const Expense = () => {
         name="date"
         value={newExpense.date}
         onChange={handleInputChange}
+      
       />
     </Form.Group>
   </Col>
 
-  <Col md={6}> {/* For the other half-width column */}
+  <Col md={6}>
     <Form.Group className="mb-3" controlId="formAmount">
       <Form.Label>Amount <span class="text-danger">*</span></Form.Label>
       <Form.Control
@@ -393,6 +395,7 @@ const Expense = () => {
         name="amount"
         value={newExpense.amount}
         onChange={handleInputChange}
+     
       />
     </Form.Group>
   </Col>
