@@ -1,8 +1,8 @@
 const cloudinary = require("cloudinary").v2;
-const connectDB = require('./db');
+
 
 require("dotenv").config();
-connectDB();
+require("./db");
 
  cloudinary.config({ 
      cloud_name: 'dy4ilxyei', 

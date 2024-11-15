@@ -25,7 +25,6 @@ export default function Dashboard() {
   const [contacts, setContacts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
-  // Function to toggle the modal
   const toggleModal = () => {
     setShowModal(!showModal);
     if (showModal) {
@@ -47,7 +46,7 @@ export default function Dashboard() {
     setShowModal(false);
   };
 
-  // Data for the chart
+  
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [
@@ -93,7 +92,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="container-fluid pt-4" style={{ width: "100%" }}>
+    <div className="container-fluid " style={{ width: "100%" }}>
       {/* Statistics  */}
       <div className="row mb-4">
         <StatCard
@@ -218,32 +217,34 @@ export default function Dashboard() {
           </div>
 
           {/* Pending Maintenances Section */}
-          <div className="col-lg-6 col-md-6 mb-4" style={{ marginLeft: "7px" }}>
-            <div className="card h-100" style={{ borderRadius: "15px" }}>
-              <div className="card-body" style={{ paddingBottom: "0" }}>
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                  <h6 className="card-title" style={{ fontSize: "13px", fontWeight: "bold" }}>
-                    Pending Maintenances
-                  </h6>
-                  <a href="#" className="text-primary" style={{ textDecoration: "none" }}>
-                    View all
-                  </a>
-                </div>
+          <div className="col-12 col-sm-6 col-md-6 col-lg-6 mb-4 p-2">
+  <div className="card h-100" style={{ borderRadius: "15px" }}>
+    <div className="card-body" style={{ paddingBottom: "0" }}>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h6 className="card-title" style={{ fontSize: "13px", fontWeight: "bold" }}>
+          Pending Maintenances
+        </h6>
+        <a href="#" className="text-primary" style={{ textDecoration: "none" }}>
+          View all
+        </a>
+      </div>
 
-                {/* Mapping over maintenanceData array */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                  {maintenanceData.map((item) => (
-                    <MaintenanceCard
-                      key={item.id}
-                      name={item.name}
-                      amount={item.amount}
-                      photo={item.photo}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Mapping  maintenanceData array */}
+      <div className="d-flex flex-wrap gap-2">
+        {maintenanceData.map((item) => (
+          <MaintenanceCard
+            key={item.id}
+            name={item.name}
+            amount={item.amount}
+            photo={item.photo}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
         </div>
 
@@ -253,9 +254,9 @@ export default function Dashboard() {
 
       <div className="row">
         {/* Complaint List Section */}
-        <div className="col-lg-9 mb-4" style={{ height: "361px", overflowY: "auto" }}> {/* Increased width */}
+        <div className="col-lg-9 mb-4" style={{ height: "361px", overflowY: "auto" }}> 
           <div className="card h-100" style={{ borderRadius: "15px" }}>
-            <div className="card-body p-0">
+            <div className="card-body ">
               <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: "0" }}>
                 <h5 className="card-title p-2" style={{ marginBottom: "0" }}>Complaint List</h5>
                 <select
@@ -294,7 +295,7 @@ export default function Dashboard() {
         {/* Upcoming Activities Section */}
         <div className="col-lg-3 mb-4" style={{ height: '361px', overflowY: 'auto' }}>
           <div className="card h-100" style={{ borderRadius: '15px' }}>
-            <div className="card-body p-0">
+            <div className="card-body ">
               <div className="d-flex justify-content-between align-items-center p-2" style={{ padding: '0' }}>
                 <h6
                   className="card-title p-2"
@@ -482,8 +483,8 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   const handleDelete = () => {
-    onDelete(id); // Call the onDelete function passed from the parent
-    setShowDeleteModal(false); // Close the modal after deleting
+    onDelete(id); 
+    setShowDeleteModal(false); 
   };
 
   return (
@@ -511,7 +512,7 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
                 color: "green",
                 backgroundColor: "transparent",
                 border: "none",
-                width: "30px",
+               width:"30px",
                 height: "30px",
               }}
               size="sm"
@@ -524,7 +525,7 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
                 color: "red",
                 backgroundColor: "transparent",
                 border: "none",
-                width: "30px",
+                width:"30px",
                 height: "30px",
               }}
               size="sm"
@@ -557,19 +558,19 @@ function ContactCard({ name, phone, work, onEdit, onDelete, id }) {
 
 const MaintenanceCard = ({ name, amount, photo }) => {
   return (
-    <div className="d-flex align-items-center mb-3 w-100">
-      {/* Use a local image from the public folder */}
+    <div className="d-flex flex-column flex-sm-row align-items-center mb-3 w-100" style={{ minWidth: "200px" }}>
       <img
-        src={photo}  // Image placed in the public folder
+        src={photo}  
         alt={name}
-        style={{ width: "50px", borderRadius: "50%", marginRight: "10px" }}
+        className="rounded-circle me-2 mb-2 mb-sm-0"
+        style={{ width: "50px", height: "50px", objectFit: "cover" }}
       />
-      <div className="d-flex justify-content-between align-items-center w-100">
-        <div className="d-flex flex-column align-items-start">
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start w-100">
+        <div className="d-flex flex-column align-items-start mb-2 mb-sm-0">
           <span>{name}</span>
-          <p style={{ fontSize: "0.8em", color: "gray", margin: 0 }}>2 months</p>
+          <p className="text-muted mb-0" style={{ fontSize: "0.8em" }}>2 months</p>
         </div>
-        <span style={{ color: "red", fontWeight: "bold" }}>{amount}</span>
+        <span className="text-danger fw-bold">{amount}</span>
       </div>
     </div>
   );
@@ -773,8 +774,8 @@ const ComplaintTable = () => {
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center', // Align icons and status horizontally
-                  gap: '10px', // Adds space between icons
+                  alignItems: 'center', 
+                  gap: '10px', 
                 }}>
                   <FaRegEdit
                     className="text-success"
@@ -955,7 +956,7 @@ const ComplaintTable = () => {
                       backgroundColor: "transparent",
                       border: "1px solid grey",
                       color: "black",
-                      width: "48%",
+                      width: "40%",
                     }}
                   >
                     Close
@@ -967,7 +968,7 @@ const ComplaintTable = () => {
                     style={{
                       background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
                       border: "none",
-                      width: "48%",
+                      width: "40%",
                     }}
                     disabled={!editData.name || !editData.complaint || !editData.date || !editData.status || !editData.priority}
                   >
@@ -1026,7 +1027,7 @@ const ComplaintTable = () => {
 
                   <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
                     <img
-                      src={complaintToView.profilePhoto} // Use the profilePhoto from the selected complaint
+                      src={complaintToView.profilePhoto} 
                       alt={`${complaintToView.name}'s profile`}
                       style={{
                         width: '60px',
@@ -1150,7 +1151,7 @@ const ComplaintTable = () => {
                       backgroundColor: "transparent",
                       color: "black",
                       border: "1px solid grey",
-                      width: "48%"
+                      width: "45%"
                     }}
                   >
                     Cancel
@@ -1160,7 +1161,7 @@ const ComplaintTable = () => {
                     className="btn btn-danger"
                     onClick={handleDeleteConfirm}
                     style={{
-                      width: "48%"
+                      width: "40%"
                     }}
                   >
                     Delete
@@ -1182,78 +1183,78 @@ const ActivityList = () => {
     { id: 1, initial: 'A', name: 'Activity 1', date: '2024-11-01', time: '10:00 AM' },
     { id: 2, initial: 'B', name: 'Activity 2', date: '2024-11-02', time: '11:00 AM' },
     { id: 3, initial: 'C', name: 'Activity 3', date: '2024-11-03', time: '12:00 PM' },
-    // Add more activities as needed
+    
   ];
 
   return (
     <ul className="list-group custom-scroll" style={{ height: '250px' }}>
-      {activities.map((activity) => (
-        <li
-          key={activity.id}
-          className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
-        >
-          <div className="d-flex align-items-center w-100">
-            <h6
-              style={{
-                backgroundColor: '#E6BBAD',
-                width: '30px',
-                padding: '2px',
-                height: '30px',
-                textAlign: 'center',
-                justifyContent: 'center',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                fontWeight: 'bold',
-                color: 'DarkOrange',
-                marginRight: '10px',
-                fontSize: '0.9em',
-              }}
-            >
-              {activity.initial}
-            </h6>
-
-            <div className="d-flex flex-column flex-grow-1">
-              <div className="d-flex align-items-center justify-content-between w-100">
-                <span
-                  style={{
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    marginRight: '10px',
-                    flex: 1,
-                  }}
-                >
-                  {activity.name}
-                </span>
-                <span
-                  className="text-muted"
-                  style={{
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    fontSize: '13px',
-                  }}
-                >
-                  {activity.date}
-                </span>
-              </div>
-              <p
+    {activities.map((activity) => (
+      <li
+        key={activity.id}
+        className="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <div className="d-flex align-items-center w-100">
+       
+          <h6
+            style={{
+              backgroundColor: '#E6BBAD',
+              width: '30px',
+              padding: '2px',
+              height: '30px',
+              textAlign: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              fontWeight: 'bold',
+              color: 'DarkOrange',
+              marginRight: '10px',
+              fontSize: '0.9em',
+            }}
+            className="d-flex justify-content-center align-items-center"
+          >
+            {activity.initial}
+          </h6>
+  
+          {/* Activity content */}
+          <div className="d-flex flex-column flex-grow-1 w-100">
+            <div className="d-flex align-items-center justify-content-between w-100">
+              <span
+                className="text-truncate"
                 style={{
-                  fontSize: '0.8em',
-                  margin: 0,
-                  color: 'gray',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  marginRight: '10px',
+                  flex: 1,
+                  fontSize: '1em', 
                 }}
               >
-                {activity.time}
-              </p>
+                {activity.name}
+              </span>
+              <span
+                className="text-muted text-truncate"
+                style={{
+                  fontSize: '13px',
+                }}
+              >
+                {activity.date}
+              </span>
             </div>
+            <p
+              style={{
+                fontSize: '0.8em',
+                margin: 0,
+                color: 'gray',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {activity.time}
+            </p>
           </div>
-        </li>
-      ))}
-    </ul>
+        </div>
+      </li>
+    ))}
+  </ul>
+  
   );
 };

@@ -4,7 +4,7 @@ const cloudinary = require("../config/cloudinaryConfig");
 // Add Security Personnel with File Uploads
 exports.addSecurity = async (req, res) => {
     try {
-        const { fullName, phoneNumber, gender, shift, shiftDate, shiftTime } = req.body;
+        const { fullName, MailOrPhone, gender, shift, shiftDate, shiftTime } = req.body;
 
 
          // Validate gender and shift fields
@@ -20,7 +20,7 @@ exports.addSecurity = async (req, res) => {
 
         const newSecurity = new Security({
             fullName,
-            phoneNumber,
+            MailOrPhone,
             gender,
             shift,
             shiftDate,
@@ -81,7 +81,7 @@ exports.getSecurityById = async (req, res) => {
 // Update Security Personnel by ID
 exports.updateSecurity = async (req, res) => {
     try {
-        const { fullName, phoneNumber, gender, shift, shiftDate, shiftTime } = req.body;
+        const { fullName, MailOrPhone, gender, shift, shiftDate, shiftTime } = req.body;
         const security = await Security.findById(req.params.id);
 
         if (!security) {
@@ -110,7 +110,7 @@ exports.updateSecurity = async (req, res) => {
 
         // Update other fields
         security.fullName = fullName || security.fullName;
-        security.phoneNumber = phoneNumber || security.phoneNumber;
+        security.MailOrPhone = MailOrPhone || security.MailOrPhone;
         security.gender = gender || security.gender;
         security.shift = shift || security.shift;
         security.shiftDate = shiftDate || security.shiftDate;

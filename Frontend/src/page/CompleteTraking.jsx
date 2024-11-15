@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
+import '../index.css';
 
-export default function CompleteTraking() {
+export default function CompleteTracking() {
   return (
-    <div>CompleteTraking</div>
-  )
+    <main>
+      <h1>
+        WORK IN PROGRESS <span className="dot">.</span><span className="dot">.</span><span className="dot">.</span>
+        <sub> :)</sub>
+      </h1>
+      <div id="container">
+        <div id="bar"></div>
+      </div>
+    </main>
+  );
 }
