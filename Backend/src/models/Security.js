@@ -6,7 +6,7 @@ const securitySchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    phoneNumber: {
+    MailOrPhone: {
         type: String,
         required: true,
         unique: true

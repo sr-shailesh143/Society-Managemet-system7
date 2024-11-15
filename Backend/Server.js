@@ -5,6 +5,7 @@ app.use(express.urlencoded({ extended: true }));
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
+const path = require("path");
 
 const port = process.env.PORT || 3000;
 require("./src/config/db.js");
@@ -18,12 +19,21 @@ const corsOptions = {
   credentials: true,
 };
 
+app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
 app.use(cors(corsOptions));
 const Societyroute = require("./src/routes/societyroute.js");
 const Userroute = require("./src/routes/userroute");
 const Numberroute = require("./src/routes/numberroute");
 const Residentroute = require("./src/routes/residentroute");
+
+const complaintRoutes = require('./src/routes/complaintRoutes.js');
+const requestRoutes = require('./src/routes/requestRoutes.js');
+const noteRoutes = require('./src/routes/noteRoutes.js');
+const facilityRoutes  = require('./src/routes/facilityRoutes.js');
+const announcementRoutes = require('./src/routes/announcementRoutes');
+const clexpenses =require('./src/routes/ClexpenseRoutes.js')
+const securityRoutes = require("./src/routes/securityRoutes.js");
 
 //user registration and login part
 app.use("/api/auth", Userroute);
@@ -33,6 +43,14 @@ app.use("/api/society", Societyroute);
 app.use("/api/number", Numberroute);
 //resident
 app.use("/api/resident", Residentroute);
+
+app.use('/api/complaint', complaintRoutes);
+app.use("/api/request", requestRoutes);
+app.use("/api/notes", noteRoutes);
+app.use('/api/facilities', facilityRoutes);
+app.use('/api/announcements', announcementRoutes);
+app.use('/api/clexpenses',clexpenses);
+app.use("/api/security", securityRoutes);
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
