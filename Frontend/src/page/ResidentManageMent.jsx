@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
 import { Edit, Image, PlusOne } from '@mui/icons-material';
-import { CiSquarePlus } from "react-icons/ci";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { LuBuilding2 } from "react-icons/lu";
 import { FaBuildingUser, FaPlus } from "react-icons/fa6";
@@ -298,7 +297,7 @@ const ResidentManageMent = () => {
                             <div className="iew-layout-profile mt-4">
                                 <center>
                                     <img width={"90px"} height={"90px"} src="/src/assets/Avatar.png" className='fs-1' alt="" />
-                                    <h5 className='view-name mt-1'>Roger Lubin</h5>
+                                             <h5 className='view-name mt-1'>Roger Lubin</h5>
                                     <p className='view-email'>RogerLubin@gmail.com</p>
                                 </center>
                             </div>
@@ -698,9 +697,10 @@ const ResidentManageMent = () => {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer className=" d-flex justify-content-between">
+                        <div className="d-flex gap-3">
                         <Button
-                            className="cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3", width: "175px" }}
+                            className=" cancel-btn radious "
+                            style={{ border: "1px solid #D3D3D3",  }}
                             variant="light"
                             onClick={handleClose}
                         >
@@ -718,6 +718,8 @@ const ResidentManageMent = () => {
                         >
                             Save
                         </Button>
+                        </div>
+                      
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -771,9 +773,12 @@ const ResidentManageMent = () => {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer className=" d-flex justify-content-between">
+                        <div className="d-flex gap-3">
+
+                        
                         <Button
                             className="cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3", width: "175px" }}
+                            style={{ border: "1px solid #D3D3D3",  }}
                             variant="light"
                             onClick={handleClose3}
                         >
@@ -791,6 +796,7 @@ const ResidentManageMent = () => {
                         >
                             Conform
                         </Button>
+                        </div>
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -812,10 +818,11 @@ const ResidentManageMent = () => {
                     
                     Are you sure you want to delate all details?
                     </Modal.Body>
-                    <Modal.Footer className=" d-flex justify-content-between">
+                    <Modal.Footer className=" d-flex">
+                        <div className="d-flex gap-3">
                         <Button
                             className="cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3", width: "175px" }}
+                            style={{ border: "1px solid #D3D3D3", }}
                             variant="light"
                             onClick={handleClose4}
                         >
@@ -833,6 +840,8 @@ const ResidentManageMent = () => {
                         >
                             Conform
                         </Button>
+                        </div>
+                       
                     </Modal.Footer>
                 </Modal>
             </div>
