@@ -2280,3 +2280,12 @@ color: #A7A7A7;
  border-radius: 12px;
  color: #4F46E5;
 }
+
+.mantenese-hide{
+  position: fixed;
+  margin: -40px 0px 0px 274px;
+ 
+}
+.A-1 {
+  border-radius: 14px;
+}

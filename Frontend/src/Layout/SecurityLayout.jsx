@@ -21,7 +21,7 @@ import { FaGreaterThan } from "react-icons/fa6";
 
 
 
-export default function Layout2({ component }) {
+export default function SecurityLayout({ component }) {
     const [show, setShow] = useState(false);
     const naviget = useNavigate()
     const [serch, setserch] = useState(0)
@@ -188,7 +188,7 @@ left:-23px;
         <div className='container-fulid' style={{ overflow: "hidden" }}>
 
             <div className="row ">
-                <div className="row d-flex">
+                <div className=" d-flex">
 
                     <div className="  layout  col-12 col-md-3 side-bar   ">
                         <Logo className="mt-1">
@@ -205,7 +205,7 @@ left:-23px;
 
 
 
-                            <Link className='link-tag' to={"/Security"} onClick={toggleFinancialSubmenu} >  <div className='side-design' ><SidebarMiniButton /> </div>   <NavLink style={{ background:"linear-gradient(90deg, #FE512E 0%, #F09619 100%)", color:  "white" , textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' />Security </NavLink> </Link>
+                            <Link className='link-tag' to={"/VisitorTracking"} onClick={toggleFinancialSubmenu} >  <div className='side-design' ><SidebarMiniButton /> </div>   <NavLink style={{ background:"linear-gradient(90deg, #FE512E 0%, #F09619 100%)", color:  "white" , textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' />Security </NavLink> </Link>
 
 
 
@@ -213,9 +213,9 @@ left:-23px;
 
                             {showFinancialSubmenu2 && (
                                 <Submenu>
-                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }}> Visitor Tracking</span></SubmenuItem>
-                                    <SubmenuItem onClick={()=>naviget("/EmergencyManagement")}> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray" }}>Emergency Management</span></SubmenuItem>
-                                </Submenu>
+                                <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }} onClick={()=>naviget("/VisitorTracking")}> Visitor Tracking</span></SubmenuItem>
+                                <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray"  }} onClick={()=>naviget("/EmergencyManagement")}>Emergency Management</span></SubmenuItem>
+                            </Submenu>
                             )}
 
 
@@ -251,7 +251,7 @@ left:-23px;
 
 
 
-                                            <Link className='link-tag' to={"/Security"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Security" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>   <NavLink style={{ background: location.pathname === "/Security" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Security" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Security </NavLink> </Link>
+                                            <Link className='link-tag' to={"/VisitorTracking"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Security" ? "block" : "none" }}><SidebarMiniButton style={{ left: "-34px" }} /> </div>   <NavLink style={{ background: location.pathname === "/VisitorTracking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/VisitorTracking" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Security </NavLink> </Link>
                                             {/* acoding */}
 
                                             {showFinancialSubmenu2 && (
