@@ -137,7 +137,7 @@ const FacilityManagement = () => {
 
   return (
     <div className="container-fluid" style={{ minHeight: '100vh' }}>
-      <div className="container-fluid d-flex flex-column bg-light shadow" style={{ width: "100%" }}>
+      <div className="container-fluid d-flex flex-column p-3 rounded bg-light shadow" style={{ width: "100%" }}>
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4 p-3">
           <h2>Facility Management</h2>
@@ -189,7 +189,7 @@ const FacilityManagement = () => {
                         <BsThreeDotsVertical className="bi bi-three-dots-vertical text-white" />
                       </Dropdown.Toggle>
                       <Dropdown.Menu align="end" className="dropdown-menu">
-                        <Dropdown.Item onClick={() => handleEdit(facilityId)}>Edit</Dropdown.Item>
+                        <Dropdown.Item onClick={() => {handleEdit(facilityId); setShowModal(true);}}>Edit</Dropdown.Item>
                         {/* <Dropdown.Item onClick={() => handleView(facility)}>View</Dropdown.Item>
                         <Dropdown.Item onClick={() => handleDelete(facility.id)}>Delete</Dropdown.Item> */}
                       </Dropdown.Menu>
