@@ -262,8 +262,22 @@ const FacilityManagement = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowCreateModal(false)}>Close</Button>
-          <Button variant="primary" onClick={handleCreateFacility}>Save</Button>
+          <Button  onClick={() => setShowCreateModal(false)}
+             style={{
+              background: "lightgrey",
+              border: "none",
+              color: "white",
+              width:"45%"
+            }}
+            >Cansel</Button>
+          <Button  onClick={handleCreateFacility}
+           style={{
+            background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+            border: "none",
+            color: "white",
+            width:"45%"
+          }}
+          >Save</Button>
         </Modal.Footer>
       </Modal>
 

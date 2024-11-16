@@ -268,7 +268,7 @@ const Announcement = () => {
                       />
                     </Form.Group>
                     <Form.Group controlId="announcementTime" style={{ flex: 1 }}>
-                      <Form.Label>Announcement Time <span style={{ color: "red" }}>*</span></Form.Label>
+                      <Form.Label> Time <span style={{ color: "red" }}>*</span></Form.Label>
                       <Form.Control
                         type="time"
                         name='announcementTime'

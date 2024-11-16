@@ -156,7 +156,7 @@ const Financial = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "50%" }} onClick={handleEditModalClose}>
+          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleEditModalClose}>
             Cancel
           </Button>
           <Button onClick={handleSaveChanges} style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }}>
@@ -200,7 +200,7 @@ const Financial = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "50%" }} onClick={handleCreateModalClose}>
+          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleCreateModalClose}>
             Cancel
           </Button>
           <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} onClick={handleCreateNote}>
