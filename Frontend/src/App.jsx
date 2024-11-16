@@ -22,10 +22,8 @@ import Financial from './page/Financial';
 import Expense from './page/Expense';
 import Owner from './page/Owner';
 import CompleteTraking from './page/CompleteTraking';
-import SecurityManagement from './page/securityManagement';
-
 import Tenant from './page/Tenant';
-import Layout2 from './Layout/Layout2';
+import SecurityLayout from './Layout/SecurityLayout';
 import EmergencyManagement from './page2/EmergencyManagement';
 
 import Visitor from './page/Visitor';
@@ -70,7 +68,10 @@ function App() {
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
         {/* securitymanagement */}
-        <Route path='/securitymanagement' element={<Layout component={<SecurityManagement />} />} />
+        {/* Vistiors */}
+        <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
+        {/* Securityprotocols */}
+        <Route path='/Securityprotocols' element={<Layout component={<Securityprotocols />} />} />
         {/* SecurityGuard */}
         <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard />} />} />
         {/* Announcement */}
@@ -81,12 +82,7 @@ function App() {
         {/* Expence */}
         <Route path='/Expense' element={<Layout component={<Expense />} />} />
 
-        {/* Vistiors */}
-        <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
-        {/* Securityprotocols */}
-        <Route path='/Securityprotocols' element={<Layout component={<Securityprotocols />} />} />
         {/* visirtortracking */}
-        <Route path='/VisitorTracking' element={<Layout component={<VisitorTracking />} />} />
 
 
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
@@ -106,8 +102,9 @@ function App() {
         {/* Security */}
 
 
-        <Route path="/Security" element={<Layout2 />} />
-        <Route path="/EmergencyManagement" element={<Layout2 component={<EmergencyManagement />} />} />
+        
+        <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
+        <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
 
 
 

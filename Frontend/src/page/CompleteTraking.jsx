@@ -3,14 +3,16 @@ import '../index.css';
 
 export default function CompleteTracking() {
   return (
-    <main>
-      <h1>
-        WORK IN PROGRESS <span className="dot">.</span><span className="dot">.</span><span className="dot">.</span>
-        <sub> :)</sub>
-      </h1>
-      <div id="container">
-        <div id="bar"></div>
-      </div>
+    <>
+    
+  
+    <center>
+
+    <main className='w-50 h-50'>
+      <h1 className='fs-1'>work in progress</h1>
+      <img  className='img-fluid' src="/src/assets/workinprogres.gif" alt="" />
     </main>
+    </center>
+      </>
   );
 }
