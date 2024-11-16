@@ -1,4 +1,5 @@
 const Expense = require("../models/ClExpense");
+const mongoose = require('mongoose');
 const cloudinary = require("../config/cloudinaryConfig")
 
 // Add Expense with File Upload
@@ -95,24 +96,22 @@ exports.updateExpense = async (req, res) => {
 
 // Delete Expense by ID
 exports.deleteExpense = async (req, res) => {
-    try {
-      //const id =req.params.id;
-      const { id } = req.params;
-      // const user = await Complaint.findByIdAndDelete({_id:id})
-      const user = await Expense.findByIdAndDelete(id);
-  
-      if (user) {
-        res.json({
-          success: true,
-          message: "Expense deleted",
-        });
-      } else {
-        res.json({
-          success: false,
-          message: "Expense not deleted",
-        });
-      }
-    } catch (error) {
-      console.log(error);
+  const { id } = req.params; // Extract 'id' from the request parameters
+
+  // Check if the id is a valid ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: 'Invalid Expense ID' });
+  }
+
+  try {
+    const expense = await Expense.findByIdAndDelete(id); // Delete the expense by id
+    if (expense) {
+      return res.status(200).json({ success: true, message: 'Expense deleted successfully' });
+    } else {
+      return res.status(404).json({ success: false, message: 'Expense not found' });
     }
-  };
+  } catch (error) {
+    console.error('Error deleting expense:', error);
+    return res.status(500).json({ success: false, message: 'Error deleting expense' });
+  }
+};

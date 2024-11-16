@@ -1,158 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
-import { MdPictureAsPdf, MdOutlinePictureInPictureAlt } from "react-icons/md";
-import { Modal, Button, Form } from 'react-bootstrap';
-import { useDropzone } from 'react-dropzone';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { MdPictureAsPdf, MdOutlinePictureInPictureAlt } from 'react-icons/md';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { Row, Col } from 'react-bootstrap';
+import { useDropzone } from 'react-dropzone';
 
-const initialExpensesData = [
-  { 
-    title: 'Rent or Mortgage', 
-    description: 'A visual representation of your spending categories...', 
-    date: '10/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp' 
-  },
-  { 
-    title: 'Housing Costs', 
-    description: 'Track the fluctuations in your spending over time...', 
-    date: '11/02/2024', 
-    amount: 1000, 
-    billFormat: 'PDF', 
-    image: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png' 
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Property Taxes', 
-    description: 'Easily compare your planned budget against your actual...', 
-    date: '12/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU='
-  },
-  { 
-    title: 'Rent or Mortgage', 
-    description: 'A visual representation of your spending categories...', 
-    date: '10/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp' 
-  },
-  { 
-    title: 'Housing Costs', 
-    description: 'Track the fluctuations in your spending over time...', 
-    date: '11/02/2024', 
-    amount: 1000, 
-    billFormat: 'PDF', 
-    image: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png' 
-  },
-  { 
-    title: 'Rent or Mortgage', 
-    description: 'A visual representation of your spending categories...', 
-    date: '10/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp' 
-  },
-  { 
-    title: 'Housing Costs', 
-    description: 'Track the fluctuations in your spending over time...', 
-    date: '11/02/2024', 
-    amount: 1000, 
-    billFormat: 'PDF', 
-    image: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png' 
-  },
-  { 
-    title: 'Rent or Mortgage', 
-    description: 'A visual representation of your spending categories...', 
-    date: '10/02/2024', 
-    amount: 1000, 
-    billFormat: 'JPG', 
-    image: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png' 
-  },
-  { 
-    title: 'Housing Costs', 
-    description: 'Track the fluctuations in your spending over time...', 
-    date: '11/02/2024', 
-    amount: 1000, 
-    billFormat: 'PDF', 
-    image: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-man-avatar-image-for-profile-png-image_9197911.png' 
-  },
-];
+import {
+  addExpense,
+  getAllExpenses,
+  updateExpense,
+  deleteExpense,
+} from '../apiservices/expenseservice';
 
 const Expense = () => {
-  const [expensesData, setExpensesData] = useState(initialExpensesData);
+  const [expensesData, setExpensesData] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); 
   const [editingExpense, setEditingExpense] = useState(null);
-  const [expenseToDelete, setExpenseToDelete] = useState(null); 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [newExpense, setNewExpense] = useState({
     title: '',
     description: '',
     date: '',
     amount: '',
-    billFormat: 'PDF',
-    image: '',
+    billFormat: '',
+    bill: null,
   });
+  const [expenseToDelete, setExpenseToDelete] = useState(null);
+
+  useEffect(() => {
+    fetchExpenses();
+  }, []);
+
+  const fetchExpenses = async () => {
+    try {
+      const response = await getAllExpenses();
+      if (response.data && response.data.success) {
+        setExpensesData(response.data.records);
+      }
+    } catch (error) {
+      console.error('Error fetching expenses:', error);
+    }
+  };
 
   const handleModalShow = (expense = null) => {
     if (expense) {
-      setEditingExpense(expense); 
-      setNewExpense({ ...expense }); 
-      setShowEditModal(true); 
+      setEditingExpense(expense);
+      setNewExpense(expense);  // Set the expense data to the modal for editing
+      setShowEditModal(true);
     } else {
-      setNewExpense({ title: '', description: '', date: '', amount: '', billFormat: 'PDF', image: '' });
-      setShowAddModal(true); 
+      setNewExpense({
+        title: '',
+        description: '',
+        date: '',
+        amount: '',
+        billFormat: '',
+        bill: null,
+      });
+      setEditingExpense(null);  // Set editingExpense to null for adding new expense
+      setShowAddModal(true);
     }
   };
 
   const handleModalClose = () => {
     setShowAddModal(false);
     setShowEditModal(false);
-    setShowDeleteModal(false); 
+    setShowDeleteModal(false);
   };
 
   const handleInputChange = (e) => {
@@ -160,44 +74,58 @@ const Expense = () => {
     setNewExpense({ ...newExpense, [name]: value });
   };
 
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append('title', newExpense.title);
+    formData.append('description', newExpense.description);
+    formData.append('date', newExpense.date);
+    formData.append('amount', newExpense.amount);
+    if (newExpense.bill) {
+      formData.append('bill', newExpense.bill); // Correct field name
+    }
+    formData.append('billFormat', newExpense.billFormat);
+
+    try {
+      if (editingExpense) {
+        // If we're editing an existing expense, call updateExpense API
+        await updateExpense(editingExpense._id, formData);
+      } else {
+        // If we're adding a new expense, call addExpense API
+        await addExpense(formData);
+      }
+      fetchExpenses(); // Refresh data after submission
+      handleModalClose();
+    } catch (error) {
+      console.error('Error saving expense:', error);
+    }
+  };
+
+  const handleDeleteExpense = async () => {
+    try {
+      const response = await deleteExpense(expenseToDelete._id); // Send correct ID for deletion
+      if (response.success) {
+        // Remove the deleted expense from the local state
+        setExpensesData(prevData => prevData.filter(expense => expense._id !== expenseToDelete._id));
+        handleModalClose(); // Close the delete modal after successful deletion
+      } else {
+        console.error('Failed to delete expense:', response.message);
+      }
+    } catch (error) {
+      console.error('Error deleting expense:', error);
+    }
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/png, image/jpeg, image/gif',
-    maxSize: 10 * 1024 * 1024, 
-    onDrop: (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      const fileURL = URL.createObjectURL(file);
-      setNewExpense((prevState) => ({
-        ...prevState,
-        image: fileURL,
-      }));
+    accept: 'image/*,application/pdf',
+    maxSize: 10 * 1024 * 1024, // 10MB size limit
+    onDrop: (acceptedFiles, rejectedFiles) => {
+      if (rejectedFiles.length > 0) {
+        alert('Invalid file type. Only images and PDFs are allowed.');
+      } else {
+        setNewExpense({ ...newExpense, bill: acceptedFiles[0] });
+      }
     },
   });
-
-  const handleAddExpense = (expense) => {
-    setExpensesData([...expensesData, expense]); 
-  };
-
-  const handleUpdateExpense = (expense) => {
-    const updatedExpenses = expensesData.map(exp => 
-      exp === editingExpense ? { ...expense } : exp
-    );
-    setExpensesData(updatedExpenses); 
-  };
-
-  const handleDeleteExpense = () => {
-    const updatedExpenses = expensesData.filter(exp => exp !== expenseToDelete); 
-    setExpensesData(updatedExpenses);
-    setShowDeleteModal(false); 
-  };
-
-  const handleSubmit = () => {
-    if (editingExpense) {
-      handleUpdateExpense(newExpense);
-    } else {
-      handleAddExpense(newExpense);
-    }
-    handleModalClose();
-  };
 
   return (
     <div className="container-fluid bg-light shadow">
@@ -208,9 +136,9 @@ const Expense = () => {
           style={{
             background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
             border: "none",
-            color: "white"
+            color: "white",
           }}
-          onClick={() => handleModalShow()} 
+          onClick={() => handleModalShow()}
         >
           + Add New Expense Details
         </button>
@@ -252,10 +180,10 @@ const Expense = () => {
                 {expense.billFormat}
               </td>
               <td>
-                <button className="btn btn-success btn-sm me-2" onClick={() => handleModalShow(expense)}>
+                <button className="btn btn-success btn-sm me-2" onClick={() => handleModalShow()} >
                   <FaEdit />
                 </button>
-                <button className="btn btn-primary btn-sm me-2"><FaEye /></button>
+                <button className="btn btn-primary btn-sm me-2" ><FaEye /></button>
                 <button className="btn btn-danger btn-sm" onClick={() => { setExpenseToDelete(expense); setShowDeleteModal(true); }}>
                   <FaTrash />
                 </button>
@@ -265,96 +193,13 @@ const Expense = () => {
         </tbody>
       </table>
 
-      {/* Modal for adding expense */}
-      <Modal show={showAddModal} onHide={handleModalClose}>
+      {/* Modal for adding and editing expense */}
+      <Modal show={showAddModal || showEditModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add New Expense</Modal.Title>
+          <Modal.Title>{editingExpense ? "Edit Expense" : "Add New Expense"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="formTitle">
-              <Form.Label>Title<span className="text-danger">*</span></Form.Label>
-              <Form.Control
-                type="text"
-                name="title"
-                value={newExpense.title}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formDescription">
-              <Form.Label>Description<span className="text-danger">*</span></Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                value={newExpense.description}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-           <Row>
-            <Col md={6}>
-            <Form.Group className="mb-3" controlId="formDate">
-              <Form.Label>Date<span className="text-danger">*</span></Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                value={newExpense.date}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            </Col>
-            <Col md={6}>
-            <Form.Group className="mb-3" controlId="formAmount">
-              <Form.Label >Amount<span className="text-danger">*</span></Form.Label>
-              <Form.Control
-                type="number"
-                name="amount"
-                value={newExpense.amount}
-                onChange={handleInputChange}
-                placeholder='₹ 000'
-              />
-            </Form.Group>
-            </Col>
-           </Row>
-           
-           
-            <Form.Group className="mb-3" controlId="formImage">
-              <Form.Label>Upload Image</Form.Label>
-              <div className="file-upload" {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <div className="upload-area">
-                                <center>
-
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
-                        </div>
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-        <Button  style={{backgroundColor:"lightgrey",color:"white",width:"40%",border:"none"}} onClick={handleModalClose}>
-            Cancel
-          </Button>
-          <Button   style={{
-            background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-            border: "none",
-            color: "white",
-            width:"40%"
-          }} onClick={handleSubmit}>
-            Save 
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Modal for editing expense */}
-      <Modal show={showEditModal} onHide={handleModalClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Expense</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
+          <Form encType="multipart/form-data">
             <Form.Group className="mb-3" controlId="formTitle">
               <Form.Label>Title<span className="text-danger">*</span></Form.Label>
               <Form.Control
@@ -374,75 +219,75 @@ const Expense = () => {
               />
             </Form.Group>
             <Row>
-  <Col md={6}> 
-    <Form.Group className="mb-3" controlId="formDate">
-      <Form.Label>Date<span class="text-danger">*</span></Form.Label>
-      <Form.Control
-        type="date"
-        name="date"
-        value={newExpense.date}
-        onChange={handleInputChange}
-      
-      />
-    </Form.Group>
-  </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="formDate">
+                  <Form.Label>Date<span className="text-danger">*</span></Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="date"
+                    value={newExpense.date}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3" controlId="formAmount">
+                  <Form.Label>Amount<span className="text-danger">*</span></Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="amount"
+                    value={newExpense.amount}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-  <Col md={6}>
-    <Form.Group className="mb-3" controlId="formAmount">
-      <Form.Label>Amount <span class="text-danger">*</span></Form.Label>
-      <Form.Control
-        type="number"
-        name="amount"
-        value={newExpense.amount}
-        onChange={handleInputChange}
-     
-      />
-    </Form.Group>
-  </Col>
-</Row>
-           
-            <Form.Group className="mb-3" controlId="formImage">
-              <Form.Label>Upload Image</Form.Label>
-              <div class="container mt-4">
-  <label for="fileInput" class="file-upload-label">Upload Imgae<span class="text-danger">*</span></label>
-  <div class="file-upload-container mt-2">
-    <label for="fileInput" class="file-upload-display">
-      <img src="https://via.placeholder.com/24" alt="file icon"/>
-      <span class="file-name">image Front Side.JPG</span>
-      <span class="file-size">3.5 MB</span>
-      <span class="file-icon">
-        <i class="bi bi-eye"></i> 
-      </span>
-    </label>
-    <input type="file" id="fileInput"/>
-  </div>
-</div>
-              
-            </Form.Group>
+            {/* File upload using dropzone */}
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <div className="dropzone">
+                {newExpense.bill ? (
+                  <div>
+                    {newExpense.bill.type === "application/pdf" ? (
+                      <MdPictureAsPdf style={{ color: "red" }} />
+                    ) : (
+                      <img
+                        src={URL.createObjectURL(newExpense.bill)}
+                        alt="Expense Bill"
+                        className="img-thumbnail"
+                        style={{ width: "100px", height: "100px" }}
+                      />
+                    )}
+                    <p>{newExpense.bill.name}</p>
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <AddPhotoAlternateIcon fontSize="large" />
+                    <p>Drag & Drop or Click to Upload File</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-        <Button style={{backgroundColor:"lightgrey",color:"white",width:"40%",border:"none"}} onClick={handleModalClose}>
-            Cancel
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
           </Button>
-          <Button   style={{
-            background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-            border: "none",
-            color: "white",
-            width:"40%"
-          }} onClick={handleSubmit}>
-            Save 
+          <Button variant="primary" onClick={handleSubmit}>
+            {editingExpense ? "Update Expense" : "Save Expense"}
           </Button>
         </Modal.Footer>
       </Modal>
 
-      {/* Modal for delete confirmation */}
+      {/* Modal for deleting expense */}
       <Modal show={showDeleteModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Deletion</Modal.Title>
+          <Modal.Title>Delete Expense</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Are you sure you want to delete this expense?</p>
+          Are you sure you want to delete this expense?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
