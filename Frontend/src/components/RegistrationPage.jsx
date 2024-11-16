@@ -526,7 +526,7 @@ function RegistrationPage() {
               backgroundColor: 'transparent',
               color: 'black',
               border: '1px solid grey',
-              width: '48%',
+              width: '45%',
             }}
             onClick={() => setShowModal(false)}
           >
@@ -538,7 +538,7 @@ function RegistrationPage() {
               background: (societies.Society_Name && societies.Society_Address && societies.Country_Name && societies.State_Name && societies.City_Name && societies.ZipCode_Number)
                 ? 'linear-gradient(90deg, #F09619, #FE512E)'
                 : 'lightgrey',
-              width: '48%',
+              width: '45%',
               border: 'none',
               cursor: (societies.Society_Name && societies.Society_Address && societies.Country_Name && societies.State_Name && societies.City_Name && societies.ZipCode_Number)
                 ? 'pointer'

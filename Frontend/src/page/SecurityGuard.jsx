@@ -101,9 +101,9 @@ const SecurityGuard = () => {
     accept: 'image/png, image/jpeg, image/gif',
     maxSize: 10 * 1024 * 1024, // 10 MB
     onDrop: (acceptedFiles) => {
-        console.log(acceptedFiles);
+      console.log(acceptedFiles);
     },
-});
+  });
   return (
     <div className="container-fluid " style={{ minHeight: '100vh', width: '100%' }}>
       <div className="container-fluid bg-white p-4 rounded shadow">
@@ -369,40 +369,42 @@ const SecurityGuard = () => {
 
                 {/* Aadhar Card Upload */}
                 <div className="file-upload" {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <div className="upload-area">
-                                <center>
+                  <input {...getInputProps()} />
+                  <div className="upload-area">
+                    <center>
 
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
-                        </div>
+                      <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
+                    </center>
+                    <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
+                    <small>PNG, JPG, GIF up to 10MB</small>
+                  </div>
+                </div>
               </div>
 
               {/* Footer with Cancel and Create Buttons */}
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn btn-secondary cancel-btn"
+                  className="btn "
                   onClick={() => setShowModal(false)}
                   style={{
-                    width: "175px",
+                   color:"white",
                     backgroundColor: "lightgrey",
-                    border: "none"
+                    border: "none",
+                    width:"45%"
                   }}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn btn-primary create-btn"
+                  className="btn  create-btn"
                   style={{
-                    width: "175px",
+                 
                     background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
                     border: "none",
-                    color: "white"
+                    color: "white",
+                    width:"45%"
                   }}
                 >
                   Create
@@ -536,23 +538,23 @@ const SecurityGuard = () => {
                   </div>
                 </div>
                 <div class="container mt-4">
-  <label for="fileInput" class="file-upload-label">Upload Aadhar Card<span class="text-danger">*</span></label>
-  <div class="file-upload-container mt-2">
-    <label for="fileInput" class="file-upload-display">
-      <img src="https://via.placeholder.com/24" alt="file icon"/>
-      <span class="file-name">Aadharcard Front Side.JPG</span>
-      <span class="file-size">3.5 MB</span>
-      <span class="file-icon">
-        <i class="bi bi-eye"></i> 
-      </span>
-    </label>
-    <input type="file" id="fileInput"/>
-  </div>
-</div>
+                  <label for="fileInput" class="file-upload-label">Upload Aadhar Card<span class="text-danger">*</span></label>
+                  <div class="file-upload-container mt-2">
+                    <label for="fileInput" class="file-upload-display">
+                      <img src="https://via.placeholder.com/24" alt="file icon" />
+                      <span class="file-name">Aadharcard Front Side.JPG</span>
+                      <span class="file-size">3.5 MB</span>
+                      <span class="file-icon">
+                        <i class="bi bi-eye"></i>
+                      </span>
+                    </label>
+                    <input type="file" id="fileInput" />
+                  </div>
+                </div>
 
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)} style={{ backgroundColor: 'lightgrey', border: 'none', width: '175px' }}>
+                <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)} style={{ backgroundColor: 'lightgrey', border: 'none', width: '45%' }}>
                   Cancel
                 </button>
                 <button type="submit" className="btn"
@@ -560,7 +562,7 @@ const SecurityGuard = () => {
                     background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
                     border: 'none',
                     color: 'white',
-                    width: '175px'
+                    width: '45%'
                   }}
                 >
                   Create
