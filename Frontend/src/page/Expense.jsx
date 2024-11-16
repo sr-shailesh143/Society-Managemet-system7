@@ -5,7 +5,7 @@ import { FaEdit, FaTrash, FaEye } from 'react-icons/fa';
 import { MdPictureAsPdf, MdOutlinePictureInPictureAlt } from 'react-icons/md';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useDropzone } from 'react-dropzone';
-
+import '../App.css'
 import {
   addExpense,
   getAllExpenses,
@@ -272,10 +272,18 @@ const Expense = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleModalClose}>
-            Close
+          <Button style={{background:"lightgrey",color:"white",border:"none",width:"45%"}} onClick={handleModalClose}>
+            Cancel
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button 
+            style={{
+              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+              border: "none",
+              color: "white",
+              width:"45%"
+
+            }}
+          onClick={handleSubmit}>
             {editingExpense ? "Update Expense" : "Save Expense"}
           </Button>
         </Modal.Footer>
