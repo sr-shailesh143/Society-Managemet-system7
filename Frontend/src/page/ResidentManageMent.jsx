@@ -55,11 +55,12 @@ const ResidentManageMent = () => {
         {
             field: 'unitNumber', headerName: 'Unit Number', flex: 1, minWidth: 100, headerAlign: 'center', align: 'center',
             renderCell: (params) => (
-                <div className={`status-badge ${params.value.toLowerCase()} d-flex gap-3`}>
-                    <p className='wing mt-2' ><p className='wing-chile mb-4'>{params.row.wing}</p> </p>  <span> {params.value}</span>
+                <span className={`status-badge ${params.value.toLowerCase()}`}>
 
-                </div>
 
+                    <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
+
+                </span>
             )
 
         },
@@ -112,7 +113,7 @@ const ResidentManageMent = () => {
             renderCell: (params) => (
                 <span>
                     {
-                        params.row.members > 0 ? <span className=' wing p-2 '>{params.value}</span> : <span>-</span>
+                        params.row.members > 0 ? <span className=' status-badge-wing '>{params.value}</span> : <span>-</span>
                     }
                 </span>
             )
@@ -123,7 +124,7 @@ const ResidentManageMent = () => {
             renderCell: (params) => (
                 <span>
                     {
-                        params.row.vehicles > 0 ? <span className=' wing p-2 '>{params.value}</span> : <span>-</span>
+                        params.row.vehicles > 0 ? <span className='status-badge-wing'>{params.value}</span> : <span>-</span>
                     }
                 </span>
             )
@@ -139,7 +140,7 @@ const ResidentManageMent = () => {
             renderCell: (params) => (
                 <div>
                     {
-                        params.row.fullName === "" && params.row.residentStatus === "" && params.row.phoneNumber === "" ? <span>--</span> : <span>
+                        params.row.fullName === "" && params.row.residentStatus === "" && params.row.phoneNumber === "" ? <span >--</span> : <span>
                             <span className='' onClick={handleShow}>
                                 <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3 ' />
                             </span>
@@ -181,7 +182,7 @@ const ResidentManageMent = () => {
                 naviget("/owner")
                 setShow(false)
             } else {
-                
+
                 setShow(false)
                 setShow3(true)
             }
@@ -253,6 +254,13 @@ const ResidentManageMent = () => {
                             borderRadius: '12px',
                             color: '#14B8A6',
                         },
+                        '& .status-badge-wing': {
+                            backgroundColor: '#F6F8FB',
+                            width: "131px",
+                            padding: '5px 10px',
+                            borderRadius: '12px',
+                            color: '#5678E9',
+                        },
                         '& .status-badge.vacate': {
                             backgroundColor: '#FFF6FF',
                             padding: '5px 10px',
@@ -297,7 +305,7 @@ const ResidentManageMent = () => {
                             <div className="iew-layout-profile mt-4">
                                 <center>
                                     <img width={"90px"} height={"90px"} src="/src/assets/Avatar.png" className='fs-1' alt="" />
-                                             <h5 className='view-name mt-1'>Roger Lubin</h5>
+                                    <h5 className='view-name mt-1'>Roger Lubin</h5>
                                     <p className='view-email'>RogerLubin@gmail.com</p>
                                 </center>
                             </div>
@@ -698,28 +706,28 @@ const ResidentManageMent = () => {
                     </Modal.Body>
                     <Modal.Footer className=" d-flex justify-content-between">
                         <div className="d-flex gap-3">
-                        <Button
-                            className=" cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3",  }}
-                            variant="light"
-                            onClick={handleClose}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                background: "linear-gradient(90deg, #FE512E, #F09619)",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
+                            <Button
+                                className=" cancel-btn radious "
+                                style={{ border: "1px solid #D3D3D3", }}
+                                variant="light"
+                                onClick={handleClose}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="save-btn radious l-btn "
+                                style={{
+                                    background: "linear-gradient(90deg, #FE512E, #F09619)",
+                                    border: "none",
+                                    cursor: "pointer"
+                                }}
 
-                            onClick={HandleSubmit}
-                        >
-                            Save
-                        </Button>
+                                onClick={HandleSubmit}
+                            >
+                                Save
+                            </Button>
                         </div>
-                      
+
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -775,27 +783,27 @@ const ResidentManageMent = () => {
                     <Modal.Footer className=" d-flex justify-content-between">
                         <div className="d-flex gap-3">
 
-                        
-                        <Button
-                            className="cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3",  }}
-                            variant="light"
-                            onClick={handleClose3}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                background: "linear-gradient(90deg, #FE512E, #F09619)",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
 
-                            onClick={HandleSubmit1}
-                        >
-                            Conform
-                        </Button>
+                            <Button
+                                className="cancel-btn radious "
+                                style={{ border: "1px solid #D3D3D3", }}
+                                variant="light"
+                                onClick={handleClose3}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="save-btn radious l-btn "
+                                style={{
+                                    background: "linear-gradient(90deg, #FE512E, #F09619)",
+                                    border: "none",
+                                    cursor: "pointer"
+                                }}
+
+                                onClick={HandleSubmit1}
+                            >
+                                Conform
+                            </Button>
                         </div>
                     </Modal.Footer>
                 </Modal>
@@ -814,34 +822,34 @@ const ResidentManageMent = () => {
                     <Modal.Header >
                         <Modal.Title>Do you want to vacate the finlay flat?</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body style={{color:"#A7A7A7"}}>
-                    
-                    Are you sure you want to delate all details?
+                    <Modal.Body style={{ color: "#A7A7A7" }}>
+
+                        Are you sure you want to delate all details?
                     </Modal.Body>
                     <Modal.Footer className=" d-flex">
                         <div className="d-flex gap-3">
-                        <Button
-                            className="cancel-btn radious "
-                            style={{ border: "1px solid #D3D3D3", }}
-                            variant="light"
-                            onClick={handleClose4}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                background: "#E74C3C",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
+                            <Button
+                                className="cancel-btn radious "
+                                style={{ border: "1px solid #D3D3D3", }}
+                                variant="light"
+                                onClick={handleClose4}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="save-btn radious l-btn "
+                                style={{
+                                    background: "#E74C3C",
+                                    border: "none",
+                                    cursor: "pointer"
+                                }}
 
-                            onClick={()=>naviget("/resident")|| setShow4(false)}
-                        >
-                            Conform
-                        </Button>
+                                onClick={() => naviget("/resident") || setShow4(false)}
+                            >
+                                Conform
+                            </Button>
                         </div>
-                       
+
                     </Modal.Footer>
                 </Modal>
             </div>
