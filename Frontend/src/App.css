@@ -233,7 +233,7 @@ body {
 .bg-color {
   background-color: #F6F8FB !important;
   height: 100vh;
-  /* height: 1064px; */
+
 }
 
 .from-c {
@@ -270,7 +270,7 @@ body {
 
 .from {
   width: 530px;
-  /* height: auto; */
+
   border-radius: 15px;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgb(211, 211, 214);
@@ -278,7 +278,7 @@ body {
 
 .from1 {
   width: 530px;
-  /* height: auto; */
+
   border-radius: 15px;
   background: #ffffff;
   box-shadow: 0px 0px 4px rgb(211, 211, 214);
@@ -473,7 +473,7 @@ body {
     background-color: #F6F8FB;
 
     position: relative;
-    /* border-radius: 50%; */
+
   }
 
   .wing-chile {
@@ -481,7 +481,7 @@ body {
     margin-top: -11px;
     margin-left: 9px;
     color: #5678E9;
-    /* top:-10% ; */
+   
   }
 
   .bg-color {
@@ -535,7 +535,7 @@ body {
 
 
 .notifications-mobile {
-  /* display: none !important; */
+
   width: 104% !important;
 
   display: flex;
@@ -545,7 +545,7 @@ body {
   left: 0;
   height: auto;
   background-color: #ffffff;
-  /* border-radius: 8px; */
+
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
@@ -2319,17 +2319,7 @@ input[type="email"] {
 
 }
 
-.complet-model {
- 
-}
 
-.model {
-  /* width: 370px; */
-/* height: 609px; */
-gap: 20px;
-opacity: 0px;
-
-}
 .check-prioraty{
 
 /* padding: 10px 15px 10px 15px; */

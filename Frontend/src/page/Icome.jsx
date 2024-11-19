@@ -222,7 +222,7 @@ export default function Icome() {
             >
               <div className="amount-box">
 
-                <div className="amount-label">Maintenance Amount</div>
+                <div className="amount-label">Penalty Amount</div>
                 <div className="amount-value-red">₹ 0</div>
               </div>
             </div>

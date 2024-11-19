@@ -85,7 +85,7 @@ export default function CompleteTracking() {
     {
       field: 'ComplaintName', headerName: 'ComplaintName', flex: 1, minWidth: 50, headerAlign: 'center', align: 'center',
       renderCell: (params) => (
-        <div className={`ms-5 status-badge ${params.value.toLowerCase()} d-flex gap-3`}>
+        <div className={`ms-2 status-badge ${params.value.toLowerCase()} d-flex gap-3`}>
           <p className='ms-5'> {params.value}</p>
 
         </div>
@@ -128,6 +128,16 @@ export default function CompleteTracking() {
       )
     },
     {
+      field: 'Priority', headerName: 'Priority', flex: 1, minWidth: 150, headerAlign: 'center', align: 'center',
+      renderCell: (params) => (
+        <span className={`status-badge ${params.value.toLowerCase()}`} >
+          {
+            params.row.Status ? <span>{params.value}</span> : <span>--</span>
+          }
+        </span>
+      )
+    },
+    {
       field: 'Status', headerName: 'Status', flex: 1, minWidth: 150, headerAlign: 'center', align: 'center',
       renderCell: (params) => (
         <span className={`status-badge ${params.value.toLowerCase()}`} >
@@ -137,6 +147,7 @@ export default function CompleteTracking() {
         </span>
       )
     },
+  
 
     {
       field: 'actions',

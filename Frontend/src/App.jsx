@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './resident.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import toast, { Toaster } from 'react-hot-toast';
@@ -31,9 +33,12 @@ import Securityprotocols from './page/Securityprotocols';
 import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
-
+import ServiceComplain from './page2/ServiceComplain';
 import VisitorTracking from './page2/Visitortracking';
 import RequistTraking from './page/RequistTraking';
+import ResidentManageMentLayout from './Layout/ResidentLayout';
+import PersonalDetail from './page3/PersonalDetail';
+import RecidencTarent from './page3/ResidenceTarent';
 
 function App() {
   return (
@@ -61,14 +66,14 @@ function App() {
         <Route path='/Tenant' element={<Layout component={<Tenant />} />} />
         {/* financial */}
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
-        <Route path='/Expense' element={<Layout component={<Expense />} />}/>
-        <Route path='/Otherincome' element={<Layout component={<Otherincome />} />}/>
-        <Route path='/Icome' element={<Layout component={<Icome />} />}/>
+        <Route path='/Expense' element={<Layout component={<Expense />} />} />
+        <Route path='/Otherincome' element={<Layout component={<Otherincome />} />} />
+        <Route path='/Icome' element={<Layout component={<Icome />} />} />
         {/* FacilityManagement */}
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
-        <Route path='/requiesttraking' element={<Layout component={<RequistTraking />} />} />
+        <Route path='/RequestTracking' element={<Layout component={<RequestTracking />} />} />
         {/* securitymanagement */}
         {/* Vistiors */}
         <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
@@ -78,9 +83,8 @@ function App() {
         <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard />} />} />
         {/* Announcement */}
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
-          {/* request tracking */}
-          <Route path='/RequestTracking' element={<Layout component={<RequestTracking />} />} />
-       
+        {/* request tracking */}
+
 
         {/* Expence */}
         <Route path='/Expense' element={<Layout component={<Expense />} />} />
@@ -94,21 +98,24 @@ function App() {
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
-
-
-
-
-
+      {/* service& complain */}
+      <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
 
 
 
         {/* Security */}
 
 
-        
+
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
 
+
+        {/* ResidentManageMentLayout */}
+
+        <Route path='/ResidentManageMent'element={<ResidentManageMentLayout component={""} />} />
+        <Route path='/PersonalDetail'element={<ResidentManageMentLayout component={<PersonalDetail/>} />} />
+        <Route path='/RecidencTarent'element={<ResidentManageMentLayout component={<RecidencTarent/>} />} />
 
 
 
