@@ -86,11 +86,12 @@ export default function Icome() {
     {
       field: 'unitNumber', headerName: 'Unit Number', flex: 1, minWidth: 100, headerAlign: 'center', align: 'center',
       renderCell: (params) => (
-        <div className={` ms-5  status-badge ${params.value.toLowerCase()} d-flex gap-3`}>
-          <p className='wing mt-2' ><p className='wing-chile mb-4'>{params.row.wing}</p> </p>  <span> {params.value}</span>
+        <span className={`status-badge ${params.value.toLowerCase()}`}>
 
-        </div>
 
+          <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
+
+        </span>
       )
 
     },
@@ -320,6 +321,13 @@ export default function Icome() {
                 borderRadius: '12px',
                 color: '#39973D',
               },
+              '& .status-badge-wing': {
+                backgroundColor: '#F6F8FB',
+                width: "131px",
+                padding: '5px 10px',
+                borderRadius: '12px',
+                color: '#5678E9',
+              },
               '& .status-badge.Online': {
                 backgroundColor: '#5678E91A',
 
@@ -492,8 +500,8 @@ export default function Icome() {
             </div>
             <div className="select mt-2">
               <label className='text-wrap'>Unit<span className='text-danger1 '>*</span></label>
-              <select className="form-select  input-text mt-1 input-style"  required>
-                <option style={{color:'#A7A7A7'}}>Select Penalty Applied After Day Selection</option>
+              <select className="form-select  input-text mt-1 input-style" required>
+                <option style={{ color: '#A7A7A7' }}>Select Penalty Applied After Day Selection</option>
                 <option>4 day</option>
                 <option>3 day</option>
                 <option>2 day</option>
@@ -518,7 +526,7 @@ export default function Icome() {
                   cursor: "pointer"
                 }}
 
-                onClick={()=> naviget("/Icome" && setshowsetmantenencdetels(false))}
+                onClick={() => naviget("/Icome" && setshowsetmantenencdetels(false))}
               >
                 Apply
               </Button>

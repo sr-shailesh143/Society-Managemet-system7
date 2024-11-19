@@ -33,6 +33,7 @@ export default function Layout({ component }) {
     // const [show2, setShow2] = useState(false);
     const [showFinancialSubmenu2, setShowFinancialSubmenu2] = useState(false);
     const [showFinancialSubmenu3, setShowFinancialSubmenu3] = useState(false);
+    const [showFinancialSubmenu4, setShowFinancialSubmenu4] = useState(false);
 
 
 
@@ -40,6 +41,7 @@ export default function Layout({ component }) {
     // Toggle Financial Management submenu
     const toggleFinancialSubmenu = () => setShowFinancialSubmenu2(!showFinancialSubmenu2);
     const toggleFinancialSubmenu1 = () => setShowFinancialSubmenu3(!showFinancialSubmenu3);
+    const toggleFinancialSubmenu2 = () => setShowFinancialSubmenu4(!showFinancialSubmenu3);
 
 
 
@@ -222,27 +224,34 @@ left:-23px;
 
 
                             <Link className='link-tag' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><PiBuildingsFill className='fs-3 mb-1' />  Facility Management</NavLink></Link>
-                            <Link className='link-tag' to={"/traking"}   > <div className='side-design' style={{ display: location.pathname === "/traking" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
-                            {/* {showFinancialSubmenu3 && (
-                                <Submenu>
-                                    <SubmenuItem>Income</SubmenuItem>
-                                    <SubmenuItem>Expense</SubmenuItem>
-                                    <SubmenuItem>Note</SubmenuItem>
-                                </Submenu>
-                            )} */}
+                            <Link className='link-tag' to={"/traking"} onClick={toggleFinancialSubmenu2}  > <div className='side-design' style={{ display: location.pathname === "/traking" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
+                            {
+                                location.pathname === "/traking" || location.pathname === "/requiesttraking" ? <div>
+                                    {showFinancialSubmenu4 && (
+                                        <Submenu>
+                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/traking")}> Create Complaint</span></SubmenuItem>
+                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/requiesttraking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/requiesttraking")}>Request Tracking</span></SubmenuItem>
+
+                                        </Submenu>
+                                    )}
+                                </div> :""
+                         }
+
+
+
                             <Link className='link-tag' to={"/Visitor"} onClick={toggleFinancialSubmenu1} > <div className='side-design' style={{ display: location.pathname === "/Visitor" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/Visitor" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Visitor" ? "white" : "", textDecoration: "none" }}><SiSpringsecurity className='fs-3 mb-1' />  Security Management</NavLink></Link>
 
 
                             {
                                 location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? <div>
-                                    
-                            {showFinancialSubmenu3 && (
-                                <Submenu>
-                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Visitor")}> Visitor Logs</span></SubmenuItem>
-                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
-                                </Submenu>
-                            )}
-                                </div> :""
+
+                                    {showFinancialSubmenu3 && (
+                                        <Submenu>
+                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Visitor")}> Visitor Logs</span></SubmenuItem>
+                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
+                                        </Submenu>
+                                    )}
+                                </div> : ""
                             }
 
 

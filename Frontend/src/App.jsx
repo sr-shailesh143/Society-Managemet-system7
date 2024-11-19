@@ -33,6 +33,7 @@ import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 
 import VisitorTracking from './page2/Visitortracking';
+import RequistTraking from './page/RequistTraking';
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
+        <Route path='/requiesttraking' element={<Layout component={<RequistTraking />} />} />
         {/* securitymanagement */}
         {/* Vistiors */}
         <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
