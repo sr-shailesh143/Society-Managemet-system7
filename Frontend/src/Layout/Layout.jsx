@@ -226,11 +226,11 @@ left:-23px;
                             <Link className='link-tag' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><PiBuildingsFill className='fs-3 mb-1' />  Facility Management</NavLink></Link>
                             <Link className='link-tag' to={"/traking"} onClick={toggleFinancialSubmenu2}  > <div className='side-design' style={{ display: location.pathname === "/traking" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking</NavLink></Link>
                             {
-                                location.pathname === "/traking" || location.pathname === "/requiesttraking" ? <div>
+                                location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <div>
                                     {showFinancialSubmenu4 && (
                                         <Submenu>
                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/traking")}> Create Complaint</span></SubmenuItem>
-                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/requiesttraking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/requiesttraking")}>Request Tracking</span></SubmenuItem>
+                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/RequestTracking")}>Request Tracking</span></SubmenuItem>
 
                                         </Submenu>
                                     )}
