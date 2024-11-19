@@ -28,7 +28,7 @@ import EmergencyManagement from './page2/EmergencyManagement';
 
 import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
-
+import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 
@@ -76,7 +76,8 @@ function App() {
         <Route path='/SecurityGuard' element={<Layout component={<SecurityGuard />} />} />
         {/* Announcement */}
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
-
+          {/* request tracking */}
+          <Route path='/RequestTracking' element={<Layout component={<RequestTracking />} />} />
        
 
         {/* Expence */}

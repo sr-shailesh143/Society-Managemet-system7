@@ -203,3 +203,77 @@ h1 {
     width: 0;
   }
 }
+/* dashbord2 css */
+.scrollable-list {
+  max-height: 330px; /* Adjust height as needed */
+  overflow-y: auto;
+}
+.balance-card {
+  position: relative;
+}
+
+.balance-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 48px;
+  width: 45px;
+  background-color: transparent;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-top-right-radius: 12px;
+}
+
+.balance-card-orange::after {
+  border-color: #FFA64D;
+}
+
+.balance-card-green::after {
+  border-color: #4CAF50;
+}
+
+.balance-card-blue::after {
+  border-color: #869ff3;
+}
+
+.balance-card-pink::after {
+  border-color: #eb37c3;
+}
+
+/* Flexbox for horizontal layout of text and image */
+.card-body-content {
+  display: flex;
+  align-items: center; /* Vertically align the text and image */
+  justify-content: center; /* Optional: Center the content horizontally */
+}
+
+.card-body-content h3 {
+  margin-right: 10px; /* Space between the text and the image */
+}
+
+.card-body-content img {
+  max-width: 50px; /* Limit the size of the image if needed */
+}
+@media (max-width: 768px) {
+  .complaint-table th, .complaint-table td {
+    font-size: 12px;
+  }
+  .complaint-table th {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 576px) {
+  .complaint-table th, .complaint-table td {
+    padding: 8px;
+  }
+}
+.bg-blanched-almond {
+  background-color: #f7d18f;
+}
+.bg-powder-blue {
+  background-color: #B0E0E6;
+}
+.powder-green-bg {
+  background-color: #B0E0A8;
+}
