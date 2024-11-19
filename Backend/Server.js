@@ -35,6 +35,12 @@ const announcementRoutes = require('./src/routes/announcementRoutes');
 const clexpenses =require('./src/routes/ClexpenseRoutes.js')
 const securityRoutes = require("./src/routes/securityRoutes.js");
 
+const securityProtocolsRoutes = require('./src/routes/securityProtocolsRoutes.js');
+const visitorLogRoutes = require('./src/routes/visitorLogs.js');
+const TrvisitorRoutes = require('./src/routes/TrvisitorRoutes');
+const alertRoutes = require('./src/routes/alertRoutes.js')
+const incomeRoutes = require('./src/routes/incomeRoutes.js')
+
 //user registration and login part
 app.use("/api/auth", Userroute);
 
@@ -51,6 +57,12 @@ app.use('/api/facilities', facilityRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/clexpenses',clexpenses);
 app.use("/api/security", securityRoutes);
+
+app.use('/security-protocols', securityProtocolsRoutes);
+app.use('/visitor-logs', visitorLogRoutes);
+app.use('/visitors-tracking',TrvisitorRoutes);
+app.use('/alerts', alertRoutes);
+app.use('/income', incomeRoutes);
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
