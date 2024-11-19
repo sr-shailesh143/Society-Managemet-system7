@@ -31,7 +31,7 @@ import Securityprotocols from './page/Securityprotocols';
 import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
-
+import ServiceComplain from './page2/ServiceComplain';
 import VisitorTracking from './page2/Visitortracking';
 import RequistTraking from './page/RequistTraking';
 
@@ -94,11 +94,8 @@ function App() {
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
-
-
-
-
-
+      {/* service& complain */}
+      <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
 
 
 

@@ -244,16 +244,16 @@ h1 {
 /* Flexbox for horizontal layout of text and image */
 .card-body-content {
   display: flex;
-  align-items: center; /* Vertically align the text and image */
-  justify-content: center; /* Optional: Center the content horizontally */
+  align-items: center; 
+  justify-content: center;
 }
 
 .card-body-content h3 {
-  margin-right: 10px; /* Space between the text and the image */
+  margin-right: 10px;
 }
 
 .card-body-content img {
-  max-width: 50px; /* Limit the size of the image if needed */
+  max-width: 50px;
 }
 @media (max-width: 768px) {
   .complaint-table th, .complaint-table td {
@@ -276,4 +276,563 @@ h1 {
 }
 .powder-green-bg {
   background-color: #B0E0A8;
+}
+
+.custom-table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.header-cell {
+  background-color: #E5ECFD;
+}
+
+
+.guard-info, .guard-phone {
+  box-shadow: none !important;
+  color: rgb(27, 25, 25) !important;
+}
+
+
+.profile-image {
+  width: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+
+.shift-badge {
+  border-radius: 30px;
+  box-shadow:none !important;
+}
+.day-shift {
+  background-color: lightgrey;
+  box-shadow: none !important;
+  color: #FFD700;
+}
+.night-shift {
+  background-color: #4F4F4F;
+  box-shadow: none !important;
+  color: #FFF;
+}
+
+
+.gender-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 113px;
+  padding: 5px;
+  box-shadow: none !important;
+  border-radius: 30px;
+}
+.male-badge {
+  background-color: #D8F8F8;
+  color: #000;
+}
+.badge{
+  box-shadow: none !important;
+}
+.female-badge {
+  background-color: #FFE5EB;
+  color: #000;
+}
+
+
+.icon-margin {
+  margin-right: 5px;
+}
+
+
+.edit-btn {
+  background-color: lightgrey;
+  color: green;
+}
+.view-btn {
+  background-color: lightgrey;
+  color: blue;
+}
+.delete-btn {
+  background-color: lightgrey;
+  color: red;
+}
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-dialog {
+  max-width: 410px;
+}
+
+.modal-header .btn-close {
+  cursor: pointer;
+}
+
+.image-upload-label {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: lightgrey;
+  border: none;
+  margin-right: 8px;
+}
+
+.image-upload-label span {
+  font-size: 24px;
+  color: white;
+}
+
+.modal-body label.required::after {
+  content: '*';
+  color: red;
+}
+
+.form-control::placeholder {
+  color: lightgrey;
+}
+
+.select-style {
+  width: 100%;
+}
+
+.file-upload .upload-area {
+  text-align: center;
+}
+
+.upload-area p {
+  color: grey;
+}
+
+.create-btn {
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  color: white;
+  border: none;
+  width: 45%;
+}
+
+.cancel-btn {
+  color: white;
+  background-color: lightgrey;
+  border: none;
+  width: 45%;
+  margin: 0px;
+  padding: 0px;
+}
+/* Delete Modal Styles */
+.modal.fade {
+  display: none;
+  background-color: transparent;
+}
+
+.modal.fade.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-dialog {
+  max-width: 500px; 
+}
+
+
+.modal-content {
+  height: auto;
+}
+
+
+.modal-header .modal-title {
+  font-weight: bold;
+}
+
+.btn-close {
+  border: none;
+  background: transparent;
+}
+
+
+.modal-footer .btn-secondary {
+  background-color: lightgrey;
+  border: none;
+  color: white;
+  width: 45%;
+}
+
+.modal-footer .btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  width: 45%;
+}
+
+.modal.fade {
+  display: none;
+  background-color: transparent;
+}
+
+.modal.fade.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-dialog {
+  max-width: 410px;
+  min-height: 815px;
+}
+
+
+.modal-content {
+  height: auto;
+}
+
+.modal-header .modal-title {
+  font-weight: bold;
+}
+
+.btn-close {
+  border: none;
+  background: transparent;
+}
+
+
+.form-label .btn-outline-secondary {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: lightgrey;
+  border: none;
+}
+
+.form-label .btn-outline-secondary span {
+  font-size: 24px;
+  color: white;
+}
+
+.form-label a {
+  text-decoration: none;
+}
+
+
+.form-label {
+  color: black;
+}
+
+
+.modal-footer .btn-secondary {
+  background-color: lightgrey;
+  border: none;
+  color: white;
+  width: 45%;
+}
+.crate-btn{
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  color: white;
+  border: none;
+  width: 45%;
+}
+
+
+.file-upload-container {
+  margin-top: 8px;
+}
+
+.file-upload-label {
+  font-weight: bold;
+}
+
+.file-upload-display {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.file-upload-display img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.file-name,
+.file-size {
+  margin-right: 8px;
+}
+
+.file-icon i {
+  font-size: 16px;
+}
+.fw-normal{
+  box-shadow: none !important;
+}
+.wing-badge {
+  background-color: #F6F8FB;
+  border-radius: 50%;
+  padding: 3px;
+  color: #5678E9;
+  font-weight: bold;
+  margin-right: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+.custom-table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.header-cell {
+  background-color: #E5ECFD;
+}
+
+.profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-img {
+  width: 30px;
+}
+
+
+.shift-badge {
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.day-shift {
+  background-color: lightgrey;
+  color: #FFD700;
+}
+
+.night-shift {
+  background-color: #4F4F4F;
+  color: #FFF;
+}
+
+
+.gender-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 113px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.male-badge {
+  background-color: #D8F8F8;
+  color: #000;
+}
+
+.female-badge {
+  background-color: #FFE5EB;
+  color: #000;
+}
+
+.gender-icon {
+  margin-right: 5px;
+}
+
+
+.action-cell .btn {
+  background-color: lightgrey;
+  color: inherit;
+}
+
+.edit-btn {
+  color: green;
+}
+
+.view-btn {
+  color: blue;
+}
+
+.delete-btn {
+  color: red;
+}
+.shift-width {
+  width: 80px; 
+  display: inline-block;
+  text-align: center;
+}
+
+.day-shift {
+  background-color: lightgrey;
+  color: #FFD700;
+}
+
+.night-shift {
+  background-color: #4F4F4F;
+  color: #FFF;
+}
+.gender-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.male-badge {
+  background-color: #D8F8F8;
+  color: #000;
+}
+
+.female-badge {
+  background-color: #FFE5EB;
+  color: #000;
+}
+
+.icon-margin {
+  margin-right: 5px;
+}
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #ff5722;
+  color: #fff;
+  border-color: #ff5722;
+}
+
+
+.complaints-section h4 {
+  color: #333;
+}
+
+.card {
+  border-radius: 8px;
+  border: none;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.btn-danger {
+  background-color: #ff5722;
+  border: none;
+}
+
+.btn-outline-secondary {
+  border: 1px solid #ccc;
+  color: #555;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #eee;
+}
+
+/* service & complaint */
+
+.custom-nav-tabs {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-nav-link {
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.custom-request-item {
+  color: black;
+  border-bottom: 1px solid #ff5722;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  background-color: white;
+}
+
+
+.complaints-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.custom-create-btn {
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  border: none;
+  color: white;
+}
+
+
+.custom-card-header {
+  background: #5678E9;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+
+.dropdown-menu {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.card {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-text strong {
+  color: #333;
 }
