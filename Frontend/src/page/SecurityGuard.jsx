@@ -25,6 +25,7 @@ const SecurityGuard = () => {
     { name: 'John Doe', phone: '123-456-7890', shift: 'day', date: '2024-11-01', time: '08:00', gender: 'male' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'day', date: '2024-11-01', time: '08:00', gender: 'female' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
+
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'day', date: '2024-11-01', time: '08:00', gender: 'female' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'day', date: '2024-11-01', time: '08:00', gender: 'female' },
@@ -38,6 +39,7 @@ const SecurityGuard = () => {
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
     { name: 'Jane Doe', phone: '123-456-7890', shift: 'night', date: '2024-11-01', time: '08:00', gender: 'male' },
+
 
   ]);
 
@@ -452,6 +454,136 @@ const SecurityGuard = () => {
       </div>
 
 
+      {selectedGuard && (
+        <div
+          className={`modal fade ${showDeleteModal ? 'show' : ''}`}
+          tabIndex="-1"
+          style={{ display: showDeleteModal ? 'block' : 'none', backgroundColor: showDeleteModal ? 'rgba(0, 0, 0, 0.5)' : 'transparent' }}
+          aria-labelledby="deleteModalLabel"
+          aria-hidden={!showDeleteModal}
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Delete Guard</h5>
+                <button type="button" className="btn-close" onClick={() => setShowDeleteModal(false)}></button>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to delete {selectedGuard.name}?</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowDeleteModal(false)}>
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Modal for viewing Security Guard details */}
+      <div
+        className={`modal fade ${showViewModal ? 'show' : ''}`}
+        tabIndex="-1"
+        style={{
+          display: showViewModal ? 'block' : 'none',
+          backgroundColor: showViewModal ? 'rgba(0, 0, 0, 0.5)' : 'transparent'
+        }}
+        aria-labelledby="viewModalLabel"
+        aria-hidden={!showViewModal}
+      >
+        <div className="modal-dialog modal-sm" style={{ maxWidth: '400px' }}>
+          <div className="modal-content" style={{ borderRadius: '12px' }}>
+            <div className="modal-header">
+              <h5 className="modal-title" id="viewModalLabel">View Security Guard</h5>
+            </div>
+            <div className="modal-body" style={{ padding: '10px 20px' }}>
+              {selectedGuard && (
+                <>
+                  <div className="d-flex align-items-center mb-3">
+                    <img
+                      src="https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E="
+                      alt="Profile"
+                      style={{ width: '50px', height: '50px', borderRadius: '50%', marginRight: '15px' }}
+                    />
+                    <div>
+                      <strong>{selectedGuard.name}</strong>
+                      <p style={{ fontSize: '12px', margin: '0', color: 'grey' }}>{selectedGuard.date}</p>
+                    </div>
+                  </div>
+
+                  <div className="d-flex justify-content-between text-center" style={{ marginBottom: '10px' }}>
+                    <div>
+                      <p><strong>Shift</strong></p>
+                      <p>
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '4px 8px',
+                            borderRadius: '30px',
+                            backgroundColor: selectedGuard.shift === 'day' ? 'lightgrey' : '#4F4F4F',
+                            color: selectedGuard.shift === 'day' ? '#FFD700' : '#FFF'
+                          }}
+                        >
+                          {selectedGuard.shift === 'day' ? '🌞 Day' : '🌙 Night'}
+                        </span>
+                      </p>
+                    </div>
+                    <div>
+                      <p><strong >Shift Time</strong></p>
+                      <p style={{ background: "lightgrey", borderRadius: "30px" }}>{selectedGuard.time}</p>
+                    </div>
+                    <div>
+                      <p><strong>Gender</strong></p>
+                      <p>
+                        <span
+                          className="badge d-flex align-items-center justify-content-center"
+                          style={{
+                            backgroundColor: selectedGuard.gender === 'male' ? '#D8F8F8' : '#FFE5EB',
+                            color: '#000',
+                            width: '113px',
+                            textAlign: 'center',
+                            padding: '5px',
+                            borderRadius: '30px'
+                          }}
+                        >
+                          {selectedGuard.gender === 'male' ? (
+                            <>
+                              <FaMale style={{ marginRight: '5px' }} />
+                              Male
+                            </>
+                          ) : (
+                            <>
+                              <FaFemale style={{ marginRight: '5px' }} />
+                              Female
+                            </>
+                          )}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowViewModal(false)}
+                style={{ backgroundColor: 'lightgrey', border: 'none' }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   );

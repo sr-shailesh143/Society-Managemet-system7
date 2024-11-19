@@ -1,4 +1,3 @@
-
 import { Box } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -13,6 +12,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Modal, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+
 export default function Icome() {
   const [show, setShow] = useState(false);
   const [showsetmantenenc, setShowsetmantenenc] = useState(false);
@@ -30,10 +30,8 @@ export default function Icome() {
   };
   function handleShow() {
     try {
-
-      setShow(true)
-
-    } catch (error) {
+       setShow(true)
+          } catch (error) {
       console.log(error)
     }
   }
@@ -74,12 +72,7 @@ export default function Icome() {
             alt={params.value}
             style={{ width: 35, height: 35, borderRadius: '50%', marginRight: 8, border: params.row.img ? "" : "1px solid #F4F4F4", backgroundColor: params.row.img ? "" : "#F4F4F4" }}
           />
-
-          <span>{params.value}</span>
-
-
-
-
+           <span>{params.value}</span>
         </div>
       ),
     },
@@ -87,10 +80,7 @@ export default function Icome() {
       field: 'unitNumber', headerName: 'Unit Number', flex: 1, minWidth: 100, headerAlign: 'center', align: 'center',
       renderCell: (params) => (
         <span className={`status-badge ${params.value.toLowerCase()}`}>
-
-
-          <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
-
+        <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
         </span>
       )
 
@@ -106,11 +96,7 @@ export default function Icome() {
         <span className={`status-badge ${params.value.toLowerCase()}`}>
 
           {params.value}</span>
-
-
-
-
-      )
+        )
     },
     {
       field: 'residentStatus',
