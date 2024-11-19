@@ -47,7 +47,7 @@ const Expense = () => {
   const handleModalShow = (expense = null) => {
     if (expense) {
       setEditingExpense(expense);
-      setNewExpense(expense);  // Set the expense data to the modal for editing
+      setNewExpense(expense);  
       setShowEditModal(true);
     } else {
       setNewExpense({
@@ -58,7 +58,7 @@ const Expense = () => {
         billFormat: '',
         bill: null,
       });
-      setEditingExpense(null);  // Set editingExpense to null for adding new expense
+      setEditingExpense(null);
       setShowAddModal(true);
     }
   };
@@ -81,19 +81,19 @@ const Expense = () => {
     formData.append('date', newExpense.date);
     formData.append('amount', newExpense.amount);
     if (newExpense.bill) {
-      formData.append('bill', newExpense.bill); // Correct field name
+      formData.append('bill', newExpense.bill);
     }
     formData.append('billFormat', newExpense.billFormat);
 
     try {
       if (editingExpense) {
-        // If we're editing an existing expense, call updateExpense API
+        
         await updateExpense(editingExpense._id, formData);
       } else {
-        // If we're adding a new expense, call addExpense API
+       
         await addExpense(formData);
       }
-      fetchExpenses(); // Refresh data after submission
+      fetchExpenses(); 
       handleModalClose();
     } catch (error) {
       console.error('Error saving expense:', error);
@@ -102,11 +102,11 @@ const Expense = () => {
 
   const handleDeleteExpense = async () => {
     try {
-      const response = await deleteExpense(expenseToDelete._id); // Send correct ID for deletion
+      const response = await deleteExpense(expenseToDelete._id); 
       if (response.success) {
-        // Remove the deleted expense from the local state
+       
         setExpensesData(prevData => prevData.filter(expense => expense._id !== expenseToDelete._id));
-        handleModalClose(); // Close the delete modal after successful deletion
+        handleModalClose(); 
       } else {
         console.error('Failed to delete expense:', response.message);
       }
@@ -117,7 +117,7 @@ const Expense = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*,application/pdf',
-    maxSize: 10 * 1024 * 1024, // 10MB size limit
+    maxSize: 10 * 1024 * 1024, 
     onDrop: (acceptedFiles, rejectedFiles) => {
       if (rejectedFiles.length > 0) {
         alert('Invalid file type. Only images and PDFs are allowed.');
