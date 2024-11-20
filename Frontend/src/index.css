@@ -781,7 +781,7 @@ body {
 .complaints-section {
   background-color: white;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 0px 15px 15px 15px;
 }
 
 .custom-create-btn {
@@ -810,14 +810,14 @@ body {
 }
 
 .dropdown-item {
-  padding: 10px;
+  
   text-align: center;
   cursor: pointer;
 }
 
 
 .card {
-  border: 1px solid #f0f0f0;
+border: none !important;
   border-radius: 8px;
   margin: 10px;
 }
@@ -835,4 +835,82 @@ body {
 
 .card-text strong {
   color: #333;
+}
+.b-btn {
+ 
+  height: 49px !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom: 2px solid black;
+  border-color: #FE512E #F09619;
+  padding: 14px 10px 14px 10px !important;
+  cursor: pointer;
+
+}
+.btn-complaint{
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  border: none;
+  color: white;
+  width: 45%;
+  align-items: center;
+  justify-content: center;
+}
+.btn-cancel{
+  width: 45%;
+  background-color: lightgrey;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  
+}
+ :hover .btn-cancel{
+  width: 45%;
+  background-color: lightgrey;
+  color: rgb(255, 255, 255);
+  
+}
+:hover .btn-complaint{
+  background: linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%);
+  border: none;
+  color: white;
+  width: 45%;
+}
+/* General custom styles */
+
+.custom-btn {
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+/* Table-specific styles */
+.custom-table th,
+.custom-table td {
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.custom-table th {
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+.custom-table tr:hover {
+  background-color: #f1f1f1;
+}
+.time-badge {
+  background: #F6F8FB;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 14px;
+  color: #000; /* Text color */
+  text-align: center;
+}
+.table img {
+  object-fit: cover; /* Ensures the image is cropped properly */
+}
+
+.d-flex.align-items-center {
+  gap: 10px; /* Adds spacing between image and text */
 }

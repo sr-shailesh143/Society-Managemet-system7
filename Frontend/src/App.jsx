@@ -33,13 +33,16 @@ import Securityprotocols from './page/Securityprotocols';
 import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
-import ServiceComplain from './page2/ServiceComplain';
+
 import VisitorTracking from './page2/Visitortracking';
-import RequistTraking from './page/RequistTraking';
+import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
 import RecidencTarent from './page3/ResidenceTarent';
-
+import RequestSubmission from './page3/RequestSubmission';
+import EventParticipation from './page3/EventParticipation';
+import Activity from './page3/Activity';
+import Securityprotocol2 from './page3/Securityprotocol2';
 function App() {
   return (
     <BrowserRouter>
@@ -98,8 +101,9 @@ function App() {
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
-      {/* service& complain */}
-      <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
+    
+     
+
 
 
 
@@ -116,9 +120,11 @@ function App() {
         <Route path='/ResidentManageMent'element={<ResidentManageMentLayout component={""} />} />
         <Route path='/PersonalDetail'element={<ResidentManageMentLayout component={<PersonalDetail/>} />} />
         <Route path='/RecidencTarent'element={<ResidentManageMentLayout component={<RecidencTarent/>} />} />
-
-
-
+        <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
+        <Route path='/RequestSubmission' element={<Layout component={<RequestSubmission />} />} />
+        <Route path='/EventParticipation' element={<Layout component={<EventParticipation />} />} />
+        <Route path='/Activity' element={<Layout component={<Activity />} />} />
+        <Route path='/Securityprotocol2' element={<Layout component={<Securityprotocol2 />} />} />
       </Routes>
       <Toaster />
     </BrowserRouter>
