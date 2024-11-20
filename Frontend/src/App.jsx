@@ -39,10 +39,13 @@ import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
 import RecidencTarent from './page3/ResidenceTarent';
+import Community from './page3/Community';
+
 import RequestSubmission from './page3/RequestSubmission';
 import EventParticipation from './page3/EventParticipation';
 import Activity from './page3/Activity';
 import Securityprotocol2 from './page3/Securityprotocol2';
+
 function App() {
   return (
     <BrowserRouter>
@@ -53,12 +56,7 @@ function App() {
         <Route path='/otp' element={<OTPVerification />} />
         <Route path='/resetpassword' element={<ResetPassword />} />
         {/* layout */}
-
-
         <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
-
-
-
         {/* DASHBORD */}
         <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
@@ -87,16 +85,10 @@ function App() {
         {/* Announcement */}
         <Route path='/Announcement' element={<Layout component={<Announcement />} />} />
         {/* request tracking */}
-
-
         {/* Expence */}
         <Route path='/Expense' element={<Layout component={<Expense />} />} />
-
         {/* visirtortracking */}
-
-
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
-
         {/* profile */}
         <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
@@ -118,8 +110,15 @@ function App() {
         {/* ResidentManageMentLayout */}
 
         <Route path='/ResidentManageMent'element={<ResidentManageMentLayout component={""} />} />
+        {/* PersonalDetail */}
         <Route path='/PersonalDetail'element={<ResidentManageMentLayout component={<PersonalDetail/>} />} />
         <Route path='/RecidencTarent'element={<ResidentManageMentLayout component={<RecidencTarent/>} />} />
+
+        {/* Community */}
+        <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
+
+
+
         <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
         <Route path='/RequestSubmission' element={<Layout component={<RequestSubmission />} />} />
         <Route path='/EventParticipation' element={<Layout component={<EventParticipation />} />} />
