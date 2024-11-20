@@ -9,21 +9,21 @@ const trvisitorController =require('../controllers/trvisitorController')
 
 
 // Create visitor (with image upload)
-router.post('/', trvisitorController.createVisitor); 
+router.post('/createVisitor', trvisitorController.createVisitor); 
 // router.post('/', upload.single('TrvisitorImg'), trvisitorController.createVisitor);
 
 // Get all visitors
-router.get('/', trvisitorController.getAllVisitors);
+router.get('/getAllVisitors', trvisitorController.getAllVisitors);
 
 // Get a single visitor by ID
-router.get('/:id', trvisitorController.getVisitorById);
+router.get('/getVisitorById/:id', trvisitorController.getVisitorById);
 
 // Update visitor (with optional new image upload)
-router.patch('/:id', trvisitorController.updateVisitor);  
+router.patch('/updateVisitor/:id', trvisitorController.updateVisitor);  
 // router.patch('/:id', upload.single('visitorImg'), trvisitorController.updateVisitor);
 
 // Delete visitor
-router.delete('/:id', trvisitorController.deleteVisitor);
+router.delete('/deleteVisitor/:id', trvisitorController.deleteVisitor);
 
 module.exports = router;
 

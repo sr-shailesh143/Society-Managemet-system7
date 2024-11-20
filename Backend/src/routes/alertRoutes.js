@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 const alertController = require('../controllers/alertController');
 
-router.post('/', alertController.createAlert);          
-router.get('/', alertController.getAllAlerts);             
-router.get('/:id', alertController.getAlertById);           
-router.patch('/:id', alertController.updateAlert);     
-router.delete('/:id', alertController.deleteAlert);  
+router.post('/createAlert', alertController.createAlert);          
+router.get('/getAllAlerts', alertController.getAllAlerts);             
+router.get('/getAlertById/:id', alertController.getAlertById);           
+router.patch('/updateAlert/:id', alertController.updateAlert);     
+router.delete('/deleteAlert/:id', alertController.deleteAlert);  
 
 module.exports = router;
