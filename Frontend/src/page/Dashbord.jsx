@@ -152,9 +152,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }}  >
-                <div style={{ marginRight: "100px" }}>
+                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
                   Total Balance<br />
-                  <h6>₹ 2,22,520</h6>
+                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button1.png'
@@ -174,9 +174,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }} >
-                <div style={{ marginRight: "100px" }}>
+                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
                   Total Balance<br />
-                  <h6>₹ 2,22,520</h6>
+                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button2.png'
@@ -196,9 +196,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }} >
-                <div style={{ marginRight: "100px" }}>
+                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
                   Total Balance<br />
-                  <h6>₹ 2,22,520</h6>
+                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button3.png'
@@ -219,9 +219,9 @@ const Dashboard = () => {
                   justifyContent: "center",
                 }}
               >
-                <div style={{ marginRight: "100px" }}>
+                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
                   Total Balance<br />
-                  <h6>₹ 2,22,520</h6>
+                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button4.png'
@@ -299,7 +299,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="d-flex">
-                      <Button variant="danger" size="sm" className="me-1" onClick={() => handleShowDeleteNumberModal(index)}>
+                      <Button style={{border:"none"}} size="sm" className="me-1  bg-danger" onClick={() => handleShowDeleteNumberModal(index)}>
                         <FaTrash />
                       </Button>
                       <Button variant="success" size="sm" onClick={() => handleShowEditNumberModal(item)}>
@@ -431,16 +431,16 @@ const Dashboard = () => {
                   <option value="lastMonth">Last Month</option>
                 </select>
               </div>
-              <Table responsive striped bordered hover className="complaint-table">
+              <Table responsive striped  hover className="complaint-table">
                 <thead>
                   <tr >
-                    <th style={{ border: "none", borderRadius: "15px 0px 0px 0px ", backgroundColor: "#C9D4F8", textAlign: "center" }}>Complainer Name</th>
-                    <th style={{ border: "none", backgroundColor: "#C9D4F8", textAlign: "center" }}>Complaint</th>
-                    <th style={{ border: "none", backgroundColor: "#C9D4F8", textAlign: "center" }}>Date</th>
-                    <th style={{ border: "none", backgroundColor: "#C9D4F8", textAlign: "center" }}>Priority</th>
-                    <th style={{ border: "none", backgroundColor: "#C9D4F8", textAlign: "center" }}>Status</th>
-                    <th style={{ border: "none", borderRadius: " 0px 15px 0px 0px", backgroundColor: "#C9D4F8", textAlign: "center" }}>Action</th>
-                  </tr>
+                    <th style={{ border: "none", borderRadius: "15px 0px 0px 0px ", backgroundColor: "#E5ECFD", textAlign: "center" }}>Complainer Name</th>
+                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Complaint</th>
+                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Date</th>
+                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Priority</th>
+                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Status</th>
+                    <th style={{ border: "none", borderRadius: " 0px 15px 0px 0px", backgroundColor: "#E5ECFD", textAlign: "center" }}>Action</th>
+            </tr>
                 </thead>
                 <tbody>
                   {complaints.map((item) => (
@@ -480,9 +480,9 @@ const Dashboard = () => {
                           className="ms-2"
                           onClick={() => handleShowEditComplaintModal(item)} > <FaEdit /></Button>
                         <Button
-                          variant="danger"
+                       style={{border:"none"}}
                           size="sm"
-                          className="ms-2"
+                          className="ms-2 bg-danger"
                           onClick={() => handleShowDeleteModal(item)}   > <FaTrash /> </Button>
                       </td>
                     </tr>
