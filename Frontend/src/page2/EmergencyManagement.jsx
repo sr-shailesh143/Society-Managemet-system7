@@ -1,44 +1,92 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { createAlert } from '../apiservices/emergencyservice'; // Adjust the path as per your project structure
 
 export default function EmergencyManagement() {
-  const [alert, setalert] = useState({
-    alertType:"",
-    alertDescription:""
-  })
-  console.log(alert)
- 
+  const [alert, setAlert] = useState({
+    alertType: "",
+    description: "",
+  });
+  const [loading, setLoading] = useState(false); // For button loading state
+  const [successMessage, setSuccessMessage] = useState(""); // Success message
+  const [errorMessage, setErrorMessage] = useState(""); // Error message
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const response = await createAlert(alert);
+      console.log("API Response:", response);
+      setSuccessMessage("Alert created successfully!");
+      setAlert({ alertType: "", alertDescription: "" }); // Reset form
+    } catch (error) {
+      console.error("Error creating alert:", error);
+      setErrorMessage("Failed to create alert. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div style={{ height: "85vh", alignItems: "center", overflow: "hidden" }} className="div  d-flex justify-content-center   ">
-
-      <div className='alert-page'>
-
+    <div
+      style={{ height: "85vh", alignItems: "center", overflow: "hidden" }}
+      className="div d-flex justify-content-center"
+    >
+      <div className="alert-page">
         <div className="alert">
-          <h2 className='alert-title'>
-            Alert
-          </h2>
-          <label className='alert-labal '>
-            Alert Type <span className='alert-univasel'>*</span>
-          </label>
-          <select value={alert.alertType} onChange={(e)=>setalert({
-              ...alert,alertType:e.target.value
-            })} className="form-select  input-text mt-1  input-style" required>
-            <option >Select alert</option>
-            <option value={"Emergency"}>Emergency</option>
-            <option value={"Warning"}>Warning</option>
-            <option value={"EarthQuack"}>Earth Quack</option>
-            <option value={"HighWinds"}>High Winds</option>
-            <option value={"Thunder"}>Thunder</option>
-          </select>
-          <label className='alert-labal mt-4 ms-1 '>
-            Description <span className='alert-univasel'>*</span>
-          </label>
-          <textarea onChange={(e)=>setalert({
-            ...alert,alertDescription:e.target.value
-          })} type="text" className="form-control  input-text input-style" cols={2} placeholder=" emergency description." />
+          <h2 className="alert-title">Alert</h2>
 
-          <button disabled={!alert.alertType || !alert.alertDescription} className='  mt-5 w-100 alert-send-btn '>Send</button>
+          <label className="alert-labal">
+            Alert Type <span className="alert-univasel">*</span>
+          </label>
+          <select
+            value={alert.alertType}
+            onChange={(e) =>
+              setAlert({ ...alert, alertType: e.target.value })
+            }
+            className="form-select input-text mt-1 input-style"
+            required
+          >
+            <option value="">Select alert</option>
+            <option value="Emergency">Emergency</option>
+            <option value="Warning">Warning</option>
+            <option value="EarthQuack">Earth Quack</option>
+            <option value="HighWinds">High Winds</option>
+            <option value="Thunder">Thunder</option>
+          </select>
+
+          <label className="alert-labal mt-4 ms-1">
+            Description <span className="alert-univasel">*</span>
+          </label>
+          <textarea
+            value={alert.description}
+            onChange={(e) =>
+              setAlert({ ...alert, description: e.target.value })
+            }
+            className="form-control input-text input-style"
+            cols={2}
+            placeholder="Emergency description."
+          />
+
+          {/* Success or Error Message */}
+          {successMessage && (
+            <div className="alert alert-success mt-3">{successMessage}</div>
+          )}
+          {errorMessage && (
+            <div className="alert alert-danger mt-3">{errorMessage}</div>
+          )}
+
+          {/* Submit Button */}
+          <button
+            disabled={!alert.alertType || !alert.description || loading}
+            className="mt-5 w-100 alert-send-btn"
+            onClick={handleSubmit}
+          >
+            {loading ? "Sending..." : "Send"}
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

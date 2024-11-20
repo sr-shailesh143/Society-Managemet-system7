@@ -58,11 +58,11 @@ app.use('/api/announcements', announcementRoutes);
 app.use('/api/clexpenses',clexpenses);
 app.use("/api/security", securityRoutes);
 
-app.use('/security-protocols', securityProtocolsRoutes);
-app.use('/visitor-logs', visitorLogRoutes);
-app.use('/visitors-tracking',TrvisitorRoutes);
-app.use('/alerts', alertRoutes);
-app.use('/income', incomeRoutes);
+app.use('/api/security-protocols', securityProtocolsRoutes);
+app.use('/api/visitor-logs', visitorLogRoutes);
+app.use('/api/visitors-tracking',TrvisitorRoutes);
+app.use('/api/alerts', alertRoutes);
+app.use('/api/income', incomeRoutes);
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
