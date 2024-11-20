@@ -18,20 +18,20 @@ import { GiSecurityGate } from "react-icons/gi";
 export default function ResidentManageMentLayout({ component }) {
     const [show, setShow] = useState(false);
     const naviget = useNavigate()
-    const [serch, setserch] = useState(0)
+    const [serch, setserch] = useState("")
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
 
     // const [show2, setShow2] = useState(false);
-    const [showFinancialSubmenu2, setShowFinancialSubmenu2] = useState(false);
+    const [showFinancialSubmenu, setShowFinancialSubmenu] = useState(false);
 
 
 
 
     // Toggle Financial Management submenu
-    const toggleFinancialSubmenu = () => setShowFinancialSubmenu2(!showFinancialSubmenu2);
+    const toggleFinancialSubmenu = () => setShowFinancialSubmenu(!showFinancialSubmenu);
 
 
 
@@ -198,7 +198,17 @@ left:-23px;
                             <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <FaClipboardUser className=' fs-3 mb-1' />Personal Detail  </NavLink></Link>
                             <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <BsFillBoxSeamFill className=' fs-3 mb-1' />Service And Complaint  </NavLink></Link>
                             <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <IoMdCalendar className=' fs-3 mb-1' />Events Participation  </NavLink></Link>
-                            <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <GiShirtButton className=' fs-3 mb-1' />Community  </NavLink></Link>
+                            <Link className='link-tag' to={"/Community"} onClick={toggleFinancialSubmenu} > <div className='side-design' style={{ display: location.pathname === "/Community" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/Community" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Community" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <GiShirtButton className=' fs-3 mb-1' />Community  </NavLink></Link>
+                            {
+                                location.pathname === "/Community" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu && (
+                                    <Submenu>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Community" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Financial")} >Access Forums</span></SubmenuItem>
+                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Icome")}> Polls</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Expense")}>Communities Discussion</span></SubmenuItem>
+                                    </Submenu>
+                                )} </div> : ""
+                            }
+
                             <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <IoWallet className=' fs-3 mb-1' />Payment Portal  </NavLink></Link>
                             <Link className='link-tag' to={"/PersonalDetail"}  > <div className='side-design' style={{ display: location.pathname === "/PersonalDetail" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/PersonalDetail" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/PersonalDetail" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <GiSecurityGate  className=' fs-3 mb-1' />Security Protocols  </NavLink></Link>
                           
@@ -241,7 +251,7 @@ left:-23px;
                             </div>
                             <div className="search">
                                 {
-                                    location.pathname === "/deshbord" ? <div><SearchBar className='perent-search' onChange={() => setserch(2)} type='search' placeholder="           Search Here" />  <CiSearch className='fs-3 fw-bolde child-search ' style={{ display: serch == 0 ? "block" : "none" }} /> </div> : <div> <span onClick={() => naviget("/deshbord")} style={{ color: "#A7A7A7", cursor: "pointer" }}>Home</span>  <span className='ms-2  mb-2'><FaGreaterThan className='' /></span> <span style={{ color: "#5678E9" }} className='ms-2'>{location.pathname.split("/")}</span></div>
+                                    location.pathname === "/deshbord" ? <div><SearchBar className='perent-search' onChange={(e) => setserch(e.target.value)} type='search' placeholder="           Search Here" />  <CiSearch className='fs-3 fw-bolde child-search ' style={{ display: serch == "" ? "block" : "none" }} /> </div> : <div> <span onClick={() => naviget("/deshbord")} style={{ color: "#A7A7A7", cursor: "pointer" }}>Home</span>  <span className='ms-2  mb-2'><FaGreaterThan className='' /></span> <span style={{ color: "#5678E9" }} className='ms-2'>{location.pathname.split("/")}</span></div>
                                 }
 
 
@@ -336,7 +346,7 @@ left:-23px;
                                 </UserName>
                             </UserInfo>
                         </div>
-                        <div className="component-layout  h-100    ">
+                        <div className="component-layout      ">
 
                             <br />
                             <div className="p-4">

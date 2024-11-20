@@ -348,7 +348,7 @@ body {
 }
 
 .profilePage {
-  width: 16% !important;
+  /* width: 16% !important; */
 }
 
 .text-decoretion {
@@ -865,7 +865,7 @@ input[type="email"] {
   }
 
   .profilePage {
-    width: 100% !important;
+    /* width: 100% !important; */
   }
 
 
@@ -915,7 +915,7 @@ input[type="email"] {
 
 @media (max-width:1075px) {
   .profile {
-    display: block !important;
+    /* display: block !important; */
     /* justify-content: center !important; */
 
     /* background: red; */
@@ -928,10 +928,7 @@ input[type="email"] {
     margin-left: 170px;
   }
 
-  .profile-page {
-    width: 500px;
-    height: 710px;
-  }
+ 
 
   .profile-input {
 
