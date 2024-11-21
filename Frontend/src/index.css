@@ -875,7 +875,7 @@ border: none !important;
   color: white;
   width: 45%;
 }
-/* General custom styles */
+
 
 .custom-btn {
   font-size: 14px;
@@ -883,7 +883,6 @@ border: none !important;
   border-radius: 5px;
 }
 
-/* Table-specific styles */
 .custom-table th,
 .custom-table td {
   vertical-align: middle;
@@ -904,13 +903,26 @@ border: none !important;
   border-radius: 15px;
   display: inline-block;
   font-size: 14px;
-  color: #000; /* Text color */
+  color: #000;
   text-align: center;
 }
 .table img {
-  object-fit: cover; /* Ensures the image is cropped properly */
+  object-fit: cover; 
 }
 
 .d-flex.align-items-center {
-  gap: 10px; /* Adds spacing between image and text */
+  gap: 10px; 
+}
+.btn-gradient {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  border: none;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #feb47b, #ff7e5f);
+  color: white;
+}
+.form-check .form-check-input {
+ 
+  margin-left: 0px !important;
 }

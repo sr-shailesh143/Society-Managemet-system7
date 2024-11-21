@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { FaPen, FaTrash, FaEye } from 'react-icons/fa';
 import { Modal, Button, Form } from 'react-bootstrap';
 import '../index.css';
-
+import { ComplaintModal, ViewComplaintModal, DeleteComplaintModal } from './modals';
 const RequestTracking = () => {
     const [complaints, setComplaints] = useState([
-        { id: 1, name: 'Evelyn Harper', complaint: 'Unethical Behavior', description: 'Providing false information or deliberately.', unit: '1001', priority: 'Medium', status: 'Pending', date: '2024/11/01' },
-        { id: 2, name: 'Esther Howard', complaint: 'Preventive Measures', description: 'Regular waste collection services.', unit: '1002', priority: 'Low', status: 'Open', date: '2024/11/05' },
+        { id: 1, name: 'cd ', complaint: 'Unethical Behavior', description: 'Providing false information or deliberately.', unit: '1001', priority: 'Medium', status: 'Pending', date: '2024/11/01' },
+        { id: 2, name: 'cd ', complaint: 'Preventive Measures', description: 'Regular waste collection services.', unit: '1002', priority: 'Low', status: 'Open', date: '2024/11/05' },
     ]);
 
     const [showModal, setShowModal] = useState(false);
@@ -17,7 +17,10 @@ const RequestTracking = () => {
     const [newComplaint, setNewComplaint] = useState({ name: '', complaint: '', description: '', unit: '', priority: 'Medium', status: 'Pending' });
     const [viewComplaint, setViewComplaint] = useState(null);
 
-   
+    const handleViewClick = (complaint) => {
+        setViewComplaint(complaint);
+        setShowViewModal(true);
+    };
     const getRandomDescription = () => {
         const descriptions = [
             'Providing false information or deliberately misleading others.',
@@ -55,7 +58,7 @@ const RequestTracking = () => {
         setNewComplaint({
             name: complaint.name,
             complaint: complaint.complaint,
-            description: complaint.description, 
+            description: complaint.description,
             unit: complaint.unit,
             priority: complaint.priority,
             status: complaint.status,
@@ -74,10 +77,7 @@ const RequestTracking = () => {
         setShowDeleteModal(false);
     };
 
-    const handleViewClick = (complaint) => {
-        setViewComplaint(complaint);
-        setShowViewModal(true);
-    };
+
 
     const getRandomWing = () => {
         const wings = ['A', 'B', 'C', 'D'];
@@ -97,7 +97,7 @@ const RequestTracking = () => {
                 </button>
             </div>
             <div className="table-responsive">
-                <table className="table table-bordered table-hover">
+                <table className="table  table-hover">
                     <thead className="table-light">
                         <tr>
                             <th style={{ border: "none", borderRadius: "15px 0px 0px 0px ", backgroundColor: "#C9D4F8", textAlign: "center" }}>Requester Name</th>
@@ -110,10 +110,10 @@ const RequestTracking = () => {
                             <th style={{ border: "none", borderRadius: " 0px 15px 0px 0px", backgroundColor: "#C9D4F8", textAlign: "center" }}>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='bordered'>
                         {complaints.map((complaint, index) => (
                             <tr key={complaint.id}>
-                                <td style={{ boxShadow: "none", border: "none", textAlign: "center",color:"#4F4F4F" }}>
+                                <td style={{ boxShadow: "none", border: "none", textAlign: "center", color: "#4F4F4F" }}>
                                     <img
                                         src="https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU="
                                         alt="Profile"
@@ -121,12 +121,12 @@ const RequestTracking = () => {
                                         width="40"
                                         height="40" />
                                     {complaint.name}</td>
-                                <td style={{ boxShadow: "none", border: "none", textAlign: "center",color:"#4F4F4F" }}>{complaint.complaint}</td>
-                                <td style={{ boxShadow: "none", border: "none", textAlign: "center",color:"#4F4F4F" }}>{complaint.description}</td>
-                                <td style={{ boxShadow: "none", border: "none", textAlign: "center",color:"#4F4F4F" }}>
+                                <td style={{ boxShadow: "none", border: "none", textAlign: "center", color: "#4F4F4F" }}>{complaint.complaint}</td>
+                                <td style={{ boxShadow: "none", border: "none", textAlign: "center", color: "#4F4F4F" }}>{complaint.description}</td>
+                                <td style={{ boxShadow: "none", border: "none", textAlign: "center", color: "#4F4F4F" }}>
                                     {complaint.date}
                                 </td>
-                                <td style={{ boxShadow: "none", border: "none", textAlign: "center",color:"#4F4F4F" }}>
+                                <td style={{ boxShadow: "none", border: "none", textAlign: "center", color: "#4F4F4F" }}>
                                     <span className="wing-badge">{getRandomWing()}</span>
                                     {complaint.unit}
                                 </td>
@@ -182,64 +182,26 @@ const RequestTracking = () => {
                     </tbody>
                 </table>
             </div>
-            {/* Modal for Adding/Editing Complaint */}
-            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-    <Modal.Header>
-        <Modal.Title>{isEditing ? 'Edit Complaint' : 'Create Complaint'}</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-        <Form>
-            <Form.Group className="mb-3">
-                <Form.Label>Requester Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="name"
-                    value={newComplaint.name}
-                    onChange={handleInputChange}
-                    placeholder="Enter Requester Name"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Request Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="complaint"
-                    value={newComplaint.complaint}
-                    onChange={handleInputChange}
-                    placeholder="Enter Request Name"
-                />
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Date</Form.Label>
-                <Form.Control
-                    type="date"
-                    name="date"
-                    value={newComplaint.date || ''}
-                    onChange={handleInputChange}
-                />
-            </Form.Group>
-           
-            <Form.Group className="mb-3">
-    <div className="row">
-        <div className="col-md-6">
-            <Form.Label>Unit Number</Form.Label>
-            <Form.Control
-                type="text"
-                name="unit"
-                value={newComplaint.unit}
-                onChange={handleInputChange}
-                placeholder="Enter unit number"
+
+            <ComplaintModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                isEditing={isEditing}
+                newComplaint={newComplaint}
+                handleInputChange={handleInputChange}
+                handleFormSubmit={handleFormSubmit}
             />
-        </div>
-        <div className="col-md-6">
-            <Form.Label>Wing</Form.Label>
-            <Form.Control
-                type="text"
-                name="wing"
-                value={newComplaint.wing}
-                onChange={handleInputChange}
-                placeholder="Enter wing"
+            <ViewComplaintModal
+                showViewModal={showViewModal}
+                setShowViewModal={setShowViewModal}
+                viewComplaint={viewComplaint}
             />
+            <DeleteComplaintModal
+                showDeleteModal={showDeleteModal}
+                setShowDeleteModal={setShowDeleteModal}
+                handleConfirmDelete={handleConfirmDelete}
+            />
+
         </div>
     </div>
 </Form.Group>
@@ -401,6 +363,8 @@ const RequestTracking = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+
         </div>
     );
 };

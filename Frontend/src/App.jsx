@@ -45,7 +45,7 @@ import RequestSubmission from './page3/RequestSubmission';
 import EventParticipation from './page3/EventParticipation';
 import Activity from './page3/Activity';
 import Securityprotocol2 from './page3/Securityprotocol2';
-
+import MaintananceInvoice from './page3/MaintananceInvoice';
 function App() {
   return (
     <BrowserRouter>
@@ -116,6 +116,7 @@ function App() {
 
         {/* Community */}
         <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
+        <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
 
 
 
