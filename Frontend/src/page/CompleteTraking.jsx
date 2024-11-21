@@ -520,7 +520,6 @@ export default function CompleteTracking() {
           </Modal>
 
           {/* delete model */}
-
           <Modal show={showDelete}>
             <Modal.Header>
               <Modal.Title>Delete Complain?</Modal.Title>
@@ -553,7 +552,6 @@ export default function CompleteTracking() {
               </div>
             </Modal.Footer>
           </Modal>
-
         </div>
       </div>
     </>
