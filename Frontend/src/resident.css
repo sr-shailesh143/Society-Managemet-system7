@@ -301,7 +301,7 @@
 
 .chet-input {
     /* width: 1246px; */
-    width: 59vw;
+    min-width: 59vw;
     height: 88px;
     top: 816px;
     left: 334px;
@@ -309,15 +309,44 @@
     border-radius: 0px 0px 15px 0px;
     opacity: 0px;
     background: #FFFFFF;
+    position: sticky;
+
 
 }
 
 .voice {
-
-
-    width: 80%;
-    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 110px  ;
     opacity: 0px;
     background: #5678E9;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    position: sticky;
+}
+.input-chet-icon{
+    /* width: 1153px; */
+    height: 50px;
+    top: 835px;
+    left: 352px;
+    gap: 0px;
+    border-radius: 60px;
+    opacity: 0px;
+    box-shadow: 0px 7px 15px 0px #0000000D;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4F4F4F;
+    
+}
+.input-chet-main{
+    border: none;
+    outline: none;
+    padding: 10px;
+    position: sticky;
+    margin: 0px 0px 0px -70px ;
 }

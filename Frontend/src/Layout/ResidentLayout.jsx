@@ -181,7 +181,7 @@ left:-23px;
         <div className='container-fulid' style={{ overflow: "hidden" }}>
 
             <div className="row  ">
-                <div className=" d-flex ">
+                <div className=" d-flex bg-white ">
 
                     <div className="  layout  col-12 col-md-3 side-bar    ">
                         <Logo className="mt-1">

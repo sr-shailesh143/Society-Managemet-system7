@@ -7,10 +7,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
   const [status, setStatus] = useState("High");
@@ -26,10 +22,8 @@ export default function CompleteTracking() {
   const [editShow, seteditShow] = useState(false)
   const [status2, setStatus2] = useState("High");
   const [status3, setStatus3] = useState("Open");
-
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
-
   function edit() {
     seteditShow(false)
     naviget("/traking")
@@ -38,10 +32,7 @@ export default function CompleteTracking() {
   // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
-
   // delete
-
-
   const [showDelete, setshowDelete] = useState(false)
   function deletecomplelnt() {
     setshowDelete(false)
@@ -63,10 +54,8 @@ export default function CompleteTracking() {
       minWidth: 150,
       headerAlign: 'center',
       align: 'center',
-
       renderCell: (params) => (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-
           <img
             src={params.row.img}
             className='ms-5'
@@ -76,9 +65,6 @@ export default function CompleteTracking() {
           {
             <span>{params.value}</span>
           }
-
-
-
         </div>
       ),
     },
@@ -91,7 +77,6 @@ export default function CompleteTracking() {
         </div>
 
       )
-
     },
     {
       field: 'Description',
@@ -102,15 +87,10 @@ export default function CompleteTracking() {
       align: 'center',
       renderCell: (params) => (
         <span className={`status-badge ${params.value.toLowerCase()}`}>
-
           {params.value}
-
-
-
         </span>
       )
     },
-
     {
       field: 'UnitNumber',
       headerName: 'UnitNumber',
@@ -120,10 +100,7 @@ export default function CompleteTracking() {
       align: 'center',
       renderCell: (params) => (
         <span className={`status-badge ${params.value.toLowerCase()}`}>
-
-
           <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
-
         </span>
       )
     },
@@ -147,8 +124,6 @@ export default function CompleteTracking() {
         </span>
       )
     },
-  
-
     {
       field: 'actions',
       headerName: 'Actions',
@@ -172,19 +147,11 @@ export default function CompleteTracking() {
                 <Delete style={{ cursor: "pointer" }} />
               </span>
             </span>
-
           }
-
-
-
-
         </div>
       ),
     },
   ];
-
-
-
   return (
     <>
       <div className="createTraking">
@@ -195,7 +162,6 @@ export default function CompleteTracking() {
             Create Complaint
           </button>
         </div>
-
         <Modal className='complet-model' show={show} >
           <div className="model">
             <Modal.Header>
@@ -243,12 +209,10 @@ export default function CompleteTracking() {
                     <input type="radio" className='  mb-1 ' checked={status === "Low"} onChange={handleStatusChange} value={"Low"} />
                     <p className='mt-2'>Low</p>
                   </div>
-
                 </div>
               </div>
               <div className="complete-name mt-2 ">
                 <label html="" className='labal-name'> Status <span className='text-danger1'>*</span></label>
-
                 <div className="row gap-3 justify-content-center ">
                   <div onClick={() => setStatus1("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-1 ${status1 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status1 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
                     <input type="radio" className=' w-25 mb-1 ' checked={status1 === "Open"} onChange={handleStatusChange1} value="Open" />
@@ -262,7 +226,6 @@ export default function CompleteTracking() {
                     <input type="radio" className=' w-25 mb-1 ' checked={status1 === "Solve"} onChange={handleStatusChange1} value={"Solve"} />
                     <p className='mt-2'>Solve</p>
                   </div>
-
                 </div>
               </div>
               <div className="d-flex gap-3 mt-3">
@@ -281,7 +244,6 @@ export default function CompleteTracking() {
                     border: "none",
                     cursor: "pointer"
                   }}
-
                   onClick={createcomplent}
                 >
                   Save
@@ -290,10 +252,8 @@ export default function CompleteTracking() {
             </Modal.Body>
           </div>
         </Modal>
-
         <div className="complent-list">
           <Box className="radious" bgcolor={"white"} sx={{ height: '600px', width: '100%', padding: 2 }}>
-
             <DataGrid
               className=' h-75 '
               rows={rows}
@@ -422,7 +382,6 @@ export default function CompleteTracking() {
                       <input type="radio" className='  mb-1 ' checked={status2 === "Low"} onChange={handleStatusChange2} value={"Low"} />
                       <p className='mt-2'>Low</p>
                     </div>
-
                   </div>
                 </div>
                 <div className="complete-name mt-2 ">
@@ -441,7 +400,6 @@ export default function CompleteTracking() {
                       <input type="radio" className=' w-25 mb-1 ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
                       <p className='mt-2'>Solve</p>
                     </div>
-
                   </div>
                 </div>
                 <div className="d-flex gap-3 mt-3">
@@ -469,9 +427,7 @@ export default function CompleteTracking() {
               </Modal.Body>
             </div>
           </Modal>
-
           {/* view mode  */}
-
           <Modal show={showview} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Modal heading</Modal.Title>
@@ -518,7 +474,6 @@ export default function CompleteTracking() {
               </div>
             </Modal.Body>
           </Modal>
-
           {/* delete model */}
           <Modal show={showDelete}>
             <Modal.Header>
@@ -544,7 +499,6 @@ export default function CompleteTracking() {
                     border: "none",
                     cursor: "pointer"
                   }}
-
                   onClick={deletecomplelnt}
                 >
                   Conform
