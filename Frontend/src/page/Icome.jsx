@@ -344,8 +344,6 @@ export default function Icome() {
             }}
           />
         </Box>
-
-
         <Modal className='' show={show} >
           <Modal.Header closeButton onClick={handleClose}>
             <Modal.Title className='model-title'>View Maintenance Details</Modal.Title>

@@ -2347,3 +2347,118 @@ opacity: 0px;
   z-index: 1; top: 0; left: 0;
   background: red;
 } */
+
+
+/* Container styling */
+.responsive-table-container {
+  padding: 20px;
+  max-width: 100%;
+  
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+/* Table styling */
+.responsive-table {
+  border-radius: 15px 0px 0px ;
+
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  font-size: 16px;
+}
+
+.responsive-table th,
+.responsive-table td {
+  text-align: left;
+  padding: 10px;
+  border: none;
+  white-space: nowrap;
+}
+
+.responsive-table th {
+color: #202224;
+font: "Poppins";
+font-size: 14px;
+font-weight: 600;
+line-height: 21px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+;
+
+}
+.redious{
+  border-radius: 15px 0px 0px 0px ;
+
+}
+.redious1{
+  border-radius: 0px 15px 0px 0px ;
+
+}
+.responsive-table td {
+  border-bottom: 1px solid #F4F4F4;
+
+}
+
+.responsive-table td .status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #fff;
+}
+
+
+/* Action buttons */
+.action-buttons .btn {
+  margin-right: 5px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-buttons .edit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.action-buttons .view-btn {
+  background-color: #2196f3;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responsive-table {
+    font-size: 14px;
+  }
+  
+  .responsive-table th, .responsive-table td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-table {
+    font-size: 12px;
+  }
+  
+  .responsive-table-container {
+    padding: 10px;
+  }
+  
+  .responsive-table th, .responsive-table td {
+    padding: 6px;
+  }
+}
+
+.tabal-header{
+  width: 1540px;
+height: 61px;
+gap: 0px;
+background-color:rgb(201, 212, 248);
+border-radius: 10px 10px;
+
+}

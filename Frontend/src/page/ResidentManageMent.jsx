@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button, Box } from '@mui/material';
+import { Button, Box, styled } from '@mui/material';
 import { Edit, Image, PlusOne } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { LuBuilding2 } from "react-icons/lu";
@@ -13,154 +13,8 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import ArticleIcon from '@mui/icons-material/Article';
-
-
 const ResidentManageMent = () => {
     const naviget = useNavigate()
-    // Sample Data
-    const rows = [
-        { id: 1, fullName: 'Evelyn Harper', unitNumber: '1001', wing: "A", unitStatus: 'Occupied', residentStatus: 'Tenant', phoneNumber: '97687 85628', members: 0, vehicles: 1, img: "src/assets/notification-img.png" },
-        { id: 2, fullName: '', unitNumber: '1002', unitStatus: 'Vacate', wing: "B", residentStatus: '', phoneNumber: '', members: 3, vehicles: 2 },
-        { id: 3, fullName: 'Evelyn Harper', unitNumber: '1003', unitStatus: 'Occupied', wing: "C", residentStatus: 'Tenant', phoneNumber: '97687 85628', members: 3, vehicles: 1, img: "src/assets/notification-img.png" },
-        { id: 4, fullName: 'Evelyn Harper', unitNumber: '1003', unitStatus: 'Occupied', wing: "C", residentStatus: 'Owner', phoneNumber: '97687 85628', members: 3, vehicles: 0, img: "src/assets/notification-img.png" },
-        // Additional rows...
-    ];
-
-    // Define Columns
-    const columns = [
-        {
-            field: 'fullName',
-            headerName: 'Full Name',
-            flex: 1,
-            minWidth: 150,
-            headerAlign: 'center',
-            align: 'center',
-            renderCell: (params) => (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-
-                    <img
-                        src={params.row.img || "/src/assets/defultProfile.png"}
-                        alt={params.value}
-                        style={{ width: 35, height: 35, borderRadius: '50%', marginRight: 8, border: params.row.img ? "" : "1px solid #F4F4F4", backgroundColor: params.row.img ? "" : "#F4F4F4" }}
-                    />
-                    {
-                        params.row.fullName === "" ? "-" : <span>{params.value}</span>
-                    }
-
-
-
-                </div>
-            ),
-        },
-        {
-            field: 'unitNumber', headerName: 'Unit Number', flex: 1, minWidth: 100, headerAlign: 'center', align: 'center',
-            renderCell: (params) => (
-                <span className={`status-badge ${params.value.toLowerCase()}`}>
-
-
-                    <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
-
-                </span>
-            )
-
-        },
-        {
-            field: 'unitStatus',
-            headerName: 'Unit Status',
-            flex: 1,
-            minWidth: 130,
-            headerAlign: 'center',
-            align: 'center',
-            renderCell: (params) => (
-                <span className={`status-badge ${params.value.toLowerCase()}`}>
-                    {
-                        params.row.unitStatus === "Occupied" ? <span> <LuBuilding2 /> {params.value}</span> : <span><FaBuildingUser /> {params.value}</span>
-                    }
-
-
-
-                </span>
-            )
-        },
-        {
-            field: 'residentStatus',
-            headerName: 'Resident Status',
-            flex: 1,
-            minWidth: 150,
-            headerAlign: 'center',
-            align: 'center',
-            renderCell: (params) => (
-                <span className={`status-badge ${params.value.toLowerCase()}`}>
-
-                    {
-                        params.row.residentStatus === "Tenant" ? <span> <FaUser /> {params.value}</span> : params.row.residentStatus === "" ? <span>--</span> : <span><RiShieldUserFill /> {params.value}</span>
-                    }
-                </span>
-            )
-        },
-        {
-            field: 'phoneNumber', headerName: 'Phone Number', flex: 1, minWidth: 150, headerAlign: 'center', align: 'center',
-            renderCell: (params) => (
-                <span>
-                    {
-                        params.row.phoneNumber ? <span>{params.value}</span> : <span>--</span>
-                    }
-                </span>
-            )
-        },
-        {
-            field: 'members', headerName: 'Members', type: 'number', flex: 0.5, minWidth: 80, headerAlign: 'center', align: 'center',
-            renderCell: (params) => (
-                <span>
-                    {
-                        params.row.members > 0 ? <span className=' status-badge-wing '>{params.value}</span> : <span>-</span>
-                    }
-                </span>
-            )
-
-        },
-        {
-            field: 'vehicles', headerName: 'Vehicles', type: 'number', flex: 0.5, minWidth: 80, headerAlign: 'center', align: 'center',
-            renderCell: (params) => (
-                <span>
-                    {
-                        params.row.vehicles > 0 ? <span className='status-badge-wing'>{params.value}</span> : <span>-</span>
-                    }
-                </span>
-            )
-        },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            flex: 1,
-            minWidth: 150,
-            headerAlign: 'center',
-            align: 'center',
-            sortable: false,
-            renderCell: (params) => (
-                <div>
-                    {
-                        params.row.fullName === "" && params.row.residentStatus === "" && params.row.phoneNumber === "" ? <span >--</span> : <span>
-                            <span className='' onClick={handleShow}>
-                                <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3 ' />
-                            </span>
-                            <span onClick={() => handleShow1(params.row.residentStatus)}>
-                                <VisibilityIcon style={{ cursor: "pointer" }} className='bg-primary p-1 radious text-white' />
-                            </span>
-                        </span>
-
-                    }
-
-
-
-
-                </div>
-            ),
-        },
-    ];
-
-
-
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -171,10 +25,7 @@ const ResidentManageMent = () => {
 
     const handleStatusChange = (event) => setStatus(event.target.value);
     const handleAgreementChange = () => setIsAgreed(!isAgreed);
-
-
     // form page route  function 
-
     function HandleSubmit() {
         try {
             if (status === "Occupied") {
@@ -186,7 +37,6 @@ const ResidentManageMent = () => {
                 setShow(false)
                 setShow3(true)
             }
-
         } catch (error) {
             console.log(error)
         }
@@ -200,8 +50,6 @@ const ResidentManageMent = () => {
             console.log(error)
         }
     }
-
-
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
@@ -212,7 +60,6 @@ const ResidentManageMent = () => {
     const handleClose3 = () => setShow3(false);
     const handleClose4 = () => setShow4(false)
     // const handleShow1 = () => setShow1(true);
-
     function handleShow1(Residence) {
         try {
             if (Residence === "Owner") {
@@ -226,8 +73,96 @@ const ResidentManageMent = () => {
             console.log(error)
         }
     }
+    const data = [
+        {
+            img: "src/assets/notification-img.png",
+            fullName: "Evelyn Harper",
+            unitNumber: "1001",
+            unitStatus: "Occupied",
+            residentStatus: "Tenant",
+            phoneNumber: "97587 85828",
+            member: 1,
+            vehicle: 2,
+        },
+        {
+            img: "",
 
+            fullName: " ",
+            unitNumber: "1002",
+            unitStatus: "Vacate",
+            residentStatus: "",
+            phoneNumber: "",
+            member: 0,
+            vehicle: 0,
+        },
+        {
+            img: "src/assets/notification-img.png",
 
+            fullName: "Robert Fox",
+            unitNumber: "2002",
+            unitStatus: "Occupied",
+            residentStatus: "Tenant",
+            phoneNumber: "97587 85828",
+            member: 3,
+            vehicle: 1,
+        },
+        {
+            img: "src/assets/notification-img.png",
+
+            fullName: "Evelyn Harper",
+            unitNumber: "2004",
+            unitStatus: "Occupied",
+            residentStatus: "Owner",
+            phoneNumber: "97587 85828",
+            member: 6,
+            vehicle: 3,
+        },
+    ];
+
+    const wing = {
+
+        backgroundColor: '#F6F8FB',
+        width: "131px",
+        padding: '5px 10px',
+        borderRadius: '12px',
+        color: '#5678E9',
+    }
+    const occupied = {
+        backgroundColor: '#ECFFFF',
+        width: "131px",
+        padding: '5px 10px',
+        borderRadius: '12px',
+        color: '#14B8A6',
+    }
+    const vacate = {
+        backgroundColor: '#FFF6FF',
+        padding: '5px 20px',
+        borderRadius: '12px',
+        color: '#9333EA',
+        maxWidth: "95.31px",
+    }
+    const Tenant = {
+        backgroundColor: '#FFF1F8',
+        padding: '5px 10px',
+        borderRadius: '12px',
+        color: '#EC4899',
+    }
+    const Owner = {
+        backgroundColor: '#F1F0FF',
+
+        padding: '5px 10px',
+        borderRadius: '12px',
+        color: '#4F46E5',
+    }
+
+    const blanck = {
+        backgroundColor: '#F6F8FB',
+        padding: '5px 40px',
+        borderRadius: '12px',
+
+        color: '#4F4F4F',
+
+    }
     return (
         <>
             <Box className="radious" bgcolor={"white"} sx={{ height: '600px', width: '100%', padding: 2 }}>
@@ -239,60 +174,81 @@ const ResidentManageMent = () => {
                         <div className=' add-btn ' onClick={() => naviget("/owner")}> <span><FaPlus /></span> <span>Add New Resident details</span> </div>
                     </div>
                 </div>
-                <DataGrid
-                    className='mt-4 h-75'
-                    rows={rows}
-                    columns={columns}
-                    pageSize={2}
-                    rowsPerPageOptions={[5, 10, 20]}
-                    disableSelectionOnClick
-                    sx={{
-                        '& .status-badge.occupied': {
-                            backgroundColor: '#ECFFFF',
-                            width: "131px",
-                            padding: '5px 10px',
-                            borderRadius: '12px',
-                            color: '#14B8A6',
-                        },
-                        '& .status-badge-wing': {
-                            backgroundColor: '#F6F8FB',
-                            width: "131px",
-                            padding: '5px 10px',
-                            borderRadius: '12px',
-                            color: '#5678E9',
-                        },
-                        '& .status-badge.vacate': {
-                            backgroundColor: '#FFF6FF',
-                            padding: '5px 10px',
-                            borderRadius: '12px',
-                            color: '#9333EA',
-                            maxWidth: "95.31px",
+                <div className="responsive-table-container">
+                    <table className="responsive-table">
+                        <thead className='tabal-header'>
+                            <tr>
+                                <th className='redious'>Full Name</th>
+                                <th>Unit Number</th>
+                                <th>Unit Status</th>
+                                <th>Resident Status</th>
+                                <th>Phone Number</th>
+                                <th>Member</th>
+                                <th>Vehicle</th>
+                                <th className='redious1'>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((item, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        {
+                                            item.fullName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                                                <span><img src={item.img} alt="" /> <span>  {item.fullName}</span> </span>
+                                        }
+                                    </td>
+                                    <td ><span className='status-badge-wing' style={wing}>A</span>   {item.unitNumber}</td>
+                                    <td>
+                                        {
+                                            item.unitStatus === "Occupied" ? <span style={occupied}> <LuBuilding2 className='mb-1' /> <span className=''>{item.unitStatus}</span></span> : <span style={vacate}><FaBuildingUser className='mb-1' /> <span>{item.unitStatus}</span> </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            item.residentStatus === "" ? <span style={blanck}>--</span> : <span>
+                                                {
+                                                    item.residentStatus === "Tenant" ? <span style={Tenant}> <FaUser className='mb-1' /> <span className=''>{item.residentStatus}</span></span> : <span style={Owner}><RiShieldUserFill className='mb-1 fs-5' /> <span>{item.residentStatus}</span> </span>
+                                                }
+                                            </span>
+                                        }
 
-                        },
-                        '& .status-badge.tenant': {
-                            backgroundColor: '#FFF1F8',
-                            padding: '5px 10px',
-                            borderRadius: '12px',
-                            color: '#EC4899',
-                        },
-                        '& .status-badge.owner': {
-                            backgroundColor: '#F1F0FF',
+                                    </td>
+                                    <td>
+                                        {
+                                            item.phoneNumber === "" ? <span style={blanck}>--</span> : <span>{item.phoneNumber}</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            item.member <= 0 ? <span style={wing}>-</span> : <span >{item.member}</span>
+                                        }
+                                    </td>
+                                    <td colSpan={1}>
+                                        {
+                                            item.vehicle <= 0 ? <span style={wing}>-</span> : <span>{item.vehicle}</span>
+                                        }
+                                    </td>
+                                    <td className="action-buttons">
+                                        {
+                                            item.fullName === "" || item.residentStatus === "" || item.phoneNumber === "" ? <span style={blanck}>--</span> : <span>
+                                                <span className='' onClick={handleShow}>
+                                                    <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3 ' />
+                                                </span>
+                                                <span onClick={() => handleShow1(item.residentStatus)}>
+                                                    <VisibilityIcon style={{ cursor: "pointer" }} className='bg-primary p-1 radious text-white' />
+                                                </span>
+                                            </span>
 
-                            padding: '5px 10px',
-                            borderRadius: '12px',
-                            color: '#4F46E5',
-                        },
-                        '& .MuiDataGrid-columnHeaders': {
-                            backgroundColor: '#eaf1f8',
-                        },
-                    }}
-                />
+                                        }
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
             </Box>
-
-            {/* open a view section */}
-            {
-
-            }
+           {/*view box  */}
             <Offcanvas show={show1} placement={"end"} >
                 <div className="show-layout">
                     <div className="show-layout-body">
@@ -354,7 +310,6 @@ const ResidentManageMent = () => {
                                                     </div>
                                                     <div className="document-view mt-1">
                                                         <VisibilityIcon />
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -378,15 +333,10 @@ const ResidentManageMent = () => {
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
                             </center>
-
                             <center>
-
                                 <div className="viwe-detels-layout1 mt-4 ">
                                     <div className="MemberCounting d-flex justify-content-between  align-items-center  ">
                                         <h6 className='ms-3 mt-2 text-white'>Member Counting</h6>
@@ -536,18 +486,11 @@ const ResidentManageMent = () => {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
-
                                     </div>
-
                                 </div>
                             </center>
-
-
                             <center>
-
                                 <div className="viwe-detels-layout1 mt-4 ">
                                     <div className="MemberCounting d-flex justify-content-between  align-items-center  ">
                                         <h6 className='ms-3 mt-2 text-white'>Owner Details</h6>
@@ -567,14 +510,10 @@ const ResidentManageMent = () => {
                                             <p className='ms-3  text-1'>Address</p>
                                             <p className='mx-3 text-2'>2972 Westheimer Rd..</p>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </center>
                             <center>
-
                                 <div className="viwe-detels-layout1 mt-4 ">
                                     <div className="MemberCounting d-flex justify-content-between  align-items-center  ">
                                         <h6 className='ms-3 mt-2 text-white'>Member Counting</h6>
@@ -633,21 +572,16 @@ const ResidentManageMent = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             </center>
                         </div>
                     </div>
                 </div>
             </Offcanvas>
-
-
-
             {/* Residence Status popup selelct occupied and vacate */}
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
                     show={show}
-
                     centered
                 >
                     <Modal.Header >
@@ -727,12 +661,9 @@ const ResidentManageMent = () => {
                                 Save
                             </Button>
                         </div>
-
                     </Modal.Footer>
                 </Modal>
             </div>
-
-
             {/* Residence Status popup for select wing and unit */}
             <div className="d-flex justify-content-center">
                 <Modal
@@ -782,8 +713,6 @@ const ResidentManageMent = () => {
                     </Modal.Body>
                     <Modal.Footer className=" d-flex justify-content-between">
                         <div className="d-flex gap-3">
-
-
                             <Button
                                 className="cancel-btn radious "
                                 style={{ border: "1px solid #D3D3D3", }}
@@ -808,10 +737,7 @@ const ResidentManageMent = () => {
                     </Modal.Footer>
                 </Modal>
             </div>
-
-
             {/* Do you want to vacate the finlay flat? */}
-
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
@@ -854,7 +780,6 @@ const ResidentManageMent = () => {
                 </Modal>
             </div>
         </>
-
     );
 };
 
