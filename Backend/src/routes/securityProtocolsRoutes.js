@@ -3,10 +3,10 @@ const router = express.Router();
 const securityProtocols = require('../controllers/securityProtocolsController');
 
 // Routes for CRUD operations
-router.post('/', securityProtocols.createSecurityProtocol);          
-router.get('/', securityProtocols.getAllSecurityProtocols);             
-router.get('/:id', securityProtocols.getSecurityProtocolById);          
-router.patch('/:id', securityProtocols.updateSecurityProtocol);    
-router.delete('/:id', securityProtocols.deleteSecurityProtocol); 
+router.post('/createSecurityProtocol', securityProtocols.createSecurityProtocol);          
+router.get('/getAllSecurityProtocols', securityProtocols.getAllSecurityProtocols);             
+router.get('/getSecurityProtocolById/:id', securityProtocols.getSecurityProtocolById);          
+router.patch('/updateSecurityProtocol/:id', securityProtocols.updateSecurityProtocol);    
+router.delete('/deleteSecurityProtocol/:id', securityProtocols.deleteSecurityProtocol); 
 
 module.exports = router;

@@ -84,6 +84,19 @@ const VisitorTracking = () => {
     }
   };
 
+  const formatTime = (timeStr) => {
+    // Assuming timeStr is in the format "HH:mm"
+    const [hours, minutes] = timeStr.split(":");
+    const date = new Date();
+    
+    // Set the time for the current date
+    date.setHours(parseInt(hours));
+    date.setMinutes(parseInt(minutes));
+    
+    // Return formatted time with AM/PM
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  };
+
   const handleEditVisitor = (visitor) => {
     setNewVisitor(visitor);
     setIsEditing(true);
@@ -179,7 +192,7 @@ const VisitorTracking = () => {
                 padding: '0px',
               }}
             >
-              {visitor.time}
+             {formatTime(visitor.time)} 
             </td>
           </tr>
         ))}
