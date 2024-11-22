@@ -30,169 +30,211 @@ export default function Icome() {
   };
   function handleShow() {
     try {
-       setShow(true)
-          } catch (error) {
+      setShow(true)
+    } catch (error) {
       console.log(error)
     }
   }
-  const [MaintenanceDetail, setMaintenanceDetail] = useState({
-    MaintenanceAmount: 0,
-    PenaltyAmount: 0,
-    MaintenanceDueDate: "",
-    PenaltyAppliedAfterDaySelection: ""
-  })
+ 
 
   function comform() {
     setShowsetmantenenc(false)
     setshowsetmantenencdetels(true)
   }
-  const rows = [
-    { id: 1, Name: 'Evelyn Harper', unitNumber: '1001', wing: "A", date: '10/11/3624', residentStatus: 'Tenant', phoneNumber: '97687 85628', Amount: 0, Payment: "Online", Status: "Pending", Penalty: "200", img: "src/assets/notification-img.png" },
-    { id: 2, Name: 'vced', unitNumber: '1002', date: '10/11/3624', wing: "B", residentStatus: 'Owner', phoneNumber: '7201000140', Amount: 3, Penalty: "", Payment: "Cash", Status: "Pending", },
-    { id: 3, Name: 'Evelyn Harper', unitNumber: '1003', date: '10/11/3624', wing: "C", residentStatus: 'Tenant', phoneNumber: '97687 85628', Amount: 3, Payment: "Cash", Status: "Done", Penalty: "200", img: "src/assets/notification-img.png" },
-    { id: 4, Name: 'Evelyn Harper', unitNumber: '1003', date: '10/11/3624', wing: "C", residentStatus: 'Owner', phoneNumber: '97687 85628', Amount: 3, Payment: "Online", Status: "Pending", Penalty: "600", img: "src/assets/notification-img.png" },
-    // Additional rows...
+
+  const data = [
+    {
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "10/02/2024",
+      residentStatus: "Tenant",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "A",
+      Status: "Done",
+      Payment: "Online"
+    },
+    {
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "11/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 0,
+      wing: "B",
+      Status: "Done",
+      Payment: "Cash"
+    }, {
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "12/02/2024",
+      residentStatus: "Tenant",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 0,
+      wing: "C",
+      Status: "Pending",
+      Payment: "Cash"
+    }, {
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },
+    {
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },{
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },{
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },{
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },{
+      img: "src/assets/notification-img.png",
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      Date: "13/02/2024",
+      residentStatus: "Owner",
+      phoneNumber: "97587 85828",
+      Amount: 1000,
+      Penalty: 250,
+      wing: "D",
+      Status: "Pending",
+      Payment: "Online"
+    },
   ];
 
-  // Define Columns
-  const columns = [
-    {
-      field: 'Name',
-      headerName: 'Name',
-      flex: 1,
-      minWidth: 150,
-      headerAlign: 'center',
-      align: 'center',
+  const wing = {
 
-      renderCell: (params) => (
-        <div className=' ms-3 ' style={{ display: 'flex', alignItems: 'center' }}>
+    backgroundColor: '#F6F8FB',
+    width: "131px",
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+  }
+  const Done = {
+    backgroundColor: '#39973D1A',
+    width: "131px",
+    padding: '5px 20px',
+    borderRadius: '12px',
+    color: '#39973D',
+  }
+  const Pending = {
+    backgroundColor: '#FFC3131A',
+    padding: '5px 10px',
+    borderRadius: '12px',
+    fontSize: "15px",
+    color: '#FFC313',
+    // maxWidth: "95.31px",
+  }
+  const Tenant = {
+    backgroundColor: '#FFF1F8',
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#EC4899',
+  }
+  const Owner = {
+    backgroundColor: '#F1F0FF',
 
-          <img
-            src={params.row.img || "/src/assets/defultProfile.png"}
-            alt={params.value}
-            style={{ width: 35, height: 35, borderRadius: '50%', marginRight: 8, border: params.row.img ? "" : "1px solid #F4F4F4", backgroundColor: params.row.img ? "" : "#F4F4F4" }}
-          />
-           <span>{params.value}</span>
-        </div>
-      ),
-    },
-    {
-      field: 'unitNumber', headerName: 'Unit Number', flex: 1, minWidth: 100, headerAlign: 'center', align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge ${params.value.toLowerCase()}`}>
-        <span className='status-badge-wing'> {params.row.wing}</span>   <span> {params.value}</span>
-        </span>
-      )
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#4F46E5',
+  }
 
-    },
-    {
-      field: 'date',
-      headerName: 'Date',
-      flex: 1,
-      minWidth: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge ${params.value.toLowerCase()}`}>
+  const blanck = {
+    backgroundColor: '#F6F8FB',
+    padding: '5px 24px',
+    borderRadius: '12px',
 
-          {params.value}</span>
-        )
-    },
-    {
-      field: 'residentStatus',
-      headerName: 'Resident Status',
-      flex: 1,
-      minWidth: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge ${params.value.toLowerCase()}`}>
+    color: '#4F4F4F',
 
-          {
-            params.row.residentStatus === "Tenant" ? <span> <FaUser /> {params.value}</span> : <span><RiShieldUserFill /> {params.value}</span>
-          }
-        </span>
-      )
-    },
-    {
-      field: 'phoneNumber', headerName: 'Phone Number', flex: 1, minWidth: 120, headerAlign: 'center', align: 'center',
-      renderCell: (params) => (
-        <span>
-          {
-            <span>{params.value}</span>
-          }
-        </span>
-      )
-    },
-    {
-      field: 'Amount', headerName: 'Amount', type: 'number', flex: 0.5, minWidth: 100, headerAlign: 'center', align: 'center',
-      renderCell: (params) => (
-        <span>
-          {
-            <span style={{ color: "#39973D" }} className='  p-2 '>< CurrencyRupeeIcon />  {params.value}</span>
-          }
-        </span>
-      )
+  }
+  const Penalty = {
+    padding: '5px 14px',
+    borderRadius: '12px',
+    opacity: ' 0px',
+    background: "#E74C3C",
+    color: "#FFFFFF"
 
-    },
-    {
-      field: 'Penalty', headerName: 'Penalty', type: 'number', flex: 0.5, minWidth: 100, headerAlign: 'center', align: 'center',
-      renderCell: (params) => (
-        <span  >
-          {
-            params.row.Penalty > 0 ? <span className={`status-badge-Penalty`} >{params.value}</span> : <span className={`status-badge-emty`} >-</span>
-          }
-        </span>
-      )
-    },
-    {
-      field: 'Status',
-      headerName: 'Status',
-      flex: 1,
-      minWidth: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge ${params.value}`}>
 
-          {
-            params.row.Status === "Pending" ? <span> <AccessTimeIcon /> {params.value}</span> : <span><VerifiedIcon /> {params.value}</span>
-          }
-        </span>
-      )
-    },
-    {
-      field: 'Payment',
-      headerName: 'Payment',
-      flex: 1,
-      minWidth: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge ${params.value}`}>
+  }
+  const view = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
 
-          {
-            params.row.Payment === "Online" ? <span> < AccountBalanceWalletIcon /> {params.value}</span> : <span ><GiMoneyStack /> {params.value}</span>
-          }
-        </span>
-      )
-    },
-    {
-      field: 'Action',
-      headerName: 'Action',
-      flex: 1,
-      minWidth: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => (
-        <span className={`status-badge-view `} >
+  }
 
-          <span onClick={handleShow}><VisibilityIcon >{params.value}</VisibilityIcon></span>
-        </span>
-      )
-    },
+  const Online = {
+    backgroundColor: '#5678E91A',
 
-  ];
+    padding: '5px 15px',
+
+    borderRadius: '12px',
+    color: '#5678E9',
+    // maxWidth: "95.31px",
+  }
+  const Cash = {
+    backgroundColor: '#2022240D',
+
+    padding: '5px 15px',
+    fontSize: "20px",
+    borderRadius: '12px',
+    color: '#202224',
+  }
   const naviget = useNavigate()
   return (
     <>
@@ -255,94 +297,82 @@ export default function Icome() {
             </div>
 
           </div>
-          <DataGrid
-            className='mt-4 h-75'
-            rows={rows}
-            columns={columns}
-            pageSize={2}
-            rowsPerPageOptions={[5, 10, 20]}
-            disableSelectionOnClick
-            sx={{
 
-              '& .status-badge.tenant': {
-                backgroundColor: '#FFF1F8',
-                padding: '5px 10px',
-                borderRadius: '12px',
-                color: '#EC4899',
-              },
-              '& .status-badge.owner': {
-                backgroundColor: '#F1F0FF',
+          <div className="responsive-table-container">
+            <table className="responsive-table">
+              <thead className='tabal-header'>
+                <tr>
+                  <th className='redious'> &nbsp;&nbsp;   Name</th>
+                  <th>Unit Number</th>
+                  <th> &nbsp;&nbsp;&nbsp;Date</th>
+                  <th> &nbsp;&nbsp;&nbsp; Status</th>
+                  <th>Phone Number</th>
+                  <th>Amount</th>
+                  <th>Penalty</th>
+                  <th>&nbsp;&nbsp; &nbsp;&nbsp; Status </th>
+                  <th>Payment </th>
+                  <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Action</th>
+                </tr>
+              </thead>
+              <tbody className='sroll'>
+                {data.map((item, index) => (
+                  <tr key={index}>
+                    <td>
+                      {
+                        item.fullName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                          <span><img src={item.img} alt="" /> <span>  {item.fullName}</span> </span>
+                      }
+                    </td>
+                    <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unitNumber}</td>
+                    <td>
+                      {
+                        item.phoneNumber === "" ? <span style={blanck}>--</span> : <span>{item.Date}</span>
+                      }
+                    </td>
+                    <td>
+                      {
+                        item.residentStatus === "" ? <span style={blanck}>--</span> : <span>
+                          {
+                            item.residentStatus === "Tenant" ? <span style={Tenant}> <FaUser className='mb-1' /> <span className=''>{item.residentStatus}</span></span> : <span style={Owner}><RiShieldUserFill className='mb-1 fs-5' /> <span>{item.residentStatus}</span> </span>
+                          }
+                        </span>
+                      }
 
-                padding: '5px 10px',
-                borderRadius: '12px',
-                color: '#4F46E5',
-              },
-              '& .status-badge.Pending': {
-                backgroundColor: ' #FFC3131A',
-                padding: '5px 10px',
-                borderRadius: '12px',
-                color: '#FFC313',
-              },
-              '& .status-badge.Done': {
-                backgroundColor: '#39973D1A',
+                    </td>
+                    <td>
+                      {
+                        item.phoneNumber === "" ? <span style={blanck}>--</span> : <span>{item.phoneNumber}</span>
+                      }
+                    </td>
+                    <td>
+                      <span className='list-amount' > ₹ {item.Amount}</span>
+                    </td>
+                    <td>
+                      {item.Penalty <= 0 ? <span style={blanck}>--</span> : <span style={Penalty} > {item.Penalty} </span>}
+                    </td>
+                    <td>
+                      {
+                        item.Status === "Pending" ? <span style={Pending}> <AccessTimeIcon /> <span className=''>{item.Status}</span></span> : <span style={Done}><VerifiedIcon className='mb-1' /> <span>{item.Status}</span> </span>
+                      }
+                    </td>
 
-                padding: '5px 15px',
+                    <td>
+                      {
+                        item.Payment === "Online" ? <span style={Online}> <AccountBalanceWalletIcon /> <span className=''>{item.Payment}</span></span> : <span style={Cash}><GiMoneyStack className='mb-1' /> <span>{item.Payment}</span> </span>
+                      }
+                    </td>
 
-                borderRadius: '12px',
-                color: '#39973D',
-              },
-              '& .status-badge-Penalty': {
-                backgroundColor: '#E74C3C',
 
-                padding: '5px 15px',
+                    <td className="action-buttons">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={handleShow} style={view} > <VisibilityIcon ></VisibilityIcon></span>
 
-                borderRadius: '12px',
-                color: 'white',
-              },
-              '& .status-badge-emty': {
-                backgroundColor: '#F6F8FB',
-
-                padding: '5px 25px',
-
-                borderRadius: '12px',
-                color: '#39973D',
-              },
-              '& .status-badge-wing': {
-                backgroundColor: '#F6F8FB',
-                width: "131px",
-                padding: '5px 10px',
-                borderRadius: '12px',
-                color: '#5678E9',
-              },
-              '& .status-badge.Online': {
-                backgroundColor: '#5678E91A',
-
-                padding: '5px 15px',
-
-                borderRadius: '12px',
-                color: '#5678E9',
-              },
-              '& .status-badge.Cash': {
-                backgroundColor: '#2022240D',
-
-                padding: '5px 15px',
-                fontSize: "20px",
-                borderRadius: '12px',
-                color: '#202224',
-              },
-              '& .status-badge-view': {
-                backgroundColor: '#2022240D',
-
-                padding: '10px 10px',
-                fontSize: "20px",
-                borderRadius: '12px',
-                color: '#5678E9',
-              },
-              '& .MuiDataGrid-columnHeaders': {
-                backgroundColor: '#eaf1f8',
-              },
-            }}
-          />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </Box>
         <Modal className='' show={show} >
           <Modal.Header closeButton onClick={handleClose}>
@@ -517,14 +547,7 @@ export default function Icome() {
             </div>
           </Modal.Footer>
         </Modal>
-
-
-
-
       </div>
-
-
-
     </>
   )
 }
