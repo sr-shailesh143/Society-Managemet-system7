@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../index.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
-import { Delete, Edit, Image, PlusOne } from '@mui/icons-material';
+import { Delete, Edit, Image, PlusOne, Spa } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -152,11 +152,132 @@ export default function CompleteTracking() {
       ),
     },
   ];
+
+
+
+  const data = [
+    {
+      img: "src/assets/notification-img.png",
+      ComplainerName: "Evelyn Harper",
+      unitNumber: "1001",
+      ComplaintName: "Unethical Behavior",
+      Description: "Providing false information or deliberately.",
+      Priority: "Medium",
+      Status: "Pending",
+      wing: "A"
+    },
+    {
+      img: "src/assets/notification-img.png",
+      ComplainerName: "Evelyn Harper",
+      unitNumber: "1001",
+      ComplaintName: "Unethical Behavior",
+      Description: "Providing false information or deliberately.",
+      Priority: "Medium",
+      Status: "Solve",
+      wing: "B"
+    },
+    {
+      img: "src/assets/notification-img.png",
+      ComplainerName: "Evelyn Harper",
+      unitNumber: "1001",
+      ComplaintName: "Preventive Measures",
+      Description: "Providing false information or deliberately.",
+      Priority: "Low",
+      Status: "Pending",
+      wing: "C"
+    },
+    {
+      img: "src/assets/notification-img.png",
+      ComplainerName: "Evelyn Harper",
+      unitNumber: "1001",
+      ComplaintName: "Unethical Behavior",
+      Description: "Providing false information or deliberately.",
+      Priority: "High",
+      Status: "Open",
+      wing: "D"
+    },
+
+  ];
+
+  const EDITE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#39973D',
+
+  }
+  const DELETE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#E74C3C',
+
+  }
+
+  const wing = {
+
+    backgroundColor: '#F6F8FB',
+    width: "131px",
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+  }
+  const Medium = {
+    backgroundColor: '#5678E9',
+    width: "131px",
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#ffff',
+  }
+  const Low = {
+    backgroundColor: '#39973D',
+    padding: '5px 23px',
+    borderRadius: '12px',
+    color: '#ffff',
+
+  }
+  const High = {
+    backgroundColor: '#E74C3C',
+    padding: '5px 22px',
+    borderRadius: '12px',
+    color: '#FFFF',
+  }
+  const Pending = {
+    backgroundColor: '#FFC3131A',
+
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#FFC313',
+  }
+  const Open = {
+    backgroundColor: '#5678E91A',
+
+    padding: '5px 20px',
+    borderRadius: '12px',
+    color: '#5678E9',
+  }
+  const Solve = {
+    backgroundColor: '#39973D1A',
+
+    padding: '5px 20px',
+    borderRadius: '12px',
+    color: '#39973D',
+  }
+
+
+  const view = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+
+  }
+
   return (
     <>
       <div className="createTraking">
 
-        <div className="row mt-3 d-flex justify-content-between align-items-center mb-3 p-3 m-2 ">
+        <div className="row mt-3 d-flex justify-content-between align-items-center  p-3 m-2 ">
           <h2 className=' col-12 col-md-3 mt-4' style={{ textWrap: "wrap" }}>Create Complaint</h2>
           <button className=' col-12 col-md-2 l-btn text-white' onClick={() => setshow(true)} >
             Create Complaint
@@ -254,85 +375,63 @@ export default function CompleteTracking() {
         </Modal>
         <div className="complent-list">
           <Box className="radious" bgcolor={"white"} sx={{ height: '600px', width: '100%', padding: 2 }}>
-            <DataGrid
-              className=' h-75 '
-              rows={rows}
-              columns={columns}
-              pageSize={2}
-              rowsPerPageOptions={[5, 10, 20]}
-              disableSelectionOnClick
-              sx={{
-                '& .status-badge.medium': {
-                  backgroundColor: '#5678E9',
-                  width: "131px",
-                  padding: '5px 10px',
-                  borderRadius: '12px',
-                  color: '#ffff',
-                },
-                '& .status-badge-wing': {
-                  backgroundColor: '#F6F8FB',
-                  width: "131px",
-                  padding: '5px 10px',
-                  borderRadius: '12px',
-                  color: '#5678E9',
-                },
-                '& .status-badge.low': {
-                  backgroundColor: '#39973D',
-                  padding: '5px 20px',
-                  borderRadius: '12px',
-                  color: '#ffff',
-                  maxWidth: "95.31px",
+            <div className="responsive-table-container">
+              <table className="responsive-table">
+                <thead className='tabal-header'>
+                  <tr>
+                    <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
+                    <th>Complaint Name</th>
+                    <th> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</th>
+                    <th>Unit Number</th>
+                    <th>  &nbsp; &nbsp;Priority</th>
+                    <th> &nbsp;&nbsp; Status</th>
+                    <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                },
-                '& .status-badge.high': {
-                  backgroundColor: '#E74C3C',
-                  padding: '5px 20px',
-                  borderRadius: '12px',
-                  color: '#fff',
-                },
-                '& .status-badge.pending': {
-                  backgroundColor: '#FFC3131A',
+                  {data.map((item, index) => (
+                    <tr key={index}>
+                      <td>
+                        {
+                          item.fullName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                            <span><img src={item.img} alt="" /> <span>  {item.ComplainerName}</span> </span>
+                        }
+                      </td>
+                      <td >   {item.ComplaintName}</td>
+                      <td >   {item.Description}</td>
+                      <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unitNumber}</td>
+                      <td >
+                        {
+                          item.Priority === "Medium" ? <span style={Medium}>{item.Priority}</span> : item.Priority === "Low" ? <span style={Low}>{item.Priority}</span> : <span style={High}>{item.Priority}</span>
+                        }
+                      </td>
+                      <td >
+                        {
+                          item.Status === "Pending" ? <span style={Pending}>{item.Status}</span> : item.Status === "Open" ? <span style={Open}>{item.Status}</span> : <span style={Solve}>{item.Status}</span>
+                        }
+                      </td>
 
-                  padding: '5px 10px',
-                  borderRadius: '12px',
-                  color: '#FFC313',
-                },
-                '& .status-badge.open': {
-                  backgroundColor: '#5678E91A',
+                      <td className="action-buttons">
+                        <span className=''>
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true)}  style={EDITE} >
+                            <Edit style={{ cursor: "pointer" }} />
+                          </span>
+                          <span onClick={() => setshowview(true)} className={`status-badge-view `} style={view} >
+                            <VisibilityIcon style={{ cursor: "pointer" }} />
+                          </span>
+                          <span onClick={() => setshowDelete(true)} className={`status-badge-delete ms-2 `} style={DELETE}>
 
-                  padding: '5px 20px',
-                  borderRadius: '12px',
-                  color: '#5678E9',
-                },
-                '& .status-badge.solve': {
-                  backgroundColor: '#39973D1A',
-                  padding: '5px 20px',
-                  borderRadius: '12px',
-                  color: '#39973D',
-                },
-                '& .status-badge-edit': {
-                  backgroundColor: '#F6F8FB',
-                  padding: '10px 10px',
-                  borderRadius: '12px',
-                  color: '#39973D',
-                },
-                '& .status-badge-view': {
-                  backgroundColor: '#F6F8FB',
-                  padding: '10px 10px',
-                  borderRadius: '12px',
-                  color: '#5678E9',
-                },
-                '& .status-badge-delete': {
-                  backgroundColor: '#F6F8FB',
-                  padding: '10px 10px',
-                  borderRadius: '12px',
-                  color: '#E74C3C',
-                },
-                '& .MuiDataGrid-columnHeaders': {
-                  backgroundColor: '#eaf1f8',
-                },
-              }}
-            />
+                            <Delete style={{ cursor: "pointer" }} />
+                          </span>
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+
+                </tbody>
+              </table>
+            </div>
           </Box>
           {/* edit model  */}
           <Modal className='complet-model' show={editShow} >

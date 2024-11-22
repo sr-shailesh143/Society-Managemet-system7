@@ -83,6 +83,7 @@ const ResidentManageMent = () => {
             phoneNumber: "97587 85828",
             member: 1,
             vehicle: 2,
+            wing:"A"
         },
         {
             img: "",
@@ -94,6 +95,7 @@ const ResidentManageMent = () => {
             phoneNumber: "",
             member: 0,
             vehicle: 0,
+            wing:"B"
         },
         {
             img: "src/assets/notification-img.png",
@@ -105,6 +107,7 @@ const ResidentManageMent = () => {
             phoneNumber: "97587 85828",
             member: 3,
             vehicle: 1,
+            wing:"C"
         },
         {
             img: "src/assets/notification-img.png",
@@ -116,6 +119,7 @@ const ResidentManageMent = () => {
             phoneNumber: "97587 85828",
             member: 6,
             vehicle: 3,
+            wing:"D"
         },
     ];
 
@@ -163,6 +167,13 @@ const ResidentManageMent = () => {
         color: '#4F4F4F',
 
     }
+    const view = {
+        backgroundColor: '#F6F8FB',
+        padding: '10px 10px',
+        borderRadius: '12px',
+        color: '#5678E9',
+    
+      }
     return (
         <>
             <Box className="radious" bgcolor={"white"} sx={{ height: '600px', width: '100%', padding: 2 }}>
@@ -178,17 +189,18 @@ const ResidentManageMent = () => {
                     <table className="responsive-table">
                         <thead className='tabal-header'>
                             <tr>
-                                <th className='redious'>Full Name</th>
+                                <th className='redious'> &nbsp;&nbsp;  Full Name</th>
                                 <th>Unit Number</th>
-                                <th>Unit Status</th>
+                                <th> &nbsp;&nbsp;&nbsp;Unit Status</th>
                                 <th>Resident Status</th>
                                 <th>Phone Number</th>
                                 <th>Member</th>
-                                <th>Vehicle</th>
-                                <th className='redious1'>Action</th>
+                                <th>Vehicle </th>
+                                <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                           
                             {data.map((item, index) => (
                                 <tr key={index}>
                                     <td>
@@ -197,7 +209,7 @@ const ResidentManageMent = () => {
                                                 <span><img src={item.img} alt="" /> <span>  {item.fullName}</span> </span>
                                         }
                                     </td>
-                                    <td ><span className='status-badge-wing' style={wing}>A</span>   {item.unitNumber}</td>
+                                    <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unitNumber}</td>
                                     <td>
                                         {
                                             item.unitStatus === "Occupied" ? <span style={occupied}> <LuBuilding2 className='mb-1' /> <span className=''>{item.unitStatus}</span></span> : <span style={vacate}><FaBuildingUser className='mb-1' /> <span>{item.unitStatus}</span> </span>
@@ -220,21 +232,21 @@ const ResidentManageMent = () => {
                                     </td>
                                     <td>
                                         {
-                                            item.member <= 0 ? <span style={wing}>-</span> : <span >{item.member}</span>
+                                            item.member <= 0 ?   <span style={wing}>-</span> : <span >  &nbsp; &nbsp;{item.member}</span>
                                         }
                                     </td>
-                                    <td colSpan={1}>
+                                    <td colSpan={1}> 
                                         {
-                                            item.vehicle <= 0 ? <span style={wing}>-</span> : <span>{item.vehicle}</span>
+                                            item.vehicle <= 0 ? <span style={wing}>-</span> : <span>  &nbsp; &nbsp;{item.vehicle} </span>
                                         }
                                     </td>
-                                    <td className="action-buttons">
+                                    <td className="action-buttons"> 
                                         {
-                                            item.fullName === "" || item.residentStatus === "" || item.phoneNumber === "" ? <span style={blanck}>--</span> : <span>
-                                                <span className='' onClick={handleShow}>
-                                                    <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1 radious mx-3 ' />
+                                            item.fullName === "" || item.residentStatus === "" || item.phoneNumber === "" ? <span style={blanck}> --</span> : <span className='d-flex gap-2'>
+                                                <span className='' onClick={handleShow} style={view}>
+                                                    <Edit style={{ cursor: "pointer" }} className='bg-success text-white p-1  radious  ' />
                                                 </span>
-                                                <span onClick={() => handleShow1(item.residentStatus)}>
+                                                <span onClick={() => handleShow1(item.residentStatus)} style={view}>
                                                     <VisibilityIcon style={{ cursor: "pointer" }} className='bg-primary p-1 radious text-white' />
                                                 </span>
                                             </span>
@@ -243,6 +255,7 @@ const ResidentManageMent = () => {
                                     </td>
                                 </tr>
                             ))}
+                           
                         </tbody>
                     </table>
                 </div>
@@ -510,10 +523,14 @@ const ResidentManageMent = () => {
                                             <p className='ms-3  text-1'>Address</p>
                                             <p className='mx-3 text-2'>2972 Westheimer Rd..</p>
                                         </div>
+z
                                     </div>
+
                                 </div>
+
                             </center>
                             <center>
+
                                 <div className="viwe-detels-layout1 mt-4 ">
                                     <div className="MemberCounting d-flex justify-content-between  align-items-center  ">
                                         <h6 className='ms-3 mt-2 text-white'>Member Counting</h6>
@@ -572,16 +589,21 @@ const ResidentManageMent = () => {
                                         </div>
                                     </div>
                                 </div>
+
                             </center>
                         </div>
                     </div>
                 </div>
             </Offcanvas>
+
+
+
             {/* Residence Status popup selelct occupied and vacate */}
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
                     show={show}
+
                     centered
                 >
                     <Modal.Header >
@@ -661,9 +683,12 @@ const ResidentManageMent = () => {
                                 Save
                             </Button>
                         </div>
+
                     </Modal.Footer>
                 </Modal>
             </div>
+
+
             {/* Residence Status popup for select wing and unit */}
             <div className="d-flex justify-content-center">
                 <Modal
@@ -737,7 +762,10 @@ const ResidentManageMent = () => {
                     </Modal.Footer>
                 </Modal>
             </div>
+
+
             {/* Do you want to vacate the finlay flat? */}
+
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
@@ -780,6 +808,7 @@ const ResidentManageMent = () => {
                 </Modal>
             </div>
         </>
+
     );
 };
 
