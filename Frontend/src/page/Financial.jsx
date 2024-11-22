@@ -112,7 +112,7 @@ const Financial = () => {
                   <Card.Text style={{ fontSize: '0.9rem', color: '#333' }}>
                     <strong style={{ color: 'grey' }}>Description:</strong>
                     <p>{note.description}</p>
-                    <strong style={{ color: 'grey' }}>Date:</strong> {note.date || 'N/A'}
+                    <strong style={{ color: 'grey' }}>Date:</strong>{new Date(note.date).toLocaleDateString()}
                   </Card.Text>
                 </Card.Body>
               </Card>
