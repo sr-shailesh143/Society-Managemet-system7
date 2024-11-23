@@ -33,7 +33,7 @@ import Securityprotocols from './page/Securityprotocols';
 import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
-
+import InvoicePage from './page3/InvoicePage';
 import VisitorTracking from './page2/Visitortracking';
 import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
@@ -117,7 +117,7 @@ function App() {
         {/* Community */}
         <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
         <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
-
+        <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
 
 
         <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />

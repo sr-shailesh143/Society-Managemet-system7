@@ -117,17 +117,17 @@ const PaymentModal = ({ show, handleClose, amount }) => {
               </Form.Group>
               <Form.Group controlId="cardNumber">
                 <Form.Label className="text-dark fw-bold">Card Number <span className="text-danger">*</span></Form.Label>
-                <Form.Control type="text" placeholder="Enter Card Number" required />
+                <Form.Control type="number" placeholder="Enter Card Number" required />
               </Form.Group>
               <div className="d-flex justify-content-between">
                 <Form.Group controlId="expiryDate" style={{ width: "48%" }}>
                   <Form.Label className="text-dark fw-bold">Expiry Date <span className="text-danger">*</span></Form.Label>
-                  <Form.Control type="text" placeholder="MM/YY" required />
+                  <Form.Control type="date" placeholder="MM/YY" required />
                 </Form.Group>
 
                 <Form.Group controlId="cvv" style={{ width: "48%" }}>
                   <Form.Label className="text-dark fw-bold">CVV <span className="text-danger">*</span></Form.Label>
-                  <Form.Control type="text" placeholder="Enter CVV" required />
+                  <Form.Control  placeholder="Enter CVV" required />
                 </Form.Group>
               </div>
               <div className="d-flex justify-content-between" style={{ marginTop: "20px" }}>
