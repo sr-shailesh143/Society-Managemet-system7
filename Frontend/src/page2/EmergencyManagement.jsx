@@ -51,8 +51,8 @@ export default function EmergencyManagement() {
             <option value="">Select alert</option>
             <option value="Emergency">Emergency</option>
             <option value="Warning">Warning</option>
-            <option value="EarthQuack">Earth Quack</option>
-            <option value="HighWinds">High Winds</option>
+            <option value="Earth Quake">Earth Quake</option>
+            <option value="High Winds">High Winds</option>
             <option value="Thunder">Thunder</option>
           </select>
 
