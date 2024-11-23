@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useForm from "/src/hooks/useForm";
 import { login } from '../apiservices/Authentication';
 import { useDispatch } from "react-redux";
-import toast from 'react-hot-toast';
+import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
 
 
@@ -148,6 +148,7 @@ export default function Login() {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }
