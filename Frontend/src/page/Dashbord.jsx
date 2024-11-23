@@ -152,9 +152,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }}  >
-                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
+                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
                   Total Balance<br />
-                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
+                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button1.png'
@@ -174,9 +174,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }} >
-                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
+                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
                   Total Balance<br />
-                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
+                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button2.png'
@@ -196,9 +196,9 @@ const Dashboard = () => {
                   alignItems: "center",
                   justifyContent: "center",
                 }} >
-                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
+                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
                   Total Balance<br />
-                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
+                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button3.png'
@@ -219,9 +219,9 @@ const Dashboard = () => {
                   justifyContent: "center",
                 }}
               >
-                <div style={{ marginRight: "100px",fontWeight:"bold" }}>
+                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
                   Total Balance<br />
-                  <h6 style={{fontWeight:"bold"}}>₹ 2,22,520</h6>
+                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
                 </div>
                 <img
                   src='src/assets/button4.png'
@@ -299,7 +299,7 @@ const Dashboard = () => {
                       )}
                     </div>
                     <div className="d-flex">
-                      <Button style={{border:"none"}} size="sm" className="me-1  bg-danger" onClick={() => handleShowDeleteNumberModal(index)}>
+                      <Button style={{ border: "none" }} size="sm" className="me-1  bg-danger" onClick={() => handleShowDeleteNumberModal(index)}>
                         <FaTrash />
                       </Button>
                       <Button variant="success" size="sm" onClick={() => handleShowEditNumberModal(item)}>
@@ -348,16 +348,16 @@ const Dashboard = () => {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button style={{background:"lightgrey",color:"white",border:"none",width:"45%"}} onClick={() => setShowEditNumberModal(false)}>
+              <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={() => setShowEditNumberModal(false)}>
                 Cancel
               </Button>
-              <Button  style={{
-                    background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                    border: "none",
-                    color: "white",
-                    width:"45%"
-                  }} onClick={handleEditNumber}>
-                Save 
+              <Button style={{
+                background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+                border: "none",
+                color: "white",
+                width: "45%"
+              }} onClick={handleEditNumber}>
+                Save
               </Button>
             </Modal.Footer>
           </Modal>
@@ -370,10 +370,10 @@ const Dashboard = () => {
               Are you sure you want to delete this important number?
             </Modal.Body>
             <Modal.Footer>
-              <Button style={{background:"lightgrey",color:"white",border:"none",width:"45%"}} onClick={() => setShowDeleteNumberModal(false)}>
+              <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={() => setShowDeleteNumberModal(false)}>
                 Cancel
               </Button>
-              <Button variant="danger" style={{width:"45%"}} onClick={handleDeleteNumber}>
+              <Button variant="danger" style={{ width: "45%" }} onClick={handleDeleteNumber}>
                 Delete
               </Button>
             </Modal.Footer>
@@ -384,7 +384,7 @@ const Dashboard = () => {
             <Card.Body >
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <Card.Title>Pending Maintenances</Card.Title>
-                <Button variant="link" className="text-primary p-0"style={{textDecoration:"none"}}>View all</Button>
+                <Button variant="link" className="text-primary p-0" style={{ textDecoration: "none" }}>View all</Button>
               </div>
               <ListGroup variant="flush" style={{ maxHeight: 'calc(100% - 60px)', overflowY: 'auto' }}>
                 {pendingMaintenances.map((item, index) => (
@@ -431,7 +431,7 @@ const Dashboard = () => {
                   <option value="lastMonth">Last Month</option>
                 </select>
               </div>
-              <Table responsive striped  hover className="complaint-table">
+              <Table responsive striped hover className="complaint-table">
                 <thead>
                   <tr >
                     <th style={{ border: "none", borderRadius: "15px 0px 0px 0px ", backgroundColor: "#E5ECFD", textAlign: "center" }}>Complainer Name</th>
@@ -440,7 +440,7 @@ const Dashboard = () => {
                     <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Priority</th>
                     <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Status</th>
                     <th style={{ border: "none", borderRadius: " 0px 15px 0px 0px", backgroundColor: "#E5ECFD", textAlign: "center" }}>Action</th>
-            </tr>
+                  </tr>
                 </thead>
                 <tbody>
                   {complaints.map((item) => (
@@ -480,7 +480,7 @@ const Dashboard = () => {
                           className="ms-2"
                           onClick={() => handleShowEditComplaintModal(item)} > <FaEdit /></Button>
                         <Button
-                       style={{border:"none"}}
+                          style={{ border: "none" }}
                           size="sm"
                           className="ms-2 bg-danger"
                           onClick={() => handleShowDeleteModal(item)}   > <FaTrash /> </Button>
@@ -501,7 +501,7 @@ const Dashboard = () => {
                 <select
                   id="dropdown-basic-button"
                   title="Select Month"
-                
+
                   style={{
                     border: "1px solid grey",
                     borderRadius: "5px",
@@ -597,87 +597,87 @@ const Dashboard = () => {
       </Modal>
       {/* Edit Complaint Modal */}
       <Modal show={showEditComplaintModal} onHide={handleCloseModal}>
-  <Modal.Header >
-    <Modal.Title>Edit Complaint</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    <Form>
-      <Form.Group controlId="formComplainer">
-        <Form.Label>Complainer</Form.Label>
-        <Form.Control
-          type="text"
-          value={currentComplaint?.complainer || ''}
-          onChange={(e) => setCurrentComplaint({ ...currentComplaint, complainer: e.target.value })} />
-      </Form.Group>
-      <Form.Group controlId="formComplaint">
-        <Form.Label>Complaint</Form.Label>
-        <Form.Control
-          type="text"
-          value={currentComplaint?.complaint || ''}
-          onChange={(e) => setCurrentComplaint({ ...currentComplaint, complaint: e.target.value })} />
-      </Form.Group>
-      <Form.Group controlId="formPriority">
-        <Form.Label>Priority</Form.Label>
-        <div>
-          {['High', 'Medium', 'Low'].map((priority) => (
-            <Form.Check
-              inline
-              key={priority}
-              label={priority}
-              type="radio"
-              name="priority"
-              value={priority}
-              style={{ color: "grey", textAlign: "center", justifyContent: "center" }}
-              checked={currentComplaint?.priority === priority}
-              onChange={(e) => setCurrentComplaint({ ...currentComplaint, priority: e.target.value })}
-            />
-          ))}
-        </div>
-      </Form.Group>
+        <Modal.Header >
+          <Modal.Title>Edit Complaint</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formComplainer">
+              <Form.Label>Complainer</Form.Label>
+              <Form.Control
+                type="text"
+                value={currentComplaint?.complainer || ''}
+                onChange={(e) => setCurrentComplaint({ ...currentComplaint, complainer: e.target.value })} />
+            </Form.Group>
+            <Form.Group controlId="formComplaint">
+              <Form.Label>Complaint</Form.Label>
+              <Form.Control
+                type="text"
+                value={currentComplaint?.complaint || ''}
+                onChange={(e) => setCurrentComplaint({ ...currentComplaint, complaint: e.target.value })} />
+            </Form.Group>
+            <Form.Group controlId="formPriority">
+              <Form.Label>Priority</Form.Label>
+              <div>
+                {['High', 'Medium', 'Low'].map((priority) => (
+                  <Form.Check
+                    inline
+                    key={priority}
+                    label={priority}
+                    type="radio"
+                    name="priority"
+                    value={priority}
+                    style={{ color: "grey", textAlign: "center", justifyContent: "center" }}
+                    checked={currentComplaint?.priority === priority}
+                    onChange={(e) => setCurrentComplaint({ ...currentComplaint, priority: e.target.value })}
+                  />
+                ))}
+              </div>
+            </Form.Group>
 
-      <Form.Group controlId="formStatus">
-        <Form.Label>Status</Form.Label>
-        <div>
-          {['Open', 'Pending', 'Solved'].map((status) => (
-            <Form.Check
-              inline
-              key={status}
-              label={status}
-              type="radio"
-              name="status"
-              value={status}
-              checked={currentComplaint?.status === status}
-              onChange={(e) => setCurrentComplaint({ ...currentComplaint, status: e.target.value })}
-            />
-          ))}
-        </div>
-      </Form.Group>
-      
-      <div className="d-flex justify-content-end mt-3">
-        <Button 
-        style={{background:"lightgrey",color:"white",border:"none",width:"45%"}}
-        onClick={handleCloseModal} className="me-2">
-          Cancel
-        </Button>
-        <Button 
-         style={{
-          background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-          border: "none",
-          color: "white",
-          width:"45%"
-        }}
-        
-        onClick={handleEditComplaint}>
-          Save Changes
-        </Button>
-      </div>
-    </Form>
-  </Modal.Body>
-</Modal>
+            <Form.Group controlId="formStatus">
+              <Form.Label>Status</Form.Label>
+              <div>
+                {['Open', 'Pending', 'Solved'].map((status) => (
+                  <Form.Check
+                    inline
+                    key={status}
+                    label={status}
+                    type="radio"
+                    name="status"
+                    value={status}
+                    checked={currentComplaint?.status === status}
+                    onChange={(e) => setCurrentComplaint({ ...currentComplaint, status: e.target.value })}
+                  />
+                ))}
+              </div>
+            </Form.Group>
+
+            <div className="d-flex justify-content-end mt-3">
+              <Button
+                style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }}
+                onClick={handleCloseModal} className="me-2">
+                Cancel
+              </Button>
+              <Button
+                style={{
+                  background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+                  border: "none",
+                  color: "white",
+                  width: "45%"
+                }}
+
+                onClick={handleEditComplaint}>
+                Save Changes
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
 
       {/* Delete Modal */}
       <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-        <Modal.Header 
+        <Modal.Header
         >
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
@@ -685,73 +685,73 @@ const Dashboard = () => {
           Are you sure you want to delete this complaint?
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{background:"lightgrey",color:"white",border:"none",width:"45%"}} onClick={handleCloseDeleteModal}>
+          <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleCloseDeleteModal}>
             Cancel
           </Button>
-          <Button variant="danger"style={{width:"45%"}} onClick={confirmDeleete}>
+          <Button variant="danger" style={{ width: "45%" }} onClick={confirmDeleete}>
             Delete
           </Button>
         </Modal.Footer>
       </Modal>
       {/* View Complaint Modal */}
       <Modal show={showViewComplaintModal} onHide={handleCloseViewComplaintModal}>
-  <Modal.Header closeButton>
-    <Modal.Title>Complaint Details</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    {selectedComplaint && (
-      <>
-        {/* Row for Profile Image and Name */}
-        <Row className="align-items-center mb-3">
-          <Col xs="auto">
-            <img
-              src={selectedComplaint.profileImage || "https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU="}
-              alt="Profile"
-              className="rounded-circle"
-              width="50"
-              height="50"
-            />
-          </Col>
-          <Col>
-            <p><strong>{selectedComplaint.complainer}</strong></p>
-            <p style={{ fontSize: "0.9em", color: "gray" }}>{selectedComplaint.date}</p>
-          </Col>
-        </Row>
-        
-        {/* Complaint text */}
-        <Row >
-          <Col>
-            <p style={{color:"black"}}><p style={{color:"grey"}}>Complaint:</p> {selectedComplaint.complaint}</p>
-          </Col>
-        </Row>
+        <Modal.Header closeButton>
+          <Modal.Title>Complaint Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedComplaint && (
+            <>
+              {/* Row for Profile Image and Name */}
+              <Row className="align-items-center mb-3">
+                <Col xs="auto">
+                  <img
+                    src={selectedComplaint.profileImage || "https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU="}
+                    alt="Profile"
+                    className="rounded-circle"
+                    width="50"
+                    height="50"
+                  />
+                </Col>
+                <Col>
+                  <p><strong>{selectedComplaint.complainer}</strong></p>
+                  <p style={{ fontSize: "0.9em", color: "gray" }}>{selectedComplaint.date}</p>
+                </Col>
+              </Row>
 
-        {/* Priority and Status */}
-        <Row>
-          <Col>
-            <p><strong>Status:</strong> {selectedComplaint.status}</p>
-          </Col>
-          <Col>
-            <p>
-              <strong>Priority:</strong>{' '}
-              <Badge
-                bg={
-                  selectedComplaint.priority === 'High'
-                    ? 'danger'
-                    : selectedComplaint.priority === 'Medium'
-                    ? 'warning'
-                    : 'success'
-                }
-              >
-                {selectedComplaint.priority}
-              </Badge>
-            </p>
-          </Col>
-        </Row>
-      </>
-    )}
-  </Modal.Body>
- 
-</Modal>
+              {/* Complaint text */}
+              <Row >
+                <Col>
+                  <p style={{ color: "black" }}><p style={{ color: "grey" }}>Complaint:</p> {selectedComplaint.complaint}</p>
+                </Col>
+              </Row>
+
+              {/* Priority and Status */}
+              <Row>
+                <Col>
+                  <p><strong>Status:</strong> {selectedComplaint.status}</p>
+                </Col>
+                <Col>
+                  <p>
+                    <strong>Priority:</strong>{' '}
+                    <Badge
+                      bg={
+                        selectedComplaint.priority === 'High'
+                          ? 'danger'
+                          : selectedComplaint.priority === 'Medium'
+                            ? 'warning'
+                            : 'success'
+                      }
+                    >
+                      {selectedComplaint.priority}
+                    </Badge>
+                  </p>
+                </Col>
+              </Row>
+            </>
+          )}
+        </Modal.Body>
+
+      </Modal>
 
     </Container>
   );
