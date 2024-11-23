@@ -46,6 +46,7 @@ import EventParticipation from './page3/EventParticipation';
 import Activity from './page3/Activity';
 import Securityprotocol2 from './page3/Securityprotocol2';
 import MaintananceInvoice from './page3/MaintananceInvoice';
+import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <BrowserRouter>
@@ -127,6 +128,7 @@ function App() {
         <Route path='/Securityprotocol2' element={<Layout component={<Securityprotocol2 />} />} />
       </Routes>
       <Toaster />
+      <ToastContainer />
     </BrowserRouter>
   );
 }

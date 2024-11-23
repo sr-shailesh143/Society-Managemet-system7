@@ -14,7 +14,7 @@ router.post(
 router.get("/getAllSecurity", securityController.getAllSecurity);
 
 // Get a specific security personnel by ID
-router.get("/security/:id", securityController.getSecurityById);
+router.get("/getSecurityById/:id", securityController.getSecurityById);
 
 // Update a specific security personnel by ID
 router.patch(
