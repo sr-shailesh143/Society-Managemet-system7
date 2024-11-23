@@ -11,6 +11,8 @@ const port = process.env.PORT || 3000;
 require("./src/config/db.js");
 const cors = require("cors");
 
+port.timeout = 60000;
+
 // for all origin
 const corsOptions = {
   origin: function (origin, callback) {
@@ -24,8 +26,10 @@ app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 app.use(cors(corsOptions));
 const Societyroute = require("./src/routes/societyroute.js");
 const Userroute = require("./src/routes/userroute");
+const profileRoutes = require('./src/routes/profileRoutes');
 const Numberroute = require("./src/routes/numberroute");
 const Residentroute = require("./src/routes/residentroute");
+// const ResidentRoutes=require("./src/routes/ResidentRoutes.js")
 
 const complaintRoutes = require('./src/routes/complaintRoutes.js');
 const requestRoutes = require('./src/routes/requestRoutes.js');
@@ -41,6 +45,7 @@ const TrvisitorRoutes = require('./src/routes/TrvisitorRoutes');
 const alertRoutes = require('./src/routes/alertRoutes.js')
 const incomeRoutes = require('./src/routes/incomeRoutes.js')
 
+
 //user registration and login part
 app.use("/api/auth", Userroute);
 
@@ -49,7 +54,9 @@ app.use("/api/society", Societyroute);
 app.use("/api/number", Numberroute);
 //resident
 app.use("/api/resident", Residentroute);
+// app.use("/resident",ResidentRoutes)
 
+app.use('/api/profile', profileRoutes);
 app.use('/api/complaint', complaintRoutes);
 app.use("/api/request", requestRoutes);
 app.use("/api/notes", noteRoutes);
