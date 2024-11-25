@@ -40,7 +40,7 @@ import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
 import RecidencTarent from './page3/ResidenceTarent';
 import Community from './page3/Community';
-
+import OtherincomeInvoice from './page3/OtherincomeInvoice';
 import RequestSubmission from './page3/RequestSubmission';
 import EventParticipation from './page3/EventParticipation';
 import Activity from './page3/Activity';
@@ -119,13 +119,13 @@ function App() {
         <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
         <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
         <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
+        <Route path='/OtherincomeInvoice'element={<ResidentManageMentLayout component={<OtherincomeInvoice/>} />} />
 
-
-        <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
-        <Route path='/RequestSubmission' element={<Layout component={<RequestSubmission />} />} />
-        <Route path='/EventParticipation' element={<Layout component={<EventParticipation />} />} />
-        <Route path='/Activity' element={<Layout component={<Activity />} />} />
-        <Route path='/Securityprotocol2' element={<Layout component={<Securityprotocol2 />} />} />
+        <Route path='/ServiceComplain' element={<ResidentManageMentLayout component={<ServiceComplain />} />} />
+        <Route path='/RequestSubmission' element={<ResidentManageMentLayout component={<RequestSubmission />} />} />
+        <Route path='/EventParticipation' element={<ResidentManageMentLayout component={<EventParticipation />} />} />
+        <Route path='/Activity' element={<ResidentManageMentLayout component={<Activity />} />} />
+        <Route path='/Securityprotocol2' element={<ResidentManageMentLayout component={<Securityprotocol2 />} />} />
       </Routes>
       <Toaster />
       <ToastContainer />

@@ -44,7 +44,7 @@ export default function Securityprotocol2() {
 
     return (
         <div className="container-fluid">
-            <div className="complaints-section">
+            <div className="complaints-section"style={{borderRadius:"15px"}}>
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Security Protocols</h4>
                 </div>

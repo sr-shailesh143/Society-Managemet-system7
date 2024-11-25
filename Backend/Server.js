@@ -26,7 +26,7 @@ app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 app.use(cors(corsOptions));
 const Societyroute = require("./src/routes/societyroute.js");
 const Userroute = require("./src/routes/userroute");
-const profileRoutes = require('./src/routes/profileRoutes');
+// const profileRoutes = require('./src/routes/profileRoutes');
 const Numberroute = require("./src/routes/numberroute");
 const Residentroute = require("./src/routes/residentroute");
 // const ResidentRoutes=require("./src/routes/ResidentRoutes.js")
@@ -56,7 +56,7 @@ app.use("/api/number", Numberroute);
 app.use("/api/resident", Residentroute);
 // app.use("/resident",ResidentRoutes)
 
-app.use('/api/profile', profileRoutes);
+// app.use('/api/profile', profileRoutes);
 app.use('/api/complaint', complaintRoutes);
 app.use("/api/request", requestRoutes);
 app.use("/api/notes", noteRoutes);
