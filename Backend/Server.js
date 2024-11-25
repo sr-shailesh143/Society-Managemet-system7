@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 require("./src/config/db.js");
 const cors = require("cors");
 
-port.timeout = 60000;
+
 
 // for all origin
 const corsOptions = {
