@@ -52,7 +52,7 @@ const Ownerschema= new Schema({
         type:String,
         
     },
-    RentAgreement:{
+    Rent_Agreement:{
         type:String,
         
     },
