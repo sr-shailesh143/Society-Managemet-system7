@@ -907,6 +907,7 @@ input[type="email"] {
     justify-content: center;
     ;
   }
+
 }
 
 .profile {
@@ -1326,6 +1327,8 @@ input[type="email"] {
   border-color: #FE512E #F09619;
   padding: 14px 10px 14px 10px !important;
   cursor: pointer;
+  text-wrap: wrap;
+  
 
 }
 
@@ -1729,6 +1732,12 @@ input[type="email"] {
     width: 100%;
     /* Full-width on mobile */
   }
+  .f-btn,
+  .polls-text{
+    font-size: 11px;
+  }
+  
+
 }
 
 
@@ -2243,6 +2252,7 @@ input[type="email"] {
 
     text-align: center;
   }
+ 
 }
 
 .model-title {
@@ -2461,6 +2471,8 @@ input[type="email"] {
   .responsive-table td {
     padding: 8px;
   }
+  
+  
 }
 
 @media (max-width: 480px) {

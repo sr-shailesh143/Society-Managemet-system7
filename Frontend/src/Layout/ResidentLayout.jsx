@@ -201,10 +201,10 @@ left:-23px;
                             <Link className='link-tag' to={"/EventParticipation"}  > <div className='side-design' style={{ display: location.pathname === "/EventParticipation" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/EventParticipation" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/EventParticipation" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <IoMdCalendar className=' fs-3 mb-1' />Events Participation  </NavLink></Link>
                             <Link className='link-tag' to={"/Community"} onClick={toggleFinancialSubmenu} > <div className='side-design' style={{ display: location.pathname === "/Community" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/Community" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Community" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <GiShirtButton className=' fs-3 mb-1' />Community {location.pathname === "/Community" ? <ArrowDropDownIcon/> :"" }</NavLink> </Link>
                             {
-                                location.pathname === "/Community" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu && (
+                                location.pathname === "/Community" || location.pathname === "/polls" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu && (
                                     <Submenu>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Community" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Financial")} >Access Forums</span></SubmenuItem>
-                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Icome")}> Polls</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Community" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Community")} >Access Forums</span></SubmenuItem>
+                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/polls" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/polls")}> Polls</span></SubmenuItem>
                                         <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Expense")}>Communities Discussion</span></SubmenuItem>
                                     </Submenu>
                                 )} </div> : ""
@@ -245,8 +245,8 @@ left:-23px;
                             {
                                 location.pathname === "/Community" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu && (
                                     <Submenu>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Community" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Financial")} >Access Forums</span></SubmenuItem>
-                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Icome")}> Polls</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Community" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Community")} >Access Forums</span></SubmenuItem>
+                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/polls" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/polls")}> Polls</span></SubmenuItem>
                                         <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Expense")}>Communities Discussion</span></SubmenuItem>
                                     </Submenu>
                                 )} </div> : ""
@@ -269,7 +269,9 @@ left:-23px;
 
                             </div>
                             <UserInfo>
-
+                            <Search_Icon className='search-icon'>
+                                    <CiSearch className='fs-2' />
+                                </Search_Icon>
                                 <Notifiction >
 
                                     <MdNotificationImportant style={{ cursor: "pointer" }} onClick={toggleDropdown} className='fs-2 mx-2' />

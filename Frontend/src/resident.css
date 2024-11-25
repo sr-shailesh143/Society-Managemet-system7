@@ -91,6 +91,7 @@
     background: #FFFFFF;
 
 }
+
 .nav-bar-chet1 {
     width: 59vw;
     height: 88px;
@@ -103,7 +104,8 @@
     background: #FFFFFF;
 
 }
-.main-cheat{
+
+.main-cheat {
     width: 58vw;
     height: 73vh;
     overflow-y: scroll;
@@ -260,8 +262,13 @@
 
     }
 
+    .poll-card {
+        margin-top: 40px;
+    }
+
 }
-.side-chet{
+
+.side-chet {
     position: relative;
     width: 60vw;
 }
@@ -317,7 +324,7 @@
 
 .main-chet {
     position: absolute;
-    bottom:-45%;
+    bottom: -45%;
     width: 700px;
     height: 60vh;
 }
@@ -331,9 +338,9 @@
     width: 100%;
     /* min-width: 59vw; */
     height: 88px;
-   position: absolute;
-   bottom: 0;
-   left: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     gap: 0px;
     border-radius: 0px 0px 15px 0px;
     opacity: 0px;
@@ -346,7 +353,7 @@
 .voice {
     width: 50px;
     height: 50px;
-    border-radius: 110px  ;
+    border-radius: 110px;
     opacity: 0px;
     background: #5678E9;
     display: flex;
@@ -356,7 +363,8 @@
     cursor: pointer;
     position: sticky;
 }
-.input-chet-icon{
+
+.input-chet-icon {
     /* width: 1153px; */
     height: 50px;
     top: 835px;
@@ -370,12 +378,244 @@
     justify-content: center;
     align-items: center;
     color: #4F4F4F;
-    
+
 }
-.input-chet-main{
+
+.input-chet-main {
     border: none;
     outline: none;
     padding: 10px;
     position: sticky;
-    margin: 0px 0px 0px -70px ;
+    margin: 0px 0px 0px -70px;
 }
+
+/* chet contener */
+
+.chat-container {
+    width: 100%;
+    margin: 0 auto;
+    background: #f5f5f5;
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.message.received {
+    background-color: #eaeaea;
+    align-self: flex-start;
+    max-width: 327px;
+    margin: 10px;
+}
+
+.message.sent {
+    background-color: #5678E9;
+    align-self: flex-end;
+    color: white;
+    max-width: 333px;
+    margin: 10px;
+}
+
+.message .time {
+    font-size: 0.8em;
+    color: #A7A7A7;
+    position: absolute;
+    bottom: -22px;
+    right: 10px;
+}
+
+.image-message {
+    align-self: center;
+}
+
+
+
+.file-attachment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffe5e5;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+
+/* polls css */
+
+.polls-box {
+    /* width: 1580px; */
+    /* height: 500px; */
+    padding: 20px;
+
+    gap: 0px;
+    border-radius: 0px 15px 15px 15px;
+    opacity: 0px;
+    background: #FFFFFF;
+
+}
+
+
+.app-container {
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 20px;
+}
+
+.poll-card {
+    width: 100%;
+    height: 350px;
+    padding: 15px;
+    border-radius: 15px;
+    opacity: 0px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-info h4 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.card-info p {
+    margin: 0;
+    color: #888;
+}
+
+.poll-content h3 {
+    margin: 16px 0;
+    font-size: 1.1rem;
+}
+
+.poll-instructions {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.poll-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.poll-option label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-bar {
+    flex: 1 !important;
+    height: 8px !important;
+    background: #eee !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    margin-left: 10px !important;
+}
+
+.progress {
+    height: 100% !important;
+    background: #39973D !important;
+}
+
+.progress-red {
+    height: 100% !important;
+    background: #E74C3C !important;
+}
+
+.card-footer {
+    margin-top: 16px !important;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.polls-name {
+    color: #5678E9;
+    font: "Poppins";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    text-align: left;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+
+}
+
+.polls-role {
+    font: "Poppins";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+    color: #202224;
+
+}
+
+.polls-question {
+    font: "Poppins";
+    height: 40px !important;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    text-underline-position: "from-font";
+    text-decoration-skip-ink: none;
+
+}
+
+.polls-radio {
+    accent-color: rgb(254, 81, 46);
+
+}
+
+.poll-view {
+    width: 61px;
+    height: 31px;
+    padding: 5px 10px 5px 10px;
+    gap: 10px;
+    border-radius: 30px;
+    opacity: 0px;
+    float: left !important;
+    position: sticky;
+    margin-left: 30px;
+    background: rgba(110, 142, 249, 1);
+
+    
+}
+.polls-text{
+    text-wrap: wrap;
+    
+}
+
