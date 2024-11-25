@@ -72,23 +72,45 @@
     border: 0px 1px 0px 0px;
     opacity: 0px;
     border-right: 1px solid #F4F4F4;
-    overflow-y: scroll;
+    /* overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-color: #020202 #F4F4F4;
 
-    scrollbar-width: thin;
+    scrollbar-width: thin; */
 }
 
 .nav-bar-chet {
     width: 59vw;
     height: 88px;
-    position: sticky;
-    margin-right: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
     gap: 0px;
     border-radius: 0px 15px 0px 0px;
     opacity: 0px;
     background: #FFFFFF;
 
+}
+.nav-bar-chet1 {
+    width: 59vw;
+    height: 88px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    gap: 0px;
+    border-radius: 0px 0px 15px 0px;
+    opacity: 0px;
+    background: #FFFFFF;
+
+}
+.main-cheat{
+    width: 58vw;
+    height: 73vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: #020202 #F4F4F4;
+
+    scrollbar-width: thin;
 }
 
 .Chat-title {
@@ -239,6 +261,10 @@
     }
 
 }
+.side-chet{
+    position: relative;
+    width: 60vw;
+}
 
 .chat-message {
     display: flex;
@@ -290,8 +316,10 @@
 }
 
 .main-chet {
-    width: 100%;
-    height: 78%;
+    position: absolute;
+    bottom:-45%;
+    width: 700px;
+    height: 60vh;
 }
 
 .chet-user {
@@ -300,16 +328,17 @@
 }
 
 .chet-input {
-    /* width: 1246px; */
-    min-width: 59vw;
+    width: 100%;
+    /* min-width: 59vw; */
     height: 88px;
-    top: 816px;
-    left: 334px;
+   position: absolute;
+   bottom: 0;
+   left: 0;
     gap: 0px;
     border-radius: 0px 0px 15px 0px;
     opacity: 0px;
     background: #FFFFFF;
-    position: sticky;
+
 
 
 }
