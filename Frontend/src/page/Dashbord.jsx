@@ -73,12 +73,18 @@ const Dashboard = () => {
   const [pendingMaintenances, setPendingMaintenances] = useState([
     { name: 'Elevator Repair', status: 'Pending', amount: '₹1,500' },
     { name: 'Water Leakage Fix', status: 'In Progress', amount: '₹3,000' },
-    { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' }
+    { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
+    { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
+    { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
+    { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
+  
+  
   ]);
   const [activities, setActivities] = useState([
     { event: 'Community Meeting', date: '2024-11-20', time: '10:00 AM' },
     { event: 'Maintenance Check', date: '2024-11-21', time: '2:00 PM' },
-    { event: 'Festival Celebration', date: '2024-11-22', time: '6:00 PM' }
+    { event: 'Festival Celebration', date: '2024-11-22', time: '6:00 PM' },
+      { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
   ]);
 
   const getRandomColor = () => {
@@ -380,16 +386,16 @@ const Dashboard = () => {
           </Modal>
         </Col>
         <Col xs={12} md={3} style={{ height: '410px' }}>
-          <Card className="mb-4 h-100" style={{ borderRadius: "15px" }}>
+          <Card className="mb-4 h-100 scroll" style={{ borderRadius: "15px" }} >
             <Card.Body >
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="d-flex justify-content-between align-items-center mb-3 ">
                 <Card.Title>Pending Maintenances</Card.Title>
                 <Button variant="link" className="text-primary p-0" style={{ textDecoration: "none" }}>View all</Button>
               </div>
-              <ListGroup variant="flush" style={{ maxHeight: 'calc(100% - 60px)', overflowY: 'auto' }}>
+              <ListGroup variant="flush" style={{ maxHeight: 'calc(100% - 60px)' }}>
                 {pendingMaintenances.map((item, index) => (
-                  <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
-                    <div className="d-flex align-items-center">
+                  <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center ">
+                    <div className="d-flex align-items-center ">
                       <img
                         src="https://media.gettyimages.com/id/1017798538/photo/beverly-hills-ca-cody-christian-of-cws-all-american-poses-for-a-portrait-during-the-2018.jpg?s=612x612&w=gi&k=20&c=nrcCUAW-xshfD9d0EIzxe6vbhoWU1RYOoXbGpAPi3_I="
                         alt="Profile"

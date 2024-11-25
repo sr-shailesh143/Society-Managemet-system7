@@ -53,6 +53,7 @@ const ComplaintModal = ({ showModal, setShowModal, isEditing, newComplaint, hand
                             <div className="col-md-6">
                                 <Form.Label>Wing</Form.Label>
                                 <Form.Control
+                                    
                                     type="text"
                                     name="wing"
                                     value={newComplaint.wing}
@@ -63,69 +64,84 @@ const ComplaintModal = ({ showModal, setShowModal, isEditing, newComplaint, hand
                         </div>
                     </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Priority</Form.Label>
-                        <div>
-                            <Form.Check
-                                inline
-                                type="radio"
-                                label="Low"
-                                name="priority"
-                                value="Low"
-                                checked={newComplaint.priority === 'Low'}
-                                onChange={handleInputChange}
-                            />
-                            <Form.Check
-                                inline
-                                type="radio"
-                                label="Medium"
-                                name="priority"
-                                value="Medium"
-                                checked={newComplaint.priority === 'Medium'}
-                                onChange={handleInputChange}
-                            />
-                            <Form.Check
-                                inline
-                                type="radio"
-                                label="High"
-                                name="priority"
-                                value="High"
-                                checked={newComplaint.priority === 'High'}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    </Form.Group>
+                    <div className="mb-3">
+    <label className="form-label">Priority</label>
+    <div style={{justifyContent:"center",textAlign:"center",alignItems:"center"}}>
+        <div style={{ display: "inline-block", marginRight: "10px", border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"90px" }}>
+            <input
+                type="radio"
+                id="priority-low"
+                name="priority"
+                value="Low"
+                checked={newComplaint.priority === 'Low'}
+                onChange={handleInputChange}
+            />
+            <label htmlFor="priority-low">Low</label>
+        </div>
+        <div style={{ display: "inline-block", marginRight: "10px", border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"100px" }}>
+            <input
+                type="radio"
+                id="priority-medium"
+                name="priority"
+                value="Medium"
+                checked={newComplaint.priority === 'Medium'}
+                onChange={handleInputChange}
+            />
+            <label htmlFor="priority-medium">Medium</label>
+        </div>
+        <div style={{ display: "inline-block", border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"100px" }}>
+            <input
+                type="radio"
+                id="priority-high"
+                name="priority"
+                value="High"
+                checked={newComplaint.priority === 'High'}
+                onChange={handleInputChange}
+            />
+            <label htmlFor="priority-high">High</label>
+        </div>
+    </div>
+</div>
+
                     <Form.Group className="mb-3">
     <Form.Label>Status</Form.Label>
-    <div className="d-flex">
-        <Form.Check
-           
+    <div className="d-flex"style={{justifyContent:"center",textAlign:"center",alignItems:"center"}}>
+    <div  style={{ border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"100px" }}>
+        <input
             type="radio"
-            label="Pending"
+            id="pending"
             name="status"
             value="Pending"
             checked={newComplaint.status === 'Pending'}
             onChange={handleInputChange}
         />
-        <Form.Check
-      
+        <label htmlFor="pending">Pending</label>
+    </div>
+    <div  style={{ border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"100px"  }}>
+        <input
             type="radio"
-            label="Open"
+            id="open"
             name="status"
             value="Open"
             checked={newComplaint.status === 'Open'}
             onChange={handleInputChange}
         />
-        <Form.Check
-            inline
+        <label htmlFor="open">Open</label>
+    </div>
+    <div  style={{  border: "1px solid black", borderRadius: "10px",marginRight:"5px",justifyContent:"center",textAlign:"center",alignItems:"center",width:"100px"  }}>
+        <input
+       
             type="radio"
-            label="Resolved"
+            id="resolved"
             name="status"
             value="Resolved"
             checked={newComplaint.status === 'Resolved'}
             onChange={handleInputChange}
         />
+        <label htmlFor="resolved">Resolved</label>
     </div>
+</div>
+
 </Form.Group>
 
                 </Form>

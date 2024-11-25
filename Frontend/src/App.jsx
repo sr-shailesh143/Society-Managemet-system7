@@ -40,7 +40,7 @@ import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
 import RecidencTarent from './page3/ResidenceTarent';
 import Community from './page3/Community';
-
+import OtherincomeInvoice from './page3/OtherincomeInvoice';
 import RequestSubmission from './page3/RequestSubmission';
 import EventParticipation from './page3/EventParticipation';
 import Activity from './page3/Activity';
@@ -119,7 +119,7 @@ function App() {
         <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
         <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
         <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
-
+        <Route path='/OtherincomeInvoice'element={<ResidentManageMentLayout component={<OtherincomeInvoice/>} />} />
 
         <Route path='/ServiceComplain' element={<Layout component={<ServiceComplain />} />} />
         <Route path='/RequestSubmission' element={<Layout component={<RequestSubmission />} />} />
