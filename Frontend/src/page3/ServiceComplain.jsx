@@ -46,91 +46,91 @@ export default function ServiceComplain() {
             {/* Navigation */}
             <div className='row'>
                 <div className="d-flex ">
-                    <div onClick={() => naviget("/ServiceComplain")} 
-                        style={{ background: location.pathname === "/ServiceComplain" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#fff", color: location.pathname === "/ServiceComplain" ? "white" : "black" }} 
+                    <div onClick={() => naviget("/ServiceComplain")}
+                        style={{ background: location.pathname === "/ServiceComplain" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#fff", color: location.pathname === "/ServiceComplain" ? "white" : "black" }}
                         className='b-btn d-flex justify-content-center'>
                         <p>Complaint Submission</p>
                     </div>
-                    <div onClick={() => naviget("/RequestSubmission")} 
-                        style={{ background: location.pathname === "/RequestSubmission" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#fff", color: location.pathname === "/RequestSubmission" ? "white" : "black" }} 
+                    <div onClick={() => naviget("/RequestSubmission")}
+                        style={{ background: location.pathname === "/RequestSubmission" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#fff", color: location.pathname === "/RequestSubmission" ? "white" : "black" }}
                         className='b-btn d-flex justify-content-center'>
                         <p>Request Submission</p>
                     </div>
                 </div>
             </div>
 
-         
+
             <div className="complaints-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h4 className="font-weight-bold"style={{fontWeight:"bold"}}>Complaint</h4>
+                    <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Complaint</h4>
                     <button className="btn btn-danger custom-create-btn " onClick={() => setShowModal(true)}>
                         Create Complaint
                     </button>
                 </div>
 
                 <div className="row">
-    {complaints.map((complaint, index) => (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
-            <div className="card h-100 shadow-sm">
-                <div className="card-header custom-card-header">
-                    <h5 className="card-title mb-0">{complaint.title}</h5>
-                    <div className="dropdown">
-                        <button className="btn btn-sm text-white p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <FaEllipsisV size={16} />
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <button className="dropdown-item text-dark" onClick={() => handleOpenDeleteModal(index)}>
-                                    Delete
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    {complaints.map((complaint, index) => (
+                        <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
+                            <div className="card h-100 shadow-sm">
+                                <div className="card-header custom-card-header">
+                                    <h5 className="card-title mb-0">{complaint.title}</h5>
+                                    <div className="dropdown">
+                                        <button className="btn btn-sm text-white p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <FaEllipsisV size={16} />
+                                        </button>
+                                        <ul className="dropdown-menu">
+                                            <li>
+                                                <button className="dropdown-item text-dark" onClick={() => handleOpenDeleteModal(index)}>
+                                                    Delete
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="card-body">
+                                    <p className="card-text mb-2 d-flex justify-content-between">
+                                        <strong style={{ color: "#4F4F4F" }}>Complaint Date:</strong>
+                                        <span style={{ color: "#202224", fontWeight: "bold" }}>{complaint.date}</span>
+                                    </p>
+                                    <p className="card-text mb-2 d-flex justify-content-between">
+                                        <strong style={{ color: "#4F4F4F" }}>Status:</strong>
+                                        <span
+                                            style={{
+                                                color:
+                                                    complaint.status === "Pending"
+                                                        ? "#6A4E02"
+                                                        : complaint.status === "Solved"
+                                                            ? "#1B5E20"
+                                                            : "#202224",
+                                                fontWeight: "bold",
+                                                background:
+                                                    complaint.status === "Pending"
+                                                        ? "#FFEB3B"
+                                                        : complaint.status === "Solved"
+                                                            ? "rgba(76, 175, 80, 0.1)"
+                                                            : "#5678E91A",
+                                                width: "60px",
+
+                                                textAlign: "center",
+                                                borderRadius: "30px",
+
+                                            }}
+                                        >
+                                            {complaint.status}
+                                        </span>
+
+
+                                    </p>
+                                    <p className="card-text">
+                                        <strong style={{ color: "#4F4F4F" }}>Description:</strong>
+                                        <p style={{ color: "#202224", fontWeight: "bold" }}>{complaint.description}</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
-                <div className="card-body">
-                    <p className="card-text mb-2 d-flex justify-content-between">
-                        <strong style={{ color: "#4F4F4F" }}>Complaint Date:</strong> 
-                        <span style={{ color: "#202224", fontWeight: "bold" }}>{complaint.date}</span>
-                    </p>
-                                            <p className="card-text mb-2 d-flex justify-content-between">
-                                                <strong style={{ color: "#4F4F4F" }}>Status:</strong> 
-                                                <span
-                        style={{
-                            color:
-                            complaint.status === "Pending"
-                                ? "#6A4E02" 
-                                : complaint.status === "Solved"
-                                ? "#1B5E20" 
-                                : "#202224", 
-                            fontWeight: "bold",
-                            background:
-                            complaint.status === "Pending"
-                                ? "#FFEB3B" 
-                                : complaint.status === "Solved"
-                                ? "rgba(76, 175, 80, 0.1)" 
-                                : "#5678E91A", 
-                            width:"60px",
-
-                            textAlign: "center",
-                            borderRadius: "30px",
-                            
-                        }}
-                        >
-                        {complaint.status}
-                        </span>
-
-
-                    </p>
-                    <p className="card-text">
-                        <strong style={{ color: "#4F4F4F" }}>Description:</strong> 
-                        <p style={{ color: "#202224", fontWeight: "bold" }}>{complaint.description}</p>
-                    </p>
-                </div>
-            </div>
-        </div>
-    ))}
-</div>
 
             </div>
 
@@ -154,21 +154,43 @@ export default function ServiceComplain() {
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Status</label>
-                                    <div>
-                                        <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="status" value="Open" checked={newComplaint.status === "Open"} onChange={handleInputChange} />
+                                    <div className="d-flex gap-3">
+                                        <div className="form-check">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="status"
+                                                value="Open"
+                                                checked={newComplaint.status === "Open"}
+                                                onChange={handleInputChange}
+                                            />
                                             <label className="form-check-label">Open</label>
                                         </div>
-                                        <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="status" value="Pending" checked={newComplaint.status === "Pending"} onChange={handleInputChange} />
+                                        <div className="form-check">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="status"
+                                                value="Pending"
+                                                checked={newComplaint.status === "Pending"}
+                                                onChange={handleInputChange}
+                                            />
                                             <label className="form-check-label">Pending</label>
                                         </div>
-                                        <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="status" value="Solved" checked={newComplaint.status === "Solved"} onChange={handleInputChange} />
+                                        <div className="form-check">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="status"
+                                                value="Solved"
+                                                checked={newComplaint.status === "Solved"}
+                                                onChange={handleInputChange}
+                                            />
                                             <label className="form-check-label">Solved</label>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="mb-3">
                                     <label className="form-label">Description</label>
                                     <textarea className="form-control" name="description" value={newComplaint.description} onChange={handleInputChange}></textarea>

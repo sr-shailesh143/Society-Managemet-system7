@@ -84,7 +84,7 @@ const Dashboard = () => {
     { event: 'Community Meeting', date: '2024-11-20', time: '10:00 AM' },
     { event: 'Maintenance Check', date: '2024-11-21', time: '2:00 PM' },
     { event: 'Festival Celebration', date: '2024-11-22', time: '6:00 PM' },
-      { name: 'Pool Maintenance', status: 'Pending', amount: '₹2,000' },
+    
   ]);
 
   const getRandomColor = () => {

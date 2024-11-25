@@ -14,7 +14,7 @@ import OTPVerification from './components/otp';
 import ResetPassword from './components/ResetPassword';
 import Layout from './Layout/Layout';
 import Dashbord from './page/Dashbord';
-import ProfileEditForm from './page/Profile';
+
 import UpdateProfile from './page/UpdateProfile';
 import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
@@ -27,7 +27,6 @@ import CompleteTraking from './page/CompleteTraking';
 import Tenant from './page/Tenant';
 import SecurityLayout from './Layout/SecurityLayout';
 import EmergencyManagement from './page2/EmergencyManagement';
-
 import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
 import RequestTracking from './page/RequestTracking';
@@ -61,7 +60,7 @@ function App() {
         {/* DASHBORD */}
         <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
-        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
+      
         {/* RESIDEMT MANAGEMENT */}
         <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
         <Route path='/owner' element={<Layout component={<Owner />} />} />
@@ -91,7 +90,7 @@ function App() {
         {/* visirtortracking */}
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
         {/* profile */}
-        <Route path='/profileupdate' element={<Layout component={<ProfileEditForm />} />} />
+    
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
     
