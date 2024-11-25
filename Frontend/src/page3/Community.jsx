@@ -10,6 +10,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import AttachmentIcon from '@mui/icons-material/Attachment';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Webcam from "react-webcam";
+import SendIcon from '@mui/icons-material/Send';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
 export default function Community() {
@@ -131,6 +132,12 @@ export default function Community() {
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
   ]);
+  const [sent,setSent] = useState("")
+
+
+  function handlesent (){
+    console.log(sent)
+  }
 
 
   return (
@@ -155,9 +162,7 @@ export default function Community() {
                 <div className="chat-details">
                   <div className="chat-header">
                     <h5>{chat.name}</h5>
-
-
-                    <span className="time">{chat.time}
+                      <span className="time">{chat.time}
                       <br />
                       <span className=''><DoneAllIcon color="primary" /> </span>
                     </span>
@@ -211,15 +216,50 @@ export default function Community() {
               </div>
             </div>
           </nav>
-          <div className="main-chet">
-            {/* <div className="chet-user">
+          <br />
+          <br />
+          <br />
+          <br />
+          <nav className='nav-bar-chet1  '>
+          <div className="row  ">
+              <div className="col-12 col-md-11 ">
+                <div className="row m-3 input-chet-icon w-100 gap-4 position-sticky ">
+                  <div className="col-12 col-md-2 ">
+                    <SentimentSatisfiedAltIcon className='fs-2' style={{ cursor: "pointer" }} />
+                  </div>
+                  <div className="col-12 col-md-8">
+                    <input type="text" className='input-chet-main ' onChange={(e)=>setSent(e.target.value)} style={{ width: "100%", border:"none" }} />
+                  </div>
 
-            </div> */}
+                  <div className="col-12 col-md-1 d-flex gap-3 me-4 position-sticky ">
+                    <label className="photo-upload mt-2 ">
 
+                      <input type="file" accept="image/*" />
+                      <AttachmentIcon className='position-sticky fs-2' style={{ cursor: "pointer" }} />
+                    </label>
+                    <label className="photo-upload mt-2 " onClick={handleCamara}>
+                      <CameraAltIcon className='position-sticky fs-2' style={{ cursor: "pointer" }} />
 
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="col-12 col-md-1  ">
+                <div className="voice  m-3 mx-2">
 
-          </div>
-          <div className="chet-input  ">
+                  {
+                    sent === "" ?  <KeyboardVoiceIcon className='fs-2' />: <span onClick={handlesent}><SendIcon /> </span> 
+                  }
+                 
+                </div>
+              </div>
+
+            </div>
+          </nav>
+          <div className="main-cheat">
+      
+         </div>
+          {/* <div className="chet-input  ">
             <div className="row  ">
               <div className="col-12 col-md-11 ">
                 <div className="row m-4 input-chet-icon w-100 gap-4 position-sticky ">
@@ -250,7 +290,7 @@ export default function Community() {
               </div>
 
             </div>
-          </div>
+          </div> */}
           <Modal className='bg-none' show={camera} onHide={()=>setcamera(false)}>
             <Modal.Body>
             <Webcam
