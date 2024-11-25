@@ -33,112 +33,26 @@ export default function Community() {
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
-    { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
   ]);
-  const [sent,setSent] = useState("")
+  const [sent, setSent] = useState("")
 
 
-  function handlesent (){
+  function handlesent() {
     console.log(sent)
   }
 
+  const messages = [
+    { type: 'received', text: 'Hi there, How are you?', time: '9:20' },
+    { type: 'received', text: 'Hi there, How are you?', time: '9:20' },
+    { type: 'received', text: 'Waiting for your reply. I have to go back soon. I have to travel long distance.', time: '9:22' },
+    { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
+    { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
+    { type: 'received', text: 'Hi there, How are you?', time: '9:20' },
+    { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
+    { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
+
+
+  ];
 
   return (
     <div className='chetbox'>
@@ -147,8 +61,6 @@ export default function Community() {
           <h4 className='Chat-title m-3'>
             Chat
           </h4>
-
-
           <div className="chet-search">
             <input onChange={(e) => setSearch(e.target.value)} type="search" className=' search-chet' placeholder='        Search Here' />
             <CiSearch className='fs-3 fw-bolde child-search1 ' style={{ display: Search === "" ? "block" : "none" }} />
@@ -162,7 +74,7 @@ export default function Community() {
                 <div className="chat-details">
                   <div className="chat-header">
                     <h5>{chat.name}</h5>
-                      <span className="time">{chat.time}
+                    <span className="time">{chat.time}
                       <br />
                       <span className=''><DoneAllIcon color="primary" /> </span>
                     </span>
@@ -177,7 +89,6 @@ export default function Community() {
             ))}
           </div>
         </div>
-
         <div className="col-12 col-md-7 side-chet ">
           <nav className='nav-bar-chet  '>
             <div className=" ms-2 d-flex justify-content-between ">
@@ -199,18 +110,14 @@ export default function Community() {
                 </div>
                 <div className="video" onClick={handleClick}>
                   <MoreVertIcon className='fs-2'
-
                   />
                   <div
                     className='basic-menu bg-white radious'
                     style={{ display: open ? "block" : "none" }}
                     open={open}
-
-
                   >
                     <MenuItem >Copy</MenuItem>
                     <MenuItem >Forward</MenuItem>
-
                   </div>
                 </div>
               </div>
@@ -221,14 +128,14 @@ export default function Community() {
           <br />
           <br />
           <nav className='nav-bar-chet1  '>
-          <div className="row  ">
+            <div className="row  ">
               <div className="col-12 col-md-11 ">
                 <div className="row m-3 input-chet-icon w-100 gap-4 position-sticky ">
                   <div className="col-12 col-md-2 ">
                     <SentimentSatisfiedAltIcon className='fs-2' style={{ cursor: "pointer" }} />
                   </div>
                   <div className="col-12 col-md-8">
-                    <input type="text" className='input-chet-main ' onChange={(e)=>setSent(e.target.value)} style={{ width: "100%", border:"none" }} />
+                    <input type="text" className='input-chet-main ' onChange={(e) => setSent(e.target.value)} style={{ width: "100%", border: "none" }} />
                   </div>
 
                   <div className="col-12 col-md-1 d-flex gap-3 me-4 position-sticky ">
@@ -246,59 +153,35 @@ export default function Community() {
               </div>
               <div className="col-12 col-md-1  ">
                 <div className="voice  m-3 mx-2">
-
                   {
-                    sent === "" ?  <KeyboardVoiceIcon className='fs-2' />: <span onClick={handlesent}><SendIcon /> </span> 
+                    sent === "" ? <KeyboardVoiceIcon className='fs-2' /> : <span onClick={handlesent}><SendIcon /> </span>
                   }
-                 
                 </div>
               </div>
-
             </div>
           </nav>
           <div className="main-cheat">
-      
-         </div>
-          {/* <div className="chet-input  ">
-            <div className="row  ">
-              <div className="col-12 col-md-11 ">
-                <div className="row m-4 input-chet-icon w-100 gap-4 position-sticky ">
-                  <div className="col-12 col-md-2 ">
-                    <SentimentSatisfiedAltIcon className='fs-2' style={{ cursor: "pointer" }} />
+            <div className="chat-container">
+              <div className="chat-messages">
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`message ${msg.type === 'sent' ? 'sent' : 'received'}`}
+                  >
+                    <p>{msg.text}</p>
+                    <span className="time">{msg.time}</span>
                   </div>
-                  <div className="col-12 col-md-8">
-                    <input type="search" className='input-chet-main ' style={{ width: "100%" }} />
-                  </div>
-
-                  <div className="col-12 col-md-1 d-flex gap-3 position-sticky ">
-                    <label className="photo-upload mt-2 ">
-
-                      <input type="file" accept="image/*" />
-                      <AttachmentIcon className='position-sticky fs-2' style={{ cursor: "pointer" }} />
-                    </label>
-                    <label className="photo-upload mt-2 " onClick={handleCamara}>
-                      <CameraAltIcon className='position-sticky fs-2' style={{ cursor: "pointer" }} />
-
-                    </label>
-                  </div>
-                </div>
+                ))}
               </div>
-              <div className="col-12 col-md-1 mt-2 ">
-                <div className="voice  m-3 mx-2">
-                  <KeyboardVoiceIcon className='fs-2' />
-                </div>
-              </div>
-
             </div>
-          </div> */}
-          <Modal className='bg-none' show={camera} onHide={()=>setcamera(false)}>
+          </div>
+          <Modal className='bg-none' show={camera} onHide={() => setcamera(false)}>
             <Modal.Body>
-            <Webcam
-             height={"100%"}
-             screenshotFormat="image/jpeg"
-             width={"100%"} />
+              <Webcam
+                height={"100%"}
+                screenshotFormat="image/jpeg"
+                width={"100%"} />
             </Modal.Body>
-
           </Modal>
         </div>
       </div>

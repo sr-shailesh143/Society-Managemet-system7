@@ -46,6 +46,7 @@ import Activity from './page3/Activity';
 import Securityprotocol2 from './page3/Securityprotocol2';
 import MaintananceInvoice from './page3/MaintananceInvoice';
 import { ToastContainer } from 'react-toastify';
+import Polls from './page3/Polls';
 function App() {
   return (
     <BrowserRouter>
@@ -116,6 +117,7 @@ function App() {
 
         {/* Community */}
         <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
+        <Route path='/polls'element={<ResidentManageMentLayout component={<Polls/>} />} />
         <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
         <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
         <Route path='/OtherincomeInvoice'element={<ResidentManageMentLayout component={<OtherincomeInvoice/>} />} />
