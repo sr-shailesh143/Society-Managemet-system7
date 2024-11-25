@@ -108,14 +108,14 @@ const RequestTracking = () => {
                 <table className="table table-hover">
                     <thead className="table-light">
                         <tr>
-                            <th style={{ textAlign: 'center' }}>Requester Name</th>
-                            <th style={{ textAlign: 'center' }}>Request Name</th>
-                            <th style={{ textAlign: 'center' }}>Description</th>
-                            <th style={{ textAlign: 'center' }}>Date</th>
-                            <th style={{ textAlign: 'center' }}>Unit Number</th>
-                            <th style={{ textAlign: 'center' }}>Priority</th>
-                            <th style={{ textAlign: 'center' }}>Status</th>
-                            <th style={{ textAlign: 'center' }}>Actions</th>
+                            <th style={{ textAlign: 'center',backgroundColor: "#E5ECFD", borderRadius: "15px 0px 0px 0px" }}>Requester Name</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Request Name</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Description</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Date</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Unit Number</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Priority</th>
+                            <th style={{ textAlign: 'center', backgroundColor: "#E5ECFD" }}>Status</th>
+                            <th style={{ textAlign: 'center',backgroundColor: "#E5ECFD", borderRadius: "0px 15px 0px 0px !important" }}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,7 +123,7 @@ const RequestTracking = () => {
                             <tr key={complaint.id}>
                                 <td style={{ textAlign: 'center' }}>
                                     <img
-                                        src="https://via.placeholder.com/40"
+                                        src="https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
                                         alt="Profile"
                                         className="rounded-circle me-2"
                                         width="40"
