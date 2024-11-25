@@ -22,16 +22,13 @@ function RegistrationPage() {
     password: "",
     Cpassword: "",
   });
-
+  const [ShowConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showPassword, ShowConfirmPassword] = useState(false);
+ 
   const navigate = useNavigate();
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(prev => !prev);
-  };
-
+   
   const [societies, setSocieties] = useState({
     Society_Name: "",
     Society_Address: "",
@@ -48,7 +45,12 @@ function RegistrationPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
+  const [showPassword, setShowPassword] = useState(false);
 
   // const handlesocietyChange = (e) => {
   //   const { name, value } = e.target;
@@ -103,8 +105,13 @@ function RegistrationPage() {
 
   const togglePasswordVisibility = () => {
     showPassword(prev => !prev);
+    setShowPassword(!showPassword);
+    setShowPassword(prevState => !prevState); // Toggle the showPassword state
   };
-
+  const togglePasswordVisibilityy = () => {
+    setShowPassword(prevState => !prevState); // Correct way to toggle the state
+  };
+  
   const handleSocietiesChange = (e) => {
     const { name, value } = e.target;
     setSocieties({ ...societies, [name]: value });
@@ -114,10 +121,10 @@ function RegistrationPage() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await createSociety(societies); // Assuming createSociety is an API call
-      toast.success(response.data.message); // Success Toast message
-      fetchSocieties(); // Fetch the updated list of societies after creation
-      setShowModal(false); // Close the modal
+      const response = await createSociety(societies); 
+      toast.success(response.data.message); 
+      fetchSocieties(); 
+      setShowModal(false); 
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to create society');
     } finally {
@@ -129,7 +136,7 @@ function RegistrationPage() {
         City_Name: "",
         ZipCode_Number: "",
       });
-      setIsLoading(false); // Hide loading indicator
+      setIsLoading(false); 
     }
   };
   
@@ -138,30 +145,38 @@ function RegistrationPage() {
     const selectedValue = e.target.value;
     setUserData({ ...formData, select_society: selectedValue });
     if (selectedValue === "createNew") {
-      setShowModal(true); // Show the modal if "Create New Society" is selected
+      setShowModal(true);
     }
   };
   
 
-  // get all societies
+
   const fetchSocieties = async () => {
     setIsLoading(true);
     try {
-      const response = await viewSociety(); // Assuming viewSociety is an API call
+      const response = await viewSociety(); 
       setSocietiesList(response.data.Society || []);
     } catch (error) {
       console.error('Error fetching societies:', error);
       toast.error('Failed to fetch societies');
-      setSocietiesList([]); // Empty the societies list on error
+      setSocietiesList([]); 
     } finally {
-      setIsLoading(false); // Stop the loading state
+      setIsLoading(false); 
     }
   };
   
   useEffect(() => {
-    fetchSocieties(); // Fetch societies when the component mounts
+    fetchSocieties(); 
   }, []);
-  
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!ShowConfirmPassword);
+  };
+
+
+const onSubmit = (data) => {
+  // Handle form submission
+  console.log(data);
+};
 
   return (
     <div className="registration-container">
@@ -333,77 +348,74 @@ function RegistrationPage() {
   {errors.select_society && <p className="text-danger">{errors.select_society.message}</p>}
 </div>
 
-
+<div className="mb-3" style={{ position: 'relative' }}>
+        <label>Password <span style={{ color: "red" }}>*</span></label>
+        <input
+          type={showPassword ? 'text' : 'password'} // Use showPassword to control input type
+          name="password"
+          className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+          placeholder="Enter Password"
+          style={{
+            borderRadius: "15px",
+            border: "1px solid #D3D3D3",
+            paddingRight: '40px' // Space for the icon
+          }}
+          value={formData.password}
+          {...register('password', { required: true })}
+          onChange={handleChange}
+        />
+        <span
+          className="input-group-text"
+          onClick={togglePasswordVisibilityy} // On click, toggle password visibility
+          style={{
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+            border: 'none',
+            position: 'absolute',
+            right: '10px',  // Align the icon to the right
+            top: '70%',  // Center vertically
+            transform: 'translateY(-50%)',  // Adjust vertical alignment
+          }}
+        >
+          <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i> {/* Eye icon */}
+        </span>
+        {errors.password && <p className="text-danger">{errors.password.message}</p>} {/* Show error message */}
+      </div>
             <div className="mb-3" style={{ position: 'relative' }}>
-              <label>Password<span style={{ color: "red" }}>*</span></label>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name='password'
-                className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                placeholder="Enter Password"
-                style={{
-                  borderRadius: "15px",
-                  border: "1px solid #D3D3D3",
-                  paddingRight: '40px'
-                }}
-                value={formData.password}
-                {...register('password', { required: true })}
-                onChange={handleChange}
-              />
-              <span
-                className="input-group-text"
-                onClick={togglePasswordVisibility}
-                style={{
-                  cursor: 'pointer',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  position: 'absolute',
-                  right: '10px',
-                  top: '70%',
-                  transform: 'translateY(-50%)',
-                }}
-              >
-                <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-              </span>
-              {errors.password && <p className="text-danger">{errors.password.message}</p>}
-            </div>
-
-
-            <div className="mb-3" style={{ position: 'relative' }}>
-              <label htmlFor="">Confirm password <span style={{ color: "red" }}>*</span></label>
-              <input
-                type={ShowConfirmPassword ? 'text' : 'password'}
-                className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                placeholder="Confirm Password"
-                name='Cpassword'
-                style={{
-                  borderRadius: "15px",
-                  border: "1px solid #D3D3D3",
-                  paddingRight: '40px'
-                }}
-                value={formData.Cpassword}
-                {...register('Cpassword', {
-                  required: true,
-                  validate: (value) => value === watch('password') || "Passwords do not match",
-                })}
-                onChange={handleChange}
-              />
-              <span
-                className="input-group-text"
-                onClick={toggleConfirmPasswordVisibility}
-                style={{
-                  cursor: 'pointer',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  position: 'absolute',
-                  right: '10px',
-                  top: '70%',
-                  transform: 'translateY(-50%)',
-                }}
-              >
-                <i className={`fas ${ShowConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-              </span>
-            </div>
+      <label htmlFor="Cpassword">Confirm password <span style={{ color: "red" }}>*</span></label>
+      <input
+        type={ShowConfirmPassword ? 'text' : 'password'}
+        className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+        placeholder="Confirm Password"
+        name='Cpassword'
+        style={{
+          borderRadius: "15px",
+          border: "1px solid #D3D3D3",
+          paddingRight: '40px' // Space for the icon
+        }}
+        value={formData.Cpassword}
+        {...register('Cpassword', {
+          required: true,
+          validate: (value) => value === watch('password') || "Passwords do not match",
+        })}
+        onChange={handleChange}
+      />
+      <span
+        className="input-group-text"
+        onClick={toggleConfirmPasswordVisibility}
+        style={{
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+          border: 'none',
+          position: 'absolute',
+          right: '10px', // Adjusted right alignment
+          top: '70%',
+          transform: 'translateY(-50%)', // Vertically center the icon
+        }}
+      >
+        <i className={`fas ${ShowConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+      </span>
+    </div>
 
 
             <div className="mb-3 form-check">
@@ -412,8 +424,8 @@ function RegistrationPage() {
                 className="form-check-input"
                 onChange={(e) => setIsAgreed(e.target.checked)}
               />
-              <label className="form-check-label" htmlFor="agreeTerms">
-                I agree to the terms and <span className='text-danger'> privacy policies</span>
+              <label className="form-check-label" htmlFor="agreeTerms"style={{paddingLeft:"7px"}}>
+                I agree to the terms and <span className='text-danger 'style={{fontWeight:"100"}}> privacy policies</span>
               </label>
             </div>
 
