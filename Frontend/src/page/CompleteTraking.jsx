@@ -124,7 +124,6 @@ export default function CompleteTracking() {
 
 
   const view = {
-    backgroundColor: '#F6F8FB',
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#5678E9',
