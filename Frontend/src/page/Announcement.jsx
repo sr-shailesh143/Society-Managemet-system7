@@ -51,7 +51,7 @@ const Announcement = () => {
     try {
       await deleteAnnouncement(currentAnnouncement._id);
       toast.success("Announcement deleted successfully!");
-      fetchAnnouncements(); // Fetch the updated data
+      fetchAnnouncements();
       handleCloseModal();
     } catch (error) {
       console.error("Error deleting announcement:", error);
@@ -59,18 +59,13 @@ const Announcement = () => {
   };
 
   const formatTime = (timeStr) => {
-    // Assuming timeStr is in the format "HH:mm"
+    if (!timeStr) return "Invalid Time"; // Handle undefined or empty values
     const [hours, minutes] = timeStr.split(":");
     const date = new Date();
-    
-    // Set the time for the current date
     date.setHours(parseInt(hours));
     date.setMinutes(parseInt(minutes));
-    
-    // Return formatted time with AM/PM
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,7 +77,7 @@ const Announcement = () => {
         await updateAnnouncement(currentAnnouncement._id, currentAnnouncement);
         toast.success("Announcement updated successfully!");
       }
-      fetchAnnouncements(); // Fetch the updated data
+      fetchAnnouncements();
       handleCloseModal();
     } catch (error) {
       console.error("Error saving announcement:", error);
@@ -131,10 +126,10 @@ const Announcement = () => {
                   </Dropdown>
                 </Card.Header>
                 <Card.Body>
-  <p><strong>Date:</strong> {new Date(announcement.announcementDate).toLocaleDateString()}</p>
-  <p><strong>Time:</strong> {formatTime(announcement.announcementTime)}</p>
-  <p className="text-truncate">{announcement.description}</p>
-</Card.Body>
+                  <p><strong>Date:</strong> {new Date(announcement.announcementDate).toLocaleDateString()}</p>
+                  <p><strong>Time:</strong> {formatTime(announcement.announcementTime)}</p>
+                  <p className="text-truncate">{announcement.description}</p>
+                </Card.Body>
               </Card>
             </div>
           ))
@@ -207,8 +202,8 @@ const Announcement = () => {
         <Modal.Body>
           <p><strong>Title:</strong> {currentAnnouncement.title}</p>
           <p><strong>Description:</strong> {currentAnnouncement.description}</p>
-          <p><strong>Date:</strong> {currentAnnouncement.announcementDate}</p>
-          <p><strong>Time:</strong> {currentAnnouncement.announcementTime}</p>
+          <p><strong>Date:</strong> {new Date(currentAnnouncement.announcementDate).toLocaleDateString()}</p>
+          <p><strong>Time:</strong> {formatTime(currentAnnouncement.announcementTime)}</p>
         </Modal.Body>
       </Modal>
 

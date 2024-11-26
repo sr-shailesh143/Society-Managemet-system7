@@ -55,37 +55,6 @@ export default function CompleteTracking() {
       Status: "Pending",
       wing: "A"
     },
-    {
-      img: "src/assets/notification-img.png",
-      ComplainerName: "Evelyn Harper",
-      unitNumber: "1001",
-      ComplaintName: "Unethical Behavior",
-      Description: "Providing false information or deliberately.",
-      Priority: "Medium",
-      Status: "Solve",
-      wing: "B"
-    },
-    {
-      img: "src/assets/notification-img.png",
-      ComplainerName: "Evelyn Harper",
-      unitNumber: "1001",
-      ComplaintName: "Preventive Measures",
-      Description: "Providing false information or deliberately.",
-      Priority: "Low",
-      Status: "Pending",
-      wing: "C"
-    },
-    {
-      img: "src/assets/notification-img.png",
-      ComplainerName: "Evelyn Harper",
-      unitNumber: "1001",
-      ComplaintName: "Unethical Behavior",
-      Description: "Providing false information or deliberately.",
-      Priority: "High",
-      Status: "Open",
-      wing: "D"
-    },
-
   ];
 
   const EDITE = {
