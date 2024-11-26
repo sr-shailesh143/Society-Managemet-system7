@@ -31,11 +31,11 @@ const securitySchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        required: true
+        // required: true
     },
     aadharCard: {
         type: String,
-        required: true
+        // required: true
     }
 }, {
     timestamps: true
