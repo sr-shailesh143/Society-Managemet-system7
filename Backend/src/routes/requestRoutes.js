@@ -6,7 +6,7 @@ router.post('/createRequest', requests.createRequest);
 router.get('/getAllRequests',requests.getAllRequests);
 router.delete('/deleteRequest/:id',requests.deleteRequest);
 router.patch('/updateRequest/:id',requests.updateRequest);
-router.get('/requests/:id',requests.getRequestById)
+router.get('/getRequestById/:id',requests.getRequestById)
 
 
 module.exports = router;

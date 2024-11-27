@@ -644,7 +644,7 @@ z
                                         value="Vacant"
                                         checked={status === "Vacant"}
                                         onChange={handleStatusChange}
-                                        className="status-radio mt-2"
+                                        className="status-radio mt-2 "
                                     />
                                 </div>
                             </div>
