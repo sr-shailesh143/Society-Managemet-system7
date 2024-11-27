@@ -47,6 +47,8 @@ import Securityprotocol2 from './page3/Securityprotocol2';
 import MaintananceInvoice from './page3/MaintananceInvoice';
 import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
+import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
+
 function App() {
   return (
     <BrowserRouter>
@@ -103,7 +105,7 @@ function App() {
         {/* Security */}
 
 
-
+      
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
 
@@ -121,7 +123,8 @@ function App() {
         <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
         <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
         <Route path='/OtherincomeInvoice'element={<ResidentManageMentLayout component={<OtherincomeInvoice/>} />} />
-
+        <Route path='/CommunitiesDiscussion' element={<ResidentManageMentLayout component={<CommunitiesDiscussion/>} />} />
+     
         <Route path='/ServiceComplain' element={<ResidentManageMentLayout component={<ServiceComplain />} />} />
         <Route path='/RequestSubmission' element={<ResidentManageMentLayout component={<RequestSubmission />} />} />
         <Route path='/EventParticipation' element={<ResidentManageMentLayout component={<EventParticipation />} />} />
