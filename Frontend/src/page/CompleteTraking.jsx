@@ -1,30 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
-import { DataGrid } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
-import { Delete, Edit, Image, PlusOne, Spa } from '@mui/icons-material';
+import { Delete, Edit, } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
 import { useNavigate } from 'react-router-dom';
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
   const handlecancle = () => setshow(false);
-  const [status, setStatus] = useState("High");
-  const [status1, setStatus1] = useState("Open");
+  const [status, setStatus] = useState("");
+  const [status1, setStatus1] = useState("");
   const handleStatusChange1 = (event) => setStatus1(event.target.value);
   const handleStatusChange = (event) => setStatus(event.target.value);
   const naviget = useNavigate()
-  function createcomplent() {
-    setshow(false)
-    naviget("/traking")
-  }
+
   // edit 
   const [editShow, seteditShow] = useState(false)
   const handlecancleEdit = () => seteditShow(false);
-
-  const [status2, setStatus2] = useState("High");
-  const [status3, setStatus3] = useState("Open");
+  const [status2, setStatus2] = useState("");
+  const [status3, setStatus3] = useState("");
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
   function edit() {
@@ -37,25 +33,86 @@ export default function CompleteTracking() {
   const handleClose = () => setshowview(false);
   // delete
   const [showDelete, setshowDelete] = useState(false)
-  function deletecomplelnt() {
+  const [id, setid] = useState("")
+  // detele api 
+  async function deletecomplelnt(id) {
+
+    await deleteComplaint(id)
+    getalldata()
     setshowDelete(false)
+
+  }
+
+  // crate api data
+  const [compleltData, setcompleltData] = useState({
+    complainerName: "",
+    complaintName: "",
+    description: "",
+    wing: "",
+    unit: "",
+
+  })
+
+
+  async function createcomplent() {
+    try {
+      const data = {
+        complainerName: compleltData.complainerName,
+        complaintName: compleltData.complaintName,
+        description: compleltData.description,
+        wing: compleltData.wing,
+        unit: compleltData.unit,
+        priority: status,
+        status: status1,
+      }
+      console.log(data)
+      const respons = await createComplaint(data)
+      console.log(respons)
+      getalldata()
+      setshow(false)
+      naviget("/traking")
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+  // data fatch api 
+  const [datalist, setdatalist] = useState([])
+
+  const getalldata = async () => {
+    const respons = await getAllComplaints()
+    setdatalist(respons.data.records)
+  }
+
+  const [viewdetils, setviewdetils] = useState({})
+  async function viewDetails(id) {
+    try {
+      const respons = await GetComplaint(id)
+
+      setviewdetils(respons.data.record)
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 
+  useEffect(() => {
+    getalldata()
+  }, [compleltData])
 
 
-  const data = [
-    {
-      img: "src/assets/notification-img.png",
-      ComplainerName: "Evelyn Harper",
-      unitNumber: "1001",
-      ComplaintName: "Unethical Behavior",
-      Description: "Providing false information or deliberately.",
-      Priority: "Medium",
-      Status: "Pending",
-      wing: "A"
-    },
-  ];
+
+  async function handle(_id) {
+    try {
+      const response = await updateComplaint(_id) 
+      console.log(response.data)
+    } catch (error) {
+     console.log(error) 
+    }
+  }
+
 
   const EDITE = {
     backgroundColor: '#F6F8FB',
@@ -79,6 +136,7 @@ export default function CompleteTracking() {
     padding: '5px 10px',
     borderRadius: '12px',
     color: '#5678E9',
+    textTransform: "uppercase",
   }
   const Medium = {
     backgroundColor: '#5678E9',
@@ -130,6 +188,8 @@ export default function CompleteTracking() {
 
   }
 
+
+
   return (
     <>
       <div className="createTraking">
@@ -148,43 +208,54 @@ export default function CompleteTracking() {
             <Modal.Body>
               <div className="complete-name">
                 <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                <input className='input-style' placeholder='Enter Name' type="text" />
+                <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
+                  ...compleltData, complainerName: e.target.value
+                })} />
               </div>
               <div className="complete-name mt-3">
                 <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                <input className='input-style' placeholder='Enter Name' type="text" />
+                <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
+                  ...compleltData, complaintName: e.target.value
+                })} />
               </div>
               <div className="complete-name mt-3">
                 <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={2}
+                  onChange={(e) => setcompleltData({
+                    ...compleltData, description: e.target.value
+                  })}
                   placeholder='Enter Description'
                 />
               </div>
               <div className="complete-name mt-2 row d-flex">
                 <div className="complent-UnitNumber col-12 col-md-6">
-                  <label html="" className='labal-name'> UnitNumber <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter UnitNumber' type="text" />
+                  <label html="" className='labal-name'> Wing <span className='text-danger1'>*</span></label>
+                  <input className='input-style' placeholder='Enter Wing' type="text" onChange={(e) => setcompleltData({
+                    ...compleltData, wing: e.target.value
+                  })} />
                 </div>
                 <div className="complelt-unit col-12 col-md-6">
-                  <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Unit' type="text" />
+                  <label html="" className='labal-name'> Unit <span className='text-danger1'>*</span></label>
+                  <input className='input-style mt-1' placeholder='Enter Unit' type="number" onChange={(e) => setcompleltData({
+                    ...compleltData, unit: e.target.value
+                  })} />
                 </div>
               </div>
               <div className="complete-name mt-2 ">
                 <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
                 <div className="row gap-3  justify-content-center  ">
-                  <div onClick={() => setStatus("High")} className={`  col-md-3  d-flex  align-items-center gap-1 ${status === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className='' checked={status === "High"} onChange={handleStatusChange} value="High" />
+                  <div onClick={() => setStatus("High")} className={`  col-md-3  d-flex  align-items-center gap-2 ${status === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' radio polls-radio' checked={status === "High"} onChange={handleStatusChange} value="High" />
                     <p className='mt-3'>High</p>
                   </div>
-                  <div onClick={() => setStatus("Medium")} className={`  col-md-4  d-flex  align-items-center gap-1  ${status === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className='   ' checked={status === "Medium"} onChange={handleStatusChange} value={"Medium"} />
+                  <div onClick={() => setStatus("Medium")} className={`  col-md-4  d-flex  align-items-center gap-2  ${status === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' radio polls-radio  ' checked={status === "Medium"} onChange={handleStatusChange} value={"Medium"} />
                     <p className='mt-3'>Medium</p>
                   </div>
-                  <div onClick={() => setStatus("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-1  ${status === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: status === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className='   ' checked={status === "Low"} onChange={handleStatusChange} value={"Low"} />
+                  <div onClick={() => setStatus("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: status === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' radio polls-radio  ' checked={status === "Low"} onChange={handleStatusChange} value={"Low"} />
                     <p className='mt-3'>Low</p>
                   </div>
                 </div>
@@ -192,16 +263,16 @@ export default function CompleteTracking() {
               <div className="complete-name mt-2 ">
                 <label html="" className='labal-name'> Status <span className='text-danger1'>*</span></label>
                 <div className="row gap-3 justify-content-center ">
-                  <div onClick={() => setStatus1("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-1 ${status1 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status1 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className=' w-25  ' checked={status1 === "Open"} onChange={handleStatusChange1} value="Open" />
+                  <div onClick={() => setStatus1("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-2 ${status1 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status1 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' w-25  radio polls-radio  ' checked={status1 === "Open"} onChange={handleStatusChange1} value={"Open"} />
                     <p className='mt-3'>Open</p>
                   </div>
-                  <div onClick={() => setStatus1("Pending")} className={` col-12 col-md-4  d-flex  align-items-center gap-1  ${status1 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status1 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className=' w-25  ' checked={status1 === "Pending"} onChange={handleStatusChange1} value={"Pending"} />
+                  <div onClick={() => setStatus1("Pending")} className={` col-12 col-md-4  d-flex  align-items-center gap-2  ${status1 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status1 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' w-25  radio polls-radio  ' checked={status1 === "Pending"} onChange={handleStatusChange1} value={"Pending"} />
                     <p className='mt-3'>Pending</p>
                   </div>
-                  <div onClick={() => setStatus1("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-1  ${status1 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                    <input type="radio" className=' w-25  ' checked={status1 === "Solve"} onChange={handleStatusChange1} value={"Solve"} />
+                  <div onClick={() => setStatus1("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status1 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status1 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                    <input type="radio" className=' w-25  radio polls-radio  ' checked={status1 === "Solve"} onChange={handleStatusChange1} value={"Solve"} />
                     <p className='mt-3'>Solve</p>
                   </div>
                 </div>
@@ -237,8 +308,8 @@ export default function CompleteTracking() {
                 <thead className='tabal-header'>
                   <tr>
                     <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
-                    <th>Complaint Name</th>
-                    <th> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</th>
+                    <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th> &nbsp; Description</th>
                     <th>Unit Number</th>
                     <th>  &nbsp; &nbsp;Priority</th>
                     <th> &nbsp;&nbsp; Status</th>
@@ -247,37 +318,38 @@ export default function CompleteTracking() {
                 </thead>
                 <tbody>
 
-                  {data.map((item, index) => (
-                    <tr key={index}>
+                  {datalist.map((item) => (
+                    <tr >
                       <td>
                         {
-                          item.fullName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
-                            <span><img src={item.img} alt="" /> <span>  {item.ComplainerName}</span> </span>
+                          item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
                         }
                       </td>
-                      <td >   {item.ComplaintName}</td>
-                      <td >   {item.Description}</td>
-                      <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unitNumber}</td>
+                      <td > <spa className='ms-3'> {item.complaintName}</spa> </td>
+
+                      <td> <span className='' >{item.description}</span>  </td>
+                      <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
                       <td >
                         {
-                          item.Priority === "Medium" ? <span style={Medium}>{item.Priority}</span> : item.Priority === "Low" ? <span style={Low}>{item.Priority}</span> : <span style={High}>{item.Priority}</span>
+                          item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
                         }
                       </td>
                       <td >
                         {
-                          item.Status === "Pending" ? <span style={Pending}>{item.Status}</span> : item.Status === "Open" ? <span style={Open}>{item.Status}</span> : <span style={Solve}>{item.Status}</span>
+                          item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
                         }
                       </td>
 
                       <td className="action-buttons">
                         <span className=''>
-                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true)}  style={EDITE} >
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
                             <Edit style={{ cursor: "pointer" }} />
                           </span>
-                          <span onClick={() => setshowview(true)} className={`status-badge-view `} style={view} >
+                          <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
                             <VisibilityIcon style={{ cursor: "pointer" }} />
                           </span>
-                          <span onClick={() => setshowDelete(true)} className={`status-badge-delete ms-2 `} style={DELETE}>
+                          <span onClick={() => setshowDelete(true) || setid(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
 
                             <Delete style={{ cursor: "pointer" }} />
                           </span>
@@ -299,7 +371,7 @@ export default function CompleteTracking() {
               <Modal.Body>
                 <div className="complete-name">
                   <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" />
+                  <input className='input-style' placeholder='Enter Name' type="text"  value={"fdoij"}/>
                 </div>
                 <div className="complete-name mt-3">
                   <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
@@ -315,27 +387,27 @@ export default function CompleteTracking() {
                 </div>
                 <div className="complete-name mt-2 row d-flex">
                   <div className="complent-UnitNumber col-12 col-md-6">
-                    <label html="" className='labal-name'> UnitNumber <span className='text-danger1'>*</span></label>
-                    <input className='input-style' placeholder='Enter UnitNumber' type="text" />
+                    <label html="" className='labal-name'> wing <span className='text-danger1'>*</span></label>
+                    <input className='input-style ' placeholder='Enter wing' type="text" />
                   </div>
                   <div className="complelt-unit col-12 col-md-6">
-                    <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                    <input className='input-style' placeholder='Enter Unit' type="text" />
+                    <label html="" className='labal-name'> Units <span className='text-danger1'>*</span></label>
+                    <input className='input-style mt-1' placeholder='Enter Unit'  type="number" />
                   </div>
                 </div>
                 <div className="complete-name mt-2 ">
                   <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
                   <div className="row gap-3  justify-content-center  ">
-                    <div onClick={() => setStatus2("High")} className={`  col-md-3  d-flex  align-items-center gap-1 ${status2 === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className='   ' checked={status === "High"} onChange={handleStatusChange2} value="High" />
+                    <div onClick={() => setStatus2("High")} className={`  col-md-3  d-flex  align-items-center gap-2 ${status2 === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className='radio polls-radio   ' checked={status2 === "High"} onChange={handleStatusChange2} value="High" />
                       <p className='mt-3'>High</p>
                     </div>
-                    <div onClick={() => setStatus2("Medium")} className={`  col-md-4  d-flex  align-items-center gap-1  ${status2 === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className='   ' checked={status2 === "Medium"} onChange={handleStatusChange2} value={"Medium"} />
+                    <div onClick={() => setStatus2("Medium")} className={`  col-md-4  d-flex  align-items-center gap-2  ${status2 === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className='radio polls-radio   ' checked={status2 === "Medium"} onChange={handleStatusChange2} value={"Medium"} />
                       <p className='mt-3'>Medium</p>
                     </div>
-                    <div onClick={() => setStatus2("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-1  ${status2 === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className='   ' checked={status2 === "Low"} onChange={handleStatusChange2} value={"Low"} />
+                    <div onClick={() => setStatus2("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status2 === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className=' radio polls-radio   ' checked={status2 === "Low"} onChange={handleStatusChange2} value={"Low"} />
                       <p className='mt-3'>Low</p>
                     </div>
                   </div>
@@ -344,16 +416,16 @@ export default function CompleteTracking() {
                   <label html="" className='labal-name'> Status <span className='text-danger1'>*</span></label>
 
                   <div className="row gap-3 justify-content-center ">
-                    <div onClick={() => setStatus3("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-1 ${status3 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  ' checked={status3 === "Open"} onChange={handleStatusChange3} value="Open" />
+                    <div onClick={() => setStatus3("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-2 ${status3 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className=' radio polls-radio w-25  ' checked={status3 === "Open"} onChange={handleStatusChange3} value="Open" />
                       <p className='mt-3'>Open</p>
                     </div>
-                    <div onClick={() => setStatus3("Pending")} className={` col-12 col-md-4  d-flex  align-items-center gap-1  ${status3 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  ' checked={status3 === "Pending"} onChange={handleStatusChange3} value={"Pending"} />
+                    <div onClick={() => setStatus3("Pending")} className={` col-12 col-md-4  d-flex  align-items-center gap-2  ${status3 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className=' w-25 radio polls-radio  ' checked={status3 === "Pending"} onChange={handleStatusChange3} value={"Pending"} />
                       <p className='mt-3'>Pending</p>
                     </div>
-                    <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-1  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
+                    <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className=' w-25  radio polls-radio ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
                       <p className='mt-3'>Solve</p>
                     </div>
                   </div>
@@ -395,36 +467,42 @@ export default function CompleteTracking() {
                     <img src="/src/assets/Avatar.png" alt="" />
                   </div>
                   <div className="col-12 col-md-6">
-                    <h5>Evelyn Harper</h5>
-                    <p className='mode-date'>Aug 5, 2024</p>
+                    <h5>{viewdetils.complainerName}</h5>
+                    <p className='mode-date'>
+                      {new Date(viewdetils.createdAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="profile-name">
                 <h6 className='fs-5 mode-date' >Request Name</h6>
-                <h4>Unethical Behavior</h4>
+                <h4>{viewdetils.complaintName}</h4>
               </div>
               <div className="Description mt-4">
                 <h6 className='fs-5 mode-date' >Description</h6>
-                <h6>Offering, giving, receiving, or soliciting  of value to influence the actions of an.</h6>
+                <h6>{viewdetils.description}</h6>
               </div>
               <div className="ditels mt-3">
                 <div className="row">
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>wing</p>
-                    <p className='ms-2 wing'> <span className='ms-2'>A</span></p>
+                    <p className='ms-2 wing'> <span className='ms-2'>{viewdetils.wing}</span></p>
                   </div>
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>Unit</p>
-                    <p className=' '> <span className=''>1002</span></p>
+                    <p className=' '> <span className=''>{viewdetils.unit}</span></p>
                   </div>
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>Priority</p>
-                    <p className=' Priority'> <span className=''>Medium</span></p>
+                    <p className=' Priority'> <span className=''>{viewdetils.priority}</span></p>
                   </div>
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>Status</p>
-                    <p className='open '> <span className=''>Open</span></p>
+                    <p className='open '> <span className=''>{viewdetils.status}</span></p>
                   </div>
                 </div>
               </div>
@@ -443,8 +521,8 @@ export default function CompleteTracking() {
                 <Button
                   className="save-btn radious   "
                   style={{
-                    
-                    color:"#202224",
+
+                    color: "#202224",
                     border: "1px solid #D3D3D3",
                     cursor: "pointer"
                   }}
@@ -460,7 +538,7 @@ export default function CompleteTracking() {
                     border: "none",
                     cursor: "pointer"
                   }}
-                  onClick={deletecomplelnt}
+                  onClick={() => deletecomplelnt(id)}
                 >
                   Conform
                 </Button>

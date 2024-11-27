@@ -50,6 +50,8 @@ export default function Community() {
     { type: 'received', text: 'Hi there, How are you?', time: '9:20' },
     { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
     { type: 'sent', text: 'Hi, I am coming there in a few minutes. Please wait! I am in a taxi right now.', time: '9:30' },
+    { type: 'received', text: 'Hi there, How are you?', time: '9:20' },
+
 
 
   ];
