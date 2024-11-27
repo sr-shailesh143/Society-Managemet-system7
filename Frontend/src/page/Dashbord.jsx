@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container, Row, Col, Card, ListGroup, Badge, Button, Table,
   Modal, Form
@@ -7,12 +7,13 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { FaTrash, FaEdit, FaPlus, FaEye } from 'react-icons/fa';
 import '../index.css'
+import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const [showEditNumberModal, setShowEditNumberModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(null);
-  const [editedNumber, setEditedNumber] = useState({ name: '', phone: '', work: '' });
+  const [editedNumber, setEditedNumber] = useState({ Name: '', Number: '', Work: '' });
 
   const [showDeleteNumberModal, setShowDeleteNumberModal] = useState(false);
   const [deleteIndex, setDeleteIndex] = useState(null);
@@ -24,47 +25,97 @@ const Dashboard = () => {
     setDeleteIndex(index);
     setShowDeleteNumberModal(true);
   };
-  const handleDeleteNumber = () => {
-    if (deleteIndex !== null) {
-      setImportantNumbers(importantNumbers.filter((_, index) => index !== deleteIndex));
-      setShowDeleteNumberModal(false);
+  const handleDeleteNumber = async (id) => {
+    try {
+      await deletenumber(id);
+      fetchImportantNumbers(); // Refresh the list
+    } catch (error) {
+      console.error("Failed to delete number:", error);
     }
   };
+
   const [showEditComplaintModal, setShowEditComplaintModal] = useState(false);
   const [showViewComplaintModal, setShowViewComplaintModal] = useState(false);
   const [showAddNumberModal, setShowAddNumberModal] = useState(false);
   const [importantNumbers, setImportantNumbers] = useState([
-    { name: 'Hanna Donin', phone: '+91 99587 33657', work: 'Plumber', isEditing: false },
-    { name: 'Hanna ', phone: '+91 99587 33657', work: 'Plumber', isEditing: false },
-    { name: 'Hanna Donin', phone: '+91 99587 33657', work: 'Plumber', isEditing: false },
-    { name: 'Hanna Donin', phone: '+91 99587 33657', work: 'Plumber', isEditing: false }
+    { Name: '', Number: '', Work: '', isEditing: false }
   ]);
   const handleShowAddNumberModal = () => {
-    setEditedNumber({ name: '', phone: '', work: '' });
+    setEditedNumber({ Name: '', Number: '', Work: '' });
     setShowAddNumberModal(true);
   };
-  const handleAddNumber = () => {
-    if (!editedNumber.name || !editedNumber.phone || !editedNumber.work) return;
-    setImportantNumbers([...importantNumbers, { ...editedNumber, isEditing: false }]);
-    setEditedNumber({ name: '', phone: '', work: '' });
-    setShowAddNumberModal(false);
+  const handleAddNumber = async () => {
+    if (!editedNumber.Name || !editedNumber.Number || !editedNumber.Work) return;
+    try {
+      const response = await createnumber(editedNumber);
+      setImportantNumbers([...importantNumbers, response.data]);
+      setEditedNumber({ Name: '', Number: '', Work: '' });
+      setShowAddNumberModal(false);
+    } catch (error) {
+      console.error("Error adding number:", error);
+    }
   };
-  const handleShowEditNumberModal = (number) => {
-    setSelectedNumber(number);
-    setEditedNumber(number);
-    setShowEditNumberModal(true);
-  };
+
+ // Fetch important numbers from the API
+ const fetchImportantNumbers = async () => {
+  try {
+    const response = await viewnumber();
+    const data = response.data;
+
+    if (data && Array.isArray(data.ImpNumber)) {
+      setImportantNumbers(data.ImpNumber); // Update state with fetched data
+    } else {
+      console.error("Expected array, but got:", data);
+    }
+  } catch (error) {
+    console.error("Failed to fetch important numbers:", error);
+  }
+};
+
+// Use `useEffect` to fetch data when the component mounts
+useEffect(() => {
+  fetchImportantNumbers();
+}, []); 
+  
+  
+  
+  
+  // const handleShowEditNumberModal = (number) => {
+  //   setSelectedNumber(number);
+  //   setEditedNumber(number);
+  //   setShowEditNumberModal(true);
+  // };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedNumber({ ...editedNumber, [name]: value });
   };
-  const handleEditNumber = () => {
-    if (!editedNumber.name || !editedNumber.phone || !editedNumber.work) return;
-    setImportantNumbers(importantNumbers.map((item) =>
-      item.phone === selectedNumber.phone ? { ...editedNumber } : item
-    ));
-    setShowEditNumberModal(false);
+  const handleEditNumber = async () => {
+    if (!editedNumber.Name || !editedNumber.Number || !editedNumber.Work) {
+      console.warn("All fields are required.");
+      return;
+    }
+    try {
+      // Update on backend
+      await updatenumber(selectedNumber._id, editedNumber);
+  
+      // Update locally
+      setImportantNumbers((prevNumbers) =>
+        prevNumbers.map((item) =>
+          item._id === selectedNumber._id ? { ...item, ...editedNumber } : item
+        )
+      );
+  
+      // Close modal
+      setShowEditNumberModal(false);
+  
+      // Clear the editedNumber state
+      setEditedNumber({ Name: "", Number: "", Work: "" });
+    } catch (error) {
+      console.error("Error updating number:", error);
+    }
   };
+  
+  
   const [complaints, setComplaints] = useState([
     { id: 1, complainer: 'Evelyn Harper', complaint: 'Unethical Behavior', date: '01/02/2024', priority: 'Medium', status: 'Open' },
     { id: 2, complainer: 'Evelyn Harper', complaint: 'Unethical Behavior', date: '01/02/2024', priority: 'Medium', status: 'Open' }
@@ -255,135 +306,145 @@ const Dashboard = () => {
           </Card>
         </Col>
         <Col xs={12} md={3}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }}>
-            <Card.Body>
-              <div className="d-flex justify-content-between align-items-center mb-3 ">
-                <Card.Title>Important Numbers</Card.Title>
-                <Button
-                  style={{
-                    background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                    border: "none",
-                    color: "white"
-                  }}
-                  size="sm" onClick={handleShowAddNumberModal}>
-                  <FaPlus className="me-1" />
-                  Add
-                </Button>
-              </div>
-              <ListGroup variant="flush" className="scrollable-list">
-                {importantNumbers.map((item, index) => (
-                  <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
-                    <div>
-                      {item.isEditing ? (
-                        <>
-                          <Form.Control
-                            type="text"
-                            name="name"
-                            value={item.name}
-                            onChange={(e) => handleInputChange(e, index)}
-                            className="mb-2"
-                          />
-                          <Form.Control
-                            type="text"
-                            name="phone"
-                            value={item.phone}
-                            onChange={(e) => handleInputChange(e, index)}
-                            className="mb-2"
-                          />
-                          <Form.Control
-                            type="text"
-                            name="work"
-                            value={item.work}
-                            onChange={(e) => handleInputChange(e, index)}
-                            className="mb-2" />  </>
-                      ) : (
-                        <>
-                          <div style={{ color: "grey" }}><strong style={{ color: "black" }}>Name:</strong> {item.name}</div>
-                          <div style={{ color: "grey" }}><strong style={{ color: "black" }}>Phone:</strong> {item.phone}</div>
-                          <div style={{ color: "grey" }}><strong style={{ color: "black" }}>Work:</strong> {item.work}</div>
-                        </>
-                      )}
-                    </div>
-                    <div className="d-flex">
-                      <Button style={{ border: "none" }} size="sm" className="me-1  bg-danger" onClick={() => handleShowDeleteNumberModal(index)}>
-                        <FaTrash />
-                      </Button>
-                      <Button variant="success" size="sm" onClick={() => handleShowEditNumberModal(item)}>
-                        <FaEdit />
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Card.Body>
-          </Card>
+        <Card className="mb-4" style={{ borderRadius: "15px" }}>
+      <Card.Body>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <Card.Title>Important Numbers</Card.Title>
+          <Button
+            style={{
+              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+              border: "none",
+              color: "white",
+            }}
+            size="sm"
+            onClick={() => setShowAddNumberModal(true)}
+          >
+            <FaPlus className="me-1" />
+            Add
+          </Button>
+        </div>
+        <ListGroup variant="flush" className="scrollable-list">
+          {Array.isArray(importantNumbers) && importantNumbers.length > 0 ? (
+            importantNumbers.map((item, index) => (
+              <ListGroup.Item
+                key={item._id || index}
+                className="d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <div style={{ color: "grey" }}>
+                    <strong style={{ color: "black" }}>Name:</strong> {item.Name}
+                  </div>
+                  <div style={{ color: "grey" }}>
+                    <strong style={{ color: "black" }}>Phone:</strong> {item.Number}
+                  </div>
+                  <div style={{ color: "grey" }}>
+                    <strong style={{ color: "black" }}>Work:</strong> {item.Work}
+                  </div>
+                </div>
+                <div className="d-flex">
+                  <Button
+                    style={{ border: "none" }}
+                    size="sm"
+                    className="me-1 bg-danger"
+                    onClick={() => handleDeleteNumber(item._id)}
+                  >
+                    <FaTrash />
+                  </Button>
+                  <Button
+                    variant="success"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedNumber(item);
+                      setEditedNumber(item);
+                      setShowEditNumberModal(true);
+                    }}
+                  >
+                    <FaEdit />
+                  </Button>
+                </div>
+              </ListGroup.Item>
+            ))
+          ) : (
+            <ListGroup.Item>No important numbers found.</ListGroup.Item>
+          )}
+        </ListGroup>
+      </Card.Body>
+    </Card>
           {/* Edit Important Number Modal */}
           <Modal show={showEditNumberModal} onHide={() => setShowEditNumberModal(false)}>
-            <Modal.Header  >
-              <Modal.Title>Edit Important Number</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group controlId="formName">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter name"
-                    name="name"
-                    value={editedNumber.name}
-                    onChange={handleInputChange} />
-                </Form.Group>
-                <Form.Group controlId="formPhone">
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter phone number"
-                    name="phone"
-                    value={editedNumber.phone}
-                    onChange={handleInputChange} />
-                </Form.Group>
-                <Form.Group controlId="formWork">
-                  <Form.Label>Work</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter work type"
-                    name="work"
-                    value={editedNumber.work}
-                    onChange={handleInputChange} />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={() => setShowEditNumberModal(false)}>
-                Cancel
-              </Button>
-              <Button style={{
-                background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                border: "none",
-                color: "white",
-                width: "45%"
-              }} onClick={handleEditNumber}>
-                Save
-              </Button>
-            </Modal.Footer>
-          </Modal>
+  <Modal.Header closeButton>
+    <Modal.Title>Edit Important Number</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form>
+      <Form.Group controlId="formName" className="mb-3">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter name"
+          name="Name"
+          value={editedNumber.Name}
+          onChange={(e) => setEditedNumber({ ...editedNumber, Name: e.target.value })}
+        />
+      </Form.Group>
+      <Form.Group controlId="formNumber" className="mb-3">
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter phone number"
+          name="Number"
+          value={editedNumber.Number}
+          onChange={(e) => setEditedNumber({ ...editedNumber, Number: e.target.value })}
+        />
+      </Form.Group>
+      <Form.Group controlId="formWork" className="mb-3">
+        <Form.Label>Work</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter work type"
+          name="Work"
+          value={editedNumber.Work}
+          onChange={(e) => setEditedNumber({ ...editedNumber, Work: e.target.value })}
+        />
+      </Form.Group>
+    </Form>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button
+      variant="secondary"
+      onClick={() => {
+        setShowEditNumberModal(false);
+        setEditedNumber({ Name: "", Number: "", Work: "" });
+      }}
+    >
+      Cancel
+    </Button>
+    <Button
+      style={{
+        background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+        border: "none",
+      }}
+      onClick={handleEditNumber}
+    >
+      Save
+    </Button>
+  </Modal.Footer>
+</Modal>
+
           {/* Delete Confirmation Modal */}
-          <Modal show={showDeleteNumberModal} onHide={() => setShowDeleteNumberModal(false)}>
-            <Modal.Header >
-              <Modal.Title>Confirm Delete</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Are you sure you want to delete this important number?
-            </Modal.Body>
-            <Modal.Footer>
-              <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={() => setShowDeleteNumberModal(false)}>
-                Cancel
-              </Button>
-              <Button variant="danger" style={{ width: "45%" }} onClick={handleDeleteNumber}>
-                Delete
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <Modal show={showDeleteNumberModal} onHide={handleCloseModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>Delete Number</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    Are you sure you want to delete this number?
+  </Modal.Body>
+  <Modal.Footer>
+    <button onClick={handleCloseModal} className="btn btn-secondary">Cancel</button>
+    <button onClick={handleDeleteNumber} className="btn btn-danger">Delete</button>
+  </Modal.Footer>
+</Modal>
+
         </Col>
         <Col xs={12} md={3} style={{ height: '410px' }}>
           <Card className="mb-4 h-100 scroll" style={{ borderRadius: "15px" }} >
@@ -557,50 +618,55 @@ const Dashboard = () => {
       </Row>
       {/* Modals  for complain table*/}
       {/* Add Important Number Modal */}
-      <Modal show={showAddNumberModal} onHide={() => setShowAddNumberModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Important Number</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                name="name"
-                value={editedNumber.name}
-                onChange={(e) => setEditedNumber({ ...editedNumber, name: e.target.value })} />
-            </Form.Group>
-            <Form.Group controlId="formPhone">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter phone number"
-                name="phone"
-                value={editedNumber.phone}
-                onChange={(e) => setEditedNumber({ ...editedNumber, phone: e.target.value })} />
-            </Form.Group>
-            <Form.Group controlId="formWork">
-              <Form.Label>Work</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter work type"
-                name="work"
-                value={editedNumber.work}
-                onChange={(e) => setEditedNumber({ ...editedNumber, work: e.target.value })} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowAddNumberModal(false)}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleAddNumber}>
-            Add Number
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Modal show={showAddNumberModal} onHide={handleCloseModal}>
+  <Modal.Header closeButton>
+    <Modal.Title>{selectedNumber ? "Edit  N" : "Add New Number"}</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <form>
+      <div className="mb-3">
+        <label>Name</label>
+        <input
+          type="text"
+          name="Name"
+          value={editedNumber.Name}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
+      <div className="mb-3">
+        <label>Phone</label>
+        <input
+          type="text"
+          name="Number"
+          value={editedNumber.Number}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
+      <div className="mb-3">
+        <label>Work</label>
+        <input
+          type="text"
+          name="Work"
+          value={editedNumber.Work}
+          onChange={handleInputChange}
+          className="form-control"
+        />
+      </div>
+    </form>
+  </Modal.Body>
+  <Modal.Footer>
+    <button onClick={handleCloseModal} className="btn btn-secondary">Cancel</button>
+    <button
+      onClick={selectedNumber ? handleEditNumber : handleAddNumber}
+      className="btn btn-primary"
+    >
+      {selectedNumber ? "Save Changes" : "Add Number"}
+    </button>
+  </Modal.Footer>
+</Modal>
+
       {/* Edit Complaint Modal */}
       <Modal show={showEditComplaintModal} onHide={handleCloseModal}>
         <Modal.Header >

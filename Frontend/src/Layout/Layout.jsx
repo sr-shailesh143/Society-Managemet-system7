@@ -18,13 +18,19 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { IoMdClose } from "react-icons/io";
 import { FaGreaterThan } from "react-icons/fa6";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { logout } from '../apiservices/Authentication';
+import { useDispatch, useSelector } from "react-redux";
+import { logoutuser } from '../redux/authslice';
+import {  toast } from "react-hot-toast";
+
 
 
 
 
 export default function Layout({ component }) {
     const [show, setShow] = useState(false);
-    const naviget = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [serch, setserch] = useState(0)
 
     const handleClose = () => setShow(false);
@@ -36,7 +42,18 @@ export default function Layout({ component }) {
     const [showFinancialSubmenu3, setShowFinancialSubmenu3] = useState(false);
     const [showFinancialSubmenu4, setShowFinancialSubmenu4] = useState(false);
 
-
+   
+    const handleLogout = async () => {
+        try {
+          const response = await logout();
+          navigate("/");
+          dispatch(logoutuser());
+          toast.success(response.data.message);
+        } catch (error) {
+          toast.error(error.response.data.message);
+        }
+      };
+       
 
 
     // Toggle Financial Management submenu
@@ -216,9 +233,9 @@ left:-23px;
                             {
                                 location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu2 && (
                                     <Submenu>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Financial")} >Note</span></SubmenuItem>
-                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Icome")}> Income</span></SubmenuItem>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Expense")}>Expense</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Financial")} >Note</span></SubmenuItem>
+                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Icome")}> Income</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Expense")}>Expense</span></SubmenuItem>
                                     </Submenu>
                                 )} </div> : ""
                             }
@@ -230,8 +247,8 @@ left:-23px;
                                 location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <div>
                                     {showFinancialSubmenu4 && (
                                         <Submenu>
-                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/traking")}> Create Complaint</span></SubmenuItem>
-                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/RequestTracking")}>Request Tracking</span></SubmenuItem>
+                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/traking")}> Create Complaint</span></SubmenuItem>
+                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/RequestTracking")}>Request Tracking</span></SubmenuItem>
 
                                         </Submenu>
                                     )}
@@ -248,8 +265,8 @@ left:-23px;
 
                                     {showFinancialSubmenu3 && (
                                         <Submenu>
-                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Visitor")}> Visitor Logs</span></SubmenuItem>
-                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
+                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Visitor")}> Visitor Logs</span></SubmenuItem>
+                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
                                         </Submenu>
                                     )}
                                 </div> : ""
@@ -262,7 +279,7 @@ left:-23px;
                             <br />
                             <br />
                             <br />
-                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}> <TbLogout className='fs-3' />  Logout</p>
+                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}   onClick={handleLogout}> <TbLogout className='fs-3' />  Logout</p>
                         </NavLinks>
                     </div>
                     <div className="col-12 col-md-9 ">
@@ -301,9 +318,9 @@ left:-23px;
                             {
                                 location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu2 && (
                                     <Submenu>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Financial")} >Note</span></SubmenuItem>
-                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Icome")}> Income</span></SubmenuItem>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Expense")}>Expense</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Financial")} >Note</span></SubmenuItem>
+                                        <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Icome")}> Income</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Expense")}>Expense</span></SubmenuItem>
                                     </Submenu>
                                 )} </div> : ""
                             }
@@ -315,8 +332,8 @@ left:-23px;
                                 location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <div>
                                     {showFinancialSubmenu4 && (
                                         <Submenu>
-                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/traking")}> Create Complaint</span></SubmenuItem>
-                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/RequestTracking")}>Request Tracking</span></SubmenuItem>
+                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/traking")}> Create Complaint</span></SubmenuItem>
+                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/RequestTracking")}>Request Tracking</span></SubmenuItem>
 
                                         </Submenu>
                                     )}
@@ -333,8 +350,8 @@ left:-23px;
 
                                     {showFinancialSubmenu3 && (
                                         <Submenu>
-                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Visitor")}> Visitor Logs</span></SubmenuItem>
-                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
+                                            <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Visitor" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Visitor")}> Visitor Logs</span></SubmenuItem>
+                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Securityprotocols" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Securityprotocols")}>Security Protocols</span></SubmenuItem>
                                         </Submenu>
                                     )}
                                 </div> : ""
@@ -354,7 +371,7 @@ left:-23px;
                             </div>
                             <div className="search">
                                 {
-                                    location.pathname === "/deshbord" ? <div><SearchBar className='perent-search' onChange={() => setserch(2)} type='search' placeholder="           Search Here" />  <CiSearch className='fs-3 fw-bolde child-search ' style={{ display: serch == 0 ? "block" : "none" }} /> </div> : <div> <span onClick={() => naviget("/deshbord")} style={{ color: "#A7A7A7", cursor: "pointer" }}>Home</span>  <span className='ms-2  mb-2'><FaGreaterThan className='' /></span> <span style={{ color: "#5678E9" }} className='ms-2'>{location.pathname.split("/")}</span></div>
+                                    location.pathname === "/deshbord" ? <div><SearchBar className='perent-search' onChange={() => setserch(2)} type='search' placeholder="           Search Here" />  <CiSearch className='fs-3 fw-bolde child-search ' style={{ display: serch == 0 ? "block" : "none" }} /> </div> : <div> <span onClick={() => navigate("/deshbord")} style={{ color: "#A7A7A7", cursor: "pointer" }}>Home</span>  <span className='ms-2  mb-2'><FaGreaterThan className='' /></span> <span style={{ color: "#5678E9" }} className='ms-2'>{location.pathname.split("/")}</span></div>
                                 }
 
 
@@ -441,7 +458,7 @@ left:-23px;
                                 <div className="lile border   " style={{ height: "40px" }}>
                                 </div>
 
-                                <UserAvatar onClick={() => naviget("/profile")} className='' src="src/assets/Avatar.png" alt="User" style={{ cursor: "pointer" }} />
+                                <UserAvatar onClick={() => navigate("/profile")} className='' src="src/assets/Avatar.png" alt="User" style={{ cursor: "pointer" }} />
 
 
                                 <UserName className=' search'>Moni Roy
