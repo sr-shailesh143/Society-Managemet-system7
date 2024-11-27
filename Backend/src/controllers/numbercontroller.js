@@ -22,13 +22,13 @@ exports.CreateNumber = async (req, res) => {
         }
 
         // Validate the phone number format
-        const phoneRegex = /^\+91[6-9]\d{9}$/; 
-        if (!phoneRegex.test(Number)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid phone number format"
-            });
-        }
+        // const phoneRegex = /^\[6-9]\d{9}$/; 
+        // if (!phoneRegex.test(Number)) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: "Invalid phone number format"
+        //     });
+        // }
 
         // Create and save the new number
         const numbersave = new ImpNumber({
@@ -135,13 +135,13 @@ exports.UpdateNumber=async(req,res)=>{
         }
 
         // Validate the phone number format
-        const phoneRegex = /^\+91[6-9]\d{9}$/; 
-        if (!phoneRegex.test(Number)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid phone number format"
-            });
-        }
+        // const phoneRegex = /^\[6-9]\d{9}$/; 
+        // if (!phoneRegex.test(Number)) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: "Invalid phone number format"
+        //     });
+        // }
 
         // Create and save the new number
        const updatedata=await ImpNumber.findByIdAndUpdate(req.params.id,req.body,{new:true})

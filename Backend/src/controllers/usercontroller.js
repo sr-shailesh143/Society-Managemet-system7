@@ -174,22 +174,30 @@ exports.login = async (req, res) => {
 };
 exports.logout = async (req, res) => {
   try {
+    console.log("Logout request received");
+
     res.clearCookie("society-auth", {
       path: "/",
       httpOnly: true,
       sameSite: "Strict",
-      secure: process.env.NODE_ENV !== "development",
+      secure: process.env.NODE_ENV === "production",
     });
 
-    return res.status(200).json({ success: true, message: "Logged out successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
   } catch (error) {
-    console.log("Error in logout controller", error.message);
+    console.error("Error in logout controller:", error.message);
+
     return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
   }
 };
+
+
 
 exports.GetOtp = async (req, res) => {
   try {
