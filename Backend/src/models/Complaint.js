@@ -16,6 +16,7 @@ const ComplaintSchema = new mongoose.Schema({
   wing: {
     type: String,
     required: true,
+    
   },
   unit: {
     type: String,
@@ -32,6 +33,7 @@ const ComplaintSchema = new mongoose.Schema({
     enum: ['Open', 'Pending', 'Solve'],
     default: 'Open',
   },
+  
 }, {
   timestamps: true,
 });

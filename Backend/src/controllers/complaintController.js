@@ -2,7 +2,7 @@ const Complaint = require('../models/Complaint');
 
 exports.createComplaint = async (req,res)=>{
   try {
-      const{complainerName, complaintName, description, wing, unit, priority }= req.body;
+      const{complainerName, complaintName, description, wing, unit, priority,status }= req.body;
       const user = await Complaint.create({
         complainerName,
         complaintName,
@@ -10,6 +10,7 @@ exports.createComplaint = async (req,res)=>{
         wing,
         unit,
         priority,
+        status
       });
       if (user) {
           res.json({
@@ -22,6 +23,7 @@ exports.createComplaint = async (req,res)=>{
               message: "something wrong",
           });
       }
+      console.log(user)
   } catch (error) {
     console.log(error);
   }
@@ -74,6 +76,7 @@ exports.updateComplaint = async(req,res)=>{
       res.json({
         success: true,
         message: "record has been updated",
+        data:user
       });
     } else {
       res.json({
