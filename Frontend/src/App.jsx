@@ -29,7 +29,6 @@ import SecurityLayout from './Layout/SecurityLayout';
 import EmergencyManagement from './page2/EmergencyManagement';
 import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
-import RequestTracking from './page/RequestTracking';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
@@ -48,6 +47,7 @@ import MaintananceInvoice from './page3/MaintananceInvoice';
 import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
+import Requesttracking from './page/Requesttraking';
 
 function App() {
   return (
@@ -77,7 +77,8 @@ function App() {
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
-        <Route path='/RequestTracking' element={<Layout component={<RequestTracking />} />} />
+       
+        <Route path='/RequestTracking' element={<Layout component={<Requesttracking />} />} />
         {/* securitymanagement */}
         {/* Vistiors */}
         <Route path='/Visitor' element={<Layout component={<Visitor />} />} />

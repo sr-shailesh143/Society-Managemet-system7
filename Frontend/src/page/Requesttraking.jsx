@@ -5,10 +5,9 @@ import { Delete, Edit, } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
+import { createRequest, getAllRequests, GetRequest, deleteRequest, updateRequest } from "../apiservices/requestservice"
 import { useNavigate } from 'react-router-dom';
-import EditablePage from '../practice/EditablePage';
-export default function CompleteTracking() {
+export default function Requesttracking() {
   const [show, setshow] = useState(false)
   const handlecancle = () => setshow(false);
   const [status, setStatus] = useState("");
@@ -21,22 +20,24 @@ export default function CompleteTracking() {
   const [editShow, seteditShow] = useState(false)
   const handlecancleEdit = () => seteditShow(false);
   const [status2, setStatus2] = useState("");
-  const [status3, setStatus3] = useState({});
+  const [status3, setStatus3] = useState("");
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
+  function edit() {
+    seteditShow(false)
+  
 
+  }
   // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
   // delete
   const [showDelete, setshowDelete] = useState(false)
-  const [id, setid] = useState({
-    id: ""
-  })
+  const [id, setid] = useState("")
   // detele api 
   async function deletecomplelnt(id) {
 
-    await deleteComplaint(id)
+    await deleteRequest(id)
     getalldata()
     setshowDelete(false)
 
@@ -46,9 +47,9 @@ export default function CompleteTracking() {
   const [compleltData, setcompleltData] = useState({
     complainerName: "",
     complaintName: "",
-    description: "",
     wing: "",
     unit: "",
+    requestDate: "",
 
   })
 
@@ -56,21 +57,20 @@ export default function CompleteTracking() {
   async function createcomplent() {
     try {
       const data = {
-        complainerName: compleltData.complainerName,
-        complaintName: compleltData.complaintName,
-        description: compleltData.description,
+        requesterName: compleltData.complainerName,
+        requestName: compleltData.complaintName,
         wing: compleltData.wing,
         unit: compleltData.unit,
+        requestDate: compleltData.requestDate,
         priority: status,
         status: status1,
       }
 
-      const respons = await createComplaint(data)
-      console.log(respons)
+ await createRequest(data)
+     
       getalldata()
       setshow(false)
-      naviget("/traking")
-
+     
     } catch (error) {
       console.log(error)
     }
@@ -80,14 +80,14 @@ export default function CompleteTracking() {
   const [datalist, setdatalist] = useState([])
 
   const getalldata = async () => {
-    const respons = await getAllComplaints()
+    const respons = await getAllRequests()
     setdatalist(respons.data.records)
   }
 
   const [viewdetils, setviewdetils] = useState({})
   async function viewDetails(id) {
     try {
-      const respons = await GetComplaint(id)
+      const respons = await GetRequest(id)
 
       setviewdetils(respons.data.record)
 
@@ -102,53 +102,17 @@ export default function CompleteTracking() {
   }, [compleltData])
 
 
-
-
-  const [content, setContent] = useState({
-
-  });
+  const [editdata, seteditdata] = useState({
+  })
   async function handle(_id) {
     try {
-      const response = await updateComplaint(_id)
+      const response = await updateRequest(_id)
+      seteditdata(response.data.data)
 
-      setContent(response.data.data)
-      setStatus3(response.data.data.status)
-      setStatus2(response.data.data.priority)
     } catch (error) {
       console.log(error)
     }
   }
-
-  async function edithandel() {
-    try {
-      const data = {
-        complainerName: content.complainerName,
-        complaintName: content.complaintName,
-        description: content.description,
-        wing: content.wing,
-        unit: content.unit,
-        priority: status2,
-        status: status3,
-      }
-      console.log(data)
-      const response = await updateComplaint(content._id, data)
-      console.log(response.data.data)
-      seteditShow(false)
-      getalldata()
-
-    } catch (error) {
-
-    }
-
-  }
-
-
-
-
-
-
-
-
 
 
   const EDITE = {
@@ -232,39 +196,37 @@ export default function CompleteTracking() {
       <div className="createTraking">
 
         <div className="row mt-3 d-flex justify-content-between align-items-center  p-3 m-2 ">
-          <h2 className=' col-12 col-md-3 mt-4' style={{ textWrap: "wrap" }}>Create Complaint</h2>
+          <h2 className=' col-12 col-md-3 mt-4' style={{ textWrap: "wrap" }}>Request Tracking</h2>
           <button className=' col-12 col-md-2 l-btn text-white' onClick={() => setshow(true)} >
-            Create Complaint
+            Create Request
           </button>
         </div>
         <Modal className='complet-model' show={show} >
           <div className="model">
             <Modal.Header>
-              <Modal.Title>Create Complaint</Modal.Title>
+              <Modal.Title>Create  Request</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="complete-name">
-                <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+                <label html="" className='labal-name'> Requester Name <span className='text-danger1'>*</span></label>
                 <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
                   ...compleltData, complainerName: e.target.value
                 })} />
               </div>
               <div className="complete-name mt-3">
-                <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+                <label html="" className='labal-name'>  Request Name <span className='text-danger1'>*</span></label>
                 <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
                   ...compleltData, complaintName: e.target.value
                 })} />
               </div>
               <div className="complete-name mt-3">
-                <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={2}
-                  onChange={(e) => setcompleltData({
-                    ...compleltData, description: e.target.value
-                  })}
-                  placeholder='Enter Description'
-                />
+                <div className="complete-name mt-3">
+                  <label html="" className='labal-name'> Request Date <span className='text-danger1'>*</span></label>
+                  <input className='input-style' name="begin"
+                    placeholder="dd-mm-yyyy" type="date" onChange={(e) => setcompleltData({
+                      ...compleltData, requestDate: e.target.value
+                    })} />
+                </div>
               </div>
               <div className="complete-name mt-2 row d-flex">
                 <div className="complent-UnitNumber col-12 col-md-6">
@@ -332,7 +294,7 @@ export default function CompleteTracking() {
                   }}
                   onClick={createcomplent}
                 >
-                  Save
+                 Create
                 </Button>
               </div>
             </Modal.Body>
@@ -346,7 +308,8 @@ export default function CompleteTracking() {
                   <tr>
                     <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
                     <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
-                    <th> &nbsp; Description</th>
+                    <th> &nbsp; Request Date</th>
+
                     <th>Unit Number</th>
                     <th>  &nbsp; &nbsp;Priority</th>
                     <th> &nbsp;&nbsp; Status</th>
@@ -359,13 +322,21 @@ export default function CompleteTracking() {
                     <tr >
                       <td>
                         {
-                          item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
-                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
+                          item.requesterName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.requesterName}</span> </span>
                         }
                       </td>
-                      <td > <spa className='ms-3'> {item.complaintName}</spa> </td>
+                      <td > <spa className='ms-3'> {item.requestName}</spa> </td>
 
-                      <td> <span className='' >{item.description}</span>  </td>
+                      <td>
+                        <span className=''>
+                          {new Date(item.requestDate).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: '2-digit',
+                          })}
+                        </span>
+                      </td>
                       <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
                       <td >
                         {
@@ -380,7 +351,7 @@ export default function CompleteTracking() {
 
                       <td className="action-buttons">
                         <span className=''>
-                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) ||handle(item._id) } style={EDITE} >
                             <Edit style={{ cursor: "pointer" }} />
                           </span>
                           <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
@@ -408,19 +379,11 @@ export default function CompleteTracking() {
               <Modal.Body>
                 <div className="complete-name">
                   <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={content.complainerName}
-                    onChange={(e) => setContent({
-                      ...content, complainerName: e.target.value
-                    })}
-                  />
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complainerName || ""} />
                 </div>
                 <div className="complete-name mt-3">
                   <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={content.complaintName}
-                    onChange={(e) => setContent({
-                      ...content, complaintName: e.target.value
-                    })}
-                  />
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complaintName} />
                 </div>
                 <div className="complete-name mt-3">
                   <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
@@ -428,35 +391,23 @@ export default function CompleteTracking() {
                     as="textarea"
                     rows={2}
                     placeholder='Enter Description'
-                    onChange={(e) => setContent({
-                      ...content, description: e.target.value
-                    })}
-                    value={content.description}
                   />
                 </div>
                 <div className="complete-name mt-2 row d-flex">
                   <div className="complent-UnitNumber col-12 col-md-6">
                     <label html="" className='labal-name'> wing <span className='text-danger1'>*</span></label>
-                    <input className='input-style ' placeholder='Enter wing' type="text" onChange={(e) => setContent({
-                      ...content, wing: e.target.value
-                    })}
-                      value={content.wing}
-                    />
+                    <input className='input-style ' placeholder='Enter wing' type="text" />
                   </div>
                   <div className="complelt-unit col-12 col-md-6">
                     <label html="" className='labal-name'> Units <span className='text-danger1'>*</span></label>
-                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" onChange={(e) => setContent({
-                      ...content, unit: e.target.value
-                    })}
-                      value={content.unit}
-                    />
+                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" />
                   </div>
                 </div>
                 <div className="complete-name mt-2 ">
                   <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
                   <div className="row gap-3  justify-content-center  ">
                     <div onClick={() => setStatus2("High")} className={`  col-md-3  d-flex  align-items-center gap-2 ${status2 === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className='radio polls-radio   ' checked={status2 === "High"} onChange={handleStatusChange2} value={content.priority} />
+                      <input type="radio" className='radio polls-radio   ' checked={status2 === "High"} onChange={handleStatusChange2} value="High" />
                       <p className='mt-3'>High</p>
                     </div>
                     <div onClick={() => setStatus2("Medium")} className={`  col-md-4  d-flex  align-items-center gap-2  ${status2 === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
@@ -481,8 +432,8 @@ export default function CompleteTracking() {
                       <input type="radio" className=' w-25 radio polls-radio  ' checked={status3 === "Pending"} onChange={handleStatusChange3} value={"Pending"} />
                       <p className='mt-3'>Pending</p>
                     </div>
-                    <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status3 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  radio polls-radio ' checked={status3 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
+                    <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                      <input type="radio" className=' w-25  radio polls-radio ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
                       <p className='mt-3'>Solve</p>
                     </div>
                   </div>
@@ -504,7 +455,7 @@ export default function CompleteTracking() {
                       cursor: "pointer"
                     }}
 
-                    onClick={edithandel}
+                    onClick={edit}
                   >
                     Save
                   </Button>
@@ -603,7 +554,6 @@ export default function CompleteTracking() {
             </Modal.Footer>
           </Modal>
         </div>
-
       </div>
     </>
   );

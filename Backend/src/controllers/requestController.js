@@ -3,7 +3,7 @@ const moment = require("moment");
 
 exports.createRequest = async (req, res) => {
     try {
-        const { requesterName, requestName, requestDate, wing, unit, priority, status } = req.body;
+        const { requesterName, requestName, requestDate, wing, unit, priority, status,Description } = req.body;
 
         // Check if required fields are present
         if (!requesterName || !requestName || !requestDate) {
@@ -13,22 +13,24 @@ exports.createRequest = async (req, res) => {
         }
 
         // Parse requestDate using moment with DD/MM/YYYY format
-        const parsedDate = moment(requestDate, "DD/MM/YYYY", true);
+        // const parsedDate = moment(requestDate, "DD-MM-YYYY", true);
 
         // Check if the date is valid
-        if (!parsedDate.isValid()) {
-            return res.status(400).json({ error: "Invalid date format. Use 'DD/MM/YYYY'." });
-        }
+        // if (!parsedDate.isValid()) {
+        //     return res.status(400).json({ error: "Invalid date format. Use 'DD/MM/YYYY'." });
+        // }
 
         // Create a new request
         const newRequest = new Request({
             requesterName,
             requestName,
-            requestDate: parsedDate.toDate(),  // Convert moment date to JavaScript Date object
+            requestDate,  // Convert moment date to JavaScript Date object
             wing,
             unit,
             priority,
-            status
+            status,
+            Description,
+    
         });
 
         // Save to database

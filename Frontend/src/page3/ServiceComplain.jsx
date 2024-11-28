@@ -31,7 +31,6 @@ export default function ServiceComplain() {
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const handleClose = () => setShowDeleteModal(false)
-    const [selectedComplaintIndex, setSelectedComplaintIndex] = useState(null);
     const naviget = useNavigate();
 
     const handleInputChange = async () => {
@@ -130,10 +129,10 @@ export default function ServiceComplain() {
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Complaint Date:</strong>
                                         <p className='mode-date'>
-                                            {new Date(complaint.createdAt).toLocaleDateString('en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
+                                            {new Date(complaint.createdAt).toLocaleDateString('en-GB', {
+                                                day: '2-digit',
+                                                month: '2-digit',
+                                                year: '2-digit',
                                             })}
                                         </p>
                                     </p>
@@ -261,7 +260,7 @@ export default function ServiceComplain() {
                                 className=" cancel-btn radious  "
                                 style={{ border: "1px solid #D3D3D3", }}
                                 variant=""
-                                onClick={() => handlecancleEdit}
+                                onClick={() => setShowModal(false)}
                             >
                                 Cancel
                             </Button>

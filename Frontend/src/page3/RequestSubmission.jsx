@@ -1,87 +1,85 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FaEllipsisV } from "react-icons/fa";
+import { createRequest, getAllRequests, GetRequest, deleteRequest, updateRequest } from "../apiservices/requestservice"
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import { Button } from '@mui/material';
+
 
 export default function RequestSubmission() {
     const location = useLocation()
-    const [complaints, setComplaints] = useState([
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-        {
-            title: "Unethical Behavior",
-            date: "01/07/2024",
-            status: "Open",
-            description: "Regular waste collection services.",
-        },
-    ]);
+    const [complaints, setRequist] = useState([]);
 
-    const [showModal, setShowModal] = useState(false);
-    const [newComplaint, setNewComplaint] = useState({
-        title: "",
-        date: "",
-        status: "Open", // Default status
-        description: "",
-    });
+async function getllrequist() {
+    
+const respones = await getAllRequests()
+setRequist(respones.data.records)
+    
+}
+useEffect(() => {
+ getllrequist()
+}, [])
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedComplaintIndex, setSelectedComplaintIndex] = useState(null);
+const [compleltData, setcompleltData] = useState({
+    complainerName: "",
+    complaintName: "",
+    Description: "",
+    wing: "",
+    unit: "",
+    requestDate:""
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewComplaint((prev) => ({ ...prev, [name]: value }));
-    };
+})
 
-    const handleAddComplaint = () => {
-        setComplaints((prev) => [...prev, { ...newComplaint }]);
-        setShowModal(false); // Close modal
-        setNewComplaint({
-            title: "",
-            date: "",
-            status: "Open", // Reset to default
-            description: "",
-        }); // Reset form
-    };
+const [status2, setStatus2] = useState("");
+const [prourity, setprourity] = useState("");
+const handleStatusChange2 = (event) => setStatus2(event.target.value);
+const proorety = (event) => setprourity(event.target.value);
 
-    const handleOpenDeleteModal = (index) => {
-        setSelectedComplaintIndex(index);
-        setShowDeleteModal(true);
-    };
+const [showModal, setShowModal] = useState(false);
+const [showDeleteModal, setShowDeleteModal] = useState(false);
+const handleClose = () => setShowDeleteModal(false)
 
-    const handleDeleteComplaint = () => {
-        setComplaints((prev) =>
-            prev.filter((_, index) => index !== selectedComplaintIndex)
-        );
-        setShowDeleteModal(false);
-        setSelectedComplaintIndex(null);
-    };
+
+const handleInputChange = async () => {
+    const data = {
+        requesterName: compleltData.complainerName,
+        requestName: compleltData.complaintName,
+        Description: compleltData.Description,
+        wing: compleltData.wing,
+        unit: compleltData.unit,
+        priority: prourity,
+        status: status2,
+        requestDate:compleltData.requestDate
+    }
+    await createRequest(data)
+    getllrequist()
+    setShowModal(false)
+}
+
+const [id, setid] = useState("")
+
+   async function handlenDeleteModal(id){
+    try {
+        await deleteRequest(id)
+            setShowDeleteModal(false);
+            getllrequist()
+    } catch (error) {
+        console.log(error)
+    }
+   }
+function handleOpenDeleteModal(index){
+    setid(index)
+    setShowDeleteModal(true)
+}
+   
+
+ 
+
+
+
+   
+
 
     const naviget = useNavigate()
     return (
@@ -117,7 +115,7 @@ export default function RequestSubmission() {
                         <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
                             <div className="card h-100 shadow-sm ">
                                 <div className="card-header custom-card-header">
-                                    <h5 className="card-title mb-0">{complaint.title}</h5>
+                                    <h5 className="card-title mb-0">{complaint.requesterName}</h5>
                                     <div className="dropdown">
                                         <button
                                             className="btn btn-sm text-white p-0"
@@ -133,7 +131,7 @@ export default function RequestSubmission() {
                                             <li>
                                                 <button
                                                     className="dropdown-item text-dark"
-                                                    onClick={() => handleOpenDeleteModal(index)}
+                                                    onClick={() => handleOpenDeleteModal(complaint._id)}
                                                 >
                                                     Delete
                                                 </button>
@@ -145,7 +143,11 @@ export default function RequestSubmission() {
                                 <div className="card-body">
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Request Date:</strong>
-                                        <span style={{ color: "#202224", fontWeight: "bold" }}>{complaint.date}</span>
+                                        <span style={{ color: "#202224", fontWeight: "bold" }}> {new Date(complaint.requestDate).toLocaleDateString('en-GB', {
+                                                day: '2-digit',
+                                                month: '2-digit',
+                                                year: '2-digit',
+                                            })}</span>
                                     </p>
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Status:</strong>
@@ -154,7 +156,7 @@ export default function RequestSubmission() {
 
                                     <p className="card-text">
                                         <strong style={{ color: "#4F4F4F" }}>Description:</strong>
-                                        <p style={{ color: "#202224" }}>{complaint.description}</p>
+                                        <p style={{ color: "#202224" }}>{complaint.Description}</p>
                                     </p>
                                 </div>
                             </div>
@@ -164,153 +166,153 @@ export default function RequestSubmission() {
             </div>
 
             {/* Create Complaint Modal */}
-            {showModal && (
-                <div className="modal show d-block" tabIndex="-1">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">Create Request</h5>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    onClick={() => setShowModal(false)}
-                                ></button>
+           
+            <Modal className='complet-model' show={showModal} >
+                <div className="model">
+                    <Modal.Header>
+                        <Modal.Title>Edit Complaint</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="complete-name">
+                            <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+                            <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
+                                ...compleltData, complainerName: e.target.value
+                            })} />
+                        </div>
+                        <div className="complete-name mt-3">
+                            <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+                            <input className='input-style' placeholder='Enter Name' type="text" onChange={(e) => setcompleltData({
+                                ...compleltData, complaintName: e.target.value
+                            })} />
+                        </div>
+                        <div className="complete-name mt-3">
+                            <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={2}
+                                onChange={(e) => setcompleltData({
+                                    ...compleltData, Description: e.target.value
+                                })}
+                                placeholder='Enter Description'
+                            />
+                        </div>
+                        <div className="complete-name mt-3">
+                            <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+                            <input className='input-style' placeholder='Enter Name' type="date" onChange={(e) => setcompleltData({
+                                ...compleltData, requestDate: e.target.value
+                            })} />
+                        </div>
+                        <div className="complete-name mt-2 row d-flex">
+                            <div className="complent-UnitNumber col-12 col-md-6">
+                                <label html="" className='labal-name'> Wing <span className='text-danger1'>*</span></label>
+                                <input className='input-style' placeholder='Enter Wing' type="text" onChange={(e) => setcompleltData({
+                                    ...compleltData, wing: e.target.value
+                                })} />
                             </div>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label className="form-label">Title</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="title"
-                                        value={newComplaint.title}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Date</label>
-                                    <input
-                                        type="date"
-                                        className="form-control"
-                                        name="date"
-                                        value={newComplaint.date}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Status</label>
-                                    <div>
-                                        <div className="form-check form-check-inline">
-                                            <input
-                                                className="form-check-input"
-                                                type="radio"
-                                                name="status"
-                                                id="statusOpen"
-                                                value="Open"
-                                                checked={newComplaint.status === "Open"}
-                                                onChange={handleInputChange}
-                                            />
-                                            <label className="form-check-label" htmlFor="statusOpen">
-                                                Open
-                                            </label>
-                                        </div>
-                                        <div className="form-check form-check-inline">
-                                            <input
-                                                className="form-check-input"
-                                                type="radio"
-                                                name="status"
-                                                id="statusPending"
-                                                value="Pending"
-                                                checked={newComplaint.status === "Pending"}
-                                                onChange={handleInputChange}
-                                            />
-                                            <label className="form-check-label" htmlFor="statusPending">
-                                                Pending
-                                            </label>
-                                        </div>
-                                        <div className="form-check form-check-inline">
-                                            <input
-                                                className="form-check-input"
-                                                type="radio"
-                                                name="status"
-                                                id="statusSolved"
-                                                value="Solved"
-                                                checked={newComplaint.status === "Solved"}
-                                                onChange={handleInputChange}
-                                            />
-                                            <label className="form-check-label" htmlFor="statusSolved">
-                                                Solved
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Description</label>
-                                    <textarea
-                                        className="form-control"
-                                        name="description"
-                                        value={newComplaint.description}
-                                        onChange={handleInputChange}
-                                    ></textarea>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    onClick={() => setShowModal(false)}
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    onClick={handleAddComplaint}
-                                >
-                                    Submit
-                                </button>
+                            <div className="complelt-unit col-12 col-md-6">
+                                <label html="" className='labal-name'> Unit <span className='text-danger1'>*</span></label>
+                                <input className='input-style' placeholder='Enter Unit' type="number" onChange={(e) => setcompleltData({
+                                    ...compleltData, unit: e.target.value
+                                })} />
                             </div>
                         </div>
-                    </div>
+                        <div className="complete-name mt-2 ">
+                            <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
+                            <div className="row gap-3  justify-content-center  ">
+                                <div onClick={() => setprourity("High")} className={`  col-md-3  d-flex  align-items-center gap-2 ${prourity === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: prourity === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: prourity === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input type="radio" className=' radio polls-radio   ' checked={prourity === "High"} onChange={proorety} value="High" />
+                                    <p className='mt-3'>High</p>
+                                </div>
+                                <div onClick={() => setprourity("Medium")} className={`  col-md-4  d-flex  align-items-center gap-2  ${prourity === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: prourity === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: prourity === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input type="radio" className=' radio polls-radio  ' checked={prourity === "Medium"} onChange={proorety} value={"Medium"} />
+                                    <p className='mt-3'>Medium</p>
+                                </div>
+                                <div onClick={() => setprourity("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${prourity === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: prourity === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: prourity === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input type="radio" className=' radio polls-radio  ' checked={prourity === "Low"} onChange={proorety} value={"Low"} />
+                                    <p className='mt-3'>Low</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="complete-name mt-2 ">
+                            <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
+                            <div className="row gap-3  justify-content-center  ">
+                                <div onClick={() => setStatus2("Open")} className={`  col-md-3  d-flex  align-items-center gap-2 ${status2 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input type="radio" className=' radio polls-radio  ' checked={status2 === "Open"} onChange={handleStatusChange2} value="Open" />
+                                    <p className='mt-3'>Open</p>
+                                </div>
+                                <div onClick={() => setStatus2("Pending")} className={`  col-md-4  d-flex  align-items-center gap-2  ${status2 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input type="radio" className='  radio polls-radio ' checked={status2 === "Pending"} onChange={handleStatusChange2} value={"Pending"} />
+                                    <p className='mt-3 '>Pending</p>
+                                </div>
+                                <div onClick={() => setStatus2("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status2 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input style={{ width: "50px", height: "20px" }} type="radio" className='radio polls-radio' checked={status2 === "Solve"} onChange={handleStatusChange2} value={"Solve"} />
+                                    <p className='mt-3'>Solve</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="d-flex gap-3 mt-3">
+                            <Button
+                                className=" cancel-btn radious  "
+                                style={{ border: "1px solid #D3D3D3", }}
+                                variant=""
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="save-btn radious l-btn "
+                                style={{
+                                    color: "white",
+                                    border: "none",
+                                    cursor: "pointer"
+                                }}
+
+                                onClick={handleInputChange}
+                            >
+                                Save
+                            </Button>
+                        </div>
+                    </Modal.Body>
                 </div>
-            )}
+            </Modal>
 
             {/* Delete Confirmation Modal */}
-            {showDeleteModal && (
-                <div className="modal show d-block" tabIndex="-1">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">Delete Request</h5>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    onClick={() => setShowDeleteModal(false)}
-                                ></button>
-                            </div>
-                            <div className="modal-body">
-                                <p>Are you sure you want to delete this request?</p>
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    onClick={() => setShowDeleteModal(false)}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-danger"
-                                    onClick={handleDeleteComplaint}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
+            <Modal show={showDeleteModal}>
+                <Modal.Header>
+                    <Modal.Title>Delete Complain?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p className='mode-date'>Are you sure you want to delate this Complain?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <div className="d-flex gap-3 mt-3">
+                        <Button
+                            className="save-btn radious   "
+                            style={{
+
+                                color: "#202224",
+                                border: "1px solid #D3D3D3",
+                                cursor: "pointer"
+                            }}
+                            variant="outlined"
+                            onClick={handleClose}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            className="save-btn radious  text-white "
+                            style={{
+                                backgroundColor: "#E74C3C",
+                                border: "none",
+                                cursor: "pointer"
+                            }}
+                            onClick={() => handlenDeleteModal(id)}
+                        >
+                            Conform
+                        </Button>
                     </div>
-                </div>
-            )}
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }
