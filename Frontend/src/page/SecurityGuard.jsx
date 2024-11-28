@@ -21,8 +21,8 @@ const SecurityGuard = () => {
     shiftDate: '',
     shiftTime: '',
     gender: '',
-    photo: null,
-    aadharCard: null,
+    photo: "",
+    aadharCard: "",
   });
   const [isFormFilled, setIsFormFilled] = useState(false);
 
@@ -82,6 +82,7 @@ const SecurityGuard = () => {
     setCurrentGuard(guard);
     setIsModalOpen(true);
   };
+  console.log(newGuard)
 
   // Handle delete guard button click
   const handleDeleteGuard = async () => {
@@ -354,8 +355,10 @@ const SecurityGuard = () => {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn cancel-btn" onClick={() => setShowModal(false)}>Cancel</button>
-              <button type="submit" className="btn create-btn">Create</button>
+              <button type="button" className="btn cancel-btn p-3 mx-1"style={{width:"45%"}} onClick={() => setShowModal(false)}>Cancel</button>
+              <button type="submit" className="btn cancel-btn p-3 create-btn"style={{width:"45%"}} >Create</button>
+
+             
             </div>
           </form>
         </div>

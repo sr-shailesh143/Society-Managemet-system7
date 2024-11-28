@@ -6,12 +6,16 @@ import toast from 'react-hot-toast';
 export default function Securityprotocol2() {
   const [protocols, setProtocols] = useState([]);
 
+
   // Fetch all protocols on load
   useEffect(() => {
     const fetchProtocols = async () => {
       try {
         const response = await getAllSecurityProtocols();
         console.log('API Response:', response); // Log the response to check its structure
+ 
+ 
+
 
         // Assuming response.data.records contains the protocols
         if (response.data && Array.isArray(response.data.records)) {

@@ -265,10 +265,10 @@ const SecurityProtocols = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer style={{ textAlign: 'center', justifyContent: 'center' }}>
-          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '40%' }} onClick={handleCloseEditModal}>
+          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '45%' }} onClick={handleCloseEditModal}>
             Cancel
           </Button>
-          <Button style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '40%' }} onClick={handleSaveEdit}>
+          <Button style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '45%' }} onClick={handleSaveEdit}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -291,7 +291,7 @@ const SecurityProtocols = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none' }} onClick={handleCloseViewModal}>
-            Close
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>

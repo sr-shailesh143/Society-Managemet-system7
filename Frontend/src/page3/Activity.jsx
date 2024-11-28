@@ -7,7 +7,6 @@ export default function Activity() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Sample events data
     const eventsData = [
         {
             name: "Cody Fisher",
@@ -48,7 +47,7 @@ export default function Activity() {
 
     return (
         <div className="container-fluid">
-            {/* Navigation */}
+         
             <div className="row">
                 <div className="d-flex">
                     <div
@@ -74,13 +73,12 @@ export default function Activity() {
                 </div>
             </div>
 
-            {/* Event List */}
+           
             <div className="complaints-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Event Participation</h4>
                 </div>
 
-                {/* Scrollable Table Container */}
                 <div className="table-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <table className="table table-hover custom-table">
                         <thead className="table-light">
@@ -99,16 +97,16 @@ export default function Activity() {
                                         <div className="d-flex align-items-center">
                                             {/* Profile Image */}
                                             <img
-                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} // Replace with actual image URL
+                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} 
                                                 alt="Profile"
                                                 className="rounded-circle"
                                                 style={{
                                                     width: "30px",
                                                     height: "30px",
-                                                    marginRight: "10px", // Space between image and text
+                                                    marginRight: "10px", 
                                                 }}
                                             />
-                                            {/* Participant Name */}
+                                         
                                             {event.name}
                                         </div>
                                     </td>

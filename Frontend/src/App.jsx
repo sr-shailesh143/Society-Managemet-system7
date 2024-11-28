@@ -29,7 +29,7 @@ import SecurityLayout from './Layout/SecurityLayout';
 import EmergencyManagement from './page2/EmergencyManagement';
 import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
-import RequestTracking from './page/RequestTracking';
+
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
@@ -49,6 +49,11 @@ import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
 
+import Requesttracking from './page/Requesttraking';
+
+
+import Viewotherincome from './page/VIEWOTHERINCOME.JSX';
+
 function App() {
   return (
     <BrowserRouter>
@@ -63,7 +68,7 @@ function App() {
         {/* DASHBORD */}
         <Route path='/deshbord' element={<Layout component={<Dashbord />} />} />
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
-      
+
         {/* RESIDEMT MANAGEMENT */}
         <Route path='/resident' element={<Layout component={<ResidentManageMent />} />} />
         <Route path='/owner' element={<Layout component={<Owner />} />} />
@@ -72,12 +77,17 @@ function App() {
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
         <Route path='/Expense' element={<Layout component={<Expense />} />} />
         <Route path='/Otherincome' element={<Layout component={<Otherincome />} />} />
+        <Route path='/Viewotherincome' element={<Layout component={<Viewotherincome />} />} />
         <Route path='/Icome' element={<Layout component={<Icome />} />} />
         {/* FacilityManagement */}
         <Route path='/FacilityManagement' element={<Layout component={<FacilityManagement />} />} />
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
-        <Route path='/RequestTracking' element={<Layout component={<RequestTracking />} />} />
+
+       
+        <Route path='/RequestTracking' element={<Layout component={<Requesttracking />} />} />
+
+
         {/* securitymanagement */}
         {/* Vistiors */}
         <Route path='/Visitor' element={<Layout component={<Visitor />} />} />
@@ -93,11 +103,11 @@ function App() {
         {/* visirtortracking */}
         <Route path='/Financial' element={<Layout component={<Financial />} />} />
         {/* profile */}
-    
+
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
-    
-     
+
+
 
 
 
@@ -105,26 +115,26 @@ function App() {
         {/* Security */}
 
 
-      
+
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
 
 
         {/* ResidentManageMentLayout */}
 
-        <Route path='/ResidentManageMent'element={<ResidentManageMentLayout component={""} />} />
+        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={""} />} />
         {/* PersonalDetail */}
-        <Route path='/PersonalDetail'element={<ResidentManageMentLayout component={<PersonalDetail/>} />} />
-        <Route path='/RecidencTarent'element={<ResidentManageMentLayout component={<RecidencTarent/>} />} />
+        <Route path='/PersonalDetail' element={<ResidentManageMentLayout component={<PersonalDetail />} />} />
+        <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />
 
         {/* Community */}
-        <Route path='/Community'element={<ResidentManageMentLayout component={<Community/>} />} />
-        <Route path='/polls'element={<ResidentManageMentLayout component={<Polls/>} />} />
-        <Route path='/MaintananceInvoice'element={<ResidentManageMentLayout component={<MaintananceInvoice/>} />} />
-        <Route path='/InvoicePage'element={<ResidentManageMentLayout component={<InvoicePage/>} />} />
-        <Route path='/OtherincomeInvoice'element={<ResidentManageMentLayout component={<OtherincomeInvoice/>} />} />
-        <Route path='/CommunitiesDiscussion' element={<ResidentManageMentLayout component={<CommunitiesDiscussion/>} />} />
-     
+        <Route path='/Community' element={<ResidentManageMentLayout component={<Community />} />} />
+        <Route path='/polls' element={<ResidentManageMentLayout component={<Polls />} />} />
+        <Route path='/MaintananceInvoice' element={<ResidentManageMentLayout component={<MaintananceInvoice />} />} />
+        <Route path='/InvoicePage' element={<ResidentManageMentLayout component={<InvoicePage />} />} />
+        <Route path='/OtherincomeInvoice' element={<ResidentManageMentLayout component={<OtherincomeInvoice />} />} />
+        <Route path='/CommunitiesDiscussion' element={<ResidentManageMentLayout component={<CommunitiesDiscussion />} />} />
+
         <Route path='/ServiceComplain' element={<ResidentManageMentLayout component={<ServiceComplain />} />} />
         <Route path='/RequestSubmission' element={<ResidentManageMentLayout component={<RequestSubmission />} />} />
         <Route path='/EventParticipation' element={<ResidentManageMentLayout component={<EventParticipation />} />} />

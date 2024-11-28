@@ -45,12 +45,12 @@ export default function EventParticipation() {
         },
     ];
 
-    // State for managing modal visibility
+
     const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="container-fluid">
-            {/* Navigation */}
+         
             <div className='row'>
                 <div className="d-flex ">
                     <div onClick={() => naviget("/EventParticipation")}
@@ -66,13 +66,13 @@ export default function EventParticipation() {
                 </div>
             </div>
 
-            {/* Event List */}
+      
             <div className="complaints-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Event Participation</h4>
                 </div>
 
-                {/* Add table-responsive class here */}
+              
                 <div className="table-responsive">
                     <table className="table table-hover custom-table">
                         <thead >
@@ -89,18 +89,18 @@ export default function EventParticipation() {
                                 <tr key={index}>
                                     <td>
                                         <div className="d-flex align-items-center">
-                                            {/* Profile Image */}
+                                          
                                             <img
-                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} // Replace with actual image URL
+                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} 
                                                 alt="Profile"
                                                 className="rounded-circle"
                                                 style={{
                                                     width: "30px",
                                                     height: "30px",
-                                                    marginRight: "10px", // Space between image and text
+                                                    marginRight: "10px", 
                                                 }}
                                             />
-                                            {/* Participant Name */}
+                                         
                                             {event.name}
                                         </div>
                                     </td>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { createAlert } from '../apiservices/emergencyservice'; // Adjust the path as per your project structure
+import { createAlert } from '../apiservices/emergencyservice'; 
 
 export default function EmergencyManagement() {
   const [alert, setAlert] = useState({
     alertType: "",
     description: "",
   });
-  const [loading, setLoading] = useState(false); // For button loading state
-  const [successMessage, setSuccessMessage] = useState(""); // Success message
-  const [errorMessage, setErrorMessage] = useState(""); // Error message
+  const [loading, setLoading] = useState(false); 
+  const [successMessage, setSuccessMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -19,7 +19,7 @@ export default function EmergencyManagement() {
       const response = await createAlert(alert);
       console.log("API Response:", response);
       setSuccessMessage("Alert created successfully!");
-      setAlert({ alertType: "", alertDescription: "" }); // Reset form
+      setAlert({ alertType: "", alertDescription: "" }); 
     } catch (error) {
       console.error("Error creating alert:", error);
       setErrorMessage("Failed to create alert. Please try again.");

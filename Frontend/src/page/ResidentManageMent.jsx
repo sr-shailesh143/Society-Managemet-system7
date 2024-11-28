@@ -7,7 +7,7 @@ import { LuBuilding2 } from "react-icons/lu";
 import { FaBuildingUser, FaPlus } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { RiShieldUserFill } from "react-icons/ri";
-// import Button from 'react-bootstrap/Button';
+
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ const ResidentManageMent = () => {
 
     const handleStatusChange = (event) => setStatus(event.target.value);
     const handleAgreementChange = () => setIsAgreed(!isAgreed);
-    // form page route  function 
+
     function HandleSubmit() {
         try {
             if (status === "Occupied") {
@@ -59,7 +59,7 @@ const ResidentManageMent = () => {
     const handleClose2 = () => setShow2(false);
     const handleClose3 = () => setShow3(false);
     const handleClose4 = () => setShow4(false)
-    // const handleShow1 = () => setShow1(true);
+
     function handleShow1(Residence) {
         try {
             if (Residence === "Owner") {
@@ -261,7 +261,7 @@ const ResidentManageMent = () => {
                 </div>
 
             </Box>
-           {/*view box  */}
+     
             <Offcanvas show={show1} placement={"end"} >
                 <div className="show-layout">
                     <div className="show-layout-body">
@@ -414,7 +414,7 @@ const ResidentManageMent = () => {
                     </div>
                 </div>
             </Offcanvas>
-            {/* terent canvase */}
+       
             <Offcanvas show={show2} placement={"end"} >
                 <div className="show-layout">
                     <div className="show-layout-body">
@@ -598,7 +598,7 @@ z
 
 
 
-            {/* Residence Status popup selelct occupied and vacate */}
+          
             <div className="d-flex justify-content-center">
                 <Modal
                     className="custom-modal"
@@ -629,7 +629,7 @@ z
                                         className="status-radio mt-2"
                                     />
                                 </div>
-                                {/* Vacant Option */}
+                             
                                 <div
                                     style={{ border: "1px solid #D3D3D3", borderColor: status === "Vacant" ? "#FE512E #F09619" : "#D3D3D3", color: status === "Vacant" ? "black" : "#D3D3D3" }}
 
@@ -648,7 +648,7 @@ z
                                     />
                                 </div>
                             </div>
-                            {/* Agreement Checkbox */}
+                            
                             <Form.Group controlId="agreementCheckbox" className="mt-4">
                                 <Form.Check
                                     type="checkbox"
@@ -660,10 +660,10 @@ z
                             </Form.Group>
                         </Form>
                     </Modal.Body>
-                    <Modal.Footer className=" d-flex justify-content-between">
+                    <Modal.Footer className=" d-flex justify-content-center">
                         <div className="d-flex gap-3">
                             <Button
-                                className=" cancel-btn radious "
+                                className=" cancel-btn radious w-80"
                                 style={{ border: "1px solid #D3D3D3", }}
                                 variant="light"
                                 onClick={handleClose}
@@ -671,7 +671,7 @@ z
                                 Cancel
                             </Button>
                             <Button
-                                className="save-btn radious l-btn "
+                                className="save-btn radious l-btn w-80 "
                                 style={{
                                     background: "linear-gradient(90deg, #FE512E, #F09619)",
                                     border: "none",

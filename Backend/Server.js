@@ -28,7 +28,7 @@ const Societyroute = require("./src/routes/societyroute.js");
 const Userroute = require("./src/routes/userroute");
 const profileRoutes = require('./src/routes/profileRoutes');
 const Numberroute = require("./src/routes/numberroute");
-const Residentroute = require("./src/routes/residentroute");
+// const Residentroute = require("./src/routes/residentroute");
 const maintenanceRoutes = require('./src/routes/maintenanceRoutes');
 // const ResidentRoutes=require("./src/routes/ResidentRoutes.js")
 
@@ -54,8 +54,8 @@ app.use("/api/society", Societyroute);
 //Important Number
 app.use("/api/number", Numberroute);
 //resident
-app.use("/api/resident", Residentroute);
-// app.use("/resident",ResidentRoutes)
+// app.use("/api/resident", Residentroute);
+// app.use("/api/resident",ResidentRoutes)
 
 app.use('/api/profile', profileRoutes);
 app.use('/api/maintenance', maintenanceRoutes);
