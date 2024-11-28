@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Edit, Image, PlusOne } from '@mui/icons-material';
 import ArticleIcon from '@mui/icons-material/Article';
 import { useNavigate } from 'react-router-dom';
-
+import PaymentModal from './PaymentModal';
 export default function RecidencTarent() {
     const naviget = useNavigate()
+    const [showModal, setShowModal] = useState(false);
+    const [selectedAmount, setSelectedAmount] = useState(null);
+    const handlePayNowClick = (amount) => {
+      setSelectedAmount(amount);
+      setShowModal(true);
+    };
+    const item = {
+        grandTotal: 100, // Example value
+      };
+      
     return (
         <div className='p-detels'>
 
@@ -451,7 +461,9 @@ export default function RecidencTarent() {
                                         <p className='text-success'>₹ 1,250</p>
                                     </div>
                                     <div className="d-flex justify-content-between ">
-                                        <button className='w-100 l-btn text-white'>Pay Now</button>
+                                    <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
+                  Pay Now
+                </button>
                                     </div>
 
                                 </div>
@@ -509,7 +521,9 @@ export default function RecidencTarent() {
                                     <div className="border "></div>
 
                                     <div className="d-flex justify-content-between mt-2 ">
-                                        <button className='w-100 l-btn text-white'>Pay Now</button>
+                                    <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
+                  Pay Now
+                </button>
                                     </div>
 
                                 </div>
@@ -568,7 +582,7 @@ export default function RecidencTarent() {
                     </div>
                 </div>
             </div>
-
+            <PaymentModal show={showModal} handleClose={() => setShowModal(false)} amount={selectedAmount} />
         </div>
     )
 }

@@ -8,10 +8,10 @@ import {
 } from "../apiservices/visitourtrackingservice";
 
 const VisitorTracking = () => {
-  const [visitors, setVisitors] = useState([]); // List of visitors
-  const [showModal, setShowModal] = useState(false); // Modal visibility
-  const [isEditing, setIsEditing] = useState(false); // Editing state
-  const [editingVisitorId, setEditingVisitorId] = useState(null); // ID of visitor being edited
+  const [visitors, setVisitors] = useState([]); 
+  const [showModal, setShowModal] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false); 
+  const [editingVisitorId, setEditingVisitorId] = useState(null);
   const [newVisitor, setNewVisitor] = useState({
     visitorName: "",
     phoneNumber: "",

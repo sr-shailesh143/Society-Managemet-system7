@@ -3,7 +3,7 @@ import '../index.css';
 
 export default function Securityprotocol2() {
 
-    // Sample events data
+ 
     const Security = [
         {
             Title: "Cody Fisher",

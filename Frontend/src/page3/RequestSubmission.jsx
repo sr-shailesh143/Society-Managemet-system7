@@ -47,7 +47,7 @@ export default function RequestSubmission() {
     const [newComplaint, setNewComplaint] = useState({
         title: "",
         date: "",
-        status: "Open", // Default status
+        status: "Open",
         description: "",
     });
 
@@ -61,13 +61,13 @@ export default function RequestSubmission() {
 
     const handleAddComplaint = () => {
         setComplaints((prev) => [...prev, { ...newComplaint }]);
-        setShowModal(false); // Close modal
+        setShowModal(false); 
         setNewComplaint({
             title: "",
             date: "",
-            status: "Open", // Reset to default
+            status: "Open", 
             description: "",
-        }); // Reset form
+        });
     };
 
     const handleOpenDeleteModal = (index) => {
