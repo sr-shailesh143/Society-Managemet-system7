@@ -21,8 +21,8 @@ const SecurityGuard = () => {
     shiftDate: '',
     shiftTime: '',
     gender: '',
-    photo: null,
-    aadharCard: null,
+    photo: "",
+    aadharCard: "",
   });
   const [isFormFilled, setIsFormFilled] = useState(false);
 
@@ -82,6 +82,7 @@ const SecurityGuard = () => {
     setCurrentGuard(guard);
     setIsModalOpen(true);
   };
+  console.log(newGuard)
 
   // Handle delete guard button click
   const handleDeleteGuard = async () => {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const requestSchema = new mongoose.Schema({
-    requesterName: {
+  requesterName: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ const requestSchema = new mongoose.Schema({
     required: true,
   },
   requestDate: {
-    type: Date,
+    type: String,
     required: false,
   },
   wing: {
@@ -20,6 +20,10 @@ const requestSchema = new mongoose.Schema({
   unit: {
     type: String,
     required: true,
+  },
+  Description: {
+    type: String,
+    required: false,
   },
   priority: {
     type: String,

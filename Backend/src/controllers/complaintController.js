@@ -54,7 +54,7 @@ exports.getAllComplaints = async(req,res)=>{
 exports.updateComplaint = async(req,res)=>{
   try {
     const {id} = req.params;
-    const {complainerName, complaintName, description, wing, unit, priority } = req.body;
+    const {complainerName, complaintName, description, wing, unit, priority,status } = req.body;
  
    
     const user = await Complaint.findByIdAndUpdate(
@@ -69,6 +69,7 @@ exports.updateComplaint = async(req,res)=>{
         wing,
         unit,
         priority,
+        status
       }
     );
     if (user) {
