@@ -9,7 +9,7 @@ const Financial = () => {
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [selectedTitle, setSelectedTitle] = useState('');
   const [selectedDescription, setSelectedDescription] = useState('');
-  const [selectedDate, setSelectedDate] = useState(''); // New state for the date field
+  const [selectedDate, setSelectedDate] = useState(''); 
   const [noteData, setNoteData] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Financial = () => {
   const fetchNotes = async () => {
     try {
       const response = await getAllNotes();
-      // Check if response data has a records array
+     
       if (response.data && Array.isArray(response.data.records)) {
         setNoteData(response.data.records);
       } else {
@@ -34,7 +34,7 @@ const Financial = () => {
     setSelectedNoteId(note.id);
     setSelectedTitle(note.title);
     setSelectedDescription(note.description);
-    setSelectedDate(note.date || ''); // Load existing date if available
+    setSelectedDate(note.date || ''); 
     setShowEditModal(true);
   };
   const handleEditModalClose = () => setShowEditModal(false);
@@ -43,7 +43,7 @@ const Financial = () => {
     setSelectedNoteId(null);
     setSelectedTitle('');
     setSelectedDescription('');
-    setSelectedDate(''); // Clear the date for new notes
+    setSelectedDate(''); 
     setShowCreateModal(true);
   };
   const handleCreateModalClose = () => setShowCreateModal(false);
@@ -54,7 +54,7 @@ const Financial = () => {
         await updateNote(selectedNoteId, {
           title: selectedTitle,
           description: selectedDescription,
-          date: selectedDate // Include the date field when saving changes
+          date: selectedDate
         });
         fetchNotes();
         handleEditModalClose();
@@ -69,7 +69,7 @@ const Financial = () => {
       await addNote({
         title: selectedTitle,
         description: selectedDescription,
-        date: selectedDate // Include the date when creating a new note
+        date: selectedDate 
       });
       fetchNotes();
       handleCreateModalClose();
@@ -200,10 +200,10 @@ const Financial = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleCreateModalClose}>
+          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }}className='p-3' onClick={handleCreateModalClose}>
             Cancel
           </Button>
-          <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} onClick={handleCreateNote}>
+          <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3' onClick={handleCreateNote}>
             Create Note
           </Button>
         </Modal.Footer>

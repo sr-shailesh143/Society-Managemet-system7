@@ -13,55 +13,55 @@ const FacilityManagement = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [facilityData, setFacilityData] = useState({ facilityName: '', scheduleServiceDate: '', description: '', remindBefore: '4-day' });
   const [newFacilityData, setNewFacilityData] = useState({ facilityName: '', scheduleServiceDate: '', description: '', remindBefore: '4-day' });
-  const [loading, setLoading] = useState(true); // Add a loading state to show a spinner or loading message
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
 
   
-  // Fetch all facilities on component mount
+  
   useEffect(() => {
     fetchFacilities();
   }, []);
 
   const fetchFacilities = async () => {
     try {
-      setLoading(true); // Set loading to true before making the API call
+      setLoading(true); 
       const response = await getAllFacilities();
 
-      // Log the response to inspect the structure
+    
       console.log("Response from API:", response);
 
-      // Access the correct data
+      
       if (response && response.data && response.data.records) {
-        setFacilities(response.data.records); // Set the facilities state with records
+        setFacilities(response.data.records); 
       } else {
-        setFacilities([]);  // If no records found, fallback to empty array
+        setFacilities([]); 
       }
 
-      setLoading(false); // Set loading to false after fetching is done
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching facilities:", error);
       setError("Error fetching facilities. Please try again.");
-      setLoading(false); // Set loading to false in case of error
-      setFacilities([]);  // Fallback to empty array in case of error
+      setLoading(false); 
+      setFacilities([]); 
     }
   };
 
   if (loading) {
-    return <div>Loading...</div>;  // Show loading message or spinner while fetching data
+    return <div>Loading...</div>;  
   }
 
   if (error) {
-    return <div>{error}</div>;  // Show error message if something went wrong
+    return <div>{error}</div>;  
   }
 
 
   const handleEdit = async (facilityId) => {
-    console.log('Edit button clicked for facility:', facilityId);  // Debugging step
+    console.log('Edit button clicked for facility:', facilityId);  
     try {
-      const facility = await GetFacility(facilityId); // Fetch the specific facility
-      setFacilityData(facility); // Set the facility data in the state
-      setSelectedFacility(facilityId); // Set the selected facility id
-      setShowModal(true); // Open the modal
+      const facility = await GetFacility(facilityId); 
+      setFacilityData(facility);
+      setSelectedFacility(facilityId);
+      setShowModal(true); 
     } catch (error) {
       console.error("Error fetching facility data:", error);
     }
@@ -81,7 +81,7 @@ const FacilityManagement = () => {
   const handleDeleteConfirm = async () => {
     try {
       await deleteFacility(selectedFacility);
-      fetchFacilities(); // Refresh the facility list after deletion
+      fetchFacilities(); 
       setShowDeleteModal(false);
     } catch (error) {
       console.error("Error deleting facility:", error);
@@ -96,7 +96,7 @@ const FacilityManagement = () => {
   const handleModalSave = async () => {
     try {
       await updateFacility(selectedFacility, facilityData);
-      fetchFacilities(); // Refresh the facility list after updating
+      fetchFacilities(); 
       setShowModal(false);
     } catch (error) {
       console.error("Error updating facility:", error);
@@ -120,7 +120,7 @@ const FacilityManagement = () => {
   const handleCreateFacility = async () => {
     try {
       const newFacility = await createFacility(newFacilityData);
-      fetchFacilities(); // Refresh the facility list after creating
+      fetchFacilities(); 
       setShowCreateModal(false);
       setNewFacilityData({ facilityName: '', scheduleServiceDate: '', description: '', remindBefore: '4-day' });
     } catch (error) {
@@ -137,7 +137,7 @@ const FacilityManagement = () => {
 
   return (
     <div className="container-fluid" style={{ minHeight: '100vh' }}>
-      <div className="container-fluid d-flex flex-column p-3 rounded bg-light shadow" style={{ width: "100%" }}>
+      <div className="container-fluid d-flex flex-column  rounded bg-light shadow" style={{ width: "100%" }}>
         {/* Header */}
         <div className="d-flex justify-content-between align-items-center mb-4 p-3">
           <h2>Facility Management</h2>
@@ -169,18 +169,17 @@ const FacilityManagement = () => {
                     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                     minHeight: '220px',
                     maxHeight: '300px',
-                    display: 'flex',
-                    flexDirection: 'column',
+               
                   }}
                 >
                   <div
-                    className="card-header bg-primary"
+                    className="card-header bg-primary p-3"
                     style={{
                       color: 'white',
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      padding: '10px',
+                   
                     }}
                   >
                     <span className="text-truncate" style={{ maxWidth: '200px' }}>{facility.facilityName}</span>
@@ -190,16 +189,16 @@ const FacilityManagement = () => {
                       </Dropdown.Toggle>
                       <Dropdown.Menu align="end" className="dropdown-menu">
                         <Dropdown.Item onClick={() => {handleEdit(facilityId); setShowModal(true);}}>Edit</Dropdown.Item>
-                        {/* <Dropdown.Item onClick={() => handleView(facility)}>View</Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleDelete(facility.id)}>Delete</Dropdown.Item> */}
+                     
                       </Dropdown.Menu>
                     </Dropdown>
                   </div>
-                  <div className="card-body flex-column justify-content-between m-2" style={{ overflow: 'hidden', flexGrow: 1 }}>
-                    <div>
-                      <p className="text-muted" style={{ fontSize: '0.85em', color: "grey" }}>Upcoming Schedule</p>
-                      <p style={{ fontSize: '0.9em' }}>{formatDate(facility.scheduleServiceDate)}</p>
-                    </div>
+                  <div className="card-body flex-column justify-content-between " style={{ overflow: 'hidden', flexGrow: 1 }}>
+                  <div className="d-flex justify-content-between">
+    <p className="text-muted" style={{ fontSize: '0.85em', color: "grey" }}>Upcoming Schedule</p>
+    <p style={{ fontSize: '0.9em' }}>{formatDate(facility.scheduleServiceDate)}</p>
+</div>
+
                     <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       <p style={{ fontSize: '0.85em', color: 'gray' }}><strong>Description</strong><br />{facility.description}</p>
                       <p><strong>Reminder</strong>: {facility.remindBefore}</p>
@@ -292,16 +291,16 @@ const FacilityManagement = () => {
         <Form.Label>Facility Name<span style={{ color: "red" }}>*</span></Form.Label>
         <Form.Control
           type="text"
-          value={facilityData.facilityName}  // Use facilityData for the input value
+          value={facilityData.facilityName}  
           name="facilityName"
-          onChange={handleInputChange} // Handle change event to update state
+          onChange={handleInputChange} 
         />
       </Form.Group>
       <Form.Group controlId="serviceDate">
         <Form.Label>Service Date<span style={{ color: "red" }}>*</span></Form.Label>
         <Form.Control
           type="date"
-          value={facilityData.scheduleServiceDate}  // Use facilityData for the input value
+          value={facilityData.scheduleServiceDate}  
           name="scheduleServiceDate"
           onChange={handleInputChange}
         />
@@ -311,7 +310,7 @@ const FacilityManagement = () => {
         <Form.Control
           as="textarea"
           rows={3}
-          value={facilityData.description}  // Use facilityData for the input value
+          value={facilityData.description} 
           name="description"
           onChange={handleInputChange}
         />
@@ -320,7 +319,7 @@ const FacilityManagement = () => {
         <Form.Label>Reminder Before</Form.Label>
         <Form.Control
           as="select"
-          value={facilityData.remindBefore}  // Use facilityData for the input value
+          value={facilityData.remindBefore} 
           name="remindBefore"
           onChange={handleInputChange}
         >
@@ -333,8 +332,10 @@ const FacilityManagement = () => {
     </Form>
   </Modal.Body>
   <Modal.Footer>
-    <Button variant="secondary" onClick={handleModalClose}>Close</Button>
-    <Button variant="primary" onClick={handleModalSave}>Save</Button>
+    <Button variant="secondary"className='p-3' onClick={handleModalClose}>Close</Button>
+    <Button style={{  background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+              border: "none",
+              color: "white",width:"45%"}}className='p-3' onClick={handleModalSave}>Save</Button>
   </Modal.Footer>
 </Modal>
 
@@ -364,8 +365,8 @@ const FacilityManagement = () => {
           <p>Are you sure you want to delete this facility?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>Cancel</Button>
-          <Button variant="danger" onClick={handleDeleteConfirm}>Delete</Button>
+          <Button variant="secondary"className='p-3' onClick={() => setShowDeleteModal(false)}>Cancel</Button>
+          <Button variant="danger"className='p-3' onClick={handleDeleteConfirm}>Delete</Button>
         </Modal.Footer>
       </Modal>
     </div>

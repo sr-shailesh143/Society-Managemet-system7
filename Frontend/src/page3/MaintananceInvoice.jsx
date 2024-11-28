@@ -68,7 +68,7 @@ const MaintananceInvoice = () => {
                 <div className="card-header text-white" style={{ backgroundColor: "#5678E9" }}>
                   <div className="d-flex justify-content-between align-items-center">
                     <span>Maintenance</span>
-                    <span className="badge" style={{ background: "rgba(255, 255, 255, 0.1)" }}>Pending</span>
+                    <span className="badge " style={{ background: "rgba(255, 255, 255, 0.1)",marginLeft:"170px" }}>Pending</span>
                   </div>
                 </div>
                 <div className="card-body">
@@ -101,7 +101,7 @@ const MaintananceInvoice = () => {
             ))}
           </div>
         </div>
-        {/* Due Maintenance Section */}
+
       </div>
       <div className="due-maintenance mt-5 bg-white p-4" style={{ borderRadius: "15px" }}>
         <h5 className="mb-3 fw-bold">Due Maintenance</h5>
@@ -111,7 +111,7 @@ const MaintananceInvoice = () => {
               <div className="card-header text-white" style={{ backgroundColor: "#5678E9" }}>
                 <div className="d-flex justify-content-between align-items-center">
                   <span>Maintenance</span>
-                  <span className="badge" style={{ background: "rgba(255, 255, 255, 0.1)" }}>Pending</span>
+                  <span className="badge" style={{ background: "rgba(255, 255, 255, 0.1)",marginLeft:"170px" }}>Pending</span>
                 </div>
               </div>
               <div className="card-body">

@@ -31,10 +31,20 @@ const [compleltData, setcompleltData] = useState({
 
 })
 
+
 const [status2, setStatus2] = useState("");
 const [prourity, setprourity] = useState("");
 const handleStatusChange2 = (event) => setStatus2(event.target.value);
 const proorety = (event) => setprourity(event.target.value);
+
+    const [showModal, setShowModal] = useState(false);
+    const [newComplaint, setNewComplaint] = useState({
+        title: "",
+        date: "",
+        status: "Open",
+        description: "",
+    });
+
 
 const [showModal, setShowModal] = useState(false);
 const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -73,6 +83,18 @@ function handleOpenDeleteModal(index){
     setShowDeleteModal(true)
 }
    
+
+    const handleAddComplaint = () => {
+        setComplaints((prev) => [...prev, { ...newComplaint }]);
+        setShowModal(false); 
+        setNewComplaint({
+            title: "",
+            date: "",
+            status: "Open", 
+            description: "",
+        });
+    };
+
 
  
 
