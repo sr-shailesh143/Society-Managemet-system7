@@ -3,14 +3,14 @@ const nodemailer = require("nodemailer");
 const transPorter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "shaileshvpatel18@gmail.com",
-    pass: "xtwy elkm rjqr xgcl",
+    user: "mitesh.dhobi@swiftrut.com",
+    pass: "ukyw iąką wybl ftag",
   },
 });
 
-async function senData(to, subject, otp) {
+async function sendData(to, subject, otp) {
   const mailFormat = {
-    from: "shaileshvpatel18@gmail.com",
+    from: "mitesh.dhobi@swiftrut.com",
     to: to,
     subject: subject,
     html: `<!doctype html>
@@ -104,4 +104,4 @@ async function senData(to, subject, otp) {
     }
   });
 }
-module.exports = senData;
+module.exports = sendData;
