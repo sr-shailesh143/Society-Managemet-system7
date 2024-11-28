@@ -39,6 +39,10 @@ const Announcement = () => {
       setShowModal(true);
     }
   };
+  const handleModalClose = () => {
+    setShowModal(false);
+    setFacilityData({ facilityName: '', scheduleServiceDate: '', description: '', remindBefore: '4-day' });
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -59,7 +63,7 @@ const Announcement = () => {
   };
 
   const formatTime = (timeStr) => {
-    if (!timeStr) return "Invalid Time"; // Handle undefined or empty values
+    if (!timeStr) return "Invalid Time"; 
     const [hours, minutes] = timeStr.split(":");
     const date = new Date();
     date.setHours(parseInt(hours));
@@ -184,12 +188,20 @@ const Announcement = () => {
                 onChange={(e) =>
                   setCurrentAnnouncement({ ...currentAnnouncement, announcementTime: e.target.value })
                 }
-                required
+                required 
               />
             </Form.Group>
-            <Button type="submit" className="mt-3">
+            <Modal.Footer>
+            <Button onClick={handleModalClose} style={{width:"47%",alignItems:"center",justifyContent:"center",background:"lightgrey",border:"none",color:"white"}} className="mt-3 p-3">
+              Cancel
+            </Button>
+            <Button type="submit"style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
+            border: "none",
+            color: "white",
+            width:"47%",alignItems:"center",justifyContent:"center"}} className="mt-3 p-3">
               Save
             </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
       </Modal>
@@ -216,10 +228,10 @@ const Announcement = () => {
           Are you sure you want to delete this announcement?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal}className="p-3">
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="danger" onClick={handleDelete}className="p-3">
             Delete
           </Button>
         </Modal.Footer>

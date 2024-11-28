@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Added this import for useNavigate
+import { useNavigate } from "react-router-dom"; 
 import PaymentModal from "./PaymentModal";
 
 const OtherincomeInvoice = () => {
@@ -12,7 +12,7 @@ const OtherincomeInvoice = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(null);
 
-  const navigate = useNavigate(); // Move this to the main component
+  const navigate = useNavigate(); 
   const handlePayNowClick = (amount) => {
     setSelectedAmount(amount);
     setShowModal(true);

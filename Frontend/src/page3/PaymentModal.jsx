@@ -25,7 +25,7 @@ const PaymentModal = ({ show, handleClose, amount }) => {
         <Modal.Body>
           <Form>
             <div className="mb-3">
-              {/* MasterCard Option */}
+          
               <Form.Check
                 className="bg-white shadow m-2 px-3 py-2 d-flex align-items-center align-middle"
                 style={{ width: "300px", borderRadius: "8px", textAlign: "center", alignItems: "center" }}
@@ -42,7 +42,7 @@ const PaymentModal = ({ show, handleClose, amount }) => {
                   </div>
                 }
               />
-              {/* Visa Card Option */}
+          
               <Form.Check
                 className="bg-white shadow m-2 px-3 py-2 d-flex align-items-center align-middle"
                 style={{ width: "300px", borderRadius: "8px" }}
@@ -59,7 +59,7 @@ const PaymentModal = ({ show, handleClose, amount }) => {
                   </div>
                 }
               />
-              {/* Cash Payment Option */}
+            
               <Form.Check
                 className="bg-white shadow m-2 px-3 py-2 d-flex align-items-center align-middle"
                 style={{ width: "300px", borderRadius: "8px" }}
@@ -77,7 +77,7 @@ const PaymentModal = ({ show, handleClose, amount }) => {
                 }
               />
             </div>
-            {/* Action Buttons */}
+        
             <div className="d-flex justify-content-between">
               <Button
                 variant="secondary"
@@ -103,7 +103,7 @@ const PaymentModal = ({ show, handleClose, amount }) => {
           </Form>
         </Modal.Body>
       </Modal>
-      {/* Payment Details Modal */}
+      
       {showPaymentDetailsModal && (
         <Modal show={showPaymentDetailsModal} onHide={() => setShowPaymentDetailsModal(false)} centered>
           <Modal.Header closeButton>
