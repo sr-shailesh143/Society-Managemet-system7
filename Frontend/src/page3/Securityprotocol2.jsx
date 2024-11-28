@@ -1,83 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
+import { getAllSecurityProtocols } from '../apiservices/securityProtocolservice';
+import toast from 'react-hot-toast';
 
 export default function Securityprotocol2() {
+  const [protocols, setProtocols] = useState([]);
 
-    // Sample events data
-    const Security = [
-        {
-            Title: "Cody Fisher",
-            description: "Event and recreational activities.",
-            time: "2:45 PM",
-            date: "11/02/2024",
-            eventName: "Holi Festival",
-        },
-        {
-            Title: "Esther Howard",
-            description: "Securing critical government systems.",
-            time: "1:45 AM",
-            date: "12/02/2024",
-            eventName: "Ganesh Chaturthi",
-        },
-        {
-            Title: "Brooklyn Simmons",
-            description: "Implementing surveillance in public spaces.",
-            time: "2:00 PM",
-            date: "13/02/2024",
-            eventName: "Navratri Festival",
-        },
-        {
-            Title: "Jenny Wilson",
-            description: "Event and recreational activities.",
-            time: "4:00 AM",
-            date: "14/02/2024",
-            eventName: "Holi Festival",
-        },
-        {
-            Title: "Guy Hawkins",
-            description: "Expenses will way sense for you.",
-            time: "5:30 PM",
-            date: "15/02/2024",
-            eventName: "Ganesh Chaturthi",
-        },
-    ];
+  // Fetch all protocols on load
+  useEffect(() => {
+    const fetchProtocols = async () => {
+      try {
+        const response = await getAllSecurityProtocols();
+        console.log('API Response:', response); // Log the response to check its structure
 
-    return (
-        <div className="container-fluid">
-            <div className="complaints-section"style={{borderRadius:"15px"}}>
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Security Protocols</h4>
-                </div>
+        // Assuming response.data.records contains the protocols
+        if (response.data && Array.isArray(response.data.records)) {
+          setProtocols(response.data.records);
+        } else {
+          console.error("API response does not have 'records' as an array:", response);
+          setProtocols([]); // Fallback in case of an invalid structure
+        }
+      } catch (error) {
+        console.error('Error fetching protocols:', error);
+        toast.error('Failed to fetch protocols'); // Show error toast
+      }
+    };
 
-                <div className="table-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                    <table className="table custom-table">
-                        <thead className="table-light">
-                            <tr>
-                                <th style={{ background: "#E5ECFD" }}>Title</th>
-                                <th style={{ background: "#E5ECFD" }}>Description</th>
-                                <th style={{ background: "#E5ECFD" }}> Date</th>
-                                <th style={{ background: "#E5ECFD" }}> Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Security.map((Security, index) => (
-                                <tr key={index}>
-                                    <td>
-                                        <div className="d-flex align-items-center">
-                                            {Security.Title}
-                                        </div>
-                                    </td>
-                                    <td>{Security.description}</td>
-                                    <td>{Security.date}</td>
-                                    <td>
-                                        <span className="time-badge">{Security.time}</span>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    fetchProtocols();
+  }, []);
+
+  return (
+    <div className="container-fluid">
+      <div className="complaints-section" style={{ borderRadius: '15px' }}>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h4 className="font-weight-bold" style={{ fontWeight: 'bold' }}>
+            Security Protocols
+          </h4>
         </div>
-    );
+
+        <div className="table-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+          <table className="table custom-table">
+            <thead className="table-light">
+              <tr>
+                <th style={{ background: '#E5ECFD' }}>Title</th>
+                <th style={{ background: '#E5ECFD' }}>Description</th>
+                <th style={{ background: '#E5ECFD' }}>Date</th>
+                <th style={{ background: '#E5ECFD' }}>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {protocols.map((protocol, index) => (
+                <tr key={index}>
+                  <td>
+                    <div className="d-flex align-items-center">{protocol.title}</div>
+                  </td>
+                  <td>{protocol.description}</td>
+                  <td>{new Date(protocol.date).toLocaleDateString()}</td>
+                  <td>{protocol.time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
 }

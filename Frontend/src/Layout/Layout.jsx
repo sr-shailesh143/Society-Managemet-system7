@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { FaBarsStaggered } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
@@ -22,6 +22,7 @@ import { logout } from '../apiservices/Authentication';
 import { useDispatch, useSelector } from "react-redux";
 import { logoutuser } from '../redux/authslice';
 import {  toast } from "react-hot-toast";
+import { getProfiles } from '../apiservices/profileservice';
 
 
 
@@ -29,6 +30,7 @@ import {  toast } from "react-hot-toast";
 
 export default function Layout({ component }) {
     const [show, setShow] = useState(false);
+    const [profile, setProfile] = useState(null); // To hold the fetched profile data
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [serch, setserch] = useState(0)
@@ -53,6 +55,23 @@ export default function Layout({ component }) {
           toast.error(error.response.data.message);
         }
       };
+
+        // Fetch profiles on component mount
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await getProfiles();
+        const profiles = response.data; // Adjust based on API response structure
+        if (profiles && profiles.length > 0) {
+          setProfile(profiles[0]); // Assuming you want the first profile
+        }
+      } catch (error) {
+        console.error("Error fetching profiles:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
        
 
 
@@ -458,14 +477,20 @@ left:-23px;
                                 <div className="lile border   " style={{ height: "40px" }}>
                                 </div>
 
-                                <UserAvatar onClick={() => navigate("/profile")} className='' src="src/assets/Avatar.png" alt="User" style={{ cursor: "pointer" }} />
+                                <UserAvatar
+          onClick={() => navigate("/profile")}
+          className=""
+          src={profile?.image || "src/assets/Avatar.png"} // Use dynamic image URL if available
+          alt={profile?.name || "User"} // Use dynamic name if available
+          style={{ cursor: "pointer" }}
+        />
 
 
-                                <UserName className=' search'>Moni Roy
-                                    <br />
-                                    <span className='mx-1 text-color '>admin</span>
-
-                                </UserName>
+<UserName className="search">
+          {profile?.firstName || "Unknown User"}  {profile?.lastName || "Unknown User"} {/* Display name dynamically */}
+          <br />
+          <span className="mx-1 text-color">{profile?.role || "Admin"}</span> {/* Display role dynamically */}
+        </UserName>
                             </UserInfo>
                         </div>
                         <div className="component-layout  h-100   ">
