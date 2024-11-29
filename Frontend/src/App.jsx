@@ -2,11 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './resident.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import toast, { Toaster } from 'react-hot-toast';
-
 import RegistrationPage from './components/RegistrationPage';
 import Login from './components/Login';
 import ForgetScreen from './components/ForgetScreen';
@@ -14,7 +11,6 @@ import OTPVerification from './components/otp';
 import ResetPassword from './components/ResetPassword';
 import Layout from './Layout/Layout';
 import Dashbord from './page/Dashbord';
-
 import UpdateProfile from './page/UpdateProfile';
 import ResidentManageMent from './page/ResidentManageMent';
 import Announcement from './page/Announcement';
@@ -29,7 +25,6 @@ import SecurityLayout from './Layout/SecurityLayout';
 import EmergencyManagement from './page2/EmergencyManagement';
 import Visitor from './page/Visitor';
 import Securityprotocols from './page/Securityprotocols';
-
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
@@ -48,10 +43,7 @@ import MaintananceInvoice from './page3/MaintananceInvoice';
 import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
-
 import Requesttracking from './page/Requesttraking';
-
-
 import Viewotherincome from './page/VIEWOTHERINCOME.JSX';
 
 function App() {
@@ -84,7 +76,7 @@ function App() {
         {/* traking */}
         <Route path='/traking' element={<Layout component={<CompleteTraking />} />} />
 
-       
+
         <Route path='/RequestTracking' element={<Layout component={<Requesttracking />} />} />
 
 
@@ -113,20 +105,13 @@ function App() {
 
 
         {/* Security */}
-
-
-
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
-
-
         {/* ResidentManageMentLayout */}
-
         <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={""} />} />
         {/* PersonalDetail */}
         <Route path='/PersonalDetail' element={<ResidentManageMentLayout component={<PersonalDetail />} />} />
         <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />
-
         {/* Community */}
         <Route path='/Community' element={<ResidentManageMentLayout component={<Community />} />} />
         <Route path='/polls' element={<ResidentManageMentLayout component={<Polls />} />} />
@@ -134,7 +119,6 @@ function App() {
         <Route path='/InvoicePage' element={<ResidentManageMentLayout component={<InvoicePage />} />} />
         <Route path='/OtherincomeInvoice' element={<ResidentManageMentLayout component={<OtherincomeInvoice />} />} />
         <Route path='/CommunitiesDiscussion' element={<ResidentManageMentLayout component={<CommunitiesDiscussion />} />} />
-
         <Route path='/ServiceComplain' element={<ResidentManageMentLayout component={<ServiceComplain />} />} />
         <Route path='/RequestSubmission' element={<ResidentManageMentLayout component={<RequestSubmission />} />} />
         <Route path='/EventParticipation' element={<ResidentManageMentLayout component={<EventParticipation />} />} />

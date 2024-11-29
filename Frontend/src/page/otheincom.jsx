@@ -175,14 +175,8 @@ const Otherincome = () => {
                 </Row>
 
                 <div style={styles.cardContainer}>
-
-
                 </div>
             </div>
-
-
-
-
             {/* Create Note Modal */}
             <Modal show={showCreateModal} >
                 <Modal.Header >
@@ -192,11 +186,7 @@ const Otherincome = () => {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label> Title <span style={{ color: "red" }}>*</span></Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter title"
-
-                            />
+                            <Form.Control type="text" placeholder="Enter title" />
                         </Form.Group>
                         <Form.Group className="mb-3 d-flex gap-1 ">
                             <div className="date w-50 ">
@@ -207,42 +197,17 @@ const Otherincome = () => {
                                 <Form.Label> Due Date <span style={{ color: "red" }}>*</span></Form.Label>
                                 <Form.Control type="date" className='' />
                             </div>
-
                         </Form.Group>
                         <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={2}
-
-                        />
+                        <Form.Control as="textarea" rows={2} />
                         <Form.Label className='mt-2'> Amount <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="₹ 0000"
-
-                        />
+                        <Form.Control type="number" placeholder="₹ 0000" />
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <div className="d-flex gap-3">
-                        <Button
-                            className=" cancel-btn radious  "
-                            style={{ border: "1px solid #D3D3D3", }}
-                            variant=""
-                            onClick={""}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                color: "white",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
-
-                            onClick={handleCreateModalClose}
-                        >
+                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={""}  >  Cancel </Button>
+                        <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={handleCreateModalClose}  >
                             Save
                         </Button>
                     </div>
@@ -257,11 +222,7 @@ const Otherincome = () => {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label> Title <span style={{ color: "red" }}>*</span></Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter title"
-                                onChange={(e) => setSelectedTitle(e.target.value)}
-                            />
+                            <Form.Control type="text" placeholder="Enter title" onChange={(e) => setSelectedTitle(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3 d-flex gap-1 ">
                             <div className="date w-50 ">
@@ -275,36 +236,15 @@ const Otherincome = () => {
 
                         </Form.Group>
                         <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={2}
-
-                        />
-
-
-
+                        <Form.Control as="textarea" rows={2} />
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <div className="d-flex gap-3">
-                        <Button
-                            className=" cancel-btn radious  "
-                            style={{ border: "1px solid #D3D3D3", }}
-                            variant=""
-                            onClick={handleEditModalClose}
-                        >
+                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={handleEditModalClose} >
                             Cancel
                         </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                color: "white",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
-
-                            onClick={handleEditModalClose}
-                        >
+                        <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={handleEditModalClose}  >
                             Save
                         </Button>
                     </div>
@@ -319,33 +259,16 @@ const Otherincome = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <div className="d-flex gap-3">
-                        <Button
-                            className=" cancel-btn radious  "
-                            style={{ border: "1px solid #D3D3D3", }}
-                            variant=""
-                            onClick={handleClosesetmantence}
-                        >
+                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handleClosesetmantence} >
                             Cancel
                         </Button>
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{
-                                background: "#E74C3C",
-                                border: "none",
-                                color: "white",
-                                cursor: "pointer"
-                            }}
-
-
-                            onClick={() => setShowsetmantenenc(false)}
-                        >
+                        <Button className="save-btn radious l-btn " style={{ background: "#E74C3C", border: "none", color: "white", cursor: "pointer" }} onClick={() => setShowsetmantenenc(false)} >
                             Delate
                         </Button>
                     </div>
                 </Modal.Footer>
             </Modal>
         </Container>
-
     );
 };
 

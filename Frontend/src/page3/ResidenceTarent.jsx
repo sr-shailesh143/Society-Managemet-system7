@@ -8,13 +8,13 @@ export default function RecidencTarent() {
     const [showModal, setShowModal] = useState(false);
     const [selectedAmount, setSelectedAmount] = useState(null);
     const handlePayNowClick = (amount) => {
-      setSelectedAmount(amount);
-      setShowModal(true);
+        setSelectedAmount(amount);
+        setShowModal(true);
     };
     const item = {
         grandTotal: 100, // Example value
-      };
-      
+    };
+
     return (
         <div className='p-detels'>
 
@@ -65,47 +65,55 @@ export default function RecidencTarent() {
                                 <h5 className='name-text'>Gender</h5>
                                 <p className=' name-value'>Male</p>
                             </div>
-                            <div className="col-12 col-md-3  ">
-                                <div className="document-ditels d-flex  ">
-                                    <div className="img-icon ">
-                                        <Image className='fs-3 ' />
+                            <div className="col-12 col-md-3 p-2" style={{ marginLeft: "-40px", width: "286px" }}>
+                                <div className="document-ditels d-flex align-items-center p-3"
+                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "360px", height: "100px" }}>
+                                    <div className="img-icon">
+                                        <Image style={{ width: "30px", height: "30px" }} />
                                     </div>
-                                    <div className="document-name  ">
-                                        <p className='d-text '>
-                                            Syncfusion Essential Adharcard  Side.JPG
-                                        </p>
-                                        <p className="d-n ">3.5 MB</p>
+                                    <div className="document-name"
+                                        style={{ whiteSpace: "normal", }}>
+                                        <div className="document-name  ">
+                                            <p className='d-text'>
+                                                Syncfusion Essential Adharcard Front Side.JPG
+                                            </p>
+                                            <p className="d-n ">3.5 MB</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row mt-2 d-flex  flex-wrap ">
                             <div className="col-12 col-md-2">
-                                <h5 className='name-text'>Full Name</h5>
-                                <p className=' name-value'>Arlene McCoy</p>
+                                <h5 className='name-text'>Wing </h5>
+                                <p className=' name-value'>A</p>
                             </div>
                             <div className="col-12 col-md-2">
-                                <h5 className='name-text'>Phone Number</h5>
-                                <p className=' name-value'>+91 99130 44537</p>
+                                <h5 className='name-text'>Age </h5>
+                                <p className=' name-value'>187</p>
                             </div>
                             <div className="col-12 col-md-3">
-                                <h5 className='name-text'>Email Address</h5>
-                                <p className=' name-value'>ArleneMcCoy25@gmail.com</p>
+                                <h5 className='name-text'>Unit</h5>
+                                <p className=' name-value'>1001</p>
                             </div>
                             <div className="col-12 col-md-2  ">
-                                <h5 className='name-text'>Gender</h5>
-                                <p className=' name-value'>Male</p>
+                                <h5 className='name-text'>Relation</h5>
+                                <p className=' name-value'>Mother</p>
                             </div>
-                            <div className="col-12 col-md-3  ">
-                                <div className="document-ditels d-flex  ">
-                                    <div className="img-icon ">
-                                        <ArticleIcon className='fs-3 text-danger' />
+                            <div className="col-12 col-md-3 p-2" style={{ marginLeft: "-40px", width: "286px" }}>
+                                <div className="document-ditels d-flex align-items-center p-3"
+                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "360px", height: "100px" }}>
+                                    <div className="img-icon">
+                                        <ArticleIcon className='fs-2 text-danger' />
                                     </div>
-                                    <div className="document-name  ">
-                                        <p className='d-text'>
-                                            Syncfusion Essential Adharcard Front Side.JPG
-                                        </p>
-                                        <p className="d-n ">3.5 MB</p>
+                                    <div className="document-name"
+                                        style={{ whiteSpace: "normal", }}>
+                                        <div className="document-name  ">
+                                            <p className='d-text'>
+                                                Adress Proof Front Side.PDF
+                                            </p>
+                                            <p className="d-n ">3.5 MB</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,27 +127,10 @@ export default function RecidencTarent() {
                     <div className="list-member row ms-2">
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    width: "100%",
-
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }}>
                                 <div
                                     className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                    style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}   >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Arlene McCoy</span>
 
                                 </div>
@@ -169,27 +160,9 @@ export default function RecidencTarent() {
                         </div>
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    minHeight: '220px',
-                                    maxHeight: '300px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
-                                <div
-                                    className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', minHeight: '220px', maxHeight: '300px', display: 'flex', flexDirection: 'column', }} >
+                                <div className="card-header "
+                                    style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}   >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Arlene McCoy</span>
 
                                 </div>
@@ -218,28 +191,8 @@ export default function RecidencTarent() {
                             </div>
                         </div>
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
-                            <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    minHeight: '220px',
-                                    maxHeight: '300px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
-                                <div
-                                    className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                            <div className=" w-100" style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', minHeight: '220px', maxHeight: '300px', display: 'flex', flexDirection: 'column', }} >
+                                <div className="card-header " style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }} >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Arlene McCoy</span>
 
                                 </div>
@@ -268,30 +221,11 @@ export default function RecidencTarent() {
                             </div>
                         </div>
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
-                            <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    minHeight: '220px',
-                                    maxHeight: '300px',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
+                            <div className=" w-100" style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', minHeight: '220px', maxHeight: '300px', display: 'flex', flexDirection: 'column', }}  >
                                 <div
                                     className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                    style={{ color: 'white', display: 'flex', justifyContent: 'space-between', padding: '15px', backgroundColor: "#5678E9" }}   >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Arlene McCoy</span>
-
                                 </div>
                                 <div className="card-body flex-column justify-content-between m-1 p-2" style={{ overflow: 'hidden', flexGrow: 1 }}>
                                     <div className="d-flex justify-content-between ">
@@ -326,26 +260,8 @@ export default function RecidencTarent() {
                     <div className="list-member row ms-2">
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    width: "100%",
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
-                                <div
-                                    className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }} >
+                                <div className="card-header " style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}    >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Two Wheelers  </span>
 
                                 </div>
@@ -362,7 +278,6 @@ export default function RecidencTarent() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -374,12 +289,7 @@ export default function RecidencTarent() {
                 <div className="totle-amount row d-flex  ">
 
                     <div className="col-12 col-md-6">
-                        <div
-                            title="Total Unit"
-                            value="₹ 20,550"
-                            iconSrc="src/Assets/button4.png"
-                            className=" amount-card   amount-card-pink"
-                        >
+                        <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className=" amount-card   amount-card-pink"   >
                             <div className="amount-box">
 
                                 <div className="amount-label">Maintenance Amount</div>
@@ -388,24 +298,14 @@ export default function RecidencTarent() {
                         </div>
                     </div>
                     <div className="col-12 col-md-6 ">
-                        <div
-                            title="Total Unit"
-                            value="₹ 20,550"
-                            iconSrc="src/Assets/button4.png"
-                            className="amount-card    amount-card-red"
-                        >
+                        <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className="amount-card    amount-card-red"  >
                             <div className="amount-box">
-
                                 <div className="amount-label">Penalty Amount</div>
                                 <div className="amount-value-red">₹ 0</div>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
-
             </div>
             {/* Pending Maintanance */}
             <div className=" Pending Maintanance  mt-3 h-100 member">
@@ -414,26 +314,10 @@ export default function RecidencTarent() {
                     <div className="list-member row ms-2 mt-4">
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    width: "100%",
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }}   >
                                 <div
                                     className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                    style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }} >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Maintenance  </span>
                                     <button style={{ backgroundColor: "#FFFFFF1A", width: "113px" }} className='text-white'>Pending</button>
                                 </div>
@@ -461,15 +345,13 @@ export default function RecidencTarent() {
                                         <p className='text-success'>₹ 1,250</p>
                                     </div>
                                     <div className="d-flex justify-content-between ">
-                                    <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
-                  Pay Now
-                </button>
+                                        <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
+                                            Pay Now
+                                        </button>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -480,26 +362,8 @@ export default function RecidencTarent() {
                     <div className="list-member row ms-2 mt-4">
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    width: "100%",
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
-                                <div
-                                    className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }}    >
+                                <div className="card-header " style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}    >
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Maintenance  </span>
                                     <button style={{ backgroundColor: "#FFFFFF1A", width: "113px" }} className='text-white'>Pending</button>
                                 </div>
@@ -521,15 +385,13 @@ export default function RecidencTarent() {
                                     <div className="border "></div>
 
                                     <div className="d-flex justify-content-between mt-2 ">
-                                    <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
-                  Pay Now
-                </button>
+                                        <button className="btn text-white w-100 m-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={() => handlePayNowClick(item.grandTotal)}>
+                                            Pay Now
+                                        </button>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -540,26 +402,8 @@ export default function RecidencTarent() {
                     <div className="list-member row ms-2 mt-4">
                         <div className="col-md-4 col-lg-3 mb-4 d-flex">
                             <div className=" w-100"
-                                style={{
-                                    borderRadius: '10px 10px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 4px 8px #5678E94D',
-                                    width: "100%",
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}
-                            >
-                                <div
-                                    className="card-header "
-                                    style={{
-                                        color: 'white',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: '15px',
-                                        backgroundColor: "#5678E9"
-                                    }}
-                                >
+                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }}  >
+                                <div className="card-header " style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}>
                                     <span className="text-truncate" style={{ maxWidth: '200px' }}>Community Initiatives  </span>
                                 </div>
                                 <div className="card-body flex-column justify-content-between m-1 p-2" style={{ overflow: 'hidden', flexGrow: 1 }}>

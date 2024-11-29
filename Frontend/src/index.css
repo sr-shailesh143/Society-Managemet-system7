@@ -1,3 +1,6 @@
+*{
+  font-family: "Poppins" !important;
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -934,18 +937,22 @@ body {
   color: white;
   width: 45%;
 }
-
+body{
+  font-family: "Poppins" !important;
+}
 
 .custom-btn {
   font-size: 14px;
   padding: 8px 16px;
   border-radius: 5px;
+  font-family: "Poppins" !important;
 }
 
 .custom-table th,
 .custom-table td {
   vertical-align: middle;
   font-size: 14px;
+  font-family: "Poppins" !important;
 }
 
 .custom-table th {
@@ -958,6 +965,15 @@ body {
 }
 
 .time-badge {
+  background: #F6F8FB;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+}
+.time-badge2 {
   background: #F6F8FB;
   padding: 5px 10px;
   border-radius: 15px;

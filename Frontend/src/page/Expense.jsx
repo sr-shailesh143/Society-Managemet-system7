@@ -114,6 +114,54 @@ try {
                       </span>
                       <span className={`status-badge-delete ms-2 `} style={DELETE}>
 
+
+  return (
+    <div className="container-fluid bg-light shadow">
+      <div className="d-flex justify-content-between align-items-center p-3 m-2">
+        <h3>Add Expenses Details</h3>
+        <button
+          className="btn btn-warning p-2"
+          style={{
+            background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
+            border: 'none',
+            color: 'white',
+          }}
+          onClick={() => handleModalShow()}
+        >
+          + Add New Expense Details
+        </button>
+      </div>
+
+      <table className="table table-striped m-2">
+        <thead className="table-light" style={{ textAlign: 'center' }}>
+          <tr>
+            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '15px 0px 0px 0px' }}>
+              Title
+            </th>
+            <th style={{ backgroundColor: '#E5ECFD' }}>Description</th>
+            <th style={{ backgroundColor: '#E5ECFD' }}>Date</th>
+            <th style={{ backgroundColor: '#E5ECFD' }}>Amount</th>
+            <th style={{ backgroundColor: '#E5ECFD' }}>Bill Format</th>
+            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '0px 15px 0px 0px' }}>
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody style={{ textAlign: 'center' }}>
+          {expensesData.map((expense, index) => (
+            <tr key={index}>
+              <td >
+                <div className="d-flex align-items-center justify-content-start">
+                  {expense.image && (
+                    <img
+                      src={expense.image}
+                      alt="Expense"
+                      className="rounded-circle me-2"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                  )}
+                  {expense.title}
+
                         <Delete style={{ cursor: "pointer" }} />
                       </span>
                     </span>
@@ -175,6 +223,7 @@ try {
                   </center>
                   <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
                   <small>PNG, JPG, GIF up to 10MB</small>
+
                 </div>
               </div>
             </div>

@@ -280,6 +280,7 @@ const VisitorTracking = () => {
       variant="light"
       onClick={handleCloseModal}
       style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '45%' }}
+       className="p-3"
     >
       Cancel
     </Button>
@@ -291,6 +292,7 @@ const VisitorTracking = () => {
         border: 'none',
         width: '45%',
       }}
+      className="p-3"
     >
       {isEditing ? 'Update Visitor' : 'Add Visitor'}
     </Button>

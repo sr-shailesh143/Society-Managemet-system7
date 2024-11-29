@@ -5,7 +5,7 @@ import { login } from '../apiservices/Authentication';
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
-
+import { FaEye } from "react-icons/fa";
 
 export default function Login() {
     const {  errors, handleError, clearError } = useForm({
@@ -51,19 +51,19 @@ export default function Login() {
     return (
         <div className='container-fluid container-img ' >
             <div className="col-12 d-sm-block d-md-none mt-5  text-center">
-                <img className='w-50 h-50 img-fluid ' src="src/assets/Logo.png" alt="Logo" />
+                <img className='w-70 h-50 img-fluid ' src="src/assets/Logo.png" alt="Logo" />
             </div>
             <div className="row d-flex gap-5">
                 <div className="col-12 col-md-6 d-none d-md-flex bg-color justify-content-center align-items-center">
                     <div>
-                        <img style={{ width: "200px", marginLeft: "-30px", marginTop: "0px" }} className='' src="src/assets/Logo.png" alt="Logo" />
+                        <img style={{ width: "230px", marginLeft: "-100px", marginTop: "-80px" }} className='' src="src/assets/Logo.png" alt="Logo" />
                         <div className="mailImg mt-5 text-center">
                             <img style={{ width: "507px", height: "491px", position: "sticky" }} src="src/assets/sideIMG.png" alt="Logo" className="img-fluid mt-3" />
                         </div>
                     </div>
                 </div>
 
-                <div className="col-12 col-md-5   d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-5   d-flex justify-content-center align-items-center"style={{width:"680px"}}>
                     <form className="form-container from container radious border p-4" onSubmit={handleLogin} noValidate>
                         <div className="row">
                             <div className="col-12 d-sm-block d-md-none mt-5 text-center">
@@ -105,14 +105,14 @@ export default function Login() {
                                     onClick={togglePasswordVisibility}
                                     style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
                                 >
-                                    <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                                    <FaEye className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}/>
                                 </span>
                                 <span
                                     className="hide1"
                                     onClick={togglePasswordVisibility}
-                                    style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
+                                    style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none',zIndex:"999" }}
                                 >
-                                    <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+                                    <FaEye className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}/>
                                 </span>
                                 {errors.password && <span className='text-danger'>{errors.password}</span>}
                             </div>

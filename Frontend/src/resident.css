@@ -431,7 +431,7 @@
     max-width: 333px;
     margin: 10px;
     margin-top: 20px;
-    
+
 }
 
 .message .time {
@@ -617,14 +617,18 @@
     margin-left: 30px;
     background: rgba(110, 142, 249, 1);
 
-    
+
 }
-.polls-text{
+
+.polls-text {
     text-wrap: wrap;
-    
+
 }
-.radio{
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+
+.radio {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Chrome, Safari, Opera */
     transform: scale(1.5);
 }
