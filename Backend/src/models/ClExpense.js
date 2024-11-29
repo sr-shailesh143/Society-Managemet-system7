@@ -12,8 +12,8 @@ const ClexpenseSchema = new mongoose.Schema({
         trim: true
     },
     date: {
-        type: Date,
-        required: true,
+        type: String,
+        required: false,
     },
     amount: {
         type: Number,
