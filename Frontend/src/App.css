@@ -2288,7 +2288,6 @@ input[type="email"] {
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-  text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #A7A7A7;
@@ -2312,6 +2311,7 @@ input[type="email"] {
   border-radius: 12px;
   color: #4F46E5;
 }
+
 
 .mantenese-hide {
   position: fixed;
@@ -2381,6 +2381,16 @@ input[type="email"] {
   padding: 20px;
   max-width: 100%;
   height: 500px;
+  overflow-y: scroll;
+  scrollbar-color: #202224 #F4F4F4;
+
+  scrollbar-width: thin;
+
+}
+.responsive-table-container1 {
+  padding: 20px;
+  max-width: 100%;
+  height: 300px;
   overflow-y: scroll;
   scrollbar-color: #202224 #F4F4F4;
 
@@ -2518,3 +2528,31 @@ input[type="email"] {
   border-radius: 10px 10px;
 
 }
+.viewcomplete{
+  width: 285px;
+height: auto;
+gap: 15px;
+opacity: 0px;
+
+}
+
+
+
+
+
+
+/* Additional Info Section */
+.additional-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.additional-info div {
+  text-align: center;
+}
+
+
+
+
+
