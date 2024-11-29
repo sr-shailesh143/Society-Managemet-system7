@@ -48,6 +48,8 @@ export default function Layout({ component }) {
     const handleLogout = async () => {
         try {
           const response = await logout();
+          
+          
           navigate("/");
           dispatch(logoutuser());
           toast.success(response.data.message);
@@ -298,7 +300,7 @@ left:-23px;
                             <br />
                             <br />
                             <br />
-                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}   onClick={handleLogout}> <TbLogout className='fs-3' />  Logout</p>
+                            <button className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}   onClick={handleLogout}> <TbLogout className='fs-3' />  Logout</button>
                         </NavLinks>
                     </div>
                     <div className="col-12 col-md-9 ">
@@ -351,7 +353,7 @@ left:-23px;
                                 location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <div>
                                     {showFinancialSubmenu4 && (
                                         <Submenu>
-                                           <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/traking")}> Create Complaint</span></SubmenuItem>
+                                           <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/traking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/traking")}> Create Complaint</span></SubmenuItem>
                                            <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/RequestTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/RequestTracking")}>Request Tracking</span></SubmenuItem>
 
                                         </Submenu>
@@ -383,7 +385,7 @@ left:-23px;
                             <br />
                             <br />
                             <br />
-                            <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4" }}> <TbLogout className='fs-3' />  Logout</p>
+                          
                         </NavLinks>
                                     </Offcanvas.Body>
                                 </Offcanvas>

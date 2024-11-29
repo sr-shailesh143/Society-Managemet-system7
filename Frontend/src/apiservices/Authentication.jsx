@@ -16,7 +16,7 @@ export const signup = async (data) =>
 export const login = async (data) => await api.post("http://localhost:8001/api/auth/login", data);
 
 // Logout
-export const logout = async () => await api.get("http://localhost:8001/api/auth/logout");
+export const logout = async () => await api.post("http://localhost:8001/api/auth/logout");
 
 // Send otp
 export const GetOtp = async (data) => await api.post("http://localhost:8001/api/auth/GetOtp", data);

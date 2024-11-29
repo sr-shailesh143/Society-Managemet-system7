@@ -214,7 +214,7 @@ left:-23px;
                             <Link className='link-tag' to={"/Securityprotocol2"}  > <div className='side-design' style={{ display: location.pathname === "/Securityprotocol2" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/Securityprotocol2" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Securityprotocol2" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <GiSecurityGate  className=' fs-3 mb-1' />Security Protocols  </NavLink></Link>
                           
 
-                            <p className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "60vh" }}> <TbLogout className='fs-3' />  Logout</p>
+                            <Link to={"/"}> <p className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "60vh" }}> <TbLogout className='fs-3' />  Logout</p></Link>
                         </NavLinks>
                     </div>
                     <div className="col-12 col-md-9  ">

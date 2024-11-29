@@ -81,7 +81,7 @@ const Visitor = () => {
                        
                       }}
                     >
-                      {visitor.wing}
+                     {visitor.wing.toUpperCase()}
                     </span>{" "}
                     {visitor.unit}
                   </td>
