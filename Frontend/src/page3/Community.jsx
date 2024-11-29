@@ -12,6 +12,8 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Webcam from "react-webcam";
 import SendIcon from '@mui/icons-material/Send';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
 export default function Community() {
   const [camera, setcamera] = useState(false)
@@ -21,6 +23,10 @@ export default function Community() {
   const [open, setopen] = useState(false)
   const handleClick = () => {
     setopen((prevState) => !prevState);
+  };
+  const handleEmojiSelect = (emoji) => {
+    setMessage((prev) => prev + emoji.native);
+    setShowPicker(false);
   };
   const [Search, setSearch] = useState("")
   const [chats] = useState([
@@ -35,8 +41,9 @@ export default function Community() {
     { id: 6, name: "Cody Fisher", message: "Thank you for your order!", time: "7:00", status: "read" },
   ]);
   const [sent, setSent] = useState("")
-
-
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);  // Chang
+  const [message, setMessage] = useState('');
+  const [showPicker, setShowPicker] = useState(false);
   function handlesent() {
     console.log(sent)
   }
@@ -133,9 +140,16 @@ export default function Community() {
             <div className="row  ">
               <div className="col-12 col-md-11 ">
                 <div className="row m-3 input-chet-icon w-100 gap-4 position-sticky ">
-                  <div className="col-12 col-md-2 ">
-                    <SentimentSatisfiedAltIcon className='fs-2' style={{ cursor: "pointer" }} />
-                  </div>
+                <div   className="col-12 col-md-2" style={{ position: 'relative' }}  >
+        <SentimentSatisfiedAltIcon className="fs-2"  style={{ cursor: 'pointer' }}  onClick={() => setShowEmojiPicker(!showEmojiPicker)} />
+        {showEmojiPicker && (
+          <div style={{ position: 'absolute',  top: '-440px',    zIndex: 10, }}  >
+            <Picker onSelect={handleEmojiSelect} /> {/* v3 */}
+            {/* For v5 */}
+            {/* <Picker data={data} onEmojiSelect={handleEmojiSelect} /> */}
+          </div>
+        )}
+      </div>
                   <div className="col-12 col-md-8">
                     <input type="text" className='input-chet-main ' onChange={(e) => setSent(e.target.value)} style={{ width: "100%", border: "none" }} />
                   </div>

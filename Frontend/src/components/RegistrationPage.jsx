@@ -7,7 +7,7 @@ import '../App.css';
 import axios from 'axios';
 import img from '../assets/img.png';
 import { createSociety, signup, viewSociety } from '../apiservices/Authentication';
-
+import { FaEye } from "react-icons/fa";
 function RegistrationPage() {
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
   const [formData, setUserData] = useState({
@@ -377,7 +377,7 @@ const onSubmit = (data) => {
             transform: 'translateY(-50%)',  // Adjust vertical alignment
           }}
         >
-          <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i> {/* Eye icon */}
+          <FaEye  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}/> {/* Eye icon */}
         </span>
         {errors.password && <p className="text-danger">{errors.password.message}</p>} {/* Show error message */}
       </div>
@@ -413,7 +413,7 @@ const onSubmit = (data) => {
           transform: 'translateY(-50%)', // Vertically center the icon
         }}
       >
-        <i className={`fas ${ShowConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+        <FaEye className={`fas ${ShowConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}/>
       </span>
     </div>
 

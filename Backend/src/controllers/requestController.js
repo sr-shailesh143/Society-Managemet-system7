@@ -89,16 +89,7 @@ exports.updateRequest = async (req, res) => {
         const { id } = req.params;
         const { requesterName, requestName, requestDate, wing, unit, priority, status } = req.body;
 
-        // Parse and validate requestDate if provided
-        let parsedDate = null;
-        if (requestDate) {
-            parsedDate = moment(requestDate, "DD/MM/YYYY", true);
-            if (!parsedDate.isValid()) {
-                return res.status(400).json({ error: "Invalid date format. Use 'DD/MM/YYYY'." });
-            }
-        }
-
-        // Build update object with validated fields
+       
         const updateData = {
             requesterName,
             requestName,
@@ -106,7 +97,7 @@ exports.updateRequest = async (req, res) => {
             unit,
             priority,
             status,
-            ...(parsedDate && { requestDate: parsedDate.toDate() }) // Include only if parsedDate is valid
+            requestDate
         };
 
         // Find the request by ID and update it

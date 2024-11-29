@@ -23,11 +23,12 @@ export default function Requesttracking() {
   const [status3, setStatus3] = useState("");
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
+
   function edit() {
     seteditShow(false)
-  
 
-  }
+
+
   // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
@@ -66,11 +67,11 @@ export default function Requesttracking() {
         status: status1,
       }
 
- await createRequest(data)
-     
+      await createRequest(data)
+
       getalldata()
       setshow(false)
-     
+
     } catch (error) {
       console.log(error)
     }
@@ -104,15 +105,37 @@ export default function Requesttracking() {
 
   const [editdata, seteditdata] = useState({
   })
-  async function handle(_id) {
+  async function edithandal(id) {
     try {
-      const response = await updateRequest(_id)
-      seteditdata(response.data.data)
-
+      const response = await updateRequest(id)
+      seteditdata(response.data)
+    setStatus2(response.data.priority)
+    setStatus3(response.data.status)
     } catch (error) {
       console.log(error)
     }
   }
+
+
+  async function editRequist() {
+    try {
+    const data = {
+      requesterName:editdata.requesterName,
+      requestName:editdata.requestName,
+      requestDate:editdata.requestDate,
+      wing:editdata.wing,
+      unit:editdata.unit,
+      priority:status2,
+      status:status3,
+    }
+    await updateRequest(editdata._id,data)
+    getalldata()
+    handlecancleEdit()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
 
   const EDITE = {
@@ -186,6 +209,7 @@ export default function Requesttracking() {
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#5678E9',
+    backgroundColor: '#F6F8FB',
 
   }
 
@@ -294,7 +318,7 @@ export default function Requesttracking() {
                   }}
                   onClick={createcomplent}
                 >
-                 Create
+                  Create
                 </Button>
               </div>
             </Modal.Body>
@@ -306,29 +330,29 @@ export default function Requesttracking() {
               <table className="responsive-table">
                 <thead className='tabal-header'>
                   <tr>
-                    <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
-                    <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
-                    <th> &nbsp; Request Date</th>
+                    <th className='redious' style={{ textAlign: "center" }}> &nbsp;&nbsp;  Complainer Name</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th style={{ textAlign: "center" }}> &nbsp; Request Date</th>
 
-                    <th>Unit Number</th>
-                    <th>  &nbsp; &nbsp;Priority</th>
-                    <th> &nbsp;&nbsp; Status</th>
-                    <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                    <th style={{ textAlign: "center" }}>Unit Number</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;Priority</th>
+                    <th style={{ textAlign: "center" }}> &nbsp;&nbsp; Status</th>
+                    <th className='redious1' style={{ textAlign: "center" }}> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
                   {datalist.map((item) => (
                     <tr >
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         {
                           item.requesterName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
                             <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.requesterName}</span> </span>
                         }
                       </td>
-                      <td > <spa className='ms-3'> {item.requestName}</spa> </td>
+                      <td style={{ textAlign: "center" }}> <spa className='ms-3'> {item.requestName}</spa> </td>
 
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <span className=''>
                           {new Date(item.requestDate).toLocaleDateString('en-GB', {
                             day: '2-digit',
@@ -337,21 +361,28 @@ export default function Requesttracking() {
                           })}
                         </span>
                       </td>
-                      <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
-                      <td >
+                      <td style={{ textAlign: "center" }} ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
+                      <td style={{ textAlign: "center" }}>
                         {
                           item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
                         }
                       </td>
-                      <td >
+                      <td style={{ textAlign: "center" }} >
                         {
                           item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
                         }
                       </td>
 
-                      <td className="action-buttons">
-                        <span className=''>
-                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) ||handle(item._id) } style={EDITE} >
+
+                      <td className="action-buttons" style={{ textAlign: "center" }}>
+                        <span className='' style={{ textAlign: "center" }}>
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
+
+
+                     
+                     
+
+
                             <Edit style={{ cursor: "pointer" }} />
                           </span>
                           <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
@@ -374,33 +405,42 @@ export default function Requesttracking() {
           <Modal className='complet-model' show={editShow} >
             <div className="model">
               <Modal.Header>
-                <Modal.Title>Edit Complaint</Modal.Title>
+                <Modal.Title>Edit  Request</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className="complete-name">
-                  <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complainerName || ""} />
+                  <label html="" className='labal-name'> Requester Name<span className='text-danger1'>*</span></label>
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.requesterName} onChange={(e) => seteditdata({
+                    ...editdata, requesterName: e.target.value
+                  })} />
                 </div>
                 <div className="complete-name mt-3">
-                  <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complaintName} />
+                  <label html="" className='labal-name'> Request Name<span className='text-danger1'>*</span></label>
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.requestName} onChange={(e) => seteditdata({
+                    ...editdata, requestName: e.target.value
+                  })} />
                 </div>
                 <div className="complete-name mt-3">
-                  <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={2}
-                    placeholder='Enter Description'
-                  />
+                  <div className="complete-name mt-3">
+                    <label html="" className='labal-name'>  Request Date <span className='text-danger1'>*</span></label>
+                    <input className='input-style' name="begin"
+                      placeholder="dd-mm-yyyy" type="date" value={editdata.requestDate} onChange={(e) => seteditdata({
+                        ...editdata, requestDate: e.target.value
+                      })} />
+                  </div>
                 </div>
                 <div className="complete-name mt-2 row d-flex">
                   <div className="complent-UnitNumber col-12 col-md-6">
-                    <label html="" className='labal-name'> wing <span className='text-danger1'>*</span></label>
-                    <input className='input-style ' placeholder='Enter wing' type="text" />
+                    <label html="" className='labal-name'> Wing <span className='text-danger1'>*</span></label>
+                    <input className='input-style ' placeholder='Enter wing' type="text" value={editdata.wing} onChange={(e) => seteditdata({
+                      ...editdata, wing: e.target.value
+                    })} />
                   </div>
                   <div className="complelt-unit col-12 col-md-6">
-                    <label html="" className='labal-name'> Units <span className='text-danger1'>*</span></label>
-                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" />
+                    <label html="" className='labal-name'> Unit <span className='text-danger1'>*</span></label>
+                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" value={editdata.unit} onChange={(e) => seteditdata({
+                      ...editdata, unit: e.target.value
+                    })} />
                   </div>
                 </div>
                 <div className="complete-name mt-2 ">
@@ -433,20 +473,18 @@ export default function Requesttracking() {
                       <p className='mt-3'>Pending</p>
                     </div>
                     <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  radio polls-radio ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
+                      <input type="radio" className=' w-25  radio polls-radio ' checked={status3 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
                       <p className='mt-3'>Solve</p>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex gap-3 mt-3">
-                  <Button
-                    className=" cancel-btn radious  "
-                    style={{ border: "1px solid #D3D3D3", }}
-                    variant=""
-                    onClick={handlecancleEdit}
-                  >
+                  <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handlecancleEdit}  >
                     Cancel
                   </Button>
+
+                  <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} >
+
                   <Button
                     className="save-btn radious l-btn "
                     style={{
@@ -455,8 +493,9 @@ export default function Requesttracking() {
                       cursor: "pointer"
                     }}
 
-                    onClick={edit}
+                    onClick={editRequist}
                   >
+
                     Save
                   </Button>
                 </div>
@@ -526,28 +565,10 @@ export default function Requesttracking() {
             </Modal.Body>
             <Modal.Footer>
               <div className="d-flex gap-3 mt-3">
-                <Button
-                  className="save-btn radious   "
-                  style={{
-
-                    color: "#202224",
-                    border: "1px solid #D3D3D3",
-                    cursor: "pointer"
-                  }}
-                  variant="outlined"
-                  onClick={() => setshowDelete(false)}
-                >
+                <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }} variant="outlined" onClick={() => setshowDelete(false)} >
                   Cancel
                 </Button>
-                <Button
-                  className="save-btn radious  text-white "
-                  style={{
-                    backgroundColor: "#E74C3C",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                  onClick={() => deletecomplelnt(id)}
-                >
+                <Button className="save-btn radious  text-white " style={{ backgroundColor: "#E74C3C", border: "none", cursor: "pointer" }} onClick={() => deletecomplelnt(id)} >
                   Conform
                 </Button>
               </div>

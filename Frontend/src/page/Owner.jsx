@@ -38,13 +38,13 @@ export default function Owner() {
     const naviget = useNavigate()
     return (
         <div div className=''>
-           
+
             <div className='row'>
-            <div className="d-flex mt-4 ">
-                    <div onClick={()=>naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                <div className="d-flex mt-4 ">
+                    <div onClick={() => naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Owner</p>
                     </div>
-                    <div  onClick={()=>naviget("/Tenant")} style={{ background: location.pathname === "/Tenant" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Tenant" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                    <div onClick={() => naviget("/Tenant")} style={{ background: location.pathname === "/Tenant" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Tenant" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Tenant</p>
                     </div>
                 </div>
@@ -218,7 +218,7 @@ export default function Owner() {
                             <label className="me-2 SELECT-MEMBER">Select Member</label>
                             <select value={memberCount} onChange={handleMemberCountChange} className="form-select ">
                                 {[...Array(totalRows).keys()].map((num) => (
-                                    <option key={num} value={num + 1}> <span className='ms-3'>    {   num + 1}</span></option>
+                                    <option key={num} value={num + 1}> <span className='ms-3'>    {num + 1}</span></option>
                                 ))}
                             </select>
                         </div>
@@ -280,20 +280,13 @@ export default function Owner() {
 
                     <div className="member-rows mt-3">
                         {[...Array(totalvaical).keys()].map((index) => (
-                            <div
-                                key={index}
-                                className={`row gy-3  member-row ${index < vaicalCount ? '' : 'd-none'}`}
-                            >
-
-
-
+                            <div key={index} className={`row gy-3  member-row ${index < vaicalCount ? '' : 'd-none'}`} >
                                 <div className="col-md-3 col-12">
                                     <label className='text-wrap'>Vehicle Type<span className='text-danger1 '>*</span></label>
                                     <select className="form-select  input-text mt-1 input-style" required>
                                         <option>Select Vehicle</option>
                                         <option>Two Wheelers</option>
                                         <option>Four Wheeler</option>
-
                                     </select>
                                 </div>
                                 <div className="col-md-4 col-12">
@@ -309,7 +302,6 @@ export default function Owner() {
                     </div>
                 </div>
             </div>
-
             <div className=" row  section-button d-flex gap-3 mt-3">
                 <div className="col-12 col-md-4  ">
                     <button className='Cancel-btn  '>Cancel</button>
@@ -317,7 +309,6 @@ export default function Owner() {
                 <div className="col-12 col-md-4  ">
                     <button disabled className='Create-btn '>Create</button>
                 </div>
-
             </div>
         </div>
 

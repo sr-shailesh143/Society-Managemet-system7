@@ -72,11 +72,13 @@ const Visitor = () => {
                   <td>{new Date(visitor.date).toLocaleDateString()}</td>
                   <td>
                     <span
-                      className="badge text-primary rounded-circle"
+                      className="badge  rounded-circle"
                       style={{
                         background: "#F6F8FB",
                         textAlign: "center",
                         justifyContent: "center",
+                    color:"#5678E9"
+                       
                       }}
                     >
                      {visitor.wing.toUpperCase()}

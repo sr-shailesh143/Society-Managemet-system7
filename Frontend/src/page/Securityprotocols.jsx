@@ -3,7 +3,6 @@ import { Table, Button, Modal, Form } from 'react-bootstrap';
 import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
 import { createSecurityProtocol, getAllSecurityProtocols, deleteSecurityProtocol, updateSecurityProtocol } from '../apiservices/securityProtocolservice';
 import toast from 'react-hot-toast';
-
 const SecurityProtocols = () => {
   const [protocols, setProtocols] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +13,6 @@ const SecurityProtocols = () => {
   const [editProtocol, setEditProtocol] = useState(null);
   const [viewProtocol, setViewProtocol] = useState(null);
   const [deleteIndex, setDeleteIndex] = useState(null);
-
   // Fetch all protocols on load
   useEffect(() => {
     const fetchProtocols = async () => {
@@ -35,8 +33,6 @@ const SecurityProtocols = () => {
     };
     fetchProtocols();
   }, []);
-  
-
   // Handle Modal for creating a new protocol
   const handleShowModal = () => {
     const currentDate = new Date();
@@ -45,9 +41,7 @@ const SecurityProtocols = () => {
     setNewProtocol({ ...newProtocol, date: formattedDate, time: formattedTime });
     setShowModal(true);
   };
-
   const handleCloseModal = () => setShowModal(false);
-
   // Handle changes in the form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +60,6 @@ const SecurityProtocols = () => {
       toast.error('Failed to create protocol');  // Show error toast
     }
   };
-
   // Handle Edit
   const handleEdit = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
@@ -94,20 +87,17 @@ const SecurityProtocols = () => {
       toast.error('Failed to update protocol');  // Show error toast
     }
   };
-
   // Handle View
   const handleView = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
     setViewProtocol(protocol);
     setShowViewModal(true);
   };
-
   // Handle Delete
   const handleDelete = (protocolIndex) => {
     setDeleteIndex(protocolIndex);
     setShowDeleteModal(true);
   };
-
   const confirmDelete = async () => {
     try {
       await deleteSecurityProtocol(protocols[deleteIndex]._id);
@@ -120,35 +110,25 @@ const SecurityProtocols = () => {
       toast.error('Failed to delete protocol');  // Show error toast
     }
   };
-
   // Close Modals
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleCloseViewModal = () => setShowViewModal(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
-
   return (
     <div className="container-fluid bg-white p-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Security Protocols</h2>
         <Button
           className="text-white"
-          style={{
-            background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
-            border: 'none',
-            color: 'white',
-          }}
-          onClick={handleShowModal}
-        >
-          Create Protocol
-        </Button>
+          style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
       <Table responsive>
         <thead className="bg-white">
           <tr>
-            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '15px 0px 0px 0px' }}>Title</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Description</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Date</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Time</th>
+            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '15px 0px 0px 0px', textAlign: "center" }}>Title</th>
+            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Description</th>
+            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Date</th>
+            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Time</th>
             <th style={{ backgroundColor: '#E5ECFD', borderRadius: '0px 15px 0px 0px', textAlign: 'center' }}>Action</th>
           </tr>
         </thead>
@@ -156,10 +136,10 @@ const SecurityProtocols = () => {
           {Array.isArray(protocols) && protocols.length > 0 ? (
             protocols.map((protocol, index) => (
               <tr key={protocol._id}>
-                <td>{protocol.title}</td>
-                <td>{protocol.description}</td>
-                <td>{new Date(protocol.date).toLocaleDateString()}</td>
-                <td>{protocol.time}</td>
+                <td style={{ textAlign: "center" }}>{protocol.title}</td>
+                <td style={{ textAlign: "center" }}>{protocol.description}</td>
+                <td style={{ textAlign: "center" }}>{new Date(protocol.date).toLocaleDateString()}</td>
+                <td style={{ textAlign: "center" }}><span className='time-badge2 '>{protocol.time}</span></td>
                 <td style={{ textAlign: 'center' }}>
                   <Button variant="success" size="sm" className="me-2" onClick={() => handleEdit(index)}>
                     <FaEdit />
@@ -225,33 +205,17 @@ const SecurityProtocols = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                name="title"
-                value={editProtocol?.title || ''}
-                onChange={handleEditChange}
-                placeholder="Enter protocol title"
+              <Form.Control type="text" name="title" value={editProtocol?.title || ''} onChange={handleEditChange} placeholder="Enter protocol title"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="description"
-                value={editProtocol?.description || ''}
-                onChange={handleEditChange}
-                placeholder="Enter protocol description"
+              <Form.Control as="textarea" rows={3} name="description" value={editProtocol?.description || ''} onChange={handleEditChange} placeholder="Enter protocol description"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                value={editProtocol?.date || ''}
-                onChange={handleEditChange}
-              />
+              <Form.Control type="date" name="date" value={editProtocol?.date || ''} onChange={handleEditChange} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Time</Form.Label>
@@ -259,8 +223,7 @@ const SecurityProtocols = () => {
                 type="time"
                 name="time"
                 value={editProtocol?.time || ''}
-                onChange={handleEditChange}
-              />
+                onChange={handleEditChange} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -273,7 +236,6 @@ const SecurityProtocols = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
       {/* View Protocol Modal */}
       <Modal show={showViewModal} onHide={handleCloseViewModal}>
         <Modal.Header>
@@ -295,7 +257,6 @@ const SecurityProtocols = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
       {/* Delete Confirmation Modal */}
       <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
         <Modal.Header>
@@ -313,7 +274,6 @@ const SecurityProtocols = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
     </div>
   );
 };

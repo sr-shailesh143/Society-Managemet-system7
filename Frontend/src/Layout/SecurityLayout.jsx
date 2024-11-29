@@ -193,7 +193,7 @@ left:-23px;
                     <div className="  layout  col-12 col-md-3 side-bar   ">
                         <Logo className="mt-1">
                             <Link to={"/deshbord"}>
-                            <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
                             </Link>
                             <center>
                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
@@ -205,7 +205,10 @@ left:-23px;
 
 
 
-                            <Link className='link-tag' to={"/VisitorTracking"} onClick={toggleFinancialSubmenu} >  <div className='side-design' ><SidebarMiniButton /> </div>   <NavLink style={{ background:"linear-gradient(90deg, #FE512E 0%, #F09619 100%)", color:  "white" , textDecoration: "none" }} className=' d-flex gap-3 radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' />Security </NavLink> </Link>
+                            <Link className='link-tag' to={"/VisitorTracking"} onClick={toggleFinancialSubmenu} >  <div className='side-design' ><SidebarMiniButton /> </div>   <NavLink style={{ background: "linear-gradient(90deg, #FE512E 0%, #F09619 100%)", color: "white", textDecoration: "none" }} className=' d-flex gap-3 radious'><svg width="24" height="24" color='white' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.4098 6.95994V8.78994C20.4098 9.42994 20.1098 10.0299 19.5898 10.3999L8.58984 18.4599C7.87984 18.9799 6.90984 18.9799 6.20984 18.4499L4.76984 17.3699C4.11984 16.8799 3.58984 15.8199 3.58984 15.0099V6.95994C3.58984 5.83994 4.44984 4.59994 5.49984 4.20994L10.9698 2.15994C11.5398 1.94994 12.4598 1.94994 13.0298 2.15994L18.4998 4.20994C19.5498 4.59994 20.4098 5.83994 20.4098 6.95994Z" fill="white" />
+                                <path d="M18.8201 12.3399C19.4801 11.8599 20.4101 12.3299 20.4101 13.1499V15.0299C20.4101 15.8399 19.8801 16.8899 19.2301 17.3799L13.7601 21.4699C13.2801 21.8199 12.6401 21.9999 12.0001 21.9999C11.3601 21.9999 10.7201 21.8199 10.2401 21.4599L9.41011 20.8399C8.87011 20.4399 8.87011 19.6299 9.42011 19.2299L18.8201 12.3399Z" fill="#ffff" />
+                            </svg>Security </NavLink> </Link>
 
 
 
@@ -213,17 +216,20 @@ left:-23px;
 
                             {showFinancialSubmenu2 && (
                                 <Submenu>
-                                <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }} onClick={()=>naviget("/VisitorTracking")}> Visitor Tracking</span></SubmenuItem>
-                                <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray"  }} onClick={()=>naviget("/EmergencyManagement")}>Emergency Management</span></SubmenuItem>
-                            </Submenu>
+                                    <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/VisitorTracking" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/VisitorTracking")}> Visitor Tracking</span></SubmenuItem>
+                                    <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/EmergencyManagement" ? "2px solid black" : "2px solid gray" }} onClick={() => naviget("/EmergencyManagement")}>Emergency Management</span></SubmenuItem>
+                                </Submenu>
                             )}
 
 
+
                             <br />
                             <br />
+
                             
                             <Link to={"/"}> <p className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "60vh" }}> <TbLogout className='fs-3' />  Logout</p></Link>
                            
+
                         </NavLinks>
                     </div>
                     <div className="col-12 col-md-9 ">
@@ -235,7 +241,7 @@ left:-23px;
                                     <Offcanvas.Title>
                                         <Logo className="mt-1">
                                             <Link to={"/deshbord"}>
-                                            <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
                                             </Link>
                                             <center>
                                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
@@ -278,21 +284,21 @@ left:-23px;
                                             <br />
                                             <br />
                                             <br />
-                                          
-                                            
-                                           
+
+
+
                                             <p className='mt-5 text-danger' style={{ margin: " 10px", padding: "14px", cursor: "pointer", borderTop: "1px solid #F4F4F4", }}> <TbLogout className='fs-3' />  Logout</p>
                                         </NavLinks>
                                     </Offcanvas.Body>
                                 </Offcanvas>
                             </div>
                             <div className="search">
-                               
+
 
 
                             </div>
                             <UserInfo>
-                               
+
                                 <Notifiction >
 
                                     <MdNotificationImportant style={{ cursor: "pointer" }} onClick={toggleDropdown} className='fs-2 mx-2' />
@@ -344,7 +350,7 @@ left:-23px;
                                                             {notifications.length > 0 ? notifications.map((notification) => (
                                                                 <div key={notification.id} className="notification-item">
                                                                     <div className="notification-content">
-                                                                    <h3><img src={notification.img} alt="" /> {notification.title}</h3>
+                                                                        <h3><img src={notification.img} alt="" /> {notification.title}</h3>
                                                                         <p className="notification-time">{notification.time}</p>
                                                                         <p>
                                                                             {notification.message.replace(notification.linkText, '')}
@@ -385,7 +391,7 @@ left:-23px;
 
                             <br />
                             <div className="p-4">
-                                <div className="container-fluid" style={{height:"100vh",overflow:"hidden"}}>
+                                <div className="container-fluid" style={{ height: "100vh", overflow: "hidden" }}>
 
 
                                     {component}

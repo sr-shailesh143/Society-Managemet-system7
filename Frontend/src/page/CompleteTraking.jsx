@@ -7,7 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
 import { useNavigate } from 'react-router-dom';
-import EditablePage from '../practice/EditablePage';
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
   const handlecancle = () => setshow(false);
@@ -344,9 +343,9 @@ export default function CompleteTracking() {
               <table className="responsive-table">
                 <thead className='tabal-header'>
                   <tr>
-                    <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
-                    <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
-                    <th> &nbsp; Description</th>
+                    <th className='redious'style={{textAlign:"center"}}> &nbsp;&nbsp;  Complainer Name</th>
+                    <th style={{textAlign:"center"}}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th className='justify-content-center'style={{textAlign:"center"}}> &nbsp; Description</th>
                     <th>Unit Number</th>
                     <th>  &nbsp; &nbsp;Priority</th>
                     <th> &nbsp;&nbsp; Status</th>
@@ -357,15 +356,15 @@ export default function CompleteTracking() {
 
                   {datalist.map((item) => (
                     <tr >
-                      <td>
+                      <td style={{textAlign:"center"}}>
                         {
                           item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
                             <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
                         }
                       </td>
-                      <td > <spa className='ms-3'> {item.complaintName}</spa> </td>
+                      <td style={{textAlign:"center"}} > <spa className='ms-3'> {item.complaintName}</spa> </td>
 
-                      <td> <span className='' >{item.description}</span>  </td>
+                      <td style={{textAlign:"center"}}> <span  >{item.description}</span>  </td>
                       <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
                       <td >
                         {
