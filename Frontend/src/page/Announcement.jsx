@@ -89,7 +89,7 @@ const Announcement = () => {
   };
 
   return (
-    <div className="container-fluid p-4" style={{ minHeight: "100vh" }}>
+    <div className="container-fluid p-4  bg-white" style={{ minHeight: "100vh",borderRadius:"10px" }}>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Announcements</h2>
         <Button
@@ -129,9 +129,10 @@ const Announcement = () => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </Card.Header>
-                <Card.Body>
-                  <p><strong>Date:</strong> {new Date(announcement.announcementDate).toLocaleDateString()}</p>
-                  <p><strong>Time:</strong> {formatTime(announcement.announcementTime)}</p>
+                <Card.Body className="justify-content-between">
+                  <p><strong style={{color:"grey"}}> Announcement Date:</strong> <span className="justify-content-between"style={{marginLeft:"150px"}}>{new Date(announcement.announcementDate).toLocaleDateString()}</span></p>
+                  <p><strong style={{color:"grey"}}> Announcement Time:</strong><span style={{marginLeft:"150px"}}> {formatTime(announcement.announcementTime)}</span></p>
+                  <p><strong style={{color:"grey"}}>description</strong></p>
                   <p className="text-truncate">{announcement.description}</p>
                 </Card.Body>
               </Card>

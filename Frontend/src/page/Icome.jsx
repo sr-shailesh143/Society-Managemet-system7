@@ -35,7 +35,7 @@ export default function Icome() {
       console.log(error)
     }
   }
- 
+
 
   function comform() {
     setShowsetmantenenc(false)
@@ -44,241 +44,84 @@ export default function Icome() {
 
   const data = [
     {
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "10/02/2024",
-      residentStatus: "Tenant",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "A",
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "10/02/2024", residentStatus: "Tenant", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "A",
       Status: "Done",
       Payment: "Online"
     },
     {
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "11/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 0,
-      wing: "B",
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "11/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 0, wing: "B",
       Status: "Done",
       Payment: "Cash"
     }, {
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "12/02/2024",
-      residentStatus: "Tenant",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 0,
-      wing: "C",
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "12/02/2024", residentStatus: "Tenant", phoneNumber: "97587 85828", Amount: 1000, Penalty: 0, wing: "C",
       Status: "Pending",
       Payment: "Cash"
     }, {
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
     },
     {
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
-    },{
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
+    }, {
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
-    },{
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
+    }, {
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
-    },{
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
-      Status: "Pending",
+    }, {
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D", Status: "Pending",
       Payment: "Online"
-    },{
-      img: "src/assets/notification-img.png",
-      fullName: "Evelyn Harper",
-      unitNumber: "1001",
-      Date: "13/02/2024",
-      residentStatus: "Owner",
-      phoneNumber: "97587 85828",
-      Amount: 1000,
-      Penalty: 250,
-      wing: "D",
+    }, {
+      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
     },
   ];
-
-  const wing = {
-
-    backgroundColor: '#F6F8FB',
-    width: "131px",
-    padding: '5px 10px',
-    borderRadius: '12px',
-    color: '#5678E9',
-  }
-  const Done = {
-    backgroundColor: '#39973D1A',
-    width: "131px",
-    padding: '5px 20px',
-    borderRadius: '12px',
-    color: '#39973D',
-  }
+  const wing = { backgroundColor: '#F6F8FB', width: "131px", padding: '5px 10px', borderRadius: '12px', color: '#5678E9', }
+  const Done = { backgroundColor: '#39973D1A', width: "131px", padding: '5px 20px', borderRadius: '12px', color: '#39973D', }
   const Pending = {
-    backgroundColor: '#FFC3131A',
-    padding: '5px 10px',
-    borderRadius: '12px',
-    fontSize: "15px",
-    color: '#FFC313',
+    backgroundColor: '#FFC3131A', padding: '5px 10px', borderRadius: '12px', fontSize: "15px", color: '#FFC313',
     // maxWidth: "95.31px",
   }
-  const Tenant = {
-    backgroundColor: '#FFF1F8',
-    padding: '5px 10px',
-    borderRadius: '12px',
-    color: '#EC4899',
-  }
-  const Owner = {
-    backgroundColor: '#F1F0FF',
-
-    padding: '5px 10px',
-    borderRadius: '12px',
-    color: '#4F46E5',
-  }
-
-  const blanck = {
-    backgroundColor: '#F6F8FB',
-    padding: '5px 24px',
-    borderRadius: '12px',
-
-    color: '#4F4F4F',
-
-  }
-  const Penalty = {
-    padding: '5px 14px',
-    borderRadius: '12px',
-    opacity: ' 0px',
-    background: "#E74C3C",
-    color: "#FFFFFF"
-
-
-  }
-  const view = {
-    backgroundColor: '#F6F8FB',
-    padding: '10px 10px',
-    borderRadius: '12px',
-    color: '#5678E9',
-
-  }
-
+  const Tenant = { backgroundColor: '#FFF1F8', padding: '5px 10px', borderRadius: '12px', color: '#EC4899', }
+  const Owner = { backgroundColor: '#F1F0FF', padding: '5px 10px', borderRadius: '12px', color: '#4F46E5', }
+  const blanck = { backgroundColor: '#F6F8FB', padding: '5px 24px', borderRadius: '12px', color: '#4F4F4F', }
+  const Penalty = { padding: '5px 14px', borderRadius: '12px', opacity: ' 0px', background: "#E74C3C", color: "#FFFFFF" }
+  const view = { backgroundColor: '#F6F8FB', padding: '10px 10px', borderRadius: '12px', color: '#5678E9', }
   const Online = {
-    backgroundColor: '#5678E91A',
-
-    padding: '5px 15px',
-
-    borderRadius: '12px',
-    color: '#5678E9',
-    // maxWidth: "95.31px",
+    backgroundColor: '#5678E91A', padding: '5px 15px', borderRadius: '12px', color: '#5678E9', // maxWidth: "95.31px",
   }
-  const Cash = {
-    backgroundColor: '#2022240D',
-
-    padding: '5px 15px',
-    fontSize: "20px",
-    borderRadius: '12px',
-    color: '#202224',
-  }
+  const Cash = { backgroundColor: '#2022240D', padding: '5px 15px', fontSize: "20px", borderRadius: '12px', color: '#202224', }
   const naviget = useNavigate()
   return (
     <>
       <div className="belence">
         <div className="totle-amount row d-flex  ">
-
           <div className="col-12 col-md-6">
-            <div
-              title="Total Unit"
-              value="₹ 20,550"
-              iconSrc="src/Assets/button4.png"
-              className=" amount-card   amount-card-pink"
-            >
+            <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className=" amount-card   amount-card-pink" >
               <div className="amount-box">
-
                 <div className="amount-label">Maintenance Amount</div>
                 <div className="amount-value">₹ 0</div>
               </div>
-            </div>
+            </div>0
           </div>
           <div className="col-12 col-md-6 ">
-            <div
-              title="Total Unit"
-              value="₹ 20,550"
-              iconSrc="src/Assets/button4.png"
-              className="amount-card    amount-card-red"
-            >
-              <div className="amount-box">
-
-                <div className="amount-label">Penalty Amount</div>
-                <div className="amount-value-red">₹ 0</div>
-              </div>
+            <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className="amount-card    amount-card-red"  ><div className="amount-box">
+              <div className="amount-label">Penalty Amount</div>
+              <div className="amount-value-red">₹ 0</div>
+            </div>
             </div>
           </div>
-
-
-
         </div>
         <div className="setmaintenance">
           <button className='l-btn text-white' onClick={() => setShowsetmantenenc(true)}>Set Maintenance</button>
         </div>
-
       </div>
-
       <div className="maintanensDetels">
         <div className='row'>
           <div className="d-flex mt-4 ">
@@ -295,9 +138,7 @@ export default function Icome() {
             <div className="col-12 col-md-6 mt-2 add-text ">
               <h5 className='fs-4 add-text'>Maintenance  Details</h5>
             </div>
-
           </div>
-
           <div className="responsive-table-container">
             <table className="responsive-table">
               <thead className='tabal-header'>
@@ -337,7 +178,6 @@ export default function Icome() {
                           }
                         </span>
                       }
-
                     </td>
                     <td>
                       {
@@ -356,17 +196,13 @@ export default function Icome() {
                       }
                     </td>
 
-                    <td>
-                      {
-                        item.Payment === "Online" ? <span style={Online}> <AccountBalanceWalletIcon /> <span className=''>{item.Payment}</span></span> : <span style={Cash}><GiMoneyStack className='mb-1' /> <span>{item.Payment}</span> </span>
-                      }
+                    <td> {
+                      item.Payment === "Online" ? <span style={Online}> <AccountBalanceWalletIcon /> <span className=''>{item.Payment}</span></span> : <span style={Cash}><GiMoneyStack className='mb-1' /> <span>{item.Payment}</span> </span>
+                    }
                     </td>
-
-
                     <td className="action-buttons">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <span onClick={handleShow} style={view} > <VisibilityIcon ></VisibilityIcon></span>
-
                     </td>
                   </tr>
                 ))}
@@ -415,7 +251,6 @@ export default function Icome() {
                   <p className='mt-1' ><p className=' mt-1 ms-3 text-success' >1000</p> </p>
                 </p>
               </div>
-
             </div>
             <div className="profile-detels">
               <div className="wing-detels col-12 col-md-3">
@@ -436,15 +271,9 @@ export default function Icome() {
                   <span className='' > Cash</span>
                 </p>
               </div>
-
-
             </div>
-
           </Modal.Body>
-
         </Modal>
-
-
         <Modal show={showsetmantenenc} onHide={handleClosesetmantence}>
           <Modal.Header closeButton>
             <Modal.Title>Set Maintenance</Modal.Title>
@@ -452,47 +281,20 @@ export default function Icome() {
           <Modal.Body>
             <div className="col-md-12 col-12">
               <label className='text-wrap'>Password<span className='text-danger1 '>*</span></label>
-              <input id="password"
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                className='form-control  input-text input-style p-3'
-                placeholder="Enter your password" />
-              <span
-                className='mantenese-hide'
-                onClick={togglePasswordVisibility}
-                style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
-              >
-                <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+              <input id="password" type={showPassword ? 'text' : 'password'} className='form-control  input-text input-style p-3' placeholder="Enter your password" />
+              <span className='mantenese-hide' onClick={togglePasswordVisibility} style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }} > <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}></i>
               </span>
-
             </div>
           </Modal.Body>
           <Modal.Footer>
             <div className="d-flex gap-3">
-              <Button
-                className=" cancel-btn radious  "
-                style={{ border: "1px solid #D3D3D3", }}
-                variant=""
-                onClick={handleClosesetmantence}
-              >
+              <Button className=" cancel-btn radious" style={{ border: "1px solid #D3D3D3", }} onClick={handleClosesetmantence} >
                 Cancel
               </Button>
-              <Button
-                className="save-btn radious l-btn "
-                style={{
-                  color: "white",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-
-                onClick={comform}
-              >
-                Continue
-              </Button>
+              <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={comform} > Continue </Button>
             </div>
           </Modal.Footer>
         </Modal>
-
         <Modal show={showsetmantenencdetels} >
           <Modal.Header closeButton>
             <Modal.Title> Add Maintenance Detail</Modal.Title>
@@ -524,24 +326,10 @@ export default function Icome() {
           </Modal.Body>
           <Modal.Footer>
             <div className="d-flex gap-3">
-              <Button
-                className=" cancel-btn radious  "
-                style={{ border: "1px solid #D3D3D3", }}
-                variant=""
-                onClick={handleClosesetshowsetmantenencdetels}
-              >
+              <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handleClosesetshowsetmantenencdetels} >
                 Cancel
               </Button>
-              <Button
-                className="save-btn radious l-btn "
-                style={{
-                  color: "white",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-
-                onClick={() => naviget("/Icome" && setshowsetmantenencdetels(false))}
-              >
+              <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={() => naviget("/Icome" && setshowsetmantenencdetels(false))}   >
                 Apply
               </Button>
             </div>

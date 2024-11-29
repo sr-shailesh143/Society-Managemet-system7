@@ -25,7 +25,7 @@ export default function Requesttracking() {
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
   function edit() {
     seteditShow(false)
-  
+
 
   }
   // view 
@@ -66,11 +66,11 @@ export default function Requesttracking() {
         status: status1,
       }
 
- await createRequest(data)
-     
+      await createRequest(data)
+
       getalldata()
       setshow(false)
-     
+
     } catch (error) {
       console.log(error)
     }
@@ -294,7 +294,7 @@ export default function Requesttracking() {
                   }}
                   onClick={createcomplent}
                 >
-                 Create
+                  Create
                 </Button>
               </div>
             </Modal.Body>
@@ -306,29 +306,29 @@ export default function Requesttracking() {
               <table className="responsive-table">
                 <thead className='tabal-header'>
                   <tr>
-                    <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
-                    <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
-                    <th> &nbsp; Request Date</th>
+                    <th className='redious' style={{ textAlign: "center" }}> &nbsp;&nbsp;  Complainer Name</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th style={{ textAlign: "center" }}> &nbsp; Request Date</th>
 
-                    <th>Unit Number</th>
-                    <th>  &nbsp; &nbsp;Priority</th>
-                    <th> &nbsp;&nbsp; Status</th>
-                    <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                    <th style={{ textAlign: "center" }}>Unit Number</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;Priority</th>
+                    <th style={{ textAlign: "center" }}> &nbsp;&nbsp; Status</th>
+                    <th className='redious1' style={{ textAlign: "center" }}> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
                   {datalist.map((item) => (
                     <tr >
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         {
                           item.requesterName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
                             <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.requesterName}</span> </span>
                         }
                       </td>
-                      <td > <spa className='ms-3'> {item.requestName}</spa> </td>
+                      <td style={{ textAlign: "center" }}> <spa className='ms-3'> {item.requestName}</spa> </td>
 
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <span className=''>
                           {new Date(item.requestDate).toLocaleDateString('en-GB', {
                             day: '2-digit',
@@ -337,21 +337,21 @@ export default function Requesttracking() {
                           })}
                         </span>
                       </td>
-                      <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
-                      <td >
+                      <td style={{ textAlign: "center" }} ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
+                      <td style={{ textAlign: "center" }}>
                         {
                           item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
                         }
                       </td>
-                      <td >
+                      <td style={{ textAlign: "center" }} >
                         {
                           item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
                         }
                       </td>
 
-                      <td className="action-buttons">
-                        <span className=''>
-                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) ||handle(item._id) } style={EDITE} >
+                      <td className="action-buttons" style={{ textAlign: "center" }}>
+                        <span className='' style={{ textAlign: "center" }}>
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
                             <Edit style={{ cursor: "pointer" }} />
                           </span>
                           <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
@@ -439,24 +439,10 @@ export default function Requesttracking() {
                   </div>
                 </div>
                 <div className="d-flex gap-3 mt-3">
-                  <Button
-                    className=" cancel-btn radious  "
-                    style={{ border: "1px solid #D3D3D3", }}
-                    variant=""
-                    onClick={handlecancleEdit}
-                  >
+                  <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handlecancleEdit}  >
                     Cancel
                   </Button>
-                  <Button
-                    className="save-btn radious l-btn "
-                    style={{
-                      color: "white",
-                      border: "none",
-                      cursor: "pointer"
-                    }}
-
-                    onClick={edit}
-                  >
+                  <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} >
                     Save
                   </Button>
                 </div>
@@ -526,28 +512,10 @@ export default function Requesttracking() {
             </Modal.Body>
             <Modal.Footer>
               <div className="d-flex gap-3 mt-3">
-                <Button
-                  className="save-btn radious   "
-                  style={{
-
-                    color: "#202224",
-                    border: "1px solid #D3D3D3",
-                    cursor: "pointer"
-                  }}
-                  variant="outlined"
-                  onClick={() => setshowDelete(false)}
-                >
+                <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }} variant="outlined" onClick={() => setshowDelete(false)} >
                   Cancel
                 </Button>
-                <Button
-                  className="save-btn radious  text-white "
-                  style={{
-                    backgroundColor: "#E74C3C",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                  onClick={() => deletecomplelnt(id)}
-                >
+                <Button className="save-btn radious  text-white " style={{ backgroundColor: "#E74C3C", border: "none", cursor: "pointer" }} onClick={() => deletecomplelnt(id)} >
                   Conform
                 </Button>
               </div>

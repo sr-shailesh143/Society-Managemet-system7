@@ -80,7 +80,7 @@ export default function ServiceComplain() {
 
     return (
         <div className='container-fluid'>
-          
+
             <div className='row'>
                 <div className="d-flex ">
                     <div onClick={() => naviget("/ServiceComplain")}
@@ -149,14 +149,15 @@ export default function ServiceComplain() {
                                                 fontWeight: "bold",
                                                 background:
                                                     complaint.status === "Pending"
-                                                        ? "#FFEB3B"
+                                                        ? "#5678E91A"
                                                         : complaint.status === "Solved"
                                                             ? "rgba(76, 175, 80, 0.1)"
                                                             : "#5678E91A",
                                                 width: "60px",
-
+                                                color: "#5678E9",
                                                 textAlign: "center",
                                                 borderRadius: "30px",
+                                                width: "90px"
 
                                             }}
                                         >

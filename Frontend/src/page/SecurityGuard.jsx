@@ -264,7 +264,6 @@ const SecurityGuard = () => {
       </div>
     </div>
 
-
     {/* Modal for adding new Security Guard */}
     <div className={`modal ${showModal ? 'd-block' : 'hidden'}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden={!showModal}>
       <div className="modal-dialog">
@@ -357,8 +356,6 @@ const SecurityGuard = () => {
             <div className="modal-footer">
               <button type="button" className="btn cancel-btn p-3 mx-1"style={{width:"45%"}} onClick={() => setShowModal(false)}>Cancel</button>
               <button type="submit" className="btn cancel-btn p-3 create-btn"style={{width:"45%"}} >Create</button>
-
-             
             </div>
           </form>
         </div>

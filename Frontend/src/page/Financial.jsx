@@ -9,7 +9,7 @@ const Financial = () => {
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [selectedTitle, setSelectedTitle] = useState('');
   const [selectedDescription, setSelectedDescription] = useState('');
-  const [selectedDate, setSelectedDate] = useState(''); 
+  const [selectedDate, setSelectedDate] = useState('');
   const [noteData, setNoteData] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Financial = () => {
   const fetchNotes = async () => {
     try {
       const response = await getAllNotes();
-     
+
       if (response.data && Array.isArray(response.data.records)) {
         setNoteData(response.data.records);
       } else {
@@ -29,12 +29,11 @@ const Financial = () => {
       console.error("Error fetching notes:", error);
     }
   };
-
   const handleEditModalOpen = (note) => {
     setSelectedNoteId(note.id);
     setSelectedTitle(note.title);
     setSelectedDescription(note.description);
-    setSelectedDate(note.date || ''); 
+    setSelectedDate(note.date || '');
     setShowEditModal(true);
   };
   const handleEditModalClose = () => setShowEditModal(false);
@@ -43,11 +42,10 @@ const Financial = () => {
     setSelectedNoteId(null);
     setSelectedTitle('');
     setSelectedDescription('');
-    setSelectedDate(''); 
+    setSelectedDate('');
     setShowCreateModal(true);
   };
   const handleCreateModalClose = () => setShowCreateModal(false);
-
   const handleSaveChanges = async () => {
     if (selectedNoteId) {
       try {
@@ -69,7 +67,7 @@ const Financial = () => {
       await addNote({
         title: selectedTitle,
         description: selectedDescription,
-        date: selectedDate 
+        date: selectedDate
       });
       fetchNotes();
       handleCreateModalClose();
@@ -83,7 +81,7 @@ const Financial = () => {
       <div className="container-fluid d-flex flex-column bg-light shadow" style={{ width: "100%" }}>
         <div className="d-flex justify-content-between align-items-center mb-3 p-3">
           <h2>Note</h2>
-          <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00' }} onClick={handleCreateModalOpen}>
+          <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00' }} className='p-2' onClick={handleCreateModalOpen}>
             Create Note
           </Button>
         </div>
@@ -120,7 +118,6 @@ const Financial = () => {
           ))}
         </Row>
       </div>
-
       {/* Edit Modal */}
       <Modal show={showEditModal} onHide={handleEditModalClose}>
         <Modal.Header closeButton>
@@ -130,41 +127,27 @@ const Financial = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Note Title <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control
-                type="text"
-                value={selectedTitle}
-                onChange={(e) => setSelectedTitle(e.target.value)}
-              />
+              <Form.Control type="text" value={selectedTitle} onChange={(e) => setSelectedTitle(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                value={selectedDescription}
-                onChange={(e) => setSelectedDescription(e.target.value)}
-              />
+              <Form.Control as="textarea"  rows={3} value={selectedDescription} onChange={(e) => setSelectedDescription(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-              />
+              <Form.Control  type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleEditModalClose}>
+          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleEditModalClose} className='p-3'>
             Cancel
           </Button>
-          <Button onClick={handleSaveChanges} style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }}>
+          <Button onClick={handleSaveChanges} style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3'>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-
       {/* Create Note Modal */}
       <Modal show={showCreateModal} onHide={handleCreateModalClose}>
         <Modal.Header closeButton>
@@ -174,33 +157,21 @@ const Financial = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Note Title <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter title"
-                onChange={(e) => setSelectedTitle(e.target.value)}
-              />
+              <Form.Control  type="text"  placeholder="Enter title"onChange={(e) => setSelectedTitle(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter description"
-                onChange={(e) => setSelectedDescription(e.target.value)}
-              />
+              <Form.Control  as="textarea" rows={3} placeholder="Enter description" onChange={(e) => setSelectedDescription(e.target.value)}  />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
+              <Form.Control type="date"   value={selectedDate}  onChange={(e) => setSelectedDate(e.target.value)}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }}className='p-3' onClick={handleCreateModalClose}>
+          <Button style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} className='p-3' onClick={handleCreateModalClose}>
             Cancel
           </Button>
           <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3' onClick={handleCreateNote}>

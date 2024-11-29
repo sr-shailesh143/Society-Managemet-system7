@@ -262,7 +262,7 @@ body {
 .hide {
   position: fixed;
   top: 52%;
-  right: 9%;
+  right: 15%;
 
 
 }
@@ -435,7 +435,7 @@ body {
   }
 
   .form-container {
-    width: 100%;
+    width: 90%;
     padding: 20px;
   }
 
@@ -910,6 +910,7 @@ input[type="email"] {
   }
 
   .add-text {
+
     display: flex;
     justify-content: center;
     ;
@@ -1961,7 +1962,7 @@ input[type="email"] {
   line-height: 21px;
   text-align: left;
   color: #A7A7A7;
-
+  margin-top: -17px;
   text-underline-position: "from-font";
   text-decoration-skip-ink: none;
 

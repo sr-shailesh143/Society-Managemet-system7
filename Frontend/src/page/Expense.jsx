@@ -130,7 +130,7 @@ const Expense = () => {
       <div className="d-flex justify-content-between align-items-center p-3 m-2">
         <h3>Add Expenses Details</h3>
         <button
-          className="btn btn-warning"
+          className="btn btn-warning p-2"
           style={{
             background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
             border: 'none',
@@ -160,7 +160,7 @@ const Expense = () => {
         <tbody style={{ textAlign: 'center' }}>
           {expensesData.map((expense, index) => (
             <tr key={index}>
-              <td>
+              <td >
                 <div className="d-flex align-items-center justify-content-start">
                   {expense.image && (
                     <img

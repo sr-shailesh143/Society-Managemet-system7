@@ -46,7 +46,7 @@ const proorety = (event) => setprourity(event.target.value);
     });
 
 
-const [showModal, setShowModal] = useState(false);
+
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 const handleClose = () => setShowDeleteModal(false)
 
