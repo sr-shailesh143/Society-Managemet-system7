@@ -23,11 +23,12 @@ export default function Requesttracking() {
   const [status3, setStatus3] = useState("");
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
+
   function edit() {
     seteditShow(false)
 
 
-  }
+
   // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
@@ -104,15 +105,37 @@ export default function Requesttracking() {
 
   const [editdata, seteditdata] = useState({
   })
-  async function handle(_id) {
+  async function edithandal(id) {
     try {
-      const response = await updateRequest(_id)
-      seteditdata(response.data.data)
-
+      const response = await updateRequest(id)
+      seteditdata(response.data)
+    setStatus2(response.data.priority)
+    setStatus3(response.data.status)
     } catch (error) {
       console.log(error)
     }
   }
+
+
+  async function editRequist() {
+    try {
+    const data = {
+      requesterName:editdata.requesterName,
+      requestName:editdata.requestName,
+      requestDate:editdata.requestDate,
+      wing:editdata.wing,
+      unit:editdata.unit,
+      priority:status2,
+      status:status3,
+    }
+    await updateRequest(editdata._id,data)
+    getalldata()
+    handlecancleEdit()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
 
   const EDITE = {
@@ -186,6 +209,7 @@ export default function Requesttracking() {
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#5678E9',
+    backgroundColor: '#F6F8FB',
 
   }
 
@@ -349,9 +373,16 @@ export default function Requesttracking() {
                         }
                       </td>
 
+
                       <td className="action-buttons" style={{ textAlign: "center" }}>
                         <span className='' style={{ textAlign: "center" }}>
                           <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
+
+
+                     
+                     
+
+
                             <Edit style={{ cursor: "pointer" }} />
                           </span>
                           <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
@@ -374,33 +405,42 @@ export default function Requesttracking() {
           <Modal className='complet-model' show={editShow} >
             <div className="model">
               <Modal.Header>
-                <Modal.Title>Edit Complaint</Modal.Title>
+                <Modal.Title>Edit  Request</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className="complete-name">
-                  <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complainerName || ""} />
+                  <label html="" className='labal-name'> Requester Name<span className='text-danger1'>*</span></label>
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.requesterName} onChange={(e) => seteditdata({
+                    ...editdata, requesterName: e.target.value
+                  })} />
                 </div>
                 <div className="complete-name mt-3">
-                  <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
-                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.complaintName} />
+                  <label html="" className='labal-name'> Request Name<span className='text-danger1'>*</span></label>
+                  <input className='input-style' placeholder='Enter Name' type="text" value={editdata.requestName} onChange={(e) => seteditdata({
+                    ...editdata, requestName: e.target.value
+                  })} />
                 </div>
                 <div className="complete-name mt-3">
-                  <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={2}
-                    placeholder='Enter Description'
-                  />
+                  <div className="complete-name mt-3">
+                    <label html="" className='labal-name'>  Request Date <span className='text-danger1'>*</span></label>
+                    <input className='input-style' name="begin"
+                      placeholder="dd-mm-yyyy" type="date" value={editdata.requestDate} onChange={(e) => seteditdata({
+                        ...editdata, requestDate: e.target.value
+                      })} />
+                  </div>
                 </div>
                 <div className="complete-name mt-2 row d-flex">
                   <div className="complent-UnitNumber col-12 col-md-6">
-                    <label html="" className='labal-name'> wing <span className='text-danger1'>*</span></label>
-                    <input className='input-style ' placeholder='Enter wing' type="text" />
+                    <label html="" className='labal-name'> Wing <span className='text-danger1'>*</span></label>
+                    <input className='input-style ' placeholder='Enter wing' type="text" value={editdata.wing} onChange={(e) => seteditdata({
+                      ...editdata, wing: e.target.value
+                    })} />
                   </div>
                   <div className="complelt-unit col-12 col-md-6">
-                    <label html="" className='labal-name'> Units <span className='text-danger1'>*</span></label>
-                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" />
+                    <label html="" className='labal-name'> Unit <span className='text-danger1'>*</span></label>
+                    <input className='input-style mt-1' placeholder='Enter Unit' type="number" value={editdata.unit} onChange={(e) => seteditdata({
+                      ...editdata, unit: e.target.value
+                    })} />
                   </div>
                 </div>
                 <div className="complete-name mt-2 ">
@@ -433,7 +473,7 @@ export default function Requesttracking() {
                       <p className='mt-3'>Pending</p>
                     </div>
                     <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status1 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                      <input type="radio" className=' w-25  radio polls-radio ' checked={status1 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
+                      <input type="radio" className=' w-25  radio polls-radio ' checked={status3 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
                       <p className='mt-3'>Solve</p>
                     </div>
                   </div>
@@ -442,7 +482,20 @@ export default function Requesttracking() {
                   <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handlecancleEdit}  >
                     Cancel
                   </Button>
+
                   <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} >
+
+                  <Button
+                    className="save-btn radious l-btn "
+                    style={{
+                      color: "white",
+                      border: "none",
+                      cursor: "pointer"
+                    }}
+
+                    onClick={editRequist}
+                  >
+
                     Save
                   </Button>
                 </div>

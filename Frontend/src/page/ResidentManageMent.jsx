@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { Button, Box, styled } from '@mui/material';
 import { Edit, Image, PlusOne } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';

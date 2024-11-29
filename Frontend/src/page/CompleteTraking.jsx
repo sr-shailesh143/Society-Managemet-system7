@@ -7,7 +7,6 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
 import { useNavigate } from 'react-router-dom';
-import EditablePage from '../practice/EditablePage';
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
   const handlecancle = () => setshow(false);

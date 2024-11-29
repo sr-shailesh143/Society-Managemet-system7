@@ -6,8 +6,14 @@ import {
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { FaTrash, FaEdit, FaPlus, FaEye } from 'react-icons/fa';
+import { getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import CloseIcon from '@mui/icons-material/Close';
 import '../index.css'
 import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
+import { Box, DialogTitle } from '@mui/material';
+import { Delete, Edit } from '@mui/icons-material';
+import EditablePage from '../practice/EditablePage';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const [showEditNumberModal, setShowEditNumberModal] = useState(false);
@@ -49,8 +55,8 @@ const Dashboard = () => {
     try {
       const response = await createnumber(editedNumber);
       setImportantNumbers([...importantNumbers, response.data]);
-      setEditedNumber({ Name: '', Number: '', Work: '' });
       setShowAddNumberModal(false);
+      setEditedNumber({ Name: '', Number: '', Work: '' });
     } catch (error) {
       console.error("Error adding number:", error);
     }
@@ -98,7 +104,7 @@ const Dashboard = () => {
       // Update on backend
       await updatenumber(selectedNumber._id, editedNumber);
 
-   
+
       setImportantNumbers((prevNumbers) =>
         prevNumbers.map((item) =>
           item._id === selectedNumber._id ? { ...item, ...editedNumber } : item
@@ -107,20 +113,13 @@ const Dashboard = () => {
 
       // Close modal
       setShowEditNumberModal(false);
+      fetchImportantNumbers()
 
-  
       setEditedNumber({ Name: "", Number: "", Work: "" });
     } catch (error) {
       console.error("Error updating number:", error);
     }
   };
-
-
-  const [complaints, setComplaints] = useState([
-    { id: 1, complainer: 'Evelyn Harper', complaint: 'Unethical Behavior', date: '01/02/2024', priority: 'Medium', status: 'Open' },
-    { id: 2, complainer: 'Evelyn Harper', complaint: 'Unethical Behavior', date: '01/02/2024', priority: 'Medium', status: 'Open' }
-
-  ]);
   const [pendingMaintenances, setPendingMaintenances] = useState([
     { name: 'Elevator Repair', status: 'Pending', amount: '₹1,500' },
     { name: 'Water Leakage Fix', status: 'In Progress', amount: '₹3,000' },
@@ -196,6 +195,168 @@ const Dashboard = () => {
       tension: 0.4,
     }]
   };
+
+  const EDITE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#39973D',
+
+  }
+  const DELETE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#E74C3C',
+
+  }
+
+  const wing = {
+
+    backgroundColor: '#F6F8FB',
+    width: "131px",
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+    textTransform: "uppercase",
+  }
+  const Medium = {
+    backgroundColor: '#5678E9',
+    width: "131px",
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#ffff',
+  }
+  const Low = {
+    backgroundColor: '#39973D',
+    padding: '5px 23px',
+    borderRadius: '12px',
+    color: '#ffff',
+
+  }
+  const High = {
+    backgroundColor: '#E74C3C',
+    padding: '5px 22px',
+    borderRadius: '12px',
+    color: '#FFFF',
+  }
+  const Pending = {
+    backgroundColor: '#FFC3131A',
+
+    padding: '5px 10px',
+    borderRadius: '12px',
+    color: '#FFC313',
+  }
+  const Open = {
+    backgroundColor: '#5678E91A',
+
+    padding: '5px 20px',
+    borderRadius: '12px',
+    color: '#5678E9',
+  }
+  const Solve = {
+    backgroundColor: '#39973D1A',
+
+    padding: '5px 20px',
+    borderRadius: '12px',
+    color: '#39973D',
+  }
+
+
+  const view = {
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+    backgroundColor: '#F6F8FB',
+  }
+  const [datalist, setdatalist] = useState([])
+
+  const getalldata = async () => {
+    const respons = await getAllComplaints()
+    setdatalist(respons.data.records)
+  }
+
+  useEffect(() => {
+    getalldata()
+
+  }, [])
+
+  // edit 
+  const [editShow, seteditShow] = useState(false)
+  const handlecancleEdit = () => seteditShow(false);
+  const [status2, setStatus2] = useState("");
+  const [status3, setStatus3] = useState({});
+  const handleStatusChange2 = (event) => setStatus2(event.target.value);
+  const handleStatusChange3 = (event) => setStatus3(event.target.value);
+
+  // view 
+  const [showview, setshowview] = useState(false)
+  const handleClose = () => setshowview(false);
+  // delete
+  const [showDelete, setshowDelete] = useState(false)
+  const [id, setid] = useState({
+    id: ""
+  })
+  // detele api 
+  async function deletecomplelnt(id) {
+
+    await deleteComplaint(id)
+    getalldata()
+    setshowDelete(false)
+
+  }
+
+  const [viewdetils, setviewdetils] = useState({})
+  async function viewDetails(id) {
+    try {
+      const respons = await GetComplaint(id)
+
+      setviewdetils(respons.data.record)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const [content, setContent] = useState({
+
+  });
+  async function handle(_id) {
+    try {
+      const response = await updateComplaint(_id)
+
+      setContent(response.data.data)
+      setStatus3(response.data.data.status)
+      setStatus2(response.data.data.priority)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function edithandel() {
+    try {
+      const data = {
+        complainerName: content.complainerName,
+        complaintName: content.complaintName,
+        description: content.description,
+        wing: content.wing,
+        unit: content.unit,
+        priority: status2,
+        status: status3,
+      }
+      console.log(data)
+      const response = await updateComplaint(content._id, data)
+      console.log(response.data.data)
+      seteditShow(false)
+      getalldata()
+
+    } catch (error) {
+
+    }
+
+  }
+
+
   return (
     <Container fluid>
       <Row className="mb-4">
@@ -416,7 +577,7 @@ const Dashboard = () => {
                 onClick={() => {
                   setShowEditNumberModal(false);
                   setEditedNumber({ Name: "", Number: "", Work: "" });
-                  
+
                 }}
               >
                 Cancel
@@ -483,112 +644,78 @@ const Dashboard = () => {
       <Row>
         {/* Complaint List */}
         <Col xs={12} md={12} lg={9}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }} >
-            <Card.Body>
-              <div className="d-flex justify-content-between align-items-center m-2" style={{ borderRadius: "15px" }}>
-                <Card.Title>Complaint List</Card.Title>
-                <select
-                  id="dropdown-basic-button"
-                  title="Select Month"
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "5px",
-                    padding: "5px",
-                    fontSize: "14px",
-                  }}
-                  className="p-1" >
-                  <option value="lastYear">Last Year</option>
-                  <option value="lastWeek">Last Week</option>
-                  <option value="lastMonth">Last Month</option>
+          <Box className="radious mt-3 mb-1 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '98%', padding: 2 }}>
+          <div className="d-flex justify-content-between align-items-center ">
+                <Card.Title className='ms-3'>Complaint List</Card.Title>
+                <select id="dropdown-basic-button" title="select month" style={{ border: "1px solid grey", borderRadius: "8px", padding:"12px 14px 12px 14px" }} className='p-1 mx-4' size="sm">
+                  <option href="#action1">Last Year</option>
+                  <option href="#action2">Last Week</option>
+                  <option href="#action3">Last Month</option>
                 </select>
               </div>
-              <Table responsive striped hover className="complaint-table">
-                <thead>
-                  <tr >
-                    <th style={{ border: "none", borderRadius: "15px 0px 0px 0px ", backgroundColor: "#E5ECFD", textAlign: "center" }}>Complainer Name</th>
-                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Complaint</th>
-                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Date</th>
-                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Priority</th>
-                    <th style={{ border: "none", backgroundColor: "#E5ECFD", textAlign: "center" }}>Status</th>
-                    <th style={{ border: "none", borderRadius: " 0px 15px 0px 0px", backgroundColor: "#E5ECFD", textAlign: "center" }}>Action</th>
+            <div className="responsive-table-container1 mt-2" >
+              <table className="responsive-table">
+                <thead className='tabal-header'>
+                  <tr>
+                    <th className='redious'> &nbsp;&nbsp;  Complainer Name</th>
+                    <th>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th> &nbsp; Date</th>
+                    <th>  &nbsp; &nbsp;Priority</th>
+                    <th> &nbsp;&nbsp; Status</th>
+                    <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {complaints.map((item) => (
-                    <tr key={item.id}>
-                      <td className="d-flex align-items-center" style={{ boxShadow: "none", border: "none", textAlign: "center" }}>
-                        {/* Profile Image */}
-                        <img
-                          src={item.profileImage || "https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU="}
-                          alt="Profile"
-                          className="rounded-circle me-2"
-                          width="40"
-                          height="40" />
-                        {/* Complainer Name */}
-                        {item.complainer}
-                      </td>
-                      <td style={{ boxShadow: "none", border: "none", textAlign: "center" }}>{item.complaint}</td>
-                      <td style={{ boxShadow: "none", border: "none", textAlign: "center" }}>{item.date}</td>
-                      <td style={{ boxShadow: "none", border: "none", textAlign: "center" }}>
-                        <Badge
-                          bg={
 
-                            item.priority === "High"
-                              ? "danger"
-                              : item.priority === "Medium"
-                                ? "warning"
-                                : "success"
-                          } ><span style={{
-                            minWidth: '80px',
-                            borderRadius: '12px',
-                            textAlign: 'center',
-                            display: 'inline-block',
-                            justifyContent: "center",
-                            fontSize: "13px"
-                          }}> {item.priority}</span> </Badge>
+                  {datalist.map((item) => (
+                    <tr >
+                      <td>
+                        {
+                          item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
+                        }
                       </td>
-                      <td style={{ border: 'none', boxShadow: "none", textAlign: "center" }}>
-                        <span
-                          style={{
-                            boxShadow: "none",
+                      <td > <spa className='ms-3'> {item.complaintName}</spa> </td>
 
-                            borderRadius: '7PX',
-                            backgroundColor: item.status === 'Open' ? '#b2f0b2' : item.status === 'Pending' ? '#fff9c4' : '#cce7ff',
-                            color: item.status === 'Open' ? '#006400' : item.status === 'Pending' ? '#f57f17' : '#1e3a8a',
-                            minWidth: '80px',
-                            textAlign: 'center',
-                            display: 'inline-block',
-                            justifyContent: "center",
-                            fontSize: "13px"
-                          }}
-                        >
-                          {item.status}
+                      <td> <span className='' >   {new Date(item.createdAt).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: '2-digit',
+                      })}</span>  </td>
+                      <td >
+                        {
+                          item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
+                        }
+                      </td>
+                      <td >
+                        {
+                          item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
+                        }
+                      </td>
+
+                      <td className="action-buttons">
+                        <span className=''>
+                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
+                            <Edit style={{ cursor: "pointer" }} />
+                          </span>
+                          <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
+                            <VisibilityIcon style={{ cursor: "pointer" }} />
+                          </span>
+                          <span onClick={() => setshowDelete(true) || setid(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
+
+                            <Delete style={{ cursor: "pointer" }} />
+                          </span>
                         </span>
-                      </td>
-
-                      <td style={{ boxShadow: "none", border: "none", textAlign: "center" }}>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          onClick={() => handleShowViewComplaintModal(item)}>   <FaEye /> </Button>
-                        <Button
-                          variant="success"
-                          size="sm"
-                          className="ms-2"
-                          onClick={() => handleShowEditComplaintModal(item)} > <FaEdit /></Button>
-                        <Button
-                          style={{ border: "none" }}
-                          size="sm"
-                          className="ms-2 bg-danger"
-                          onClick={() => handleShowDeleteModal(item)}   > <FaTrash /> </Button>
                       </td>
                     </tr>
                   ))}
+
                 </tbody>
-              </Table>
-            </Card.Body>
-          </Card>
+              </table>
+            </div>
+          </Box>
         </Col>
+
         {/* Upcoming Activity */}
         <Col xs={12} md={6} lg={3}>
           <Card className="mb-4" style={{ borderRadius: "15px" }}>
@@ -687,7 +814,7 @@ const Dashboard = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleCloseModal} className="btn btn-secondary p-3"style={{width:"45%"}}>Cancel</button>
+          <button onClick={handleCloseModal} className="btn btn-secondary p-3" style={{ width: "45%" }}>Cancel</button>
           <button
             onClick={selectedNumber ? handleEditNumber : handleAddNumber}
             className="btn p-3 "
@@ -695,7 +822,7 @@ const Dashboard = () => {
               background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
               border: "none",
               color: "white",
-              width:"45%"
+              width: "45%"
             }}
           >
             {selectedNumber ? "Save Changes" : "Add Number"}
@@ -704,167 +831,231 @@ const Dashboard = () => {
       </Modal>
 
       {/* Edit Complaint Modal */}
-      <Modal show={showEditComplaintModal} onHide={handleCloseModal}>
-        <Modal.Header >
-          <Modal.Title>Edit Complaint</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formComplainer">
-              <Form.Label>Complainer</Form.Label>
+      <Modal className='complet-model' show={editShow} >
+        <div className="model">
+          <Modal.Header>
+            <Modal.Title>Edit Complaint</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="complete-name">
+              <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+              <input className='input-style' placeholder='Enter Name' type="text" value={content.complainerName}
+                onChange={(e) => setContent({
+                  ...content, complainerName: e.target.value
+                })}
+              />
+            </div>
+            <div className="complete-name mt-3">
+              <label html="" className='labal-name'> Complainer Name <span className='text-danger1'>*</span></label>
+              <input className='input-style' placeholder='Enter Name' type="text" value={content.complaintName}
+                onChange={(e) => setContent({
+                  ...content, complaintName: e.target.value
+                })}
+              />
+            </div>
+            <div className="complete-name mt-3">
+              <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
               <Form.Control
-                type="text"
-                value={currentComplaint?.complainer || ''}
-                onChange={(e) => setCurrentComplaint({ ...currentComplaint, complainer: e.target.value })} />
-            </Form.Group>
-            <Form.Group controlId="formComplaint">
-              <Form.Label>Complaint</Form.Label>
-              <Form.Control
-                type="text"
-                value={currentComplaint?.complaint || ''}
-                onChange={(e) => setCurrentComplaint({ ...currentComplaint, complaint: e.target.value })} />
-            </Form.Group>
-            <Form.Group controlId="formPriority">
-              <Form.Label>Priority</Form.Label>
-              <div>
-                {['High', 'Medium', 'Low'].map((priority) => (
-                  <Form.Check
-                    inline
-                    className='radio-inline p-1 '
-                    key={priority}
-                    label={priority}
-                    type="radio"
-                    name="priority"
-                    value={priority}
-                    style={{ border: "1px solid #F09619", width: "auto", borderRadius: "10px", width: "90px", textAlign: "center", justifyContent: "center", alignItems: "center", padding: "0px" }}
-                    checked={currentComplaint?.priority === priority}
-                    onChange={(e) => setCurrentComplaint({ ...currentComplaint, priority: e.target.value })}
-                  />
-                ))}
+                as="textarea"
+                rows={2}
+                placeholder='Enter Description'
+                onChange={(e) => setContent({
+                  ...content, description: e.target.value
+                })}
+                value={content.description}
+              />
+            </div>
+            <div className="complete-name mt-2 row d-flex">
+              <div className="complent-UnitNumber col-12 col-md-6">
+                <label html="" className='labal-name'> wing <span className='text-danger1'>*</span></label>
+                <input className='input-style ' placeholder='Enter wing' type="text" onChange={(e) => setContent({
+                  ...content, wing: e.target.value
+                })}
+                  value={content.wing}
+                />
               </div>
-            </Form.Group>
-
-            <Form.Group controlId="formStatus">
-              <Form.Label>status</Form.Label>
-              <div>
-                {['open', 'pandding', 'solved'].map((status) => (
-                  <Form.Check
-                    inline
-                    className='radio-inline p-2 '
-                    key={status}
-                    label={status}
-                    type="radio"
-                    name="status"
-                    value={status}
-                    style={{ border: "1px solid #F09619", borderRadius: "10px" }}
-                    checked={currentComplaint?.status === status}
-                    onChange={(e) => setCurrentComplaint({ ...currentComplaint, status: e.target.value })}
-                  />
-                ))}
+              <div className="complelt-unit col-12 col-md-6">
+                <label html="" className='labal-name'> Units <span className='text-danger1'>*</span></label>
+                <input className='input-style mt-1' placeholder='Enter Unit' type="number" onChange={(e) => setContent({
+                  ...content, unit: e.target.value
+                })}
+                  value={content.unit}
+                />
               </div>
-            </Form.Group>
+            </div>
+            <div className="complete-name mt-2 ">
+              <label html="" className='labal-name'> Priority <span className='text-danger1'>*</span></label>
+              <div className="row gap-3  justify-content-center  ">
+                <div onClick={() => setStatus2("High")} className={`  col-md-3  d-flex  align-items-center gap-2 ${status2 === "High" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "High" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "High" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className='radio polls-radio   ' checked={status2 === "High"} onChange={handleStatusChange2} value={content.priority} />
+                  <p className='mt-3'>High</p>
+                </div>
+                <div onClick={() => setStatus2("Medium")} className={`  col-md-4  d-flex  align-items-center gap-2  ${status2 === "Medium" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Medium" ? "   #FE512E #F09619 " : "#D3D3D3", color: status2 === "Medium" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className='radio polls-radio   ' checked={status2 === "Medium"} onChange={handleStatusChange2} value={"Medium"} />
+                  <p className='mt-3'>Medium</p>
+                </div>
+                <div onClick={() => setStatus2("Low")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status2 === "Low" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Low" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Low" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className=' radio polls-radio   ' checked={status2 === "Low"} onChange={handleStatusChange2} value={"Low"} />
+                  <p className='mt-3'>Low</p>
+                </div>
+              </div>
+            </div>
+            <div className="complete-name mt-2 ">
+              <label html="" className='labal-name'> Status <span className='text-danger1'>*</span></label>
 
-            <div className="d-flex justify-content-center mt-3">
+              <div className="row gap-3 justify-content-center ">
+                <div onClick={() => setStatus3("Open")} className={` col-12 col-md-3  d-flex  align-items-center gap-2 ${status3 === "Open" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Open" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Open" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className=' radio polls-radio w-25  ' checked={status3 === "Open"} onChange={handleStatusChange3} value="Open" />
+                  <p className='mt-3'>Open</p>
+                </div>
+                <div onClick={() => setStatus3("Pending")} className={` col-12 col-md-4  d-flex  align-items-center gap-2  ${status3 === "Pending" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Pending" ? "   #FE512E #F09619 " : "#D3D3D3", color: status3 === "Pending" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className=' w-25 radio polls-radio  ' checked={status3 === "Pending"} onChange={handleStatusChange3} value={"Pending"} />
+                  <p className='mt-3'>Pending</p>
+                </div>
+                <div onClick={() => setStatus3("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status3 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status3 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status3 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                  <input type="radio" className=' w-25  radio polls-radio ' checked={status3 === "Solve"} onChange={handleStatusChange3} value={"Solve"} />
+                  <p className='mt-3'>Solve</p>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex gap-3 mt-3">
               <Button
-
-                style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }}
-                onClick={handleCloseModal} className="me-2 p-3">
+                className=" cancel-btn radious  "
+                style={{ border: "1px solid #D3D3D3", }}
+                variant=""
+                onClick={handlecancleEdit}
+              >
                 Cancel
               </Button>
               <Button
+                className="save-btn radious l-btn "
                 style={{
-                  background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                  border: "none",
                   color: "white",
-                  width: "45%"
+                  border: "none",
+                  cursor: "pointer"
                 }}
-                    className='p-3'
-                onClick={handleEditComplaint}>
-                Save Changes
+
+                onClick={edithandel}
+              >
+                Save
               </Button>
             </div>
-          </Form>
-        </Modal.Body>
+          </Modal.Body>
+        </div>
       </Modal>
 
       {/* Delete Modal */}
-      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-        <Modal.Header
-        >
-          <Modal.Title>Confirm Delete</Modal.Title>
+      <Modal show={showDelete}>
+        <Modal.Header>
+          <Modal.Title>Delete Complain?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete this complaint?
+          <p className='mode-date'>Are you sure you want to delate this Complain?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ background: "lightgrey", color: "white", border: "none", width: "45%" }} className='p-3' onClick={handleCloseDeleteModal}>
-            Cancel
-          </Button>
-          <Button variant="danger" style={{ width: "45%" }} className='p-3' onClick={confirmDeleete}>
-            Delete
-          </Button>
+          <div className="d-flex gap-3 mt-3">
+            <Button
+              className="save-btn radious   "
+              style={{
+
+                color: "#202224",
+                border: "1px solid #D3D3D3",
+                cursor: "pointer"
+              }}
+              variant="outlined"
+              onClick={() => setshowDelete(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="save-btn radious  text-white "
+              style={{
+                backgroundColor: "#E74C3C",
+                border: "none",
+                cursor: "pointer"
+              }}
+              onClick={() => deletecomplelnt(id)}
+            >
+              Conform
+            </Button>
+          </div>
         </Modal.Footer>
       </Modal>
       {/* View Complaint Modal */}
-      <Modal show={showViewComplaintModal} onHide={handleCloseViewComplaintModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Complaint Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedComplaint && (
-            <>
-              {/* Row for Profile Image and Name */}
-              <Row className="align-items-center mb-3">
-                <Col xs="auto">
-                  <img
-                    src={selectedComplaint.profileImage || "https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=612x612&w=0&k=20&c=w8SlKv-4u6xYyU07CXeBRvfW6F0iYx-a7HR2ChM8ZbU="}
-                    alt="Profile"
-                    className="rounded-circle"
-                    width="50"
-                    height="50"
-                  />
-                </Col>
-                <Col>
-                  <p><strong>{selectedComplaint.complainer}</strong></p>
-                  <p style={{ fontSize: "0.9em", color: "gray" }}>{selectedComplaint.date}</p>
-                </Col>
-              </Row>
+      <Modal show={showview} onHide={handleClose}  >
+        <div className="div" style={{ borderRadius: "10%" }}>
 
-              {/* Complaint text */}
-              <Row >
-                <Col>
-                  <p style={{ color: "black" }}><p style={{ color: "grey" }}>Complaint:</p> {selectedComplaint.complaint}</p>
-                </Col>
-              </Row>
 
-              {/* Priority and Status */}
-              <Row>
-                <Col>
-                  <p><strong>Status:</strong> {selectedComplaint.status}</p>
-                </Col>
-                <Col>
-                  <p>
-                    <strong>Priority:</strong>{' '}
-                    <Badge
-                      bg={
-                        selectedComplaint.priority === 'High'
-                          ? 'danger'
-                          : selectedComplaint.priority === 'Medium'
-                            ? 'warning'
-                            : 'success'
-                      }
-                    >
-                      {selectedComplaint.priority}
-                    </Badge>
-                  </p>
-                </Col>
-              </Row>
-            </>
-          )}
-        </Modal.Body>
+          <Modal.Header className='bg-white' style={{ height: "60px" }}>
+            {/* <Modal.Title>
+           
+           
+          </Modal.Title> */}
+            <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+              <h> View Complain </h>
+            </DialogTitle>
+            <span style={{ cursor: "pointer" }} onClick={handleClose}>
+              <CloseIcon className='mb-2 fs-3' />
 
+            </span>
+          </Modal.Header>
+          <Modal.Body className='viewcomplete'>
+            {/* profile */}
+            <div className="profile-name d-flex gap-2 ">
+              <div className="" style={{ width: "70px", height: "70px", }}>
+                <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
+              </div>
+              <div className="profileName mt-1">
+                <h5>{viewdetils.complainerName}</h5>
+                <p className='mode-date'> {new Date(viewdetils.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}</p>
+              </div>
+            </div>
+            {/* requist name */}
+            <div className="requistname mt-2">
+              <h6 className='mode-date fs-5'>
+                Request Name
+              </h6>
+              <h6>
+                {viewdetils.complaintName}
+              </h6>
+            </div>
+            {/* Description  */}
+            <div className="Description mt-3">
+              <h6 className='mode-date fs-5'>Description</h6>
+              <p>{viewdetils.description}</p>
+            </div>
+            {/* wing-unit-priority-status */}
+            <div className="additional-info d-flex gap-4">
+              <div>
+                <h6 className='mode-date'>Wing</h6>
+                <span style={wing}>{viewdetils.wing}</span>
+              </div>
+              <div className='ms-1'>
+                <h6 className='mode-date'>Unit</h6>
+                <span >{viewdetils.unit}</span>
+              </div>
+              <div className='ms-2'>
+                <h6 className='mode-date'>Priority</h6>
+                {
+                  viewdetils.priority === "Medium" ? <span style={Medium}>{viewdetils.priority}</span> : viewdetils.priority === "Low" ? <span style={Low}>{viewdetils.priority}</span> : <span style={High}>{viewdetils.priority}</span>
+                }
+              </div>
+              <div className='ms-2'>
+                <h6 className='mode-date'>Status</h6>
+                {
+                  viewdetils.status === "Pending" ? <span style={Pending}>{viewdetils.status}</span> : viewdetils.status === "Open" ? <span style={Open}>{viewdetils.status}</span> : <span style={Solve}>{viewdetils.status}</span>
+                }
+              </div>
+            </div>
+          </Modal.Body>
+        </div>
       </Modal>
 
+      {/* <EditablePage/> */}
     </Container>
   );
 };
