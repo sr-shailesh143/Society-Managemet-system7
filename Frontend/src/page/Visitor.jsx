@@ -79,7 +79,7 @@ const Visitor = () => {
                         justifyContent: "center",
                       }}
                     >
-                      {visitor.wing}
+                     {visitor.wing.toUpperCase()}
                     </span>{" "}
                     {visitor.unit}
                   </td>

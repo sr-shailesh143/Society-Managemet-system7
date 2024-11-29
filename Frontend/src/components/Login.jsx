@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import useForm from "/src/hooks/useForm";
+import useForm from "/src/hooks/useForm"; // Assuming useForm is a custom hook for validation
 import { login } from '../apiservices/Authentication';
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
 
-
 export default function Login() {
-    const {  errors, handleError, clearError } = useForm({
+    const { errors, handleError, clearError } = useForm({
         EmailOrPhone: "",
         password: ""
     });
@@ -16,37 +15,63 @@ export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [user, setUser] = useState({
-      EmailOrPhone: "",
-      password: "",
+        EmailOrPhone: "",
+        password: "",
     });
     
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
-      };
+    };
 
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
-      setShowPassword(prev => !prev);
+        setShowPassword(prev => !prev);
     };
 
     const handleLogin = async (e) => {
         e.preventDefault();
+    
         try {
-          const response = await login(user);
-          toast.success(response.data.message);
-          dispatch(StoreUser(response.data.user));
-          navigate("/deshbord");
+            // Default credentials
+            const defaultCredentials = [
+                { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
+                { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
+            ];
+    
+            // Check if the entered credentials match any of the default ones
+            const matchedDefault = defaultCredentials.find(
+                (cred) => cred.email === user.EmailOrPhone && cred.password === user.password
+            );
+    
+            if (matchedDefault) {
+                // If matched with default credentials, set the default password and role
+                user.password = matchedDefault.password;  // Set default password for the user
+    
+                // Proceed with the login call using the default credentials
+                const response = await login(user);
+    
+                toast.success(response.data.message);
+                dispatch(StoreUser(response.data.user));
+                navigate(matchedDefault.redirectUrl);  // Redirect based on the matched default
+            } else {
+                // If not matched with default credentials, proceed with normal login
+                const response = await login(user);
+    
+                toast.success(response.data.message);
+                dispatch(StoreUser(response.data.user));
+                navigate("/deshbord");  // Navigate to the default dashboard
+            }
         } catch (error) {
-          toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Something went wrong.");
         } finally {
-          setUser({
-            EmailOrPhone: "",
-            password: "",
-          });
+            setUser({
+                EmailOrPhone: "",
+                password: "",
+            });
         }
-      };
+    };
 
     return (
         <div className='container-fluid container-img ' >

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getAnnouncements } from '../apiservices/announcementservice'; // Import your API function
 
 import '../index.css';
 
@@ -7,47 +8,54 @@ export default function Activity() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const eventsData = [
-        {
-            name: "Cody Fisher",
-            description: "Event and recreational activities.",
-            time: "2:45 PM",
-            date: "11/02/2024",
-            eventName: "Holi Festival",
-        },
-        {
-            name: "Esther Howard",
-            description: "Securing critical government systems.",
-            time: "1:45 AM",
-            date: "12/02/2024",
-            eventName: "Ganesh Chaturthi",
-        },
-        {
-            name: "Brooklyn Simmons",
-            description: "Implementing surveillance in public spaces.",
-            time: "2:00 PM",
-            date: "13/02/2024",
-            eventName: "Navratri Festival",
-        },
-        {
-            name: "Jenny Wilson",
-            description: "Event and recreational activities.",
-            time: "4:00 AM",
-            date: "14/02/2024",
-            eventName: "Holi Festival",
-        },
-        {
-            name: "Guy Hawkins",
-            description: "Expenses will way sense for you.",
-            time: "5:30 PM",
-            date: "15/02/2024",
-            eventName: "Ganesh Chaturthi",
-        },
-    ];
+    const [eventsData, setEventsData] = useState([]);  // To store the announcements
+    const [loading, setLoading] = useState(false);  // Loading state
+    const [error, setError] = useState('');  // To handle error messages
+
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            setLoading(true);
+            setError('');  // Reset error message
+
+            try {
+                const response = await getAnnouncements(); // Make the API call
+                console.log('API Response:', response); // Log the full response for debugging
+
+                // Ensure response contains the expected data and the 'records' field
+                if (response && response.data && Array.isArray(response.data.records)) {
+                    setEventsData(response.data.records);  // Update state with fetched data
+                } else {
+                    setError('No announcements found or data is in an unexpected format');
+                }
+            } catch (err) {
+                console.error('Error fetching announcements:', err);
+                setError('Failed to load announcements');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAnnouncements();  // Call the fetch function on mount
+    }, []);  // Empty array ensures this runs only once when the component mounts
+
+    // Function to format the date to local format (e.g., "MM/DD/YYYY")
+    const formatLocalDate = (dateString) => {
+        const date = new Date(dateString); // Convert string to Date object
+        return date.toLocaleDateString(); // Format to local date
+    };
+
+    const formatTime = (timeStr) => {
+        if (!timeStr) return "Invalid Time"; 
+        const [hours, minutes] = timeStr.split(":");
+        const date = new Date();
+        date.setHours(parseInt(hours));
+        date.setMinutes(parseInt(minutes));
+        return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+      };
+    
 
     return (
         <div className="container-fluid">
-         
             <div className="row">
                 <div className="d-flex">
                     <div
@@ -73,11 +81,16 @@ export default function Activity() {
                 </div>
             </div>
 
-           
             <div className="complaints-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Event Participation</h4>
                 </div>
+
+                {/* Loading Spinner */}
+                {loading && <p>Loading...</p>}
+
+                {/* Error Message */}
+                {error && <div className="alert alert-danger">{error}</div>}
 
                 <div className="table-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     <table className="table table-hover custom-table">
@@ -91,33 +104,42 @@ export default function Activity() {
                             </tr>
                         </thead>
                         <tbody>
-                            {eventsData.map((event, index) => (
-                                <tr key={index}>
-                                    <td>
-                                        <div className="d-flex align-items-center">
-                                            {/* Profile Image */}
-                                            <img
-                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} 
-                                                alt="Profile"
-                                                className="rounded-circle"
-                                                style={{
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    marginRight: "10px", 
-                                                }}
-                                            />
-                                         
-                                            {event.name}
-                                        </div>
-                                    </td>
-                                    <td>{event.description}</td>
-                                    <td>
-                                        <span className="time-badge">{event.time}</span>
-                                    </td>
-                                    <td>{event.date}</td>
-                                    <td>{event.eventName}</td>
+                            {/* Map over the eventsData array to display each event */}
+                            {eventsData.length > 0 ? (
+                                eventsData.map((event, index) => (
+                                    <tr key={index}>
+                                        <td>
+                                            <div className="d-flex align-items-center">
+                                                <img
+                                                    src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`}
+                                                    alt="Profile"
+                                                    className="rounded-circle"
+                                                    style={{
+                                                        width: "30px",
+                                                        height: "30px",
+                                                        marginRight: "10px",
+                                                    }}
+                                                />
+                                                {/* {event.name} */}  Name 
+                                            </div>
+                                        </td>
+                                        <td>{event.description}</td>
+                                        <td>
+                                            <span className="time-badge">
+                                                {formatTime(event.announcementTime)} {/* Display local time */}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {formatLocalDate(event.announcementDate)} {/* Display local date */}
+                                        </td>
+                                        <td>{event.title}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5" className="text-center">No data available</td>
                                 </tr>
-                            ))}
+                            )}
                         </tbody>
                     </table>
                 </div>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { createAlert } from '../apiservices/emergencyservice'; 
+import { toast } from "react-toastify";  // Import ToastContainer and toast
+
 
 export default function EmergencyManagement() {
   const [alert, setAlert] = useState({
@@ -19,10 +21,12 @@ export default function EmergencyManagement() {
       const response = await createAlert(alert);
       console.log("API Response:", response);
       setSuccessMessage("Alert created successfully!");
-      setAlert({ alertType: "", alertDescription: "" }); 
+      toast.success("Alert created successfully!"); // Display success toast
+      setAlert({ alertType: "", description: "" }); 
     } catch (error) {
       console.error("Error creating alert:", error);
       setErrorMessage("Failed to create alert. Please try again.");
+      toast.error("Failed to create alert. Please try again."); // Display error toast
     } finally {
       setLoading(false);
     }
@@ -69,13 +73,7 @@ export default function EmergencyManagement() {
             placeholder="Emergency description."
           />
 
-          {/* Success or Error Message */}
-          {successMessage && (
-            <div className="alert alert-success mt-3">{successMessage}</div>
-          )}
-          {errorMessage && (
-            <div className="alert alert-danger mt-3">{errorMessage}</div>
-          )}
+         
 
           {/* Submit Button */}
           <button
@@ -87,6 +85,8 @@ export default function EmergencyManagement() {
           </button>
         </div>
       </div>
+
+     
     </div>
   );
 }

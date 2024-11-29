@@ -10,6 +10,7 @@ const accountsid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const OTP_EXPIRATION_TIME = 30 * 1000; 
 
 exports.Register = async (req, res) => {
@@ -121,61 +122,83 @@ exports.Register = async (req, res) => {
     });
   }
 };
+const generateToken = (userId) => {
+  return jwt.sign({ userId },process.env.JWT_SECRET, { expiresIn: "1h" });
+};
+
+// Login endpoint
 exports.login = async (req, res) => {
+  const { EmailOrPhone, password } = req.body;
+
+  // Default credentials for user and security roles
+  const defaultCredentials = [
+      { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
+      { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
+  ];
+
   try {
-    const { EmailOrPhone, password } = req.body;
+      // Check if provided credentials match default credentials
+      const matchedDefault = defaultCredentials.find(
+          (cred) => cred.email === EmailOrPhone && cred.password === password
+      );
 
-    if (!EmailOrPhone || !password) {
-      return res.status(400).json({
-        success: false,
-        message: "Email/Phone and password are required",
+      if (matchedDefault) {
+          // Direct login for default users, no token generation
+          return res.status(200).json({
+              success: true,
+              message: `${matchedDefault.role} logged in successfully`,
+              redirectUrl: matchedDefault.redirectUrl,
+              user: { email: matchedDefault.email, role: matchedDefault.role },
+          });
+      }
+
+      // If not default credentials, proceed with normal login logic
+      let query = {};
+      if (EmailOrPhone.includes("@")) {
+          query = { Email: EmailOrPhone }; // email query
+      } else {
+          query = { Phone: EmailOrPhone }; // phone query
+      }
+
+      const user = await User.findOne(query); // Replace with your DB model
+      if (!user) {
+          return res.status(404).json({
+              success: false,
+              message: "User not found",
+          });
+      }
+
+      // Validate password
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+          return res.status(401).json({
+              success: false,
+              message: "Invalid credentials",
+          });
+      }
+
+      // Generate JWT token
+      const token = generateToken(user._id);
+
+      return res.status(200).json({
+          success: true,
+          message: "User logged in successfully",
+          token: token,
+          user: { email: user.Email, role: user.role },
       });
-    }
-
-    let query = {};
-    if (EmailOrPhone.includes("@")) {
-      query = { Email: EmailOrPhone }; // email
-    } else {
-      query = { Phone: EmailOrPhone }; // number
-    }
-
-    // Find user by either email or phone
-    const user = await User.findOne(query);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User is not registered",
-      });
-    }
-
-    // Validate password
-    const isPasswordValid = await compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({
-        success: false,
-        message: "Invalid credentials",
-      });
-    }
-
-    // Generate JWT token 
-    generateToeken(user._id, res);
-
-    return res.status(200).json({
-      success: true,
-      message: "User logged in successfully",
-    });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
+      console.error(error);
+      return res.status(500).json({
+          success: false,
+          message: "Internal server error",
+      });
   }
 };
 exports.logout = async (req, res) => {
   try {
     console.log("Logout request received");
 
+    // Clear the authentication cookie
     res.clearCookie("society-auth", {
       path: "/",
       httpOnly: true,
@@ -183,19 +206,22 @@ exports.logout = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
     });
 
+    // Send success response
     return res.status(200).json({
       success: true,
       message: "Logged out successfully",
     });
   } catch (error) {
-    console.error("Error in logout controller:", error.message);
+    console.error("Error in logout controller:", error);
 
+    // Handle error in case something goes wrong
     return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
   }
 };
+
 
 
 
