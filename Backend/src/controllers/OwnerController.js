@@ -1,10 +1,10 @@
-const Owner = require("../models/OwnerModel");
-const cloudinary = require("../utils/cloudinary");
-const { hash } = require("../utils/hashPassword");
-const { sendData} = require("../config/mailer");
-const { ForgotFormatResident } = require("../utils/emailTemplates");
-const fs = require("fs/promises");
 const crypto = require("crypto");
+const fs = require("fs");
+const { cloudinary } = require("../utils/cloudinary");
+const Owner = require("../models/OwnerModel");
+const { hash } = require("../utils/hashPassword");
+const { sendData } = require("../config/mailer");
+const { ForgotFormatResident } = require("../utils/emailTemplates");
 
 exports.addOwnerData = async (req, res) => {
   try {
@@ -14,22 +14,32 @@ exports.addOwnerData = async (req, res) => {
       return password.padStart(length, "0");
     };
 
-    // Function to upload files to Cloudinary and delete from local storage
+    // Generate a random password and hash it
+    const password = generatePassword();
+    const hashedPassword = await hash(password);
+
+    console.log("Generated Password:", password);
+
+    // Utility to upload files to Cloudinary and delete local files
     const uploadAndDeleteLocal = async (fileArray) => {
       if (fileArray && fileArray[0]) {
         const filePath = fileArray[0].path;
         try {
           const result = await cloudinary.uploader.upload(filePath);
           fs.unlink(filePath, (err) => {
-            if (err) console.error("Error deleting file:", err);
+            if (err) console.error("Error deleting local file:", err);
           });
           return result.secure_url;
         } catch (error) {
+          console.error("Error uploading file to Cloudinary:", error.message);
           throw error;
         }
       }
-      return "";
+      return null;
     };
+    
+    
+    
 
     // Extracting fields from request body
     const {
@@ -48,16 +58,24 @@ exports.addOwnerData = async (req, res) => {
       UnitStatus,
     } = req.body;
 
-    // Generate a random password and hash it
-    const password = generatePassword();
-    const hashedPassword = await hash(password);
+    // Log incoming files
+    console.log("Received Files:", req.files);
 
-    // Uploading files to Cloudinary
-    const profileImage = await uploadAndDeleteLocal(req.files?.profileImage);
-    const Aadharfront = await uploadAndDeleteLocal(req.files?.Aadharfront);
-    const Aadharback = await uploadAndDeleteLocal(req.files?.Aadharback);
-    const Addressproof = await uploadAndDeleteLocal(req.files?.Addressproof);
-    const Rent_Agreement = await uploadAndDeleteLocal(req.files?.Rent_Agreement);
+    // Upload files to Cloudinary
+    const filesToUpload = [
+      { key: "profile", file: req.files?.profile },
+      { key: "Aadharfront", file: req.files?.Aadharfront },
+      { key: "Aadharback", file: req.files?.Aadharback },
+      { key: "Addressproof", file: req.files?.Addressproof },
+      { key: "Rent_Agreement", file: req.files?.Rent_Agreement },
+    ];
+
+    const uploadedFiles = await Promise.all(
+      filesToUpload.map(({ file }) => uploadAndDeleteLocal(file))
+    );
+
+    const [profile, Aadharfront, Aadharback, Addressproof, Rent_Agreement] =
+      uploadedFiles;
 
     // Validate required fields
     if (
@@ -71,7 +89,7 @@ exports.addOwnerData = async (req, res) => {
       !Relation ||
       !Member_Counting ||
       !Vehicle_Counting ||
-      !profileImage ||
+      !profile ||
       !Aadharfront ||
       !Aadharback ||
       !Addressproof ||
@@ -93,7 +111,7 @@ exports.addOwnerData = async (req, res) => {
       Wing,
       Unit,
       Relation,
-      profileImage,
+      profile,
       Aadharfront,
       Aadharback,
       Addressproof,
@@ -121,6 +139,8 @@ exports.addOwnerData = async (req, res) => {
     });
   } catch (error) {
     console.error("Error adding owner data:", error);
+
+    // Return a generic error response
     res.status(500).json({
       success: false,
       message: "Failed to add owner data",

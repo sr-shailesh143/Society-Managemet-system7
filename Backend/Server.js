@@ -30,8 +30,7 @@ const profileRoutes = require('./src/routes/profileRoutes');
 const Numberroute = require("./src/routes/numberroute");
 // const Residentroute = require("./src/routes/residentroute");
 const maintenanceRoutes = require('./src/routes/maintenanceRoutes');
-// const ResidentRoutes=require("./src/routes/ResidentRoutes.js")
-
+const ResidentRoutes=require("./src/routes/ResidentRoutes")
 const complaintRoutes = require('./src/routes/complaintRoutes.js');
 const requestRoutes = require('./src/routes/requestRoutes.js');
 const noteRoutes = require('./src/routes/noteRoutes.js');
@@ -53,9 +52,13 @@ app.use("/api/auth", Userroute);
 app.use("/api/society", Societyroute);
 //Important Number
 app.use("/api/number", Numberroute);
-//resident
+
+//Resident For S_P Patel
 // app.use("/api/resident", Residentroute);
-// app.use("/api/resident",ResidentRoutes)
+
+
+//resident --Md
+app.use("/api/resident",ResidentRoutes)
 
 app.use('/api/profile', profileRoutes);
 app.use('/api/maintenance', maintenanceRoutes);
