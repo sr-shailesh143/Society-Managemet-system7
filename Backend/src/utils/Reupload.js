@@ -17,11 +17,11 @@ const storage = multer.memoryStorage();
 const uploader = multer({
     storage,
     limits: {
-        fileSize: 10 * 1024 * 1024 // file size to 10MB
+        fileSize: 10 * 1024 * 1024 
     },
     fileFilter: (req, file, cb) => {
   
-        // Check file type 
+       
         const filetypes = /jpeg|jpg|png|gif|pdf/;
         const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = filetypes.test(file.mimetype);
@@ -29,7 +29,7 @@ const uploader = multer({
         if (mimetype && extname) {
             return cb(null, true);
         } else {
-            cb('Error: Images only!'); // wrong file
+            cb('Error: Images only!'); 
         }
     }
 });

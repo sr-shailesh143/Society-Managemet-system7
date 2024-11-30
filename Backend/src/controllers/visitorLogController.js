@@ -1,6 +1,5 @@
-const VisitorLog = require('../models/VisitorLog');
-const { cloudinary } = require('../config/cloudinaryConfig');
-
+const VisitorLog = require("../models/VisitorLog");
+const { cloudinary } = require("../config/cloudinaryConfig");
 
 // Create a new visitor log
 exports.createVisitorLog = async (req, res) => {
@@ -46,9 +45,12 @@ exports.updateVisitorLog = async (req, res) => {
   try {
     const updates = req.body;
     if (req.file) {
-      updates.visitorImg = req.file.path;  // Update image URL if new file uploaded
+      updates.visitorImg = req.file.path; 
     }
-    const log = await VisitorLog.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
+    const log = await VisitorLog.findByIdAndUpdate(req.params.id, updates, {
+      new: true,
+      runValidators: true,
+    });
     if (!log) return res.status(404).json({ message: "Visitor log not found" });
     res.status(200).json(log);
   } catch (error) {
@@ -61,12 +63,12 @@ exports.deleteVisitorLog = async (req, res) => {
   try {
     const log = await VisitorLog.findByIdAndDelete(req.params.id);
     if (!log) return res.status(404).json({ message: "Visitor log not found" });
-    
-    // Delete image from Cloudinary
-    const publicId = log.visitorImg.split('/').pop().split('.')[0];  // Extract public ID from URL
+
+   
+    const publicId = log.visitorImg.split("/").pop().split(".")[0]; 
     await cloudinary.uploader.destroy(publicId);
 
-    res.status(200).json({ message: 'Visitor log deleted' });
+    res.status(200).json({ message: "Visitor log deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

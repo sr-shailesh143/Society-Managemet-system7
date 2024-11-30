@@ -25,10 +25,7 @@ const visitorSchema = new mongoose.Schema({
     type: String,
     required: true // Store time as a string in HH:mm format
   },
-  // visitorImg: {
-  //   type: String, // URL for the image stored on Cloudinary
-  //   required: true
-  // }
+
 });
 
 module.exports = mongoose.model('Visitortracking', visitorSchema);

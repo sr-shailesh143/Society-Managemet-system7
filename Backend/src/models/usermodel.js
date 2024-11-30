@@ -1,7 +1,5 @@
 const { Schema, model, default: mongoose } = require("mongoose");
 
-
-
 const userSchema=new Schema({
     UserName:{
         type:String,

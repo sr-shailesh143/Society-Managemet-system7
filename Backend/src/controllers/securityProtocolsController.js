@@ -5,12 +5,12 @@ exports.createSecurityProtocol = async (req, res) => {
   try {
     const { title, description} = req.body;
 
-    // Create new protocol entry with or without date/time (defaults applied by model if omitted)
+   
     const newProtocol = new SecurityProtocol({
       title,
       description,
-      // date: date || undefined,  // Use provided date or default to current date
-      // time: time || undefined   // Use provided time or default to current time
+      // date: date || undefined, 
+      // time: time || undefined   
     });
 
     await newProtocol.save();

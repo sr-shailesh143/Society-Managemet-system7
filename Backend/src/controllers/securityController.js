@@ -1,50 +1,42 @@
 const multer = require('multer');
 const cloudinary = require('../config/cloudinaryConfig');
 const Security = require('../models/Security');
-const senData = require('../config/mailer'); // Import the custom mailer function
+const senData = require('../config/mailer');
 const crypto = require('crypto');
 
-// Set up Multer storage configuration (you can adjust the destination and file filter as needed)
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/');  // The directory where files will be temporarily stored before uploading to Cloudinary
+        cb(null, 'uploads/');  
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname); // Ensure unique filenames
+        cb(null, Date.now() + '-' + file.originalname); 
     }
 });
 
 const upload = multer({ storage: storage });
 
-
-
 // Utility function to generate OTP
 const generateOTP = () => {
     return crypto.randomInt(100000, 999999); // Generate a 6-digit OTP
 };
-
-// Add Security Personnel with OTP functionality
 exports.addSecurity = async (req, res) => {
     try {
         const { fullName, MailOrPhone, gender, shift, shiftDate, shiftTime } = req.body;
 
-        // Validate gender and shift fields
         if (!["Male", "Female", "Other"].includes(gender) || !["Day", "Night"].includes(shift)) {
             return res.status(400).json({ error: "Invalid gender or shift value" });
         }
 
-        // Check if files are present
         if (!req.files || !req.files.photo || !req.files.aadharCard) {
             return res.status(400).json({ error: "Photo and Aadhar card are required" });
         }
 
-        // Upload files to Cloudinary
         const photoUploadResult = await cloudinary.uploader.upload(req.files.photo[0].path, { resource_type: "image" });
         const aadharUploadResult = await cloudinary.uploader.upload(req.files.aadharCard[0].path, { resource_type: "image" });
 
         // Generate OTP
         const otp = generateOTP();
-        const otpExpiry = Date.now() + 10 * 60 * 1000; // OTP valid for 10 minutes
+        const otpExpiry = Date.now() + 10 * 60 * 1000; 
 
         // Send OTP using the provided mailer
         await senData(
@@ -119,7 +111,7 @@ exports.verifyOtp = async (req, res) => {
             return res.status(400).json({ error: "Invalid or expired OTP" });
         }
 
-        security.otp = null; // Clear OTP
+        security.otp = null; 
         security.otpExpiry = null;
         await security.save();
 
@@ -129,7 +121,6 @@ exports.verifyOtp = async (req, res) => {
         res.status(500).json({ error: "Error verifying OTP" });
     }
 };
-
 
 // Get All Security Personnel
 exports.getAllSecurity = async (req, res) => {
