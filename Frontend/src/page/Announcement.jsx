@@ -223,16 +223,35 @@ const Announcement = () => {
 
       {/* View Modal */}
       <Modal show={viewModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>View Announcement</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p><strong>Title:</strong> {currentAnnouncement.title}</p>
-          <p><strong>Description:</strong> {currentAnnouncement.description}</p>
-          <p><strong>Date:</strong> {new Date(currentAnnouncement.announcementDate).toLocaleDateString()}</p>
-          <p><strong>Time:</strong> {formatTime(currentAnnouncement.announcementTime)}</p>
-        </Modal.Body>
-      </Modal>
+  <Modal.Header>
+    <Modal.Title>View Announcement</Modal.Title>
+    {/* Custom Close Button */}
+    <button onClick={handleCloseModal}  style={{background: 'none', border: 'none',  fontSize: '30px', color: 'grey', cursor: 'pointer', position: 'absolute',  right: '-20px', top: '-5px', }} >
+      &times;
+    </button>
+  </Modal.Header>
+  <Modal.Body>
+    <p>
+      <strong style={{ color: 'lightgrey' }}>Title:</strong>
+      <p> {currentAnnouncement.title}</p>
+    </p>
+    <p>
+      <strong style={{ color: 'lightgrey' }}>Description:</strong>
+      <p>{currentAnnouncement.description}</p>
+    </p>
+    <div style={{ display: 'flex' }}>
+      <p>
+        <strong style={{ color: 'lightgrey' }}>Date:</strong>
+        <p>{new Date(currentAnnouncement.announcementDate).toLocaleDateString()}</p>
+      </p>
+      <p style={{ marginLeft: '20px' }}>
+        <strong style={{ color: 'lightgrey' }}>Time:</strong>
+        <p>{formatTime(currentAnnouncement.announcementTime)}</p>
+      </p>
+    </div>
+  </Modal.Body>
+</Modal>
+
 
       {/* Delete Confirmation Modal */}
       <Modal show={deleteModal} onHide={handleCloseModal}>
