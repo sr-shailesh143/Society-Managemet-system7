@@ -90,16 +90,10 @@ export default function EventParticipation() {
                                     <td>
                                         <div className="d-flex align-items-center">
                                           
-                                            <img
-                                                src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} 
+                                            <img src={`https://www.catholicsingles.com/wp-content/uploads/2020/06/blog-header-3.png`} 
                                                 alt="Profile"
                                                 className="rounded-circle"
-                                                style={{
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    marginRight: "10px", 
-                                                }}
-                                            />
+                                                style={{ width: "30px",  height: "30px", marginRight: "10px",}}/>
                                          
                                             {event.name}
                                         </div>

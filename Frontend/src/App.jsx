@@ -28,7 +28,7 @@ import Securityprotocols from './page/Securityprotocols';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
-import VisitorTracking from './page2/Visitortracking';
+import VisitorTracking from './page2/VisitorTracking';
 import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
@@ -108,7 +108,7 @@ function App() {
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
         {/* ResidentManageMentLayout */}
-        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={""} />} />
+        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={<Dashbord/>} />} />
         {/* PersonalDetail */}
         <Route path='/PersonalDetail' element={<ResidentManageMentLayout component={<PersonalDetail />} />} />
         <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../index.css';
-import { Button, Box } from '@mui/material';
+import { Button, Box, DialogTitle } from '@mui/material';
 import { Delete, Edit, } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import CloseIcon from '@mui/icons-material/Close';
+
+// import Form from 'react-bootstrap/Form';
 import { createRequest, getAllRequests, GetRequest, deleteRequest, updateRequest } from "../apiservices/requestservice"
 import { useNavigate } from 'react-router-dom';
 export default function Requesttracking() {
@@ -26,7 +28,7 @@ export default function Requesttracking() {
 
   function edit() {
     seteditShow(false)
-
+  }
 
 
   // view 
@@ -105,7 +107,7 @@ export default function Requesttracking() {
 
   const [editdata, seteditdata] = useState({
   })
-  async function edithandal(id) {
+  async function handle(id) {
     try {
       const response = await updateRequest(id)
       seteditdata(response.data)
@@ -153,11 +155,11 @@ export default function Requesttracking() {
 
   }
 
-  const wing = {
+  const   wing = {
 
     backgroundColor: '#F6F8FB',
     width: "131px",
-    padding: '5px 10px',
+    padding: '5px 10px ',
     borderRadius: '12px',
     color: '#5678E9',
     textTransform: "uppercase",
@@ -330,14 +332,14 @@ export default function Requesttracking() {
               <table className="responsive-table">
                 <thead className='tabal-header'>
                   <tr>
-                    <th className='redious' style={{ textAlign: "center" }}> &nbsp;&nbsp;  Complainer Name</th>
-                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th className='redious' style={{ textAlign: "center" }}> &nbsp;&nbsp; Requester Name</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;  &nbsp;Request Name</th>
                     <th style={{ textAlign: "center" }}> &nbsp; Request Date</th>
 
                     <th style={{ textAlign: "center" }}>Unit Number</th>
                     <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;Priority</th>
                     <th style={{ textAlign: "center" }}> &nbsp;&nbsp; Status</th>
-                    <th className='redious1' style={{ textAlign: "center" }}> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                    <th className='redious1' style={{ textAlign: "center" }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -532,7 +534,6 @@ export default function Requesttracking() {
                     Cancel
                   </Button>
 
-                  <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} />
 
                   <Button
                     className="save-btn radious l-btn "
@@ -552,65 +553,85 @@ export default function Requesttracking() {
             </div>
           </Modal>
           {/* view mode  */}
-          <Modal show={showview} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className="PROLIFE">
-                <div className="row">
-                  <div className="col-12 col-md-2">
-                    <img src="/src/assets/Avatar.png" alt="" />
+          <Modal show={showview} onHide={handleClose}  >
+            <div className="div" style={{ borderRadius: "10%" }}>
+
+
+              <Modal.Header className='bg-white' style={{ height: "60px" }}>
+                {/* <Modal.Title>
+           
+           
+          </Modal.Title> */}
+                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                  <h> View Complain </h>
+                </DialogTitle>
+                <span style={{ cursor: "pointer" }} onClick={handleClose}>
+                  <CloseIcon className='mb-2 fs-3' />
+
+                </span>
+              </Modal.Header>
+              <Modal.Body className='viewcomplete'>
+                {/* profile */}
+                <div className="profile-name d-flex gap-2 ">
+                  <div className="" style={{ width: "70px", height: "70px", }}>
+                    <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
                   </div>
-                  <div className="col-12 col-md-6">
-                    <h5>{viewdetils.complainerName}</h5>
-                    <p className='mode-date'>
-                      {new Date(viewdetils.createdAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="profile-name">
-                <h6 className='fs-5 mode-date' >Request Name</h6>
-                <h4>{viewdetils.complaintName}</h4>
-              </div>
-              <div className="Description mt-4">
-                <h6 className='fs-5 mode-date' >Description</h6>
-                <h6>{viewdetils.description}</h6>
-              </div>
-              <div className="ditels mt-3">
-                <div className="row">
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>wing</p>
-                    <p className='ms-2 wing'> <span className='ms-2'>{viewdetils.wing}</span></p>
-                  </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Unit</p>
-                    <p className=' '> <span className=''>{viewdetils.unit}</span></p>
-                  </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Priority</p>
-                    <p className=' Priority'> <span className=''>{viewdetils.priority}</span></p>
-                  </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Status</p>
-                    <p className='open '> <span className=''>{viewdetils.status}</span></p>
+                  <div className="profileName mt-1">
+                    <h5>{viewdetils.requesterName}</h5>
+                    <p className='mode-date'> {new Date(viewdetils.requestDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}</p>
                   </div>
                 </div>
-              </div>
-            </Modal.Body>
+                {/* requist name */}
+                <div className="requistname mt-2">
+                  <h6 className='mode-date fs-5'>
+                    Request Name
+                  </h6>
+                  <h6>
+                    {viewdetils.requestName}
+                  </h6>
+                </div>
+                {/* Description  */}
+                <div className="Description mt-3">
+                  <h6 className='mode-date fs-5'>Description</h6>
+                  <p>{viewdetils.Description}</p>
+                </div>
+                {/* wing-unit-priority-status */}
+                <div className="additional-info d-flex gap-3">
+                  <div>
+                    <h6 className='mode-date'>Wing</h6>
+                    <span style={wing}>{viewdetils.wing}</span>
+                  </div>
+                  <div className='ms-1'>
+                    <h6 className='mode-date'>Unit</h6>
+                    <span >{viewdetils.unit}</span>
+                  </div>
+                  <div className='ms-2'>
+                    <h6 className='mode-date'>Priority</h6>
+                    {
+                      viewdetils.priority === "Medium" ? <span style={Medium}>{viewdetils.priority}</span> : viewdetils.priority === "Low" ? <span style={Low}>{viewdetils.priority}</span> : <span style={High}>{viewdetils.priority}</span>
+                    }
+                  </div>
+                  <div className='ms-2'>
+                    <h6 className='mode-date'>Status</h6>
+                    {
+                      viewdetils.status === "Pending" ? <span style={Pending}>{viewdetils.status}</span> : viewdetils.status === "Open" ? <span style={Open}>{viewdetils.status}</span> : <span style={Solve}>{viewdetils.status}</span>
+                    }
+                  </div>
+                </div>
+              </Modal.Body>
+            </div>
           </Modal>
           {/* delete model */}
           <Modal show={showDelete}>
             <Modal.Header>
-              <Modal.Title>Delete Complain?</Modal.Title>
+              <Modal.Title>Delete Request?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p className='mode-date'>Are you sure you want to delate this Complain?</p>
+              <p className='mode-date'>Are you sure you want to delate this Request?</p>
             </Modal.Body>
             <Modal.Footer>
               <div className="d-flex gap-3 mt-3">
@@ -627,5 +648,4 @@ export default function Requesttracking() {
       </div>
     </>
   );
-}
 }

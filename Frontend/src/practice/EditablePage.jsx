@@ -1,64 +1,98 @@
 import React, { useState } from 'react';
 
 const EditablePage = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const data = [
+    {
+      fullName: "Evelyn Harper",
+      unitNumber: "1001",
+      unitStatus: "Occupied",
+      residentStatus: "Tenant",
+      phoneNumber: "97587 85828",
+      member: 1,
+      vehicle: 2,
+    },
+    {
+      fullName: "-",
+      unitNumber: "1002",
+      unitStatus: "Vacate",
+      residentStatus: "--",
+      phoneNumber: "--",
+      member: 0,
+      vehicle: 0,
+    },
+    {
+      fullName: "Robert Fox",
+      unitNumber: "2002",
+      unitStatus: "Occupied",
+      residentStatus: "Tenant",
+      phoneNumber: "97587 85828",
+      member: 3,
+      vehicle: 1,
+    },
+    {
+      fullName: "Evelyn Harper",
+      unitNumber: "2004",
+      unitStatus: "Occupied",
+      residentStatus: "Tenant",
+      phoneNumber: "97587 85828",
+      member: 6,
+      vehicle: 3,
+    },
+  ];
 
-  const complaint = {
-    name: "Evelyn Harper",
-    date: "Aug 5, 2024",
-    image: "https://via.placeholder.com/50", // Replace with user image URL
-    requestName: "Unethical Behavior",
-    description: "Offering, giving, receiving, or soliciting of value to influence the actions of an.",
-    wing: "A",
-    unit: "1002",
-    priority: "High",
-    status: "Open",
-  };
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h3>View Complaint</h3>
-          <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button>
-        </div>
-
-        <div className="modal-body">
-          {/* User Info */}
-          <div className="user-info">
-            <img src={complaint.image} alt={complaint.name} className="user-avatar" />
-            <div className="user-details">
-              <h4>{complaint.name}</h4>
-              <p>{complaint.date}</p>
-            </div>
-          </div>
-
-          {/* Request Details */}
-          <div className="request-details">
-            <p><strong>Request Name:</strong> {complaint.requestName}</p>
-            <p><strong>Description:</strong> {complaint.description}</p>
-          </div>
-
-          {/* Additional Info */}
-          <div className="additional-info">
-            <div>
-              <p>Wing</p>
-              <span className="info-tag">{complaint.wing}</span>
-            </div>
-            <div>
-              <p>Unit</p>
-              <span className="info-tag">{complaint.unit}</span>
-            </div>
-            <div>
-              <p>Priority</p>
-              <span className="info-badge priority">{complaint.priority}</span>
-            </div>
-            <div>
-              <p>Status</p>
-              <span className="info-badge status">{complaint.status}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="responsive-table-container">
+      <table className="responsive-table">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Unit Number</th>
+            <th>Unit Status</th>
+            <th>Resident Status</th>
+            <th>Phone Number</th>
+            <th>Member</th>
+            <th>Vehicle</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.fullName}</td>
+              <td>{item.unitNumber}</td>
+              <td>
+                <span
+                  className={`status-badge ${
+                    item.unitStatus === "Occupied"
+                      ? "occupied"
+                      : "vacate"
+                  }`}
+                >
+                  {item.unitStatus}
+                </span>
+              </td>
+              <td>
+                <span
+                  className={`status-badge ${
+                    item.residentStatus === "Tenant"
+                      ? "tenant"
+                      : "owner"
+                  }`}
+                >
+                  {item.residentStatus}
+                </span>
+              </td>
+              <td>{item.phoneNumber}</td>
+              <td>{item.member}</td>
+              <td>{item.vehicle}</td>
+              <td className="action-buttons">
+                <button className="btn edit-btn">✏️</button>
+                <button className="btn view-btn">👁️</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

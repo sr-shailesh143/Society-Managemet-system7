@@ -264,8 +264,8 @@ const ResidentManageMent = () => {
                                             <div className="document">
                                                 <div className="d-flex document-1">
                                                     <div className="document-ditels d-flex">
-                                                        <div className="img-icon ">
-                                                            <Image className='fs-3' />
+                                                        <div className="img-icon  cursor">
+                                                            <Image className='fs-3 cursor' />
                                                         </div>
                                                         <div className="document-name d-block ms-2">
                                                             <h6 className='d-text'>
@@ -274,7 +274,7 @@ const ResidentManageMent = () => {
                                                             <p className="d-n ">3.5 MB</p>
                                                         </div>
                                                     </div>
-                                                    <div className="document-view mt-1">
+                                                    <div className="document-view mt-1 cursor">
                                                         <VisibilityIcon />
                                                     </div>
                                                 </div>
@@ -623,17 +623,19 @@ const ResidentManageMent = () => {
                                 </div>
                             </div>
                             {/* Agreement Checkbox */}
-                            <Form.Group controlId="agreementCheckbox" className="mt-4">
-                                <Form.Check type="checkbox" label="By submitting, you agree to select Vacant" checked={isAgreed} className='mt-3' onChange={handleAgreementChange} />
-                            </Form.Group>
+                         <Form.Group controlId="agreementCheckbox" className="mt-4 d-flex align-items-center">
+                                    <Form.Check  type="checkbox" label=""  checked={isAgreed}  className="me-2"  onChange={handleAgreementChange} />
+                                    <span>By submitting, you agree to select Occupied</span>
+                                    </Form.Group>
+
                         </Form>
                     </Modal.Body>
-                    <Modal.Footer className=" d-flex justify-content-between">
-                        <div className="d-flex gap-3">
-                            <Button className="cancel-btn radious " style={{ border: "1px solid #D3D3D3", }} variant="light" onClick={handleClose3} >
+                    <Modal.Footer className=" d-flex justify-content-center">
+                    <div className="d-flex gap-3">
+                            <Button className="cancel-btn radious " style={{ border: "1px solid #D3D3D3",textAlign:"center" }} variant="light" onClick={handleClose3} >
                                 Cancel
                             </Button>
-                            <Button className="save-btn radious l-btn " style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer" }} onClick={HandleSubmit1} >
+                            <Button className="save-btn radious  " style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer",textAlign:"center" }} onClick={HandleSubmit1} >
                                 Conform
                             </Button>
                         </div>

@@ -456,7 +456,7 @@ const onSubmit = (data) => {
 
 
 <Modal show={showModal} onHide={() => setShowModal(false)}>
-      <Modal.Dialog className="modal-dialog-centered">
+  
         <Modal.Header>
           <Modal.Title>Create a New Society</Modal.Title>
         </Modal.Header>
@@ -561,7 +561,7 @@ const onSubmit = (data) => {
             Save
           </Button>
         </Modal.Footer>
-      </Modal.Dialog>
+  
     </Modal>
 
 
