@@ -62,6 +62,9 @@ export default function Community() {
 
 
   ];
+  const handleVideoCall = () => {
+    setcamera(true); // Open the camera view (this will trigger the modal to show)
+  };
 
   return (
     <div className='chetbox'>
@@ -140,16 +143,16 @@ export default function Community() {
             <div className="row  ">
               <div className="col-12 col-md-11 ">
                 <div className="row m-3 input-chet-icon w-100 gap-4 position-sticky ">
-                <div   className="col-12 col-md-2" style={{ position: 'relative' }}  >
-        <SentimentSatisfiedAltIcon className="fs-2"  style={{ cursor: 'pointer' }}  onClick={() => setShowEmojiPicker(!showEmojiPicker)} />
-        {showEmojiPicker && (
-          <div style={{ position: 'absolute',  top: '-440px',    zIndex: 10, }}  >
-            <Picker onSelect={handleEmojiSelect} /> {/* v3 */}
-            {/* For v5 */}
-            {/* <Picker data={data} onEmojiSelect={handleEmojiSelect} /> */}
-          </div>
-        )}
-      </div>
+                  <div className="col-12 col-md-2" style={{ position: 'relative' }}  >
+                    <SentimentSatisfiedAltIcon className="fs-2" style={{ cursor: 'pointer' }} onClick={() => setShowEmojiPicker(!showEmojiPicker)} />
+                    {showEmojiPicker && (
+                      <div style={{ position: 'absolute', top: '-440px', zIndex: 10, }}  >
+                        <Picker onSelect={handleEmojiSelect} /> {/* v3 */}
+                        {/* For v5 */}
+                        {/* <Picker data={data} onEmojiSelect={handleEmojiSelect} /> */}
+                      </div>
+                    )}
+                  </div>
                   <div className="col-12 col-md-8">
                     <input type="text" className='input-chet-main ' onChange={(e) => setSent(e.target.value)} style={{ width: "100%", border: "none" }} />
                   </div>
@@ -203,4 +206,5 @@ export default function Community() {
       </div>
     </div>
   )
+
 }

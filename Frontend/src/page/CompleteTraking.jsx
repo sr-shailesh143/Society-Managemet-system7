@@ -554,11 +554,11 @@ export default function CompleteTracking() {
                   </div>
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>Priority</p>
-                    <p className=' Priority'> <span className=''>{viewdetils.priority}</span></p>
+                    <p className=' Priority'> <span className=''style={{textAlign:"center"}}>{viewdetils.priority}</span></p>
                   </div>
                   <div className="col-12 col-md-3  ">
                     <p className='mode-date'>Status</p>
-                    <p className='open '> <span className=''>{viewdetils.status}</span></p>
+                    <p className='open '> <span className=''style={{textAlign:"center"}}>{viewdetils.status}</span></p>
                   </div>
                 </div>
               </div>

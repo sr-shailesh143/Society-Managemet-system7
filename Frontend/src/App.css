@@ -2370,7 +2370,7 @@ input[type="email"] {
 
 .open {
   background-color: #EFF2FD;
-
+width: 75px;
   padding: 10px;
   border-radius: 12px;
   color: #5678E9;

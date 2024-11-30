@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { addExpense, getAllExpenses, updateExpense, deleteExpense, getExpense } from '../apiservices/expenseservice';
+import React, { useEffect, useState } from 'react';
+import { addExpense, getAllExpenses } from '../apiservices/expenseservice';
 import { Box, Button } from '@mui/material';
 import { Delete, Edit, Image } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -9,162 +9,152 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useDropzone } from 'react-dropzone';
-export default function Expense() {
 
-  // get expense 
-  const [expenseData, setexpenseData] = useState([])
+export default function Expense() {
+  // State to store expenses data
+  const [expenseData, setExpenseData] = useState([]);
+
+  // Fetch all expenses
   async function getExpenseData() {
     try {
-      const response = await getAllExpenses()
-      setexpenseData(response.data.records)
+      const response = await getAllExpenses();
+      setExpenseData(response.data.records);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
-  useEffect(() => {
-    getExpenseData()
-  }, [])
 
-  // crete expense
-  const [createShowModel, setcreateShowModel] = useState(false)
-  const handleCreateModelOpen = () => setcreateShowModel(true)
-  const handleCreateModelclose = () => setcreateShowModel(false)
+  useEffect(() => {
+    getExpenseData();
+  }, []);
+
+  // Modal state for creating an expense
+  const [createShowModal, setCreateShowModal] = useState(false);
+  const handleCreateModalOpen = () => setCreateShowModal(true);
+  const handleCreateModalClose = () => setCreateShowModal(false);
+
+  // Dropzone for file upload
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/png, image/jpeg, image/gif',
     maxSize: 10 * 1024 * 1024, // 10 MB
-   
   });
-  
-  const [creteData, setcreteData] = useState({
-    title:"",
-    description:"",
-    date:"",
-    amount:"",
-    bill:"",
-  })
-  async function handalCreateExpense(){
-try {
-   const response =  await addExpense(creteData)
-   console.log(response.data)
-} catch (error) {
-  console.log(error)
-}
+
+  // State to store new expense data
+  const [createData, setCreateData] = useState({
+    title: '',
+    description: '',
+    date: '',
+    amount: '',
+    bill: '',
+  });
+
+  // Create expense handler
+  async function handleCreateExpense() {
+    try {
+      const response = await addExpense(createData);
+      console.log(response.data);
+      setCreateData({ title: '', description: '', date: '', amount: '', bill: '' });
+      handleCreateModalClose();
+      getExpenseData(); // Refresh data
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  // Styles for action buttons
   const EDITE = {
     backgroundColor: '#F6F8FB',
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#39973D',
-
-  }
+  };
   const DELETE = {
     backgroundColor: '#F6F8FB',
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#E74C3C',
-
-  }
-  const view = {
+  };
+  const VIEW = {
     padding: '10px 10px',
     borderRadius: '12px',
     color: '#5678E9',
     backgroundColor: '#F6F8FB',
-
-  }
+  };
 
   return (
     <div>
-      <Box className="radious" bgcolor={"white"} sx={{ height: '600px', width: '100%', padding: 2 }}>
-        <div className="row mt-3 d-flex justify-content-between align-items-center  p-3 m-2 ">
-          <h4 className=' col-12 col-md-3 mt-4' style={{ textWrap: "wrap" }}>Add Expenses Details</h4>
-          <div className="col-12 col-md-3 mt-2 add-p-btn  ">
-            <button className=' add-btn' onClick={handleCreateModelOpen}> <span ><FaPlus /></span> <span>Add New Resident details</span> </button>
+      <Box className="radious" bgcolor="white" sx={{ height: '600px', width: '100%', padding: 2 }}>
+        <div className="row mt-3 d-flex justify-content-between align-items-center  ">
+          <h4 className="col-12 col-md-3 mt-4" >
+            Add Expenses Details
+          </h4>
+          <div className="col-12 col-md-3 mt-2 add-p-btn">
+            <button className="add-btn" onClick={handleCreateModalOpen}>
+              <span>
+                <FaPlus />
+              </span>{' '}
+              <span>Add New Resident Details</span>
+            </button>
           </div>
         </div>
         <div className="responsive-table-container">
           <table className="responsive-table">
-            <thead className='tabal-header'>
+            <thead className="tabal-header">
               <tr>
-                <th className='redious'> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  Title</th>
-                <th>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;Description</th>
-                <th> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Date</th>
-                <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Amount</th>
-                <th>  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bill Format</th>
-                <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Bill Format</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-
-              {expenseData.map((item) => (
-                <tr >
-                  <td><span className='m-5'>{item.title}</span></td>
-                  <td><span className='m-5'> {item.description}</span></td>
-                  <td><span className='m-5'>  {new Date(item.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit', })}</span></td>
-                  <td><span className='m-5 list-amount' >₹ {item.amount}</span></td>
-                  <td><span className='m-5'>{
-                    item.bill.split("/image/upload/")[1].split(".")[1] === "pdf" ?<span style={view}><ArticleIcon className='fs-3 text-danger' /></span>: <span style={view}><Image className='fs-3 ' /></span> 
-                  }</span></td>
-                  <td className="action-buttons">
-                    <span className=' d-flex gap-2'>
-                      <span className={`status-badge-edit mx-2  `} style={EDITE} >
-                        <Edit style={{ cursor: "pointer" }} />
-                      </span>
-                      <span className={`status-badge-view `} style={view} >
-                        <VisibilityIcon style={{ cursor: "pointer" }} />
-                      </span>
-                      <span className={`status-badge-delete ms-2 `} style={DELETE}>
-
-
-  return (
-    <div className="container-fluid bg-light shadow">
-      <div className="d-flex justify-content-between align-items-center p-3 m-2">
-        <h3>Add Expenses Details</h3>
-        <button
-          className="btn btn-warning p-2"
-          style={{
-            background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
-            border: 'none',
-            color: 'white',
-          }}
-          onClick={() => handleModalShow()}
-        >
-          + Add New Expense Details
-        </button>
-      </div>
-
-      <table className="table table-striped m-2">
-        <thead className="table-light" style={{ textAlign: 'center' }}>
-          <tr>
-            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '15px 0px 0px 0px' }}>
-              Title
-            </th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Description</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Date</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Amount</th>
-            <th style={{ backgroundColor: '#E5ECFD' }}>Bill Format</th>
-            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '0px 15px 0px 0px' }}>
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody style={{ textAlign: 'center' }}>
-          {expensesData.map((expense, index) => (
-            <tr key={index}>
-              <td >
-                <div className="d-flex align-items-center justify-content-start">
-                  {expense.image && (
-                    <img
-                      src={expense.image}
-                      alt="Expense"
-                      className="rounded-circle me-2"
-                      style={{ width: '30px', height: '30px' }}
-                    />
-                  )}
-                  {expense.title}
-
-                        <Delete style={{ cursor: "pointer" }} />
-                      </span>
+              {expenseData.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <span>{item.title}</span>
+                  </td>
+                  <td>
+                    <span>{item.description}</span>
+                  </td>
+                  <td>
+                    <span>
+                      {new Date(item.date).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: '2-digit',
+                      })}
                     </span>
+                  </td>
+                  <td>
+                    <span>₹ {item.amount}</span>
+                  </td>
+                  <td>
+                    <span>
+                      {item.bill.split('/image/upload/')[1].split('.')[1] === 'pdf' ? (
+                        <span style={VIEW}>
+                          <ArticleIcon className="fs-3 text-danger" />
+                        </span>
+                      ) : (
+                        <span style={VIEW}>
+                          <Image className="fs-3" />
+                        </span>
+                      )}
+                    </span>
+                  </td>
+                  <td className="action-buttons">
+                    <div className="d-flex gap-2">
+                      <span className="status-badge-edit" style={EDITE}>
+                        <Edit style={{ cursor: 'pointer' }} />
+                      </span>
+                      <span className="status-badge-view" style={VIEW}>
+                        <VisibilityIcon style={{ cursor: 'pointer' }} />
+                      </span>
+                      <span className="status-badge-delete" style={DELETE}>
+                        <Delete style={{ cursor: 'pointer' }} />
+                      </span>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -172,88 +162,74 @@ try {
           </table>
         </div>
       </Box>
-      {/* create modal */}
-      <Modal className='complet-model' show={createShowModel} >
-        <div className="model">
-          <Modal.Header>
-            <Modal.Title>Add Expenses Details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="complete-name">
-              <label html="" className='labal-name'>Title<span className='text-danger1'>*</span></label>
-              <input className='input-style' placeholder='Enter Title' type="text" onChange={(e)=>setcreteData({
-                ...creteData,title:e.target.value
-              })} />
-            </div>
-            <div className="complete-name mt-3">
-              <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
+
+      {/* Create Expense Modal */}
+      <Modal show={createShowModal} onHide={handleCreateModalClose}>
+        <Modal.Header>
+          <Modal.Title>Add Expense Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Title"
+                value={createData.title}
+                onChange={(e) => setCreateData({ ...createData, title: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mt-3">
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
-                rows={2}
-                onChange={(e)=>setcreteData({
-                  ...creteData,description:e.target.value
-                })}
-                placeholder='Enter Description'
+                rows={3}
+                placeholder="Enter Description"
+                value={createData.description}
+                onChange={(e) => setCreateData({ ...createData, description: e.target.value })}
               />
+            </Form.Group>
+            <div className="row mt-3">
+              <Form.Group className="col-md-6">
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={createData.date}
+                  onChange={(e) => setCreateData({ ...createData, date: e.target.value })}
+                />
+              </Form.Group>
+              <Form.Group className="col-md-6">
+                <Form.Label>Amount</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="₹ 0000"
+                  value={createData.amount}
+                  onChange={(e) => setCreateData({ ...createData, amount: e.target.value })}
+                />
+              </Form.Group>
             </div>
-            <div className="complete-name mt-2 row d-flex">
-              <div className="complent-UnitNumber col-12 col-md-6">
-                <label html="" className='labal-name'> Date <span className='text-danger1'>*</span></label>
-                <input className='input-style' placeholder='Enter Wing' type="date"   onChange={(e)=>setcreteData({
-                ...creteData,date:e.target.value
-              })}/>
-              </div>
-              <div className="complelt-unit col-12 col-md-6">
-                <label html="" className='labal-name'> Unit <span className='text-danger1'>*</span></label>
-                <input className='input-style mb-1' placeholder='₹ 0000' type="number"  onChange={(e)=>setcreteData({
-                ...creteData,amount:e.target.value
-              })} />
-              </div>
-            </div>
-            <div className="complete-name">
-              <label html="" className='labal-name'>Upload Bill<span className='text-danger1'>*</span></label>
-              <div className="file-upload" {...getRootProps()}>
-                <input {...getInputProps()}  onChange={(e)=>setcreteData({
-                ...creteData,bill:e.target.value
-              })} />
+            <Form.Group className="mt-3">
+              <Form.Label>Upload Bill</Form.Label>
+              <div {...getRootProps()} className="file-upload">
+                <input {...getInputProps()} />
                 <div className="upload-area">
-                  <center>
-
-                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                  </center>
-                  <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
+                  <AddPhotoAlternateIcon className="fs-1" />
+                  <p>Upload a file or drag and drop</p>
                   <small>PNG, JPG, GIF up to 10MB</small>
-
                 </div>
               </div>
-            </div>
-            <div className="d-flex gap-3 mt-3">
-              <Button
-                className=" cancel-btn radious  "
-                style={{ border: "1px solid #D3D3D3", }}
-                variant=""
-                onClick={handleCreateModelclose}
-              >
+            </Form.Group>
+            <div className="d-flex justify-content-center gap-3 mt-4 ">
+              <Button className='p-3' onClick={handleCreateModalClose}style={{backgroundColor:"transparent",border:"1px solid grey",color:"black",width:"45%"}}>
                 Cancel
               </Button>
-              <Button
-                className="save-btn radious l-btn "
-                style={{
-                  color: "white",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-
-                onClick={handalCreateExpense}
-              >
+              <Button className='p-3' variant="contained" onClick={handleCreateExpense}style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer",textAlign:"center",width:"45%" }}>
                 Save
               </Button>
             </div>
-          </Modal.Body>
-        </div>
+          </div>
+        </Modal.Body>
       </Modal>
-
-
     </div>
-  )
+  );
 }
