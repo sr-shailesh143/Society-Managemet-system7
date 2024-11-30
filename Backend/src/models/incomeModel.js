@@ -1,4 +1,3 @@
-// models/incomeModel.js
 const mongoose = require('mongoose');
 
 const incomeSchema = new mongoose.Schema({

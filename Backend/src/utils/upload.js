@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
         cb(null, uploadDir); // You can set a folder to store uploaded files
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Save file with unique name
+        cb(null, Date.now() + path.extname(file.originalname)); 
     },
 });
 
@@ -37,5 +37,5 @@ const upload = multer({
     },
 });
 
-// exports.upload = upload;
+
 module.exports = upload;

@@ -1,6 +1,6 @@
 const Profile = require("../models/profileModel");
 const cloudinary = require("../config/cloudinaryConfig");
-const fs = require("fs"); // For cleaning up temporary files
+const fs = require("fs"); 
 
 exports.createProfile = async (req, res) => {
   console.log("createProfile");
@@ -26,7 +26,7 @@ exports.createProfile = async (req, res) => {
     const cloudinaryResult = await uploadFileToCloudinary(req.file.path);
     console.log("Cloudinary result:", cloudinaryResult.secure_url);
 
-    // Destructure profile details from request body
+  
     const {
       firstName,
       lastName,
@@ -48,27 +48,27 @@ exports.createProfile = async (req, res) => {
       country,
       state,
       city,
-      image: cloudinaryResult.secure_url, // Cloudinary image URL
+      image: cloudinaryResult.secure_url, 
     });
 
     console.log("Profile created:", profile);
 
-    // Cleanup: Delete the file from the server after uploading to Cloudinary
+   
     fs.unlink(req.file.path, (err) => {
       if (err) console.error("Failed to delete temporary file:", err);
     });
 
-    // Send success response
+   
     res.status(201).json({ message: "User created successfully", profile });
   } catch (error) {
     console.error("Error during profile creation:", error);
 
-    // Handle specific errors (optional)
+   
     if (error.message.includes("Cloudinary")) {
       return res.status(500).json({ error: "File upload failed, try again." });
     }
 
-    // Send generic error response
+   
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

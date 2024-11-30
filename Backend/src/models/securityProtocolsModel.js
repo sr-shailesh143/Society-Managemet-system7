@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 // Function to format the time in "hh:mm AM/PM"

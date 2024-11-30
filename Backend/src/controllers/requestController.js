@@ -24,7 +24,7 @@ exports.createRequest = async (req, res) => {
         const newRequest = new Request({
             requesterName,
             requestName,
-            requestDate,  // Convert moment date to JavaScript Date object
+            requestDate,  
             wing,
             unit,
             priority,

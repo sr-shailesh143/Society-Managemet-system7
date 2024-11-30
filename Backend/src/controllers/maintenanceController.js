@@ -5,7 +5,7 @@ const User = require("../models/usermodel")
 
 // Controller for validating password
 exports.validatePassword = async (req, res) => {
-  const { password } = req.body; // Extract password from request body
+  const { password } = req.body; 
 
   try {
     // Compare the provided password with the stored hashed password
@@ -19,7 +19,7 @@ exports.validatePassword = async (req, res) => {
     // Password is correct
     return res.status(200).json({ message: "Password is correct" });
   } catch (error) {
-    // Catch and handle any errors
+    
     return res.status(500).json({ message: error.message });
   }
 };

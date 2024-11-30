@@ -13,14 +13,14 @@ exports.auth = async (req, res, next) => {
     // Verify token and extract user ID
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Find user by ID
+  
     const user = await User.findById(decoded.userId);
 
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
-    // Attach user to request and proceed
+    
     req.user = user;
     next();
   } catch (error) {
