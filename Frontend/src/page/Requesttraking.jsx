@@ -342,60 +342,109 @@ export default function Requesttracking() {
                 </thead>
                 <tbody>
 
-                  {datalist.map((item) => (
-                    <tr >
-                      <td style={{ textAlign: "center" }}>
-                        {
-                          item.requesterName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
-                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.requesterName}</span> </span>
-                        }
-                      </td>
-                      <td style={{ textAlign: "center" }}> <spa className='ms-3'> {item.requestName}</spa> </td>
+                {datalist.map((item) => (
+  <tr key={item._id}>
+    {/* Requester Info */}
+    <td style={{ textAlign: "center" }}>
+      {item.requesterName === "" || item.img === "" ? (
+        <span>
+          <img src="\src\assets\blenck.png" alt="Placeholder" />
+          <span> --</span>
+        </span>
+      ) : (
+        <span>
+          <img src="\src\assets\Avatar.png" alt="Avatar" />
+          <span> {item.requesterName}</span>
+        </span>
+      )}
+    </td>
 
-                      <td style={{ textAlign: "center" }}>
-                        <span className=''>
-                          {new Date(item.requestDate).toLocaleDateString('en-GB', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: '2-digit',
-                          })}
-                        </span>
-                      </td>
-                      <td style={{ textAlign: "center" }} ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
-                      <td style={{ textAlign: "center" }}>
-                        {
-                          item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
-                        }
-                      </td>
-                      <td style={{ textAlign: "center" }} >
-                        {
-                          item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
-                        }
-                      </td>
+    {/* Request Name */}
+    <td style={{ textAlign: "center" }}>
+      <span className="ms-3">{item.requestName}</span>
+    </td>
 
+    {/* Request Date */}
+    <td style={{ textAlign: "center" }}>
+      <span>
+        {new Date(item.requestDate).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit",
+        })}
+      </span>
+    </td>
 
-                      <td className="action-buttons" style={{ textAlign: "center" }}>
-                        <span className='' style={{ textAlign: "center" }}>
-                          <span className={`status-badge-edit mx-2  `} onClick={() => seteditShow(true) || handle(item._id)} style={EDITE} >
+    {/* Wing and Unit */}
+    <td style={{ textAlign: "center" }}>
+      <span className="status-badge-wing" style={wing}>{item.wing}</span> {item.unit}
+    </td>
 
+    {/* Priority */}
+    <td style={{ textAlign: "center" }}>
+      {item.priority === "Medium" ? (
+        <span style={Medium}>{item.priority}</span>
+      ) : item.priority === "Low" ? (
+        <span style={Low}>{item.priority}</span>
+      ) : (
+        <span style={High}>{item.priority}</span>
+      )}
+    </td>
 
-                     
-                     
+    {/* Status */}
+    <td style={{ textAlign: "center" }}>
+      {item.status === "Pending" ? (
+        <span style={Pending}>{item.status}</span>
+      ) : item.status === "Open" ? (
+        <span style={Open}>{item.status}</span>
+      ) : (
+        <span style={Solve}>{item.status}</span>
+      )}
+    </td>
 
+    {/* Action Buttons */}
+    <td className="action-buttons" style={{ textAlign: "center" }}>
+      <span>
+        {/* Edit */}
+        <span
+          className="status-badge-edit mx-2"
+          onClick={() => {
+            seteditShow(true);
+            handle(item._id);
+          }}
+          style={EDITE}
+        >
+          <Edit style={{ cursor: "pointer" }} />
+        </span>
 
-                            <Edit style={{ cursor: "pointer" }} />
-                          </span>
-                          <span onClick={() => setshowview(true) || viewDetails(item._id)} className={`status-badge-view `} style={view} >
-                            <VisibilityIcon style={{ cursor: "pointer" }} />
-                          </span>
-                          <span onClick={() => setshowDelete(true) || setid(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
+        {/* View */}
+        <span
+          className="status-badge-view"
+          onClick={() => {
+            setshowview(true);
+            viewDetails(item._id);
+          }}
+          style={view}
+        >
+          <VisibilityIcon style={{ cursor: "pointer" }} />
+        </span>
 
-                            <Delete style={{ cursor: "pointer" }} />
-                          </span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
+        {/* Delete */}
+        <span
+          className="status-badge-delete ms-2"
+          onClick={() => {
+            setshowDelete(true);
+            setid(item._id);
+          }}
+          style={DELETE}
+        >
+          <Delete style={{ cursor: "pointer" }} />
+        </span>
+      </span>
+    </td>
+  </tr>
+))}
+
 
                 </tbody>
               </table>
@@ -483,7 +532,7 @@ export default function Requesttracking() {
                     Cancel
                   </Button>
 
-                  <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} >
+                  <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edit} />
 
                   <Button
                     className="save-btn radious l-btn "
@@ -578,4 +627,5 @@ export default function Requesttracking() {
       </div>
     </>
   );
+}
 }
