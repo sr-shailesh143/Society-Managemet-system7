@@ -250,8 +250,8 @@ export default function ServiceComplain() {
                                     <input type="radio" className='  radio polls-radio ' checked={status2 === "Pending"} onChange={handleStatusChange2} value={"Pending"} />
                                     <p className='mt-3 '>Pending</p>
                                 </div>
-                                <div onClick={() => setStatus2("Solve")} className={` col-12 col-md-3  d-flex  align-items-center gap-2  ${status2 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                                    <input style={{ width: "50px", height: "20px" }} type="radio" className='radio polls-radio' checked={status2 === "Solve"} onChange={handleStatusChange2} value={"Solve"} />
+                                <div onClick={() => setStatus2("Solve")} className={` col-md-3  d-flex  align-items-center gap-2  ${status2 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
+                                    <input  type="radio" className='radio polls-radio' checked={status2 === "Solve"} onChange={handleStatusChange2} value={"Solve"} />
                                     <p className='mt-3'>Solve</p>
                                 </div>
                             </div>

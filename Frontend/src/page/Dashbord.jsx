@@ -13,7 +13,6 @@ import '../index.css'
 import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
 import { Box, DialogTitle } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import EditablePage from '../practice/EditablePage';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const [showEditNumberModal, setShowEditNumberModal] = useState(false);
@@ -1029,7 +1028,7 @@ const Dashboard = () => {
               <p>{viewdetils.description}</p>
             </div>
             {/* wing-unit-priority-status */}
-            <div className="additional-info d-flex gap-4">
+            <div className="additional-info d-flex gap-3">
               <div>
                 <h6 className='mode-date'>Wing</h6>
                 <span style={wing}>{viewdetils.wing}</span>

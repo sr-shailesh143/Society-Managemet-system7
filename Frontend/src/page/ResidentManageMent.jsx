@@ -264,8 +264,8 @@ const ResidentManageMent = () => {
                                             <div className="document">
                                                 <div className="d-flex document-1">
                                                     <div className="document-ditels d-flex">
-                                                        <div className="img-icon ">
-                                                            <Image className='fs-3' />
+                                                        <div className="img-icon  cursor">
+                                                            <Image className='fs-3 cursor' />
                                                         </div>
                                                         <div className="document-name d-block ms-2">
                                                             <h6 className='d-text'>
@@ -274,7 +274,7 @@ const ResidentManageMent = () => {
                                                             <p className="d-n ">3.5 MB</p>
                                                         </div>
                                                     </div>
-                                                    <div className="document-view mt-1">
+                                                    <div className="document-view mt-1 cursor">
                                                         <VisibilityIcon />
                                                     </div>
                                                 </div>
