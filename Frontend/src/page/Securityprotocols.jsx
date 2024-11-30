@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { createSecurityProtocol, getAllSecurityProtocols, deleteSecurityProtocol, updateSecurityProtocol } from '../apiservices/securityProtocolservice';
 import toast from 'react-hot-toast';
+import EditablePage from '../practice/EditablePage';
+import { Delete, Edit } from '@mui/icons-material';
 const SecurityProtocols = () => {
   const [protocols, setProtocols] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -110,6 +112,26 @@ const SecurityProtocols = () => {
       toast.error('Failed to delete protocol');  // Show error toast
     }
   };
+  const EDITE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#39973D',
+  };
+  const DELETE = {
+    backgroundColor: '#F6F8FB',
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#E74C3C',
+  };
+  const VIEW = {
+    padding: '10px 10px',
+    borderRadius: '12px',
+    color: '#5678E9',
+    backgroundColor: '#F6F8FB',
+  };
+  const blanck = { backgroundColor: '#F6F8FB', padding: '5px 12px 5px 12px', borderRadius: '16px', color: '#4F4F4F', }
+
   // Close Modals
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleCloseViewModal = () => setShowViewModal(false);
@@ -122,45 +144,43 @@ const SecurityProtocols = () => {
           className="text-white"
           style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
-      <Table responsive>
-        <thead className="bg-white">
-          <tr>
-            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '15px 0px 0px 0px', textAlign: "center" }}>Title</th>
-            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Description</th>
-            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Date</th>
-            <th style={{ backgroundColor: '#E5ECFD', textAlign: "center" }}>Time</th>
-            <th style={{ backgroundColor: '#E5ECFD', borderRadius: '0px 15px 0px 0px', textAlign: 'center' }}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(protocols) && protocols.length > 0 ? (
-            protocols.map((protocol, index) => (
-              <tr key={protocol._id}>
-                <td style={{ textAlign: "center" }}>{protocol.title}</td>
-                <td style={{ textAlign: "center" }}>{protocol.description}</td>
-                <td style={{ textAlign: "center" }}>{new Date(protocol.date).toLocaleDateString()}</td>
-                <td style={{ textAlign: "center" }}><span className='time-badge2 '>{protocol.time}</span></td>
-                <td style={{ textAlign: 'center' }}>
-                  <Button variant="success" size="sm" className="me-2" onClick={() => handleEdit(index)}>
-                    <FaEdit />
-                  </Button>
-                  <Button variant="primary" size="sm" className="me-2" onClick={() => handleView(index)}>
-                    <FaEye />
-                  </Button>
-                  <Button variant="danger" size="sm" onClick={() => handleDelete(index)}>
-                    <FaTrash />
-                  </Button>
+      <div className="responsive-table-container">
+        <table className="responsive-table">
+          <thead className='tabal-header'>
+            <tr>
+
+              <th className='redious'> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  Title</th>
+              <th>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;Description</th>
+              <th> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; Date</th>
+              <th> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Time</th>
+              <th className='redious1'> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {protocols.map((item, index) => (
+              <tr key={index}>
+                <td><span className='m-5'>{item.title}</span></td>
+                <td><span className='m-5'> {item.description}</span></td>
+                <td><span className='m-5'>  {new Date(item.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit', })}</span></td>
+                <td><span className='m-5' style={blanck}> {item.time}</span></td>
+                <td className="action-buttons">
+                  <div className="d-flex gap-2">
+                    <span className="status-badge-edit" style={EDITE}   onClick={() => handleEdit(index)} >
+                      <Edit style={{ cursor: 'pointer' }} />
+                    </span>
+                    <span className="status-badge-view" style={VIEW}  onClick={() => handleView(index)} >
+                      <VisibilityIcon style={{ cursor: 'pointer' }} />
+                    </span>
+                    <span className="status-badge-delete" style={DELETE} onClick={() => handleDelete(index)} >
+                      <Delete style={{ cursor: 'pointer' }} />
+                    </span>
+                  </div>
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="text-center">No protocols available</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
-
+            ))}
+          </tbody>
+        </table>
+      </div>
       {/* Modal for creating a new protocol */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header>

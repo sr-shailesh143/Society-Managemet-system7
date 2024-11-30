@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-
 const numberSchema=new Schema({
     Name:{
         type:String,

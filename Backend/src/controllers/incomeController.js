@@ -1,4 +1,3 @@
-// controllers/incomeController.js
 const Income = require('../models/incomeModel');
 
 // Create new income entry

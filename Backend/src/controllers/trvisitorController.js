@@ -23,8 +23,6 @@ exports.createVisitor = async (req, res) => {
 };
 
 // Get all visitors
-
-
 exports.getAllVisitors = async(req,res)=>{
     try {
         const visitors = await Visitor.find();
@@ -43,10 +41,7 @@ exports.getAllVisitors = async(req,res)=>{
         console.log(error);
     }
   }
-
-
 // Get a single visitor by ID
-
 exports.getVisitorById = async (req, res) => {
     try {
       const { id } = req.params;

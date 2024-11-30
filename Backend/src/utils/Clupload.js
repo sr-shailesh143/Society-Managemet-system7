@@ -6,12 +6,15 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
         cb(null, uniqueSuffix + path.extname(file.originalname));  // Use timestamp + original extension
+        // cb(null, file.originalname)
     }
 });
+
 
 // Set up file filter
 const fileFilter = (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif|pdf/;
+    console.log(file.originalname)
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = fileTypes.test(file.mimetype);
     

@@ -11,7 +11,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const OTP_EXPIRATION_TIME = 30 * 1000; 
+const OTP_EXPIRATION_TIME = 30 * 1000;
 
 exports.Register = async (req, res) => {
   try {
@@ -89,10 +89,7 @@ exports.Register = async (req, res) => {
       });
     }
 
-    // Hash the password
     const hashpassword = await hash(password);
-
-  
 
     // Create user with hashed password, excluding Cpassword
     const user = await User.create({
@@ -107,7 +104,6 @@ exports.Register = async (req, res) => {
       password: hashpassword,
     });
 
-    // Respond if user creation is successful
     if (user) {
       res.status(200).json({
         success: true,
@@ -123,7 +119,7 @@ exports.Register = async (req, res) => {
   }
 };
 const generateToken = (userId) => {
-  return jwt.sign({ userId },process.env.JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
 // Login endpoint
@@ -132,66 +128,76 @@ exports.login = async (req, res) => {
 
   // Default credentials for user and security roles
   const defaultCredentials = [
-      { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
-      { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
+    {
+      email: "user7@gmail.com",
+      password: "user@7",
+      role: "user",
+      redirectUrl: "/ResidentManageMent",
+    },
+    {
+      email: "security72@gmail.com",
+      password: "secur7",
+      role: "security",
+      redirectUrl: "/VisitorTracking",
+    },
   ];
 
   try {
-      // Check if provided credentials match default credentials
-      const matchedDefault = defaultCredentials.find(
-          (cred) => cred.email === EmailOrPhone && cred.password === password
-      );
+    // Check if provided credentials match default credentials
+    const matchedDefault = defaultCredentials.find(
+      (cred) => cred.email === EmailOrPhone && cred.password === password
+    );
 
-      if (matchedDefault) {
-          // Direct login for default users, no token generation
-          return res.status(200).json({
-              success: true,
-              message: `${matchedDefault.role} logged in successfully`,
-              redirectUrl: matchedDefault.redirectUrl,
-              user: { email: matchedDefault.email, role: matchedDefault.role },
-          });
-      }
-
-      // If not default credentials, proceed with normal login logic
-      let query = {};
-      if (EmailOrPhone.includes("@")) {
-          query = { Email: EmailOrPhone }; // email query
-      } else {
-          query = { Phone: EmailOrPhone }; // phone query
-      }
-
-      const user = await User.findOne(query); // Replace with your DB model
-      if (!user) {
-          return res.status(404).json({
-              success: false,
-              message: "User not found",
-          });
-      }
-
-      // Validate password
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (!isPasswordValid) {
-          return res.status(401).json({
-              success: false,
-              message: "Invalid credentials",
-          });
-      }
-
-      // Generate JWT token
-      const token = generateToken(user._id);
-
+    if (matchedDefault) {
+      // Direct login for default users, no token generation
       return res.status(200).json({
-          success: true,
-          message: "User logged in successfully",
-          token: token,
-          user: { email: user.Email, role: user.role },
+        success: true,
+        message: `${matchedDefault.role} logged in successfully`,
+        redirectUrl: matchedDefault.redirectUrl,
+        user: { email: matchedDefault.email, role: matchedDefault.role },
       });
+    }
+
+    // If not default credentials, proceed with normal login logic
+    let query = {};
+    if (EmailOrPhone.includes("@")) {
+      query = { Email: EmailOrPhone }; // email query
+    } else {
+      query = { Phone: EmailOrPhone }; // phone query
+    }
+
+    const user = await User.findOne(query); // Replace with your DB model
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Validate password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // Generate JWT token
+    const token = generateToken(user._id);
+
+    return res.status(200).json({
+      success: true,
+      message: "User logged in successfully",
+      token: token,
+      user: { email: user.Email, role: user.role },
+    });
   } catch (error) {
-      console.error(error);
-      return res.status(500).json({
-          success: false,
-          message: "Internal server error",
-      });
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
 exports.logout = async (req, res) => {
@@ -221,9 +227,6 @@ exports.logout = async (req, res) => {
     });
   }
 };
-
-
-
 
 exports.GetOtp = async (req, res) => {
   try {
@@ -412,16 +415,16 @@ exports.ResetingPassword = async (req, res) => {
 exports.Updateform = async (req, res) => {
   try {
     const {
-        UserName,
-        SurName,
-        Email,
-        Phone_Number,
-        Country,
-        State,
-        City,
-        select_society,
-        password,
-        Cpassword,
+      UserName,
+      SurName,
+      Email,
+      Phone_Number,
+      Country,
+      State,
+      City,
+      select_society,
+      password,
+      Cpassword,
     } = req.body;
     if (
       !UserName ||
@@ -465,14 +468,14 @@ exports.Updateform = async (req, res) => {
     }
     const hashpassword = await hash(password);
     const user = await User.findByIdAndUpdate(req.params.id, {
-        UserName,
-        SurName,
-        Email,
-        Phone_Number,
-        Country,
-        State,
-        City,
-        select_society,
+      UserName,
+      SurName,
+      Email,
+      Phone_Number,
+      Country,
+      State,
+      City,
+      select_society,
       password: hashpassword,
       Cpassword: hashpassword,
     });

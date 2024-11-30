@@ -41,8 +41,6 @@ const Ownerschema= new Schema({
     },
     Aadharfront:{
         type:String,
-        
-       
     },
     Aadharback:{
         type:String,
