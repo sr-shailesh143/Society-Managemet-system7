@@ -9,7 +9,7 @@ const securitySchema = new mongoose.Schema({
     MailOrPhone: {
         type: String,
         required: true,
-        unique: true
+       
     },
     gender: {
         type: String,

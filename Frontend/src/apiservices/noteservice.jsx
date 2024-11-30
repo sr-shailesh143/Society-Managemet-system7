@@ -15,5 +15,5 @@ export const deleteNote = async (id) =>
   await api.delete(`http://localhost:8001/api/notes/deleteNote/${id}`);
 
 //update Note by id
-export const updateNote = async (id, data) =>
-  await api.patch(`http://localhost:8001/api/notes/updateNote/${id}`, data);
+export const updateNote = async (_id, data) =>
+  await api.patch(`http://localhost:8001/api/notes/updateNote/${_id}`, data);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify'; // For showing success/error messages
-import { CreateSecurityGuard, GetallSecurityGuards, UpdateSecurityGuard, DeleteSecurityGuard } from '../apiservices/securityservice'; // Import API functions
+import { toast } from 'react-toastify';
+import { CreateSecurityGuard, GetallSecurityGuards, UpdateSecurityGuard, DeleteSecurityGuard } from '../apiservices/securityservice';
 import { FaEdit, FaMale, FaFemale } from 'react-icons/fa';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useDropzone } from 'react-dropzone';
@@ -9,10 +9,8 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 
 const SecurityGuard = () => {
   const [guards, setGuards] = useState([]);
+  const [modalMode, setModalMode] = useState('add'); // 'add', 'edit', 'view'
   const [showModal, setShowModal] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedGuard, setSelectedGuard] = useState(null);
-  const [modalMode, setModalMode] = useState("add"); // 'add', 'edit', 'view'
   const [currentGuard, setCurrentGuard] = useState(null);
   const [newGuard, setNewGuard] = useState({
     fullName: '',
@@ -21,40 +19,29 @@ const SecurityGuard = () => {
     shiftDate: '',
     shiftTime: '',
     gender: '',
-    photo: "",
-    aadharCard: "",
+    photo: '',
+    aadharCard: '',
   });
-  const [isFormFilled, setIsFormFilled] = useState(false);
-
   const [photoPreview, setPhotoPreview] = useState(null);
   const [aadharPreview, setAadharPreview] = useState(null);
 
-  // Check if the form is filled before submitting
-  const checkFormFilled = (guard) => {
-    return (
-      guard.fullName.trim() !== "" &&
-      guard.MailOrPhone.trim() !== "" &&
-      guard.gender !== "" &&
-      guard.shift !== "" &&
-      guard.shiftDate !== "" &&
-      guard.shiftTime !== "" &&
-      guard.aadharCard !== null
-    );
-  };
-
-  // Fetch all guards from the server
+  // Fetch all guards
   const fetchGuards = async () => {
     try {
       const response = await GetallSecurityGuards();
-      setGuards(response.data.records);
+      setGuards(response.data.records || []);
     } catch (error) {
-      toast.error("Error fetching guards: " + error.message);
+      toast.error(`Error fetching guards: ${error.message}`);
     }
   };
 
-  // Handle add guard button click
+  useEffect(() => {
+    fetchGuards();
+  }, []);
+
+  // Open modal for adding a new guard
   const handleAddGuard = () => {
-    setModalMode("add");
+    setModalMode('add');
     setNewGuard({
       fullName: '',
       MailOrPhone: '',
@@ -62,78 +49,44 @@ const SecurityGuard = () => {
       shiftDate: '',
       shiftTime: '',
       gender: '',
-      photo: null,
-      aadharCard: null,
+      photo: '',
+      aadharCard: '',
     });
-    setIsModalOpen(true);
+    setPhotoPreview(null);
+    setAadharPreview(null);
+    setShowModal(true);
   };
 
-  // Handle edit guard button click
+  // Open modal for editing an existing guard
   const handleEditGuard = (guard) => {
-    setModalMode("edit");
+    setModalMode('edit');
     setCurrentGuard(guard);
-    setNewGuard({ ...guard });
-    setIsModalOpen(true);
+    setNewGuard(guard);
+    setPhotoPreview(guard.photo);
+    setAadharPreview(guard.aadharCard);
+    setShowModal(true);
   };
 
-  // Handle view guard button click
-  const handleViewGuard = (guard) => {
-    setModalMode("view");
-    setCurrentGuard(guard);
-    setIsModalOpen(true);
-  };
-  console.log(newGuard)
-
-  // Handle delete guard button click
-  const handleDeleteGuard = async () => {
+  // Save new or updated guard
+  const handleSave = async (e) => {
+    e.preventDefault();
     try {
-      await DeleteSecurityGuard(currentGuard._id);
-      setGuards(guards.filter((guard) => guard._id !== currentGuard._id));
-      toast.success("Guard deleted successfully");
-      setIsModalOpen(false);
-    } catch (error) {
-      toast.error("Error deleting guard: " + error.message);
-    }
-  };
-
-  // Handle saving guard (both add and edit)
-  const handleSave = async () => {
-    if (!isFormFilled) {
-      toast.error("Please fill all the fields.");
-      return;
-    }
-
-    try {
-      if (modalMode === "add") {
+      if (modalMode === 'add') {
         const response = await CreateSecurityGuard(newGuard);
         setGuards([...guards, response.data]);
-        toast.success("Guard added successfully");
-      } else if (modalMode === "edit") {
+        toast.success('Guard added successfully');
+      } else if (modalMode === 'edit') {
         const response = await UpdateSecurityGuard(currentGuard._id, newGuard);
         setGuards(
           guards.map((guard) =>
             guard._id === currentGuard._id ? response.data : guard
           )
         );
-        toast.success("Guard updated successfully");
+        toast.success('Guard updated successfully');
       }
-
-      // Reset the form and close the modal
-      setIsModalOpen(false);
-      setPhotoPreview(null);
-      setAadharPreview(null);
-      setNewGuard({
-        fullName: '',
-        MailOrPhone: '',
-        shift: '',
-        shiftDate: '',
-        shiftTime: '',
-        gender: '',
-        photo: null,
-        aadharCard: null,
-      });
+      setShowModal(false);
     } catch (error) {
-      toast.error("Error saving guard: " + error.message);
+      toast.error(`Error saving guard: ${error.message}`);
     }
   };
 
@@ -145,39 +98,51 @@ const SecurityGuard = () => {
     },
   });
 
-  // Handle file upload for photo and aadhar card
-  const handleFileUpload = (event, type) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 10 * 1024 * 1024) {
-        alert("File size should be less than 10MB");
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (type === "photo") {
-          setPhotoPreview(reader.result);
-          setNewGuard({ ...newGuard, photo: file });
-        } else if (type === "aadharCard") {
-          setAadharPreview(reader.result);
-          setNewGuard({ ...newGuard, aadharCard: file });
-        }
-      };
-      reader.readAsDataURL(file);
+  // Delete guard
+  const handleDeleteGuard = async (guardId) => {
+    try {
+      await DeleteSecurityGuard(guardId);
+      setGuards(guards.filter((guard) => guard._id !== guardId));
+      toast.success('Guard deleted successfully');
+    } catch (error) {
+      toast.error(`Error deleting guard: ${error.message}`);
     }
   };
 
-  // Handle form field change
-  const handleFieldChange = (field, value) => {
-    const updatedGuard = { ...newGuard, [field]: value };
-    setNewGuard(updatedGuard);
-    setIsFormFilled(checkFormFilled(updatedGuard));
+  // Handle file upload
+  const handleFileUpload = (e, type) => {
+    const file = e.target.files[0];
+    if (file && file.size <= 10 * 1024 * 1024) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (type === 'photo') {
+          setPhotoPreview(reader.result);
+          setNewGuard({ ...newGuard, photo: reader.result });
+        } else if (type === 'aadharCard') {
+          setAadharPreview(reader.result);
+          setNewGuard({ ...newGuard, aadharCard: reader.result });
+        }
+      };
+      reader.readAsDataURL(file);
+    } else {
+      toast.error('File size should be less than 10MB');
+    }
   };
 
-  useEffect(() => {
-    fetchGuards();
-  }, []);
+  // Handle field change
+  const handleFieldChange = (field, value) => {
+    setNewGuard({ ...newGuard, [field]: value });
+  };
+
+  const formatTime = (timeStr) => {
+    if (!timeStr) return "Invalid Time"; 
+    const [hours, minutes] = timeStr.split(":");
+    const date = new Date();
+    date.setHours(parseInt(hours));
+    date.setMinutes(parseInt(minutes));
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+  };
+
 
   return (
     <div className="container-fluid " style={{ minHeight: '100vh', width: '100%' }}>
@@ -214,7 +179,7 @@ const SecurityGuard = () => {
               <tr key={index} className="text-center">
                 <td className="fw-normal guard-info">
                   <img
-                    src="https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E="
+                    src={guard.photo}
                     alt="Profile"
                     className="profile-image"
                   />
@@ -227,10 +192,10 @@ const SecurityGuard = () => {
 </span>
 </td>
 
-                <td className="fw-normal">{guard.shiftDate}</td>
-                <td className="fw-normal">{guard.shiftTime}</td>
+                <td className="fw-normal">{new Date(guard.shiftDate).toLocaleDateString()}</td>
+                <td className="fw-normal">{formatTime(guard.shiftTime)}</td>
                 <td className="fw-normal text-center">
-{guard.gender === 'male' ? (
+{guard.gender === 'Male' ? (
   <span className="badge gender-badge male-badge">
     <FaMale className="icon-margin" /> Male
   </span>
@@ -272,7 +237,7 @@ const SecurityGuard = () => {
             <h5 className="modal-title" id="exampleModalLabel">Add Security Guard</h5>
             <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
           </div>
-          <form onSubmit={handleSave}>
+          <form onSubmit={handleSave} method='post' encType='multipart/form-data'>
             <div className="modal-body">
               <div className="mb-3">
                 <label htmlFor="photo" className="form-label d-flex align-items-center">
@@ -282,6 +247,7 @@ const SecurityGuard = () => {
                   <a href="#" className="text-decoration-none">Add Photo</a>
                 </label>
                 <input type="file" id="photo" name="photo" className="form-control d-none"  onChange={(e) => handleFileUpload(e, "photo")} />
+                {photoPreview }
               </div>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label required">Full Name</label>
@@ -343,7 +309,7 @@ const SecurityGuard = () => {
                 </div>
               </div>
               <div className="file-upload" {...getRootProps()}>
-                <input {...getInputProps()} id="aadharCard" name="aadharCard"/>
+                <input {...getInputProps()} id="aadharCard" name="aadharCard" type='file'  onChange={(e) => handleFileUpload(e, "aadharCard")}/>
                 <div className="upload-area">
                   <center>
                     <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
@@ -351,6 +317,7 @@ const SecurityGuard = () => {
                   <p><span className='img-text'>Upload a file </span> or drag and drop</p>
                   <small>PNG, JPG, GIF up to 10MB</small>
                 </div>
+                {aadharPreview }
               </div>
             </div>
             <div className="modal-footer">

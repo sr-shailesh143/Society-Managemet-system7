@@ -13,6 +13,9 @@ import '../index.css'
 import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
 import { Box, DialogTitle } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
+import EditablePage from '../practice/EditablePage';
+import { getAnnouncements } from '../apiservices/announcementservice';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const [showEditNumberModal, setShowEditNumberModal] = useState(false);
@@ -129,12 +132,50 @@ const Dashboard = () => {
 
 
   ]);
-  const [activities, setActivities] = useState([
-    { event: 'Community Meeting', date: '2024-11-20', time: '10:00 AM' },
-    { event: 'Maintenance Check', date: '2024-11-21', time: '2:00 PM' },
-    { event: 'Festival Celebration', date: '2024-11-22', time: '6:00 PM' },
+  const [eventsData, setEventsData] = useState([]); // To store the announcements
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(""); // To handle error messages
 
-  ]);
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      setLoading(true);
+      setError(""); // Reset error message
+
+      try {
+        const response = await getAnnouncements(); // Make the API call
+        console.log("API Response:", response); // Log the full response for debugging
+
+        // Ensure response contains the expected data and the 'records' field
+        if (response && response.data && Array.isArray(response.data.records)) {
+          setEventsData(response.data.records); // Update state with fetched data
+        } else {
+          setError("No announcements found or data is in an unexpected format");
+        }
+      } catch (err) {
+        console.error("Error fetching announcements:", err);
+        setError("Failed to load announcements");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAnnouncements(); // Call the fetch function on mount
+  }, []); // Empty array ensures this runs only once when the component mounts
+
+  // Function to format the date to local format (e.g., "MM/DD/YYYY")
+  const formatLocalDate = (dateString) => {
+    const date = new Date(dateString); // Convert string to Date object
+    return date.toLocaleDateString(); // Format to local date
+  };
+
+  const formatTime = (timeStr) => {
+    if (!timeStr) return "Invalid Time";
+    const [hours, minutes] = timeStr.split(":");
+    const date = new Date();
+    date.setHours(parseInt(hours));
+    date.setMinutes(parseInt(minutes));
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+  };
 
   const getRandomColor = () => {
     const colors = ['#ff6b6b', '#4e73df', '#1cc88a', '#36b9cc'];
@@ -717,60 +758,69 @@ const Dashboard = () => {
 
         {/* Upcoming Activity */}
         <Col xs={12} md={6} lg={3}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }}>
-            <Card.Body>
-              <div className="d-flex justify-content-between align-items-center">
-                <Card.Title>Upcoming Activity</Card.Title>
-                <select
-                  id="dropdown-basic-button"
-                  title="Select Month"
-
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "5px",
-                    padding: "5px",
-                    fontSize: "14px",
-                  }}
-                  className="p-1" >
-                  <option value="lastYear" >Last Year</option>
-                  <option value="lastWeek">Last Week</option>
-                  <option value="lastMonth">Last Month</option>
-                </select>
-              </div>
+        <Card className="mb-4" style={{ borderRadius: "15px" }}>
+          <Card.Body>
+            <div className="d-flex justify-content-between align-items-center">
+              <Card.Title>Upcoming Activity</Card.Title>
+              <select
+                id="dropdown-basic-button"
+                title="Select Month"
+                style={{
+                  border: "1px solid grey",
+                  borderRadius: "5px",
+                  padding: "5px",
+                  fontSize: "14px",
+                }}
+                className="p-1"
+              >
+                <option value="lastYear">Last Year</option>
+                <option value="lastWeek">Last Week</option>
+                <option value="lastMonth">Last Month</option>
+              </select>
+            </div>
+            {loading ? (
+              <p>Loading activities...</p>
+            ) : error ? (
+              <p style={{ color: "red" }}>{error}</p>
+            ) : (
               <ListGroup variant="flush" className="mt-3">
-                {activities.map((item, index) => (
+                {eventsData.map((item, index) => (
                   <ListGroup.Item key={index} className="d-flex align-items-start">
-                    <div
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        backgroundColor: getRandomColor(),
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "white",
-                        marginRight: "10px",
-                        fontSize: "14px",
-                      }}>  A
-                    </div>
-                    <div className="d-flex justify-content-between w-100">
-                      <div>
-                        <div>
-                          <strong>{item.event}</strong>
-                        </div>
-                        <p style={{ color: "grey" }}>{item.time}</p>
-                      </div>
-                      <div>
-                        <small style={{ color: "grey" }}>{item.date}</small>
-                      </div>
-                    </div>
-                  </ListGroup.Item>
+  <div
+    style={{
+      width: "30px",
+      height: "30px",
+      backgroundColor: getRandomColor(),
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "white",
+      marginRight: "10px",
+      fontSize: "14px",
+    }}
+  >
+    {(item.event?.charAt(0) || "N").toUpperCase()}
+  </div>
+  <div className="d-flex justify-content-between w-100">
+    <div>
+      <div>
+        <strong>{item.title || "No Event Name"}</strong>
+      </div>
+      <p style={{ color: "grey" }}>{formatTime(item.announcementTime)}</p>
+    </div>
+    <div>
+      <small style={{ color: "grey" }}>{formatLocalDate(item.announcementDate)}</small>
+    </div>
+  </div>
+</ListGroup.Item>
+
                 ))}
               </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
+            )}
+          </Card.Body>
+        </Card>
+      </Col>
       </Row>
       {/* Modals  for complain table*/}
       {/* Add Important Number Modal */}
