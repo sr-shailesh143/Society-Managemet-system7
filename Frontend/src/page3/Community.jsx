@@ -154,7 +154,7 @@ export default function Community() {
                     )}
                   </div>
                   <div className="col-12 col-md-8">
-                    <input type="text" className='input-chet-main ' onChange={(e) => setSent(e.target.value)} style={{ width: "100%", border: "none" }} />
+                    <input type="text" className='input-chet-main '  onChange={(e) => setSent(e.target.value)} style={{ width: "100%", border: "none" }} />
                   </div>
 
                   <div className="col-12 col-md-1 d-flex gap-3 me-4 position-sticky ">

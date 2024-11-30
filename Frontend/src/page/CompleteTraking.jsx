@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../index.css';
-import { Button, Box } from '@mui/material';
+import { Button, Box, DialogTitle } from '@mui/material';
 import { Delete, Edit, } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
 import { useNavigate } from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
+
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
   const handlecancle = () => setshow(false);
@@ -343,9 +345,9 @@ export default function CompleteTracking() {
               <table className="responsive-table">
                 <thead className='tabal-header'>
                   <tr>
-                    <th className='redious'style={{textAlign:"center"}}> &nbsp;&nbsp;  Complainer Name</th>
-                    <th style={{textAlign:"center"}}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
-                    <th className='justify-content-center'style={{textAlign:"center"}}> &nbsp; Description</th>
+                    <th className='redious' style={{ textAlign: "center" }}> &nbsp;&nbsp;  Complainer Name</th>
+                    <th style={{ textAlign: "center" }}>  &nbsp; &nbsp;  &nbsp;Complaint Name</th>
+                    <th className='justify-content-center' style={{ textAlign: "center" }}> &nbsp; Description</th>
                     <th>Unit Number</th>
                     <th>  &nbsp; &nbsp;Priority</th>
                     <th> &nbsp;&nbsp; Status</th>
@@ -356,15 +358,15 @@ export default function CompleteTracking() {
 
                   {datalist.map((item) => (
                     <tr >
-                      <td style={{textAlign:"center"}}>
+                      <td style={{ textAlign: "center" }}>
                         {
                           item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
                             <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
                         }
                       </td>
-                      <td style={{textAlign:"center"}} > <spa className='ms-3'> {item.complaintName}</spa> </td>
+                      <td style={{ textAlign: "center" }} > <spa className='ms-3'> {item.complaintName}</spa> </td>
 
-                      <td style={{textAlign:"center"}}> <span  >{item.description}</span>  </td>
+                      <td style={{ textAlign: "center" }}> <span  >{item.description}</span>  </td>
                       <td ><span className='status-badge-wing' style={wing}>{item.wing}</span>   {item.unit}</td>
                       <td >
                         {
@@ -512,57 +514,77 @@ export default function CompleteTracking() {
             </div>
           </Modal>
           {/* view mode  */}
-          <Modal show={showview} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className="PROLIFE">
-                <div className="row">
-                  <div className="col-12 col-md-2">
-                    <img src="/src/assets/Avatar.png" alt="" />
+          <Modal show={showview} onHide={handleClose}  >
+            <div className="div" style={{ borderRadius: "10%" }}>
+
+
+              <Modal.Header className='bg-white' style={{ height: "60px" }}>
+                {/* <Modal.Title>
+           
+           
+          </Modal.Title> */}
+                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                  <h> View Complain </h>
+                </DialogTitle>
+                <span style={{ cursor: "pointer" }} onClick={handleClose}>
+                  <CloseIcon className='mb-2 fs-3' />
+
+                </span>
+              </Modal.Header>
+              <Modal.Body className='viewcomplete'>
+                {/* profile */}
+                <div className="profile-name d-flex gap-2 ">
+                  <div className="" style={{ width: "70px", height: "70px", }}>
+                    <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="profileName mt-1">
                     <h5>{viewdetils.complainerName}</h5>
-                    <p className='mode-date'>
-                      {new Date(viewdetils.createdAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </p>
+                    <p className='mode-date'> {new Date(viewdetils.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}</p>
                   </div>
                 </div>
-              </div>
-              <div className="profile-name">
-                <h6 className='fs-5 mode-date' >Request Name</h6>
-                <h4>{viewdetils.complaintName}</h4>
-              </div>
-              <div className="Description mt-4">
-                <h6 className='fs-5 mode-date' >Description</h6>
-                <h6>{viewdetils.description}</h6>
-              </div>
-              <div className="ditels mt-3">
-                <div className="row">
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>wing</p>
-                    <p className='ms-2 wing'> <span className='ms-2'>{viewdetils.wing}</span></p>
+                {/* requist name */}
+                <div className="requistname mt-2">
+                  <h6 className='mode-date fs-5'>
+                    Request Name
+                  </h6>
+                  <h6>
+                    {viewdetils.complaintName}
+                  </h6>
+                </div>
+                {/* Description  */}
+                <div className="Description mt-3">
+                  <h6 className='mode-date fs-5'>Description</h6>
+                  <p>{viewdetils.description}</p>
+                </div>
+                {/* wing-unit-priority-status */}
+                <div className="additional-info d-flex gap-3">
+                  <div>
+                    <h6 className='mode-date'>Wing</h6>
+                    <span style={wing}>{viewdetils.wing}</span>
                   </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Unit</p>
-                    <p className=' '> <span className=''>{viewdetils.unit}</span></p>
+                  <div className='ms-1'>
+                    <h6 className='mode-date'>Unit</h6>
+                    <span >{viewdetils.unit}</span>
                   </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Priority</p>
-                    <p className=' Priority'> <span className=''style={{textAlign:"center"}}>{viewdetils.priority}</span></p>
+                  <div className='ms-2'>
+                    <h6 className='mode-date'>Priority</h6>
+                    {
+                      viewdetils.priority === "Medium" ? <span style={Medium}>{viewdetils.priority}</span> : viewdetils.priority === "Low" ? <span style={Low}>{viewdetils.priority}</span> : <span style={High}>{viewdetils.priority}</span>
+                    }
                   </div>
-                  <div className="col-12 col-md-3  ">
-                    <p className='mode-date'>Status</p>
-                    <p className='open '> <span className=''style={{textAlign:"center"}}>{viewdetils.status}</span></p>
+                  <div className='ms-2'>
+                    <h6 className='mode-date'>Status</h6>
+                    {
+                      viewdetils.status === "Pending" ? <span style={Pending}>{viewdetils.status}</span> : viewdetils.status === "Open" ? <span style={Open}>{viewdetils.status}</span> : <span style={Solve}>{viewdetils.status}</span>
+                    }
                   </div>
                 </div>
-              </div>
-            </Modal.Body>
+              </Modal.Body>
+            </div>
           </Modal>
           {/* delete model */}
           <Modal show={showDelete}>

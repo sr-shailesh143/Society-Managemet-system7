@@ -108,7 +108,7 @@ function App() {
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
         {/* ResidentManageMentLayout */}
-        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={""} />} />
+        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={<Dashbord/>} />} />
         {/* PersonalDetail */}
         <Route path='/PersonalDetail' element={<ResidentManageMentLayout component={<PersonalDetail />} />} />
         <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />
