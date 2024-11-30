@@ -20,7 +20,7 @@ const Announcement = () => {
   const fetchAnnouncements = async () => {
     try {
       const response = await getAnnouncements();
-      setAnnouncements(response.data.records || []);
+      setAnnouncements(response.data.records);
     } catch (error) {
       console.error("Error fetching announcements:", error);
     }
@@ -105,42 +105,56 @@ const Announcement = () => {
       </div>
 
       <div className="row">
-        {announcements.length > 0 ? (
-          announcements.map((announcement) => (
-            <div key={announcement._id} className="col-12 col-md-6 col-lg-4 mb-4">
-              <Card className="shadow-sm">
-                <Card.Header className="d-flex justify-content-between bg-primary text-white">
-                  <span>{announcement.title}</span>
-                  <Dropdown>
-                    <Dropdown.Toggle as="div" bsPrefix="p-0">
-                      <BsThreeDotsVertical className="text-white" />
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleShowModal("edit", announcement)}>Edit</Dropdown.Item>
-                      <Dropdown.Item onClick={() => handleShowModal("view", announcement)}>View</Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => {
-                          setCurrentAnnouncement(announcement);
-                          setDeleteModal(true);
-                        }}
-                      >
-                        Delete
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Card.Header>
-                <Card.Body className="justify-content-between">
-                  <p><strong style={{color:"grey"}}> Announcement Date:</strong> <span className="justify-content-between"style={{marginLeft:"150px"}}>{new Date(announcement.announcementDate).toLocaleDateString()}</span></p>
-                  <p><strong style={{color:"grey"}}> Announcement Time:</strong><span style={{marginLeft:"150px"}}> {formatTime(announcement.announcementTime)}</span></p>
-                  <p><strong style={{color:"grey"}}>description</strong></p>
-                  <p className="text-truncate">{announcement.description}</p>
-                </Card.Body>
-              </Card>
-            </div>
-          ))
-        ) : (
-          <p>No announcements found.</p>
-        )}
+       
+      {Array.isArray(announcements) && announcements.length > 0 ? (
+  announcements.map((announcement) => (
+    <div key={announcement._id} className="col-12 col-md-6 col-lg-4 mb-4">
+      <Card className="shadow-sm">
+        <Card.Header className="d-flex justify-content-between bg-primary text-white">
+          <span>{announcement.title}</span>
+          <Dropdown>
+            <Dropdown.Toggle as="div" bsPrefix="p-0">
+              <BsThreeDotsVertical className="text-white" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => handleShowModal("edit", announcement)}>Edit</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleShowModal("view", announcement)}>View</Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  setCurrentAnnouncement(announcement);
+                  setDeleteModal(true);
+                }}
+              >
+                Delete
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Card.Header>
+        <Card.Body className="justify-content-between">
+          <p>
+            <strong style={{ color: "grey" }}> Announcement Date:</strong>
+            <span style={{ marginLeft: "150px" }}>
+              {new Date(announcement.announcementDate).toLocaleDateString()}
+            </span>
+          </p>
+          <p>
+            <strong style={{ color: "grey" }}> Announcement Time:</strong>
+            <span style={{ marginLeft: "150px" }}>
+              {formatTime(announcement.announcementTime)}
+            </span>
+          </p>
+          <p>
+            <strong style={{ color: "grey" }}>Description</strong>
+          </p>
+          <p className="text-truncate">{announcement.description}</p>
+        </Card.Body>
+      </Card>
+    </div>
+  ))
+) : (
+  <p>No announcements available</p>
+)}
+
       </div>
 
       {/* Create/Edit Modal */}

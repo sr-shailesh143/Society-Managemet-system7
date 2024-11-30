@@ -5,7 +5,7 @@ import { login } from '../apiservices/Authentication';
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
-
+import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 
 
@@ -78,8 +78,8 @@ export default function Login() {
 
     return (
         <div className='container-fluid container-img ' >
-            <div className="col-12 d-sm-block d-md-none mt-5  text-center">
-                <img className='w-70 h-50 img-fluid ' src="src/assets/Logo.png" alt="Logo" />
+            <div className="col-12 d-sm-block d-md-none   text-center">
+                <img className='w-70 h-50 img-fluid mt-5 ' src="src/assets/Logo.png" alt="Logo" />
             </div>
             <div className="row d-flex gap-5">
                 <div className="col-12 col-md-6 d-none d-md-flex bg-color justify-content-center align-items-center">
@@ -91,7 +91,7 @@ export default function Login() {
                     </div>
                 </div>
 
-                <div className="col-12 col-md-5   d-flex justify-content-center align-items-center"style={{width:"680px"}}>
+                <div className="col-12 col-md-5   d-flex  align-items-center"style={{width:"630px",}}>
                     <form className="form-container from container radious border p-4" onSubmit={handleLogin} noValidate>
                         <div className="row">
                             <div className="col-12 d-sm-block d-md-none mt-5 text-center">
@@ -133,15 +133,16 @@ export default function Login() {
                                     onClick={togglePasswordVisibility}
                                     style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
                                 >
-                                    <FaEye className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}/>
+                                   
+                                   {showPassword ? <FaEye  className='fs-4' /> :<FaEyeSlash className='fs-4'/>}
                                 </span>
-                                <span
-                                    className="hide1"
-                                    onClick={togglePasswordVisibility}
-                                    style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none',zIndex:"999" }}
-                                >
-                                    <FaEye className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}/>
-                                </span>
+                                    <span
+                                        className="hide1"
+                                        onClick={togglePasswordVisibility}
+                                        style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none',zIndex:"999" }}
+                                    >
+                                        {showPassword ? <FaEye  className='fs-4' /> :<FaEyeSlash className='fs-4'/>}
+                                    </span>
                                 {errors.password && <span className='text-danger'>{errors.password}</span>}
                             </div>
 

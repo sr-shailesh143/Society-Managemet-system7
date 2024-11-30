@@ -8,7 +8,7 @@ exports.addExpense = async (req, res) => {
         const { title, description, date, amount } = req.body;
        
         // Upload file to Cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path, { resource_type: "auto" });
+        const result = await cloudinary.uploader.upload(req?.file?.path, { resource_type: "auto" });
       
         const newExpense = new Expense({
             title,
