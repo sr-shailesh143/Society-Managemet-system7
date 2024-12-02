@@ -68,7 +68,7 @@ export default function Community() {
   };
 
   return (
-    <div className='chetbox'>
+    <div className='chetbox' style={{height:"904px"}}>
       <div className="row">
         <div className="col-12 col-md-3 main-chet-list">
           <h4 className='Chat-title m-3'>
