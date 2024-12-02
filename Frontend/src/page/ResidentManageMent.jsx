@@ -548,48 +548,70 @@ const ResidentManageMent = () => {
                     </div>
                 </div>
             </Offcanvas>
-            <div className="d-flex justify-content-center">
-                <Modal className="custom-modal" show={show} centered  >
+            <div className="d-flex justify-content-center" style={{ width: "500px" }}>
+                <Modal className="custom-modal" show={show} centered style={{ width: "100%" }} >
                     <Modal.Header >
                         <Modal.Title>Residence Status</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body >
                         <Form>
-                            <div className="status-options d-flex justify-content-between">
+                            <div className="status-options d-flex justify-content-between" style={{ width: "100%" }} >
                                 {/* Occupied Option */}
                                 <div
-                                    className={`p-2 d-flex align-items-center option ${status === "Occupied" ? "selected" : ""
+                                    className={`p-4 d-flex align-items-center option ${status === "Occupied" ? "selected" : ""
                                         }`}
                                     onClick={() => setStatus("Occupied")}
-                                    style={{ border: "1px solid #D3D3D3", borderColor: status === "Occupied" ? "#FE512E #F09619" : "#D3D3D3", color: status === "Occupied" ? "black" : "#D3D3D3" }}
+                                    style={{ border: "1px solid #D3D3D3", borderColor: status === "Occupied" ? "#FE512E #F09619" : "#D3D3D3", color: status === "Occupied" ? "black" : "#D3D3D3", width: "50%" }}
                                 >
                                     <Form.Check type="radio" label="Occupied" name="status" value="Occupied" checked={status === "Occupied"} onChange={handleStatusChange} className="status-radio mt-2" />
                                 </div>
 
-                                <div style={{ border: "1px solid #D3D3D3", borderColor: status === "Vacant" ? "#FE512E #F09619" : "#D3D3D3", color: status === "Vacant" ? "black" : "#D3D3D3" }}
+                                <div style={{ border: "1px solid #D3D3D3", borderColor: status === "Vacant" ? "#FE512E #F09619" : "#D3D3D3", color: status === "Vacant" ? "black" : "#D3D3D3", width: "50%" }}
 
-                                    className={`p-2 d-flex align-items-center option ${status === "Vacant" ? "selected" : ""
+                                    className={`p-4 d-flex align-items-center option ${status === "Vacant" ? "selected" : ""
                                         }`} onClick={() => setStatus("Vacant")} >
                                     <Form.Check type="radio" label="Vacant" name="status" value="Vacant" checked={status === "Vacant"} onChange={handleStatusChange} className="status-radio mt-2 " />
                                 </div>
                             </div>
 
-                            <Form.Group controlId="agreementCheckbox" className="mt-4 d-flex align-items-center">
-                                    <Form.Check  type="checkbox" label=""  checked={isAgreed}  className="me-2"  onChange={handleAgreementChange} />
-                                    <span>By submitting, you agree to select Occupied</span>
-                                    </Form.Group>
+                            <Form.Group controlId="agreementCheckbox" className=" d-flex align-items-center">
+                                <Form.Check type="checkbox" label="" checked={isAgreed} onChange={handleAgreementChange} />
+                                <span className="no-wrap p-3" style={{ color: "lightgrey" }}>
+                                    By submitting, you agree to select Occupied
+                                </span>
+
+                            </Form.Group>
 
                         </Form>
                     </Modal.Body>
-                    <Modal.Footer className=" d-flex justify-content-center">
-                        <div className="d-flex gap-3">
-                            <Button className=" cancel-btn radious w-80" style={{ border: "1px solid #D3D3D3", }} variant="light" onClick={handleClose}>   Cancel
+                    <Modal.Footer className="d-flex justify-content-center">
+                        <div className="d-flex w-100 gap-3 justify-content-center">
+                            <Button
+                                className="cancel-btn radious w-100"
+                                style={{
+                                    border: "1px solid #D3D3D3",
+                                    textAlign: "center",
+                                }}
+                                variant="light"
+                                onClick={handleClose}
+                            >
+                                Cancel
                             </Button>
-                            <Button className="save-btn radious l-btn w-80 " style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer" }} onClick={HandleSubmit} >
+                            <Button
+                                className="save-btn radious w-100"
+                                style={{
+                                    background: "linear-gradient(90deg, #FE512E, #F09619)",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    textAlign: "center",
+                                }}
+                                onClick={HandleSubmit}
+                            >
                                 Save
                             </Button>
                         </div>
                     </Modal.Footer>
+
                 </Modal>
             </div>
             {/* Residence Status popup for select wing and unit */}
@@ -603,8 +625,8 @@ const ResidentManageMent = () => {
                             <div className="status-options d-flex ">
                                 {/* Occupied Option */}
                                 <div className="col-md-6 col-10">
-                                    <label className='text-wrap'>Wing<span className='text-danger1 '>*</span></label>
-                                    <select className="form-select  input-text mt-1 input-style" required>
+                                    <label className='text-wrap fw-bold' style={{ textAlign: "center" }}>Wing<span className='text-danger1 '>*</span></label>
+                                    <select className="form-select  input-text mt-1 input-style  custom-select-width" style={{ width: "175px" }} required>
                                         <option>Select Wing</option>
                                         <option>A</option>
                                         <option>B</option>
@@ -613,8 +635,8 @@ const ResidentManageMent = () => {
                                 </div>
                                 {/* Vacant Option */}
                                 <div className="col-md-6 col-10 ">
-                                    <label className='text-wrap'>Unit<span className='text-danger1 '>*</span></label>
-                                    <select className="form-select  input-text mt-1 input-style" required>
+                                    <label className='text-wrap fw-bold'>Unit<span className='text-danger1 '>*</span></label>
+                                    <select className="form-select input-text mt-1 input-style custom-select-width" style={{ width: "175px!important" }} required>
                                         <option>Select Unit</option>
                                         <option>1000</option>
                                         <option>1002</option>
@@ -623,23 +645,23 @@ const ResidentManageMent = () => {
                                 </div>
                             </div>
                             {/* Agreement Checkbox */}
-                         <Form.Group controlId="agreementCheckbox" className="mt-4 d-flex align-items-center">
-                                    <Form.Check  type="checkbox" label=""  checked={isAgreed}  className="me-2"  onChange={handleAgreementChange} />
-                                    <span>By submitting, you agree to select Occupied</span>
-                                    </Form.Group>
+                            <Form.Group controlId="agreementCheckbox" className="mt-4 d-flex align-items-center">
+
+                            </Form.Group>
 
                         </Form>
                     </Modal.Body>
-                    <Modal.Footer className=" d-flex justify-content-center">
-                    <div className="d-flex gap-3">
-                            <Button className="cancel-btn radious " style={{ border: "1px solid #D3D3D3",textAlign:"center" }} variant="light" onClick={handleClose3} >
+                    <Modal.Footer className="d-flex justify-content-center">
+                        <div className="d-flex w-100 gap-2">
+                            <Button className="cancel-btn radious w-100" style={{ border: "1px solid #D3D3D3", textAlign: "center", }} variant="light" onClick={handleClose3} >
                                 Cancel
                             </Button>
-                            <Button className="save-btn radious  " style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer",textAlign:"center" }} onClick={HandleSubmit1} >
-                                Conform
+                            <Button className="save-btn radious w-100" style={{ background: "linear-gradient(90deg, #FE512E, #F09619)", border: "none", cursor: "pointer", textAlign: "center", }} onClick={HandleSubmit1} >
+                                Confirm
                             </Button>
                         </div>
                     </Modal.Footer>
+
                 </Modal>
             </div>
 

@@ -182,7 +182,7 @@ const Financial = () => {
             Cancel
           </Button>
           <Button variant="primary" onClick={handleSaveChanges}  style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3'>
-            Save Changes
+            Save 
           </Button>
         </Modal.Footer>
       </Modal>

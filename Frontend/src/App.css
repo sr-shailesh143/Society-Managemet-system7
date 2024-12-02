@@ -1256,7 +1256,7 @@ input[type="email"] {
 }
 
 .custom-modal .modal-content {
-  /* width: 400px !important; */
+  width: 410px !important;
   border-radius: 10px;
 }
 

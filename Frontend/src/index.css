@@ -150,6 +150,26 @@ h1 {
   color: #333;
   margin-bottom: 20px;
 }
+.messages-section {
+  max-height: 600px; /* Adjust height as needed */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional for better scrollbar visibility */
+}
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-select-width {
+  width: 175px !important;
+}
+
+.chat-list {
+  max-height: 600px; /* Adjust height for chat list as well */
+  overflow-y: auto;
+  padding-right: 10px;
+}
 
 .dot {
   animation: blink 1.2s infinite;
