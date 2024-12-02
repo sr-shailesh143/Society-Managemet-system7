@@ -75,7 +75,7 @@ export default function Expense() {
   // edite expense
   const [showEditeModal, setshowEditeModal] = useState(false)
   const handalEditClose = () => setshowEditeModal(false)
-
+  
   const [editeData, setediteData] = useState({})
 
   async function haldleEditId(id) {

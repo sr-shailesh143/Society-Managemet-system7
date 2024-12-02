@@ -23,7 +23,8 @@ export default function UpdateProfile() {
     const fetchProfiles = async () => {
       try {
         const response = await getProfiles();
-        setProfiles(response.data); // Adjust based on the API response structure
+        setProfiles(response.data); 
+        console.log(response.data)// Adjust based on the API response structure
       } catch (error) {
         console.error("Error fetching profiles:", error);
       }
