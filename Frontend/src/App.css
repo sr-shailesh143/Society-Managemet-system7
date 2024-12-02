@@ -10,6 +10,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-style: normal;
+  overflow: hidden;
 
 }
 
@@ -305,12 +306,22 @@ float: right;
 }
 
 .side-bar {
-  width: 17% !important;
-  height: 20% !important;
+  width: 16.9% !important;
+  height: 95% !important;
+  position: sticky;
+ 
+  scrollbar-width: thin;
 }
 
 .component-layout {
   width: 100vw !important;
+  height: 92vh;
+  overflow-y: auto;
+  /* Enables vertical scrolling */
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #888 #f1f1f1;
+  /* For Firefox */
 }
 
 .side-design {
@@ -2325,7 +2336,7 @@ width: 100%;
 
 .createTraking {
   /* width: 1580px; */
-  height: 904px;
+  height: 770px;
   top: 130px;
   left: 310px;
   gap: 0px;
@@ -2613,7 +2624,7 @@ background:#202224;
 color: white;
 
 }
-.time{
+.time1{
   width: Fixed (92px);
 height: Fixed (28px);
 padding: 5px 15px 5px 15px;
@@ -2650,7 +2661,28 @@ background: #F6F8FB;
 .additional-info div {
   text-align: center;
 }
+.notification-bell{
+  width:  (32px);
+height:  (32px);
+padding: 3px ;
+gap: 10px;
+border-radius: 10px ;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+border: 1px solid #D3D3D3;
+margin-right: 20px;
+}
 
+.hover-deshbord:hover{
+  fill: white !important;
+}
+.hover-deshbord:hover path {
+  fill: white !important; /* Change fill to white on hover */
+  transition: fill 0.2s ease; /* Smooth transition effect */
+}
+
+
+/* Change fill color on hover */
 
 
 

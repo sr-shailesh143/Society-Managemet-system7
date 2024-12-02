@@ -40,7 +40,7 @@ export default function Tenant() {
         <div div className=''>
 
             <div className='row'>
-                <div className="d-flex mt-4 ">
+                <div className="d-flex ">
                     <div onClick={() => naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Owner</p>
                     </div>
