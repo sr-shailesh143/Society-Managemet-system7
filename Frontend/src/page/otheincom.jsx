@@ -37,7 +37,6 @@ const Otherincome = () => {
             display: 'flex',
             justifyContent: 'space-between',
             marginBottom: '8px',
-            //styleName: H7- Regular;
             fonty: "Poppins",
             fontSize: "14px",
             fontWeight: "400",
@@ -64,7 +63,6 @@ const Otherincome = () => {
 
     const naviget = useNavigate()
 
-    // State to control modals and store note data
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [selectedTitle, setSelectedTitle] = useState('');
@@ -77,7 +75,6 @@ const Otherincome = () => {
 
     ]);
 
-    // Functions to open and close modals
     const handleEditModalOpen = (title, description) => {
         setSelectedTitle(title);
         setSelectedDescription(description);
@@ -87,10 +84,10 @@ const Otherincome = () => {
     const handleCreateModalOpen = () => setShowCreateModal(true);
     const handleCreateModalClose = () => setShowCreateModal(false);
 
-    const navigate = useNavigate(); // React Router ka navigate hook
+    const navigate = useNavigate(); 
 
     const handleViewClick = () => {
-        navigate('/ViewOtherIncome'); // Yahan aapka route specify karein
+        navigate('/ViewOtherIncome'); 
     };
 
     return (
@@ -106,7 +103,6 @@ const Otherincome = () => {
                 </div>
             </div>
             <div className="container-fluid d-flex flex-column bg-light shadow" style={{ width: "100%" }}>
-                {/* Title and Create Note button aligned in a single line */}
                 <div className="d-flex justify-content-between align-items-center mb-3 p-3">
                     <h2>Other Income</h2>
                     <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00' }} onClick={handleCreateModalOpen}>

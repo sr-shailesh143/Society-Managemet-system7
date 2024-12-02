@@ -13,10 +13,8 @@ import { FaPlusCircle } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function Expense() {
-  // State to store expenses data
   const [expenseData, setExpenseData] = useState([]);
 
-  // Fetch all expenses
   async function getExpenseData() {
     try {
       const response = await getAllExpenses();
@@ -30,20 +28,17 @@ export default function Expense() {
     getExpenseData();
   }, []);
 
-  // Modal state for creating an expense
   const [createShowModal, setCreateShowModal] = useState(false);
   const handleCreateModalOpen = () => setCreateShowModal(true);
   const handleCreateModalClose = () => setCreateShowModal(false);
 
-  // Dropzone for file upload
-  const [billFile, setBillFile] = useState(null); // State for file
+  const [billFile, setBillFile] = useState(null); 
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/png, image/jpeg, image/gif',
-    maxSize: 10 * 1024 * 1024, // 10 MB
-    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]), // Save the uploaded file
+    maxSize: 10 * 1024 * 1024, 
+    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]), 
   });
-  // State to store new expense data
   const [createData, setCreateData] = useState({
     title: '',
     description: '',
@@ -51,7 +46,6 @@ export default function Expense() {
     amount: '',
   });
 
-  // Create expense handler
   async function handleCreateExpense() {
 
     const data = {
@@ -60,19 +54,17 @@ export default function Expense() {
     }
 
     try {
-      const response = await addExpense(data); // Ensure your `addExpense` function handles `FormData`
+      const response = await addExpense(data);
       console.log(response.data);
       setCreateData({ title: '', description: '', date: '', amount: '' });
       setBillFile(null);
       getExpenseData()
       handleCreateModalClose();
-      // setExpenseData(updatedData.data.records); // Refresh data
     } catch (error) {
       console.log(error);
     }
   }
 
-  // edite expense
   const [showEditeModal, setshowEditeModal] = useState(false)
   const handalEditClose = () => setshowEditeModal(false)
   
@@ -319,7 +311,7 @@ export default function Expense() {
                     <small>PNG, JPG, GIF up to 10MB</small>
                   </div>
                 </div>
-                {billFile && <p>Selected File: {billFile.name}</p>} {/* Display selected file */}
+                {billFile && <p>Selected File: {billFile.name}</p>}
               </Form.Group>
               <div className="d-flex gap-3 mt-3">
                 <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }} variant="outlined" onClick={handleCreateModalClose} >
@@ -420,7 +412,7 @@ export default function Expense() {
                         <small>PNG, JPG, GIF up to 10MB</small>
                       </div>
                     </div>
-                    {billFile && <p>Selected File: {billFile.name}</p>} {/* Display selected file */}
+                    {billFile && <p>Selected File: {billFile.name}</p>} 
                   </div>
                 )}
 

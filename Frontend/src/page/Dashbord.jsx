@@ -74,14 +74,13 @@ const Dashboard = () => {
   };
   
 
-  // Fetch important numbers from the API
   const fetchImportantNumbers = async () => {
     try {
       const response = await viewnumber();
       const data = response.data;
 
       if (data && Array.isArray(data.ImpNumber)) {
-        setImportantNumbers(data.ImpNumber); // Update state with fetched data
+        setImportantNumbers(data.ImpNumber);
       } else {
         console.error("Expected array, but got:", data);
       }
@@ -90,7 +89,6 @@ const Dashboard = () => {
     }
   };
 
-  // Use `useEffect` to fetch data when the component mounts
   useEffect(() => {
     fetchImportantNumbers();
   }, []);
@@ -113,7 +111,6 @@ const Dashboard = () => {
       return;
     }
     try {
-      // Update on backend
       await updatenumber(selectedNumber._id, editedNumber);
 
 
@@ -123,7 +120,6 @@ const Dashboard = () => {
         )
       );
 
-      // Close modal
       setShowEditNumberModal(false);
       fetchImportantNumbers()
       toast.success("Number Edit successfully!");
@@ -143,22 +139,21 @@ const Dashboard = () => {
 
 
   ]);
-  const [eventsData, setEventsData] = useState([]); // To store the announcements
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // To handle error messages
+  const [eventsData, setEventsData] = useState([]);
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setError(""); // Reset error message
+      setError(""); 
 
       try {
-        const response = await getAnnouncements(); // Make the API call
-        console.log("API Response:", response); // Log the full response for debugging
+        const response = await getAnnouncements(); 
+        console.log("API Response:", response);
 
-        // Ensure response contains the expected data and the 'records' field
         if (response && response.data && Array.isArray(response.data.records)) {
-          setEventsData(response.data.records); // Update state with fetched data
+          setEventsData(response.data.records);
         } else {
           setError("No announcements found or data is in an unexpected format");
         }
@@ -170,13 +165,12 @@ const Dashboard = () => {
       }
     };
 
-    fetchAnnouncements(); // Call the fetch function on mount
-  }, []); // Empty array ensures this runs only once when the component mounts
+    fetchAnnouncements(); 
+  }, []); 
 
-  // Function to format the date to local format (e.g., "MM/DD/YYYY")
   const formatLocalDate = (dateString) => {
-    const date = new Date(dateString); // Convert string to Date object
-    return date.toLocaleDateString(); // Format to local date
+    const date = new Date(dateString); 
+    return date.toLocaleDateString();
   };
 
   const formatTime = (timeStr) => {
@@ -332,7 +326,6 @@ const Dashboard = () => {
 
   }, [])
 
-  // edit 
   const [editShow, seteditShow] = useState(false)
   const handlecancleEdit = () => seteditShow(false);
   const [status2, setStatus2] = useState("");
@@ -340,15 +333,12 @@ const Dashboard = () => {
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
 
-  // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
-  // delete
   const [showDelete, setshowDelete] = useState(false)
   const [id, setid] = useState({
     id: ""
   })
-  // detele api 
   async function deletecomplelnt(id) {
 
     await deleteComplaint(id)
@@ -383,10 +373,9 @@ const Dashboard = () => {
       console.log(error)
     }
   }
-
   async function edithandel() {
     try {
-      const data = {
+      const updatedComplaintData = {
         complainerName: content.complainerName,
         complaintName: content.complaintName,
         description: content.description,
@@ -394,18 +383,24 @@ const Dashboard = () => {
         unit: content.unit,
         priority: status2,
         status: status3,
-      }
-      console.log(data)
-      const response = await updateComplaint(content._id, data)
-      console.log(response.data.data)
-      seteditShow(false)
-      getalldata()
-
+      };
+  
+      console.log("Data to be sent for update:", updatedComplaintData);
+  
+      const response = await updateComplaint(content._id, updatedComplaintData);
+  
+      console.log("Update response:", response.data?.data);
+  
+      seteditShow(false);
+  
+      getalldata();
+  
     } catch (error) {
-
+      console.error("Error occurred while updating complaint:", error);
+        alert("An error occurred while updating the complaint. Please try again.");
     }
-
   }
+  
 
 
   return (

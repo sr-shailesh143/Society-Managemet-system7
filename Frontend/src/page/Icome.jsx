@@ -108,7 +108,7 @@ export default function Icome() {
                 <div className="amount-label">Maintenance Amount</div>
                 <div className="amount-value">₹ 0</div>
               </div>
-            </div>0
+            </div>
           </div>
           <div className="col-12 col-md-6 ">
             <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className="amount-card    amount-card-red"  ><div className="amount-box">

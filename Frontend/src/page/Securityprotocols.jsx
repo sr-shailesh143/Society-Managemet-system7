@@ -15,27 +15,26 @@ const SecurityProtocols = () => {
   const [editProtocol, setEditProtocol] = useState(null);
   const [viewProtocol, setViewProtocol] = useState(null);
   const [deleteIndex, setDeleteIndex] = useState(null);
-  // Fetch all protocols on load
+
   useEffect(() => {
     const fetchProtocols = async () => {
       try {
         const response = await getAllSecurityProtocols();
-        console.log('API Response:', response);  // Log the response to check its structure
-        // Check if response.data.records exists and is an array
+        console.log('API Response:', response);  
         if (response.data && Array.isArray(response.data.records)) {
           setProtocols(response.data.records);
         } else {
           console.error("API response does not have 'records' as an array:", response);
-          setProtocols([]);  // In case records is empty or not an array
+          setProtocols([]);  
         }
       } catch (error) {
         console.error('Error fetching protocols:', error);
-        toast.error('Failed to fetch protocols');  // Show error toast
+        toast.error('Failed to fetch protocols');  
       }
     };
     fetchProtocols();
   }, []);
-  // Handle Modal for creating a new protocol
+
   const handleShowModal = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().split('T')[0];
@@ -44,7 +43,6 @@ const SecurityProtocols = () => {
     setShowModal(true);
   };
   const handleCloseModal = () => setShowModal(false);
-  // Handle changes in the form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProtocol({ ...newProtocol, [name]: value });
@@ -56,10 +54,10 @@ const SecurityProtocols = () => {
       setProtocols([...protocols, newProtocol]);
       handleCloseModal();
       setNewProtocol({ title: '', description: '', date: '', time: '' });
-      toast.success('Protocol created successfully!');  // Show success toast
+      toast.success('Protocol created successfully!');  
     } catch (error) {
       console.error('Error creating protocol:', error);
-      toast.error('Failed to create protocol');  // Show error toast
+      toast.error('Failed to create protocol');  
     }
   };
   // Handle Edit
@@ -83,10 +81,10 @@ const SecurityProtocols = () => {
       );
       setProtocols(updatedProtocols);
       setShowEditModal(false);
-      toast.success('Protocol updated successfully!');  // Show success toast
+      toast.success('Protocol updated successfully!');  
     } catch (error) {
       console.error('Error updating protocol:', error);
-      toast.error('Failed to update protocol');  // Show error toast
+      toast.error('Failed to update protocol');  
     }
   };
   // Handle View
@@ -106,10 +104,10 @@ const SecurityProtocols = () => {
       const updatedProtocols = protocols.filter((_, index) => index !== deleteIndex);
       setProtocols(updatedProtocols);
       setShowDeleteModal(false);
-      toast.success('Protocol deleted successfully!');  // Show success toast
+      toast.success('Protocol deleted successfully!');  
     } catch (error) {
       console.error('Error deleting protocol:', error);
-      toast.error('Failed to delete protocol');  // Show error toast
+      toast.error('Failed to delete protocol'); 
     }
   };
   const EDITE = {
