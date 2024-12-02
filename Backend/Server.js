@@ -3,13 +3,14 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const path = require("path");
 app.use(express.json());
+require("dotenv").config();
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 const cors = require("cors");
 require("./src/config/db.js");
-require("dotenv").config();
+
 
 // for all origin
 const corsOptions = {
