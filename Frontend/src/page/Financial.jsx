@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Dropdown, Modal, Form } from 'react-bootstrap';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { addNote, getAllNotes, updateNote } from '../apiservices/noteservice';
+import FileUploadForm from '../practice/EditablePage';
 
 const Financial = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -216,7 +217,7 @@ const Financial = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
+{/* <FileUploadForm/> */}
     </Container>
   );
 };

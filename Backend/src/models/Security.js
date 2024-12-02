@@ -22,7 +22,7 @@ const securitySchema = new mongoose.Schema({
         required: true
     },
     shiftDate: {
-        type: Date,
+        type: String,
         required: true
     },
     shiftTime: {

@@ -2560,10 +2560,31 @@ border: 1px solid #F4F4F4;
 opacity: 0px;
 
 }
-.view{
-  
+.gender{
+ padding: 9px 2px 9px 2px;
+gap: 4px;
+border-radius: 10px ;
+border: 1px solid #D3D3D3;
+opacity: 0px;
+color: #A7A7A7;
 }
+.gender1{
+ padding: 9px 15px 9px 15px;
+gap: 4px;
+border-radius: 10px ;
+border: 1px solid #D3D3D3;
+opacity: 0px;
+color: #A7A7A7;
+}
+.edit-img{
+  width: 65px;
+height: 65px;
+gap: 0px;
+border: 3px 0px 0px 0px;
+opacity: 0px;
+border-radius: 50%;
 
+}
 
 
 
@@ -2572,6 +2593,64 @@ opacity: 0px;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+.additional-info1 {
+  display: flex;
+    margin-top: 20px;
+}
+.DAY{
+  width: Fixed (90px);
+height: Fixed (28px);
+padding: 5px 12px;
+gap: 5px;
+border-radius: 58px ;
+opacity: 0px;
+background: #F4F4F4;
+
+}
+.NIGHT{
+  width: Fixed (90px);
+height: Fixed (28px);
+padding: 5px 12px;
+gap: 5px;
+border-radius: 58px ;
+opacity: 0px;
+background:#202224; 
+color: white;
+
+}
+.time{
+  width: Fixed (92px);
+height: Fixed (28px);
+padding: 5px 15px 5px 15px;
+gap: 10px;
+border-radius: 80px ;
+opacity: 0px;
+background: #F6F8FB;
+
+
+}
+.Female{
+  width: Fixed (90px);
+  height: Fixed (28px);
+  padding: 5px 20px ;
+  gap: 5px;
+  border-radius: 58px ;
+  opacity: 0px;
+  background: #FE76A81A;
+  color: #FE76A8;
+
+}
+.Male{
+  width: Fixed (90px);
+  height: Fixed (28px);
+  padding: 5px 20px;
+  gap: 5px;
+  border-radius: 58px;
+  opacity: 0px;
+  background: #21A8E41A;
+  color: #5678E9;
+
 }
 
 .additional-info div {

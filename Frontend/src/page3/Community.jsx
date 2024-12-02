@@ -14,6 +14,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
+import { Link } from 'react-router-dom';
 
 export default function Community() {
   const [camera, setcamera] = useState(false)
@@ -115,7 +116,9 @@ export default function Community() {
               </div>
               <div className="chet-icon m-3 d-flex gap-2">
                 <div className="video">
+                  <Link to={"https://meet.google.com/xco-rtrw-rzu"}>
                   <VideocamIcon className='fs-2' />
+                  </Link>
                 </div>
                 <div className="video">
                   <PhoneIcon className='fs-2' />
