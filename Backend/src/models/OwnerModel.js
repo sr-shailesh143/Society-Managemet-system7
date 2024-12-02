@@ -78,7 +78,7 @@ const Ownerschema= new Schema({
     },
     Resident_status:{
         type:String,
-        default:"Owner",
+        default:"resident",
     },
     UnitStatus:{
         type:String,
