@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import img from '../assets/img.png';
+import { FaEyeSlash } from "react-icons/fa6";
 import { createSociety, signup, viewSociety } from '../apiservices/Authentication';
 import { FaEye } from "react-icons/fa";
 function RegistrationPage() {
@@ -364,6 +365,22 @@ const onSubmit = (data) => {
           {...register('password', { required: true })}
           onChange={handleChange}
         />
+          <span
+                                    className="hide"
+                                    onClick={togglePasswordVisibility}
+                                    style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none' }}
+                                >
+                                   
+                                   {showPassword ? <FaEye  className='fs-4 mt-2' /> :<FaEyeSlash className='fs-4'/>}
+                                </span>
+                                    <span
+                                        className="hide1"
+                                        onClick={togglePasswordVisibility}
+                                        style={{ cursor: 'pointer', backgroundColor: 'transparent', border: 'none',zIndex:"999",position:"sticky" }}
+                                    >
+                                        {showPassword ? <FaEye  className='fs-4 mt-2' /> :<FaEyeSlash className='fs-4'/>}
+                                    </span>
+                                {errors.password && <span className='text-danger'>{errors.password}</span>}
         <span
           className="input-group-text"
           onClick={togglePasswordVisibilityy} // On click, toggle password visibility
@@ -377,45 +394,53 @@ const onSubmit = (data) => {
             transform: 'translateY(-50%)',  // Adjust vertical alignment
           }}
         >
-          <FaEye  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}/> {/* Eye icon */}
+    
         </span>
         {errors.password && <p className="text-danger">{errors.password.message}</p>} {/* Show error message */}
       </div>
-            <div className="mb-3" style={{ position: 'relative' }}>
-      <label htmlFor="Cpassword">Confirm password <span style={{ color: "red" }}>*</span></label>
-      <input
-        type={ShowConfirmPassword ? 'text' : 'password'}
-        className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-        placeholder="Confirm Password"
-        name='Cpassword'
-        style={{
-          borderRadius: "15px",
-          border: "1px solid #D3D3D3",
-          paddingRight: '40px' // Space for the icon
-        }}
-        value={formData.Cpassword}
-        {...register('Cpassword', {
-          required: true,
-          validate: (value) => value === watch('password') || "Passwords do not match",
-        })}
-        onChange={handleChange}
-      />
-      <span
-        className="input-group-text"
-        onClick={toggleConfirmPasswordVisibility}
-        style={{
-          cursor: 'pointer',
-          backgroundColor: 'transparent',
-          border: 'none',
-          position: 'absolute',
-          right: '10px', // Adjusted right alignment
-          top: '70%',
-          transform: 'translateY(-50%)', // Vertically center the icon
-        }}
-      >
-        <FaEye className={`fas ${ShowConfirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}/>
-      </span>
-    </div>
+      <div className="mb-3" style={{ position: 'relative' }}>
+  <label htmlFor="Cpassword">Confirm password <span style={{ color: "red" }}>*</span></label>
+  <input
+    type={ShowConfirmPassword ? 'text' : 'password'}
+    className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+    placeholder="Confirm Password"
+    name="Cpassword"
+    style={{
+      borderRadius: "15px",
+      border: "1px solid #D3D3D3",
+      paddingRight: '40px' // Space for the icon
+    }}
+    value={formData.Cpassword}
+    {...register('Cpassword', {
+      required: true,
+      validate: (value) => value === watch('password') || "Passwords do not match",
+    })}
+    onChange={handleChange}
+  />
+  {/* Toggle Password Visibility Button */}
+  <span
+    className="input-group-text"
+    onClick={toggleConfirmPasswordVisibility}
+    style={{
+      cursor: 'pointer',
+      backgroundColor: 'transparent',
+      border: 'none',
+      position: 'absolute',
+      right: '10px', // Adjusted right alignment
+      top: '50%',
+      transform: 'translateY(-50%)', // Vertically center the icon
+    }}
+  >
+    {ShowConfirmPassword ? (
+      <FaEye className="fs-4  mt-4" />
+    ) : (
+      <FaEyeSlash className="fs-4 mt-4 " />
+    )}
+  </span>
+  {/* Error message */}
+  {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
+</div>
+
 
 
             <div className="mb-3 form-check">

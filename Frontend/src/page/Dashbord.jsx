@@ -9,11 +9,11 @@ import { FaTrash, FaEdit, FaPlus, FaEye } from 'react-icons/fa';
 import { getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloseIcon from '@mui/icons-material/Close';
+import { toast } from 'react-toastify';
 import '../index.css'
 import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
 import { Box, DialogTitle } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import EditablePage from '../practice/EditablePage';
 import { getAnnouncements } from '../apiservices/announcementservice';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -36,8 +36,10 @@ const Dashboard = () => {
   const handleDeleteNumber = async (id) => {
     try {
       await deletenumber(id);
+      toast.success("Number Delete successfully!");
       fetchImportantNumbers(); // Refresh the list
     } catch (error) {
+      toast.error("Failed to Delete number. Please try again.");
       console.error("Failed to delete number:", error);
     }
   };
@@ -53,16 +55,24 @@ const Dashboard = () => {
     setShowAddNumberModal(true);
   };
   const handleAddNumber = async () => {
-    if (!editedNumber.Name || !editedNumber.Number || !editedNumber.Work) return;
+    if (!editedNumber.Name || !editedNumber.Number || !editedNumber.Work) {
+      toast.error("Please fill in all fields!");
+      return;
+    }
+  
     try {
       const response = await createnumber(editedNumber);
       setImportantNumbers([...importantNumbers, response.data]);
       setShowAddNumberModal(false);
       setEditedNumber({ Name: '', Number: '', Work: '' });
+      fetchImportantNumbers();
+      toast.success("Number added successfully!");
     } catch (error) {
       console.error("Error adding number:", error);
+      toast.error("Failed to add number. Please try again.");
     }
   };
+  
 
   // Fetch important numbers from the API
   const fetchImportantNumbers = async () => {
@@ -116,9 +126,10 @@ const Dashboard = () => {
       // Close modal
       setShowEditNumberModal(false);
       fetchImportantNumbers()
-
+      toast.success("Number Edit successfully!");
       setEditedNumber({ Name: "", Number: "", Work: "" });
     } catch (error) {
+      toast.error("Failed to Edit number. Please try again.");
       console.error("Error updating number:", error);
     }
   };

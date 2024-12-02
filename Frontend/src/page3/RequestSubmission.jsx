@@ -173,7 +173,33 @@ function handleOpenDeleteModal(index){
                                     </p>
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Status:</strong>
-                                        <span style={{ color: "#202224" }}>{complaint.status}</span>
+                                        <span
+                                            style={{
+                                                color:
+                                                    complaint.status === "Pending"
+                                                        ? "#6A4E02"
+                                                        : complaint.status === "Solve"
+                                                            ? "#1B5E20"
+                                                            : "#202224",
+                                                fontWeight: "bold",
+                                                background:
+                                                    complaint.status === "Pending"
+                                                        ? "#5678E91A"
+                                                        : complaint.status === "Solved"
+                                                            ? "rgba(76, 175, 80, 0.1)"
+                                                            : "#5678E91A",
+                                                width: "60px",
+                                                color: "#5678E9",
+                                                textAlign: "center",
+                                                borderRadius: "30px",
+                                                width: "90px"
+
+                                            }}
+                                        >
+                                            {complaint.status}
+                                        </span>
+
+
                                     </p>
 
                                     <p className="card-text">

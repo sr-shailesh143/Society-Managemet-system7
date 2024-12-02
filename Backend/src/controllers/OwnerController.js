@@ -20,25 +20,49 @@ exports.addOwnerData = async (req, res) => {
 
     console.log("Generated Password:", password);
 
-    // Utility to upload files to Cloudinary and delete local files
-    const uploadAndDeleteLocal = async (fileArray) => {
-      if (fileArray && fileArray[0]) {
-        const filePath = fileArray[0].path;
-        try {
-          const result = await cloudinary.uploader.upload(filePath);
-          fs.unlink(filePath, (err) => {
-            if (err) console.error("Error deleting local file:", err);
+    // // Utility to upload files to Cloudinary and delete local files
+    // const uploadAndDeleteLocal = async (fileArray) => {
+    //   if (fileArray && fileArray[0]) {
+    //     const filePath = fileArray[0].path;
+    //     try {
+    //       const result = await cloudinary.uploader.upload(filePath);
+    //       fs.unlink(filePath, (err) => {
+    //         if (err) console.error("Error deleting local file:", err);
+    //       });
+    //       return result.secure_url;
+    //     } catch (error) {
+    //       console.error("Error uploading file to Cloudinary:", error.message);
+    //       throw error;
+    //     }
+    //   }
+    //   return null;
+    // };
+    
+    const uploadAndDeleteLocal = async (file) => {
+      const { buffer, originalname } = file; // Ensure file contains these properties
+      const folderName = 'your_folder_name';
+  
+      try {
+          const result = await new Promise((resolve, reject) => {
+              const uploadStream = cloudinary.uploader.upload_stream({ folder: folderName }, (err, result) => {
+                  if (err) return reject(err);
+                  resolve(result);
+              });
+  
+              // Pipe buffer to upload stream
+              const stream = require('stream');
+              const readableStream = new stream.PassThrough();
+              readableStream.end(buffer);
+              readableStream.pipe(uploadStream);
           });
-          return result.secure_url;
-        } catch (error) {
-          console.error("Error uploading file to Cloudinary:", error.message);
-          throw error;
-        }
+  
+          return result;
+      } catch (err) {
+          console.error('Error uploading file to Cloudinary:', err);
+          throw err;
       }
-      return null;
-    };
-    
-    
+  };
+  
     
 
     // Extracting fields from request body

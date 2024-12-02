@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Dropdown, Modal, Form } from 'react-bootstrap';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { addNote, getAllNotes, updateNote } from '../apiservices/noteservice';
+import FileUploadForm from '../practice/EditablePage';
 
 const Financial = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -181,7 +182,7 @@ const Financial = () => {
             Cancel
           </Button>
           <Button variant="primary" onClick={handleSaveChanges}  style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3'>
-            Save Changes
+            Save 
           </Button>
         </Modal.Footer>
       </Modal>
@@ -216,7 +217,7 @@ const Financial = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
+{/* <FileUploadForm/> */}
     </Container>
   );
 };

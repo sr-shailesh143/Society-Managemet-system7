@@ -28,7 +28,7 @@ import Securityprotocols from './page/Securityprotocols';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
-import VisitorTracking from './page2/VisitorTracking';
+import VisitorTracking from './page2/Visitortracking';
 import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
