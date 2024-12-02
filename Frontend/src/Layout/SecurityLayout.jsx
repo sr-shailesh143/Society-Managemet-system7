@@ -223,11 +223,9 @@ left:-23px;
 
 
 
-                            <br />
-                            <br />
-
+                          
                             
-                            <Link to={"/"}> <p className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "60vh" }}> <TbLogout className='fs-3' />  Logout</p></Link>
+                            <Link to={"/"}> <NavLink className=' text-danger' style={{ margin: " 10px", padding: "15px", cursor: "pointer", borderTop: "1px solid #F4F4F4", marginTop: "70vh", position:"sticky" }}> <TbLogout className='fs-3' />  Logout</NavLink></Link>
                            
 
                         </NavLinks>
@@ -387,7 +385,7 @@ left:-23px;
                                 </UserName>
                             </UserInfo>
                         </div>
-                        <div className="component-layout  h-100   ">
+                        <div className="component-layout    ">
 
                             <br />
                             <div className="p-4">

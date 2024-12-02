@@ -137,14 +137,14 @@ const SecurityProtocols = () => {
   const handleCloseViewModal = () => setShowViewModal(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
   return (
-    <div className="container-fluid bg-white p-4">
+    <div className="container-fluid bg-white p-4 " style={{height:"770px"}}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Security Protocols</h2>
         <Button
           className="text-white"
           style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
-      <div className="responsive-table-container">
+      <div className="responsive-table-container"  style={{height:"670px"}}>
         <table className="responsive-table">
           <thead className='tabal-header'>
             <tr>
