@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getAllVisitors } from '../apiservices/visitourtrackingservice'; // Adjust the path as needed
+import { getAllVisitors } from '../apiservices/visitourtrackingservice';
 
 const Visitor = () => {
-  const [visitors, setVisitors] = useState([]); // State to hold visitor data
-  const [loading, setLoading] = useState(true); // State for loading spinner
-  const [error, setError] = useState(null); // State for error handling
+  const [visitors, setVisitors] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
-  // Fetch visitors data
+
   const fetchVisitors = async () => {
     try {
       setLoading(true);
-      const response = await getAllVisitors(); // Call the API function
-      setVisitors(response.data.records || []); // Update visitors with API response
+      const response = await getAllVisitors(); 
+      setVisitors(response.data.records || []); 
       setLoading(false);
     } catch (err) {
       setError('Failed to load visitor data. Please try again later.');
@@ -20,19 +20,18 @@ const Visitor = () => {
   };
 
   useEffect(() => {
-    fetchVisitors(); // Fetch visitors on component mount
+    fetchVisitors(); 
   }, []);
 
   const formatTime = (timeStr) => {
-    // Assuming timeStr is in the format "HH:mm"
+
     const [hours, minutes] = timeStr.split(":");
     const date = new Date();
     
-    // Set the time for the current date
     date.setHours(parseInt(hours));
     date.setMinutes(parseInt(minutes));
     
-    // Return formatted time with AM/PM
+    
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   };
   

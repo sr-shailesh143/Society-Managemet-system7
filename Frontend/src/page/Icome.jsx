@@ -86,7 +86,7 @@ export default function Icome() {
   const Done = { backgroundColor: '#39973D1A', width: "131px", padding: '5px 20px', borderRadius: '12px', color: '#39973D', }
   const Pending = {
     backgroundColor: '#FFC3131A', padding: '5px 10px', borderRadius: '12px', fontSize: "15px", color: '#FFC313',
-    // maxWidth: "95.31px",
+
   }
   const Tenant = { backgroundColor: '#FFF1F8', padding: '5px 10px', borderRadius: '12px', color: '#EC4899', }
   const Owner = { backgroundColor: '#F1F0FF', padding: '5px 10px', borderRadius: '12px', color: '#4F46E5', }
@@ -94,7 +94,7 @@ export default function Icome() {
   const Penalty = { padding: '5px 14px', borderRadius: '12px', opacity: ' 0px', background: "#E74C3C", color: "#FFFFFF" }
   const view = { backgroundColor: '#F6F8FB', padding: '10px 10px', borderRadius: '12px', color: '#5678E9', }
   const Online = {
-    backgroundColor: '#5678E91A', padding: '5px 15px', borderRadius: '12px', color: '#5678E9', // maxWidth: "95.31px",
+    backgroundColor: '#5678E91A', padding: '5px 15px', borderRadius: '12px', color: '#5678E9',
   }
   const Cash = { backgroundColor: '#2022240D', padding: '5px 15px', fontSize: "20px", borderRadius: '12px', color: '#202224', }
   const naviget = useNavigate()
@@ -108,7 +108,7 @@ export default function Icome() {
                 <div className="amount-label">Maintenance Amount</div>
                 <div className="amount-value">₹ 0</div>
               </div>
-            </div>0
+            </div>
           </div>
           <div className="col-12 col-md-6 ">
             <div title="Total Unit" value="₹ 20,550" iconSrc="src/Assets/button4.png" className="amount-card    amount-card-red"  ><div className="amount-box">

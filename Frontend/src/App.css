@@ -949,7 +949,7 @@ input[type="email"] {
 
   /* .save-btn {
     width: 100% !important;
-    margin: 10px !important;
+    margin: 50px !important;
   } */
 
   .add-text {
@@ -958,8 +958,8 @@ input[type="email"] {
   }
 
   /* .cancel-btn {
-    margin: 10px !important;
-    width: 10% !important;
+    margin: 40px !important;
+    width: 70vh !important;
   } */
 
   .add-btn {
@@ -1057,8 +1057,8 @@ input[type="email"] {
   border-radius: 12px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+
   padding: 1rem;
   max-width: 350px;
   position: relative;
@@ -1072,7 +1072,7 @@ input[type="email"] {
   left: 0;
   bottom: 0;
   width: 8px;
-  height: 40px;
+  height: 50px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }
@@ -1109,11 +1109,7 @@ input[type="email"] {
 .balance-card {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+ 
   max-width: 350px;
   position: relative;
   height: 75px;
@@ -1195,18 +1191,18 @@ input[type="email"] {
 
 .custom-scroll {
   max-height: 300px;
-  /* Adjust as needed */
+
   overflow-y: auto;
-  /* Enables vertical scrolling */
+
   scrollbar-width: thin;
-  /* For Firefox */
+
   scrollbar-color: #888 #f1f1f1;
-  /* For Firefox */
+
 }
 
 .custom-scroll::-webkit-scrollbar {
   width: 8px;
-  /* Thin scrollbar */
+
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
@@ -1221,7 +1217,7 @@ input[type="email"] {
 
 }
 
-/* add residenty */
+
 
 .status-options {
   display: flex;
@@ -1231,9 +1227,9 @@ input[type="email"] {
 
 .status-radio .form-check-input:checked {
   background-color: #FE512E;
-  /* Match the gradient color */
+
   border-color: #FE512E #F09619;
-  /* background: linear-gradient(90deg, #FE512E, #F09619); */
+  
 
 }
 
@@ -1319,7 +1315,7 @@ input[type="email"] {
   cursor: pointer !important;
 }
 
-/* owner form  */
+
 
 .f-btn {
   width: 135px !important;
@@ -1336,7 +1332,7 @@ input[type="email"] {
 }
 
 
-/* section1 */
+
 
 .section-1 {
   height: auto;
@@ -1367,7 +1363,7 @@ input[type="email"] {
 .input-section-2 {
   width: 100%;
   height: 42px;
-  /* gap: 4px; */
+
   border-radius: 10px !important;
   padding: 9px 13px 9px 13px !important;
 }
@@ -1460,7 +1456,6 @@ input[type="email"] {
 }
 
 
-/* ADD PHOTO CSS  */
 
 
 
@@ -1596,7 +1591,7 @@ input[type="email"] {
 
 .member-row {
   display: contents;
-  /* Allows grid display while managing visibility */
+ 
 }
 
 .member-row input,
@@ -1637,7 +1632,7 @@ input[type="email"] {
 
 
 
-/* General container styling */
+
 .section-2 {
   padding: 20px;
   border-radius: 15px;
@@ -1677,7 +1672,6 @@ input[type="email"] {
   cursor: pointer;
 }
 
-/* Flexbox styling for form rows */
 .member-rows {
   display: flex;
   flex-wrap: wrap;
@@ -1708,19 +1702,19 @@ input[type="email"] {
   text-wrap: wrap;
 }
 
-/* Responsive styling */
+
 @media (min-width: 768px) {
 
   .member-row input,
   .member-row select {
     width: 100%;
-    /* Width for 6 columns on larger screens */
+  
   }
 }
 
 @media (max-width: 767px) {
 
-  /* For mobile screens */
+
   .header {
     flex-direction: column;
     align-items: flex-start;
@@ -1733,7 +1727,7 @@ input[type="email"] {
   .member-row input,
   .member-row select {
     width: 100%;
-    /* Full-width on mobile */
+  
   }
 
   .f-btn,

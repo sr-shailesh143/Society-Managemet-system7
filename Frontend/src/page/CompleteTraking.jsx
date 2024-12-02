@@ -18,7 +18,7 @@ export default function CompleteTracking() {
   const handleStatusChange = (event) => setStatus(event.target.value);
   const naviget = useNavigate()
 
-  // edit 
+ 
   const [editShow, seteditShow] = useState(false)
   const handlecancleEdit = () => seteditShow(false);
   const [status2, setStatus2] = useState("");
@@ -26,15 +26,15 @@ export default function CompleteTracking() {
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
 
-  // view 
+
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
-  // delete
+
   const [showDelete, setshowDelete] = useState(false)
   const [id, setid] = useState({
     id: ""
   })
-  // detele api 
+ 
   async function deletecomplelnt(id) {
 
     await deleteComplaint(id)
@@ -43,7 +43,7 @@ export default function CompleteTracking() {
 
   }
 
-  // crate api data
+  
   const [compleltData, setcompleltData] = useState({
     complainerName: "",
     complaintName: "",
@@ -77,7 +77,7 @@ export default function CompleteTracking() {
     }
 
   }
-  // data fatch api 
+
   const [datalist, setdatalist] = useState([])
 
   const getalldata = async () => {
@@ -142,15 +142,6 @@ export default function CompleteTracking() {
     }
 
   }
-
-
-
-
-
-
-
-
-
 
   const EDITE = {
     backgroundColor: '#F6F8FB',
@@ -519,10 +510,7 @@ export default function CompleteTracking() {
 
 
               <Modal.Header className='bg-white' style={{ height: "60px" }}>
-                {/* <Modal.Title>
-           
-           
-          </Modal.Title> */}
+              
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                   <h> View Complain </h>
                 </DialogTitle>
@@ -546,7 +534,7 @@ export default function CompleteTracking() {
                     })}</p>
                   </div>
                 </div>
-                {/* requist name */}
+            
                 <div className="requistname mt-2">
                   <h6 className='mode-date fs-5'>
                     Request Name
@@ -555,12 +543,12 @@ export default function CompleteTracking() {
                     {viewdetils.complaintName}
                   </h6>
                 </div>
-                {/* Description  */}
+             
                 <div className="Description mt-3">
                   <h6 className='mode-date fs-5'>Description</h6>
                   <p>{viewdetils.description}</p>
                 </div>
-                {/* wing-unit-priority-status */}
+            
                 <div className="additional-info d-flex gap-3">
                   <div>
                     <h6 className='mode-date'>Wing</h6>
