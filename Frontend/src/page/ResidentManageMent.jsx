@@ -578,7 +578,7 @@ const ResidentManageMent = () => {
                     <Modal.Body >
                         <Form>
                             <div className="status-options d-flex justify-content-between" style={{ width: "100%" }} >
-                                {/* Occupied Option */}
+
                                 <div
                                     className={`p-4 d-flex align-items-center option ${status === "Occupied" ? "selected" : ""
                                         }`}
@@ -636,7 +636,7 @@ const ResidentManageMent = () => {
 
                 </Modal>
             </div>
-            {/* Residence Status popup for select wing and unit */}
+
             <div className="d-flex justify-content-center">
                 <Modal className="custom-modal" show={show3} centered >
                     <Modal.Header >
@@ -645,7 +645,7 @@ const ResidentManageMent = () => {
                     <Modal.Body>
                         <Form>
                             <div className="status-options d-flex ">
-                                {/* Occupied Option */}
+
                                 <div className="col-md-6 col-10">
                                     <label className='text-wrap fw-bold' style={{ textAlign: "center" }}>Wing<span className='text-danger1 '>*</span></label>
                                     <select className="form-select  input-text mt-1 input-style  custom-select-width" style={{ width: "175px" }} required>
@@ -655,7 +655,7 @@ const ResidentManageMent = () => {
                                         <option>C</option>
                                     </select>
                                 </div>
-                                {/* Vacant Option */}
+
                                 <div className="col-md-6 col-10 ">
                                     <label className='text-wrap fw-bold'>Unit<span className='text-danger1 '>*</span></label>
                                     <select className="form-select input-text mt-1 input-style custom-select-width" style={{ width: "175px!important" }} required>
@@ -666,7 +666,7 @@ const ResidentManageMent = () => {
                                     </select>
                                 </div>
                             </div>
-                            {/* Agreement Checkbox */}
+
                             <Form.Group controlId="agreementCheckbox" className="mt-4 d-flex align-items-center">
 
                             </Form.Group>
@@ -689,7 +689,7 @@ const ResidentManageMent = () => {
             </div>
 
 
-            {/* Do you want to vacate the finlay flat? */}
+
 
             <div className="">
               

@@ -37,13 +37,22 @@ const Dashboard = () => {
     try {
       await deletenumber(id);
       toast.success("Number Delete successfully!");
-      fetchImportantNumbers(); // Refresh the list
+      fetchImportantNumbers();
     } catch (error) {
       toast.error("Failed to Delete number. Please try again.");
       console.error("Failed to delete number:", error);
     }
   };
+  const [isFormValid, setIsFormValid] = useState(false);
 
+  useEffect(() => {
+    // Check if all fields are filled
+    const isValid =
+      editedNumber.Name.trim() !== "" &&
+      editedNumber.Number.trim() !== "" &&
+      editedNumber.Work.trim() !== "";
+    setIsFormValid(isValid);
+  }, [editedNumber]);
   const [showEditComplaintModal, setShowEditComplaintModal] = useState(false);
   const [showViewComplaintModal, setShowViewComplaintModal] = useState(false);
   const [showAddNumberModal, setShowAddNumberModal] = useState(false);
@@ -74,14 +83,15 @@ const Dashboard = () => {
   };
 
 
-  // Fetch important numbers from the API
+
+
   const fetchImportantNumbers = async () => {
     try {
       const response = await viewnumber();
       const data = response.data;
 
       if (data && Array.isArray(data.ImpNumber)) {
-        setImportantNumbers(data.ImpNumber); // Update state with fetched data
+        setImportantNumbers(data.ImpNumber);
       } else {
         console.error("Expected array, but got:", data);
       }
@@ -90,7 +100,6 @@ const Dashboard = () => {
     }
   };
 
-  // Use `useEffect` to fetch data when the component mounts
   useEffect(() => {
     fetchImportantNumbers();
   }, []);
@@ -113,7 +122,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      // Update on backend
+
       await updatenumber(selectedNumber._id, editedNumber);
 
 
@@ -123,7 +132,7 @@ const Dashboard = () => {
         )
       );
 
-      // Close modal
+
       setShowEditNumberModal(false);
       fetchImportantNumbers()
       toast.success("Number Edit successfully!");
@@ -143,22 +152,21 @@ const Dashboard = () => {
 
 
   ]);
-  const [eventsData, setEventsData] = useState([]); // To store the announcements
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // To handle error messages
+  const [eventsData, setEventsData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setError(""); // Reset error message
-
+      setError("");
       try {
-        const response = await getAnnouncements(); // Make the API call
-        console.log("API Response:", response); // Log the full response for debugging
+        const response = await getAnnouncements();
+        console.log("API Response:", response);
 
-        // Ensure response contains the expected data and the 'records' field
+
         if (response && response.data && Array.isArray(response.data.records)) {
-          setEventsData(response.data.records); // Update state with fetched data
+          setEventsData(response.data.records);
         } else {
           setError("No announcements found or data is in an unexpected format");
         }
@@ -170,13 +178,13 @@ const Dashboard = () => {
       }
     };
 
-    fetchAnnouncements(); // Call the fetch function on mount
-  }, []); // Empty array ensures this runs only once when the component mounts
+    fetchAnnouncements();
+  }, []);
 
-  // Function to format the date to local format (e.g., "MM/DD/YYYY")
+
   const formatLocalDate = (dateString) => {
-    const date = new Date(dateString); // Convert string to Date object
-    return date.toLocaleDateString(); // Format to local date
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
   };
 
   const formatTime = (timeStr) => {
@@ -410,104 +418,51 @@ const Dashboard = () => {
 
   return (
     <Container fluid>
-      <Row className="mb-4">
-        <Col xs={12} sm={6} md={3}>
-          <Card className="text-center balance-card balance-card-orange" style={{ borderRadius: "15px" }}>
-            <Card.Body style={{ padding: "0" }}>
-              <div
-                className="card-body-content"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}  >
-                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
-                  Total Balance<br />
-                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
+      <Row className="mb-3">
+        {[
+          { color: "orange", imgSrc: "src/assets/button1.png" },
+          { color: "green", imgSrc: "src/assets/button2.png" },
+          { color: "blue", imgSrc: "src/assets/button3.png" },
+          { color: "pink", imgSrc: "src/assets/button4.png" },
+        ].map((card, index) => (
+          <Col xs={12} sm={6} md={6} lg={3} className="mb-3" key={index}>
+            <Card
+              className={`text-start balance-card balance-card-${card.color}`}
+              style={{ borderRadius: "15px" }}
+            >
+              <Card.Body style={{ padding: "0" }}>
+                <div
+                  className="card-body-content"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+
+
+                  }}
+                >
+                  <div className='text-start me-5 ' style={{ fontWeight: "bold", marginLeft: "-20px" }}>
+                    Total Balance<br />
+                    <h6 className='text-start' style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
+                  </div>
+                  <img
+                    src={card.imgSrc}
+                    alt="Button"
+                    style={{ maxWidth: "50px", height: "auto" }}
+                  />
                 </div>
-                <img
-                  src='src/assets/button1.png'
-                  alt="Button"
-                  style={{ maxWidth: "50px" }} />
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} sm={6} md={3}>
-          <Card className="text-center balance-card balance-card-green" style={{ borderRadius: "15px" }}>
-            <Card.Body style={{ padding: "0" }}>
-              <div
-                className="card-body-content"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }} >
-                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
-                  Total Balance<br />
-                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
-                </div>
-                <img
-                  src='src/assets/button2.png'
-                  alt="Button"
-                  style={{ maxWidth: "50px" }} />
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} sm={6} md={3}>
-          <Card className="text-center balance-card balance-card-blue" style={{ borderRadius: "15px" }}>
-            <Card.Body style={{ padding: "0" }}>
-              <div
-                className="card-body-content"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }} >
-                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
-                  Total Balance<br />
-                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
-                </div>
-                <img
-                  src='src/assets/button3.png'
-                  alt="Button"
-                  style={{ maxWidth: "50px" }} />
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} sm={6} md={3}>
-          <Card className="text-center balance-card balance-card-pink" style={{ borderRadius: "15px" }}>
-            <Card.Body style={{ padding: "0" }}>
-              <div
-                className="card-body-content"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div style={{ marginRight: "100px", fontWeight: "bold" }}>
-                  Total Balance<br />
-                  <h6 style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
-                </div>
-                <img
-                  src='src/assets/button4.png'
-                  alt="Button"
-                  style={{ maxWidth: "50px" }} />
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
       </Row>
+
       <Row>
-        <Col xs={12} md={6}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }}>
+        <Col xs={12} sm={12} md={6} lg={4} xl={6} xxl={6}>
+          <Card className="mb-4" style={{ borderRadius: "15px", height: '460px' }}>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
                 <Card.Title>Total Balance</Card.Title>
-                <select id="dropdown-basic-button" title="select month" style={{ border: "1px solid grey", borderRadius: "5px" }} className='p-1' size="sm">
+                <select id="dropdown-basic-button" title="select month" style={{ border: "1px solid grey", borderRadius: "5px" }} size="sm">
                   <option href="#action1">Last Year</option>
                   <option href="#action2">Last Week</option>
                   <option href="#action3">Last Month</option>
@@ -517,8 +472,8 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={12} md={3}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }}>
+        <Col xs={12} sm={12} md={6} lg={4} xl={3}>
+          <Card className="mb-4 scroll" style={{ borderRadius: "15px", height: '460px' }}>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <Card.Title>Important Numbers</Card.Title>
@@ -535,7 +490,11 @@ const Dashboard = () => {
                   Add
                 </Button>
               </div>
-              <ListGroup variant="flush" className="scrollable-list">
+              <ListGroup
+                variant="flush"
+                className="scrollable-list"
+                style={{ maxHeight: "250px", overflowY: "auto" }}
+              >
                 {Array.isArray(importantNumbers) && importantNumbers.length > 0 ? (
                   importantNumbers.map((item, index) => (
                     <ListGroup.Item
@@ -581,7 +540,8 @@ const Dashboard = () => {
            
 
           </Card>
-          {/* Edit Important Number Modal */}
+
+          {/* Modals */}
           <Modal show={showEditNumberModal} onHide={() => setShowEditNumberModal(false)}>
             <Modal.Header closeButton>
               <Modal.Title>Edit Important Number</Modal.Title>
@@ -620,14 +580,13 @@ const Dashboard = () => {
                 </Form.Group>
               </Form>
             </Modal.Body>
-            <Modal.Footer className=' justify-content-center'>
+            <Modal.Footer className="justify-content-center">
               <Button
                 variant="secondary"
-                className='p-3'
+                className="p-3"
                 onClick={() => {
                   setShowEditNumberModal(false);
                   setEditedNumber({ Name: "", Number: "", Work: "" });
-
                 }}
               >
                 Cancel
@@ -636,9 +595,9 @@ const Dashboard = () => {
                 style={{
                   background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
                   border: "none",
-                  width: "45%"
+                  width: "45%",
                 }}
-                className='p-3'
+                className="p-3"
                 onClick={handleEditNumber}
               >
                 Save
@@ -646,7 +605,6 @@ const Dashboard = () => {
             </Modal.Footer>
           </Modal>
 
-          {/* Delete Confirmation Modal */}
           <Modal show={showDeleteNumberModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
               <Modal.Title>Delete Number</Modal.Title>
@@ -655,14 +613,18 @@ const Dashboard = () => {
               Are you sure you want to delete this number?
             </Modal.Body>
             <Modal.Footer>
-              <button onClick={handleCloseModal} className="btn btn-secondary p-3">Cancel</button>
-              <button onClick={handleDeleteNumber} className="btn btn-danger p-3  ">Delete</button>
+              <button onClick={handleCloseModal} className="btn btn-secondary p-3">
+                Cancel
+              </button>
+              <button onClick={handleDeleteNumber} className="btn btn-danger p-3">
+                Delete
+              </button>
             </Modal.Footer>
           </Modal>
-
         </Col>
-        <Col xs={12} md={3} style={{ height: '410px' }}>
-          <Card className="mb-4 h-100 scroll" style={{ borderRadius: "15px" }} >
+
+        <Col xs={12} sm={12} md={12} lg={4} xl={3} className="mb-3" style={{ height: "460px" }}>
+          <Card className=" h-100 scroll " style={{ borderRadius: "15px" }} >
             <Card.Body >
               <div className="d-flex justify-content-between align-items-center mb-3 ">
                 <Card.Title>Pending Maintenances</Card.Title>
@@ -690,13 +652,19 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
+
+
       </Row>
       <Row>
         {/* Complaint List */}
+
+     
+
         <Col xs={12} md={12} lg={9}>
           <Box className="radious mt-3 mb-1 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '98%', padding: 2 }}>
             <div className="d-flex justify-content-between align-items-center ">
               <Card.Title className='ms-3'>Complaint List</Card.Title>
+
               <select id="dropdown-basic-button" title="select month" style={{ border: "1px solid grey", borderRadius: "8px", padding: "12px 14px 12px 14px" }} className='p-1 mx-4' size="sm">
                 <option href="#action1">Last Year</option>
                 <option href="#action2">Last Week</option>
@@ -775,8 +743,11 @@ const Dashboard = () => {
         </Col>
 
         {/* Upcoming Activity */}
-        <Col xs={12} md={6} lg={3}>
-          <Card className="mb-4" style={{ borderRadius: "15px" }}>
+
+        <Col xs={12} sm={12} md={12} lg={12} xl={3}>
+          <Card className="mb-4 scroll" style={{ borderRadius: "15px", height: "350px", overflowY: "hidden" }}>
+
+       
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
                 <Card.Title>Upcoming Activity</Card.Title>
@@ -801,6 +772,53 @@ const Dashboard = () => {
               ) : error ? (
                 <p style={{ color: "red" }}>{error}</p>
               ) : (
+
+                <div
+                  style={{
+                    maxHeight: "250px",
+                    overflowY: "auto",
+                  }}
+                >
+                  <ListGroup variant="flush" className="mt-3">
+                    {eventsData.map((item, index) => (
+                      <ListGroup.Item key={index} className="d-flex align-items-start">
+                        <div
+                          style={{
+                            width: "30px",
+                            height: "30px",
+                            backgroundColor: getRandomColor(),
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "white",
+                            marginRight: "10px",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {(item.event?.charAt(0) || "N").toUpperCase()}
+                        </div>
+                        <div className="d-flex justify-content-between w-100">
+                          <div>
+                            <div>
+                              <strong>{item.title || "No Event Name"}</strong>
+                            </div>
+                            <p style={{ color: "grey" }}>{formatTime(item.announcementTime)}</p>
+                          </div>
+                          <div>
+                            <small style={{ color: "grey" }}>{formatLocalDate(item.announcementDate)}</small>
+                          </div>
+                        </div>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                </div>
+              )}
+            </Card.Body>
+          </Card>
+        </Col>
+
+
                 <ListGroup variant="flush" className="mt-3">
                   {eventsData.map((item, index) => (
                     <ListGroup.Item key={index} className="d-flex align-items-start">
@@ -839,12 +857,13 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
+
       </Row>
       {/* Modals  for complain table*/}
       {/* Add Important Number Modal */}
       <Modal show={showAddNumberModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedNumber ? "Edit  N" : "Add New Number"}</Modal.Title>
+          <Modal.Title>{selectedNumber ? "Edit Number" : "Add New Number"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>
@@ -881,16 +900,19 @@ const Dashboard = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleCloseModal} className="btn btn-secondary p-3" style={{ width: "45%" }}>Cancel</button>
+          <button onClick={handleCloseModal} className="btn btn-secondary p-3" style={{ width: "45%" }}>
+            Cancel
+          </button>
           <button
             onClick={selectedNumber ? handleEditNumber : handleAddNumber}
-            className="btn p-3 "
-            style={{
+            className="btn p-3"
+            style={{ 
               background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
               border: "none",
               color: "white",
               width: "45%"
             }}
+            disabled={!isFormValid} 
           >
             {selectedNumber ? "Save Changes" : "Add Number"}
           </button>
@@ -1048,16 +1070,13 @@ const Dashboard = () => {
           </div>
         </Modal.Footer>
       </Modal>
-      {/* View Complaint Modal */}
+
       <Modal show={showview} onHide={handleClose}  >
         <div className="div" style={{ borderRadius: "10%" }}>
 
 
           <Modal.Header className='bg-white' style={{ height: "60px" }}>
-            {/* <Modal.Title>
-           
-           
-          </Modal.Title> */}
+
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
               <h> View Complain </h>
             </DialogTitle>
@@ -1067,7 +1086,7 @@ const Dashboard = () => {
             </span>
           </Modal.Header>
           <Modal.Body className='viewcomplete'>
-            {/* profile */}
+
             <div className="profile-name d-flex gap-2 ">
               <div className="" style={{ width: "70px", height: "70px", }}>
                 <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
@@ -1081,7 +1100,7 @@ const Dashboard = () => {
                 })}</p>
               </div>
             </div>
-            {/* requist name */}
+
             <div className="requistname mt-2">
               <h6 className='mode-date fs-5'>
                 Request Name
@@ -1090,12 +1109,12 @@ const Dashboard = () => {
                 {viewdetils.complaintName}
               </h6>
             </div>
-            {/* Description  */}
+
             <div className="Description mt-3">
               <h6 className='mode-date fs-5'>Description</h6>
               <p>{viewdetils.description}</p>
             </div>
-            {/* wing-unit-priority-status */}
+
             <div className="additional-info d-flex gap-3">
               <div>
                 <h6 className='mode-date'>Wing</h6>
@@ -1122,7 +1141,7 @@ const Dashboard = () => {
         </div>
       </Modal>
 
-      {/* <EditablePage/> */}
+
     </Container>
   );
 };

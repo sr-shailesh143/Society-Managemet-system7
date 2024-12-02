@@ -14,7 +14,7 @@ import EditablePage from '../practice/EditablePage';
 import Loader from '../practice/EditablePage';
 
 export default function SecurityGuard() {
-  // get Security Guard Details
+ 
   const [SecurityData, setSecurityData] = useState([])
   const [loading, setloading] = useState(false);
   async function GetAllSecurityData() {
@@ -31,7 +31,6 @@ export default function SecurityGuard() {
   useEffect(() => {
     GetAllSecurityData()
   }, [])
-  // create Security Guard Details
   const [CreateSecurityOpen, setCreateSecurityOpen] = useState(false)
   const opencreateModal = () => setCreateSecurityOpen(true)
   const closeCreateModal = () => setCreateSecurityOpen(false)
@@ -48,8 +47,8 @@ export default function SecurityGuard() {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/png, image/jpeg, image/gif',
-    maxSize: 10 * 1024 * 1024, // 10 MB
-    onDrop: (acceptedFiles) => setFile(acceptedFiles[0]), // Save the uploaded file
+    maxSize: 10 * 1024 * 1024, 
+    onDrop: (acceptedFiles) => setFile(acceptedFiles[0]),
   });
   const [photo, setPhoto] = useState(null);
   const [file, setFile] = useState(null);
@@ -86,8 +85,6 @@ export default function SecurityGuard() {
       toast.error(" Failed to CreateSecurity Guard  Please try again.")
     }
   }
-
-  // edit Security Guard Details
 
   const [editOpensecurity, seteditOpensecurity] = useState(false)
   const CloseEditsecurity = () => seteditOpensecurity(false)
@@ -134,7 +131,7 @@ export default function SecurityGuard() {
     }
   }
 
-  // viwe security guard
+
 
   const [viewModalSecurity, setviewModalSecurity] = useState(false)
   const CloseViewModdal = () => setviewModalSecurity(false)
@@ -149,7 +146,7 @@ export default function SecurityGuard() {
     }
   }
 
-  // delete security
+
 
 
   const [deleteSecurityModal, setdeleteSecurityModal] = useState(false)
@@ -234,8 +231,8 @@ export default function SecurityGuard() {
                       item.fullName === "" || item.photo === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
                         <span> <UserAvatar
 
-                          src={item?.photo || "src/assets/Avatar.png"} // Use dynamic image URL if available
-                          alt={item?.photo || "User"} // Use dynamic name if available
+                          src={item?.photo || "src/assets/Avatar.png"}
+                          alt={item?.photo || "User"}
                           style={{ cursor: "pointer" }}
                         />
                           <span className='ms-2'>  {item.fullName}</span> </span>

@@ -30,7 +30,6 @@ exports.createComplaint = async (req,res)=>{
 }
   
 
-// Get all complaints
 exports.getAllComplaints = async(req,res)=>{
   try {
       const user = await Complaint.find();
@@ -50,7 +49,6 @@ exports.getAllComplaints = async(req,res)=>{
   }
 }
 
-// Update complaint status
 exports.updateComplaint = async(req,res)=>{
   try {
     const {id} = req.params;
@@ -90,12 +88,12 @@ exports.updateComplaint = async(req,res)=>{
   }
  }
 
-// Delete a complaint
+
 exports.deleteComplaint = async (req, res) => {
   try {
-    //const id =req.params.id;
+   
     const { id } = req.params;
-    // const user = await Complaint.findByIdAndDelete({_id:id})
+    
     const user = await Complaint.findByIdAndDelete(id);
 
     if (user) {
@@ -114,7 +112,7 @@ exports.deleteComplaint = async (req, res) => {
   }
 };
 
-///getComplaintById data///
+
 exports.getComplaintById = async (req, res) => {
   try {
     const { id } = req.params;

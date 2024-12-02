@@ -30,20 +30,19 @@ export default function Expense() {
     getExpenseData();
   }, []);
 
-  // Modal state for creating an expense
   const [createShowModal, setCreateShowModal] = useState(false);
   const handleCreateModalOpen = () => setCreateShowModal(true);
   const handleCreateModalClose = () => setCreateShowModal(false);
 
-  // Dropzone for file upload
-  const [billFile, setBillFile] = useState(null); // State for file
+
+  const [billFile, setBillFile] = useState(null);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/png, image/jpeg, image/gif',
-    maxSize: 10 * 1024 * 1024, // 10 MB
-    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]), // Save the uploaded file
+    maxSize: 10 * 1024 * 1024,
+    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]),
   });
-  // State to store new expense data
+
   const [createData, setCreateData] = useState({
     title: '',
     description: '',
@@ -51,7 +50,7 @@ export default function Expense() {
     amount: '',
   });
 
-  // Create expense handler
+
   async function handleCreateExpense() {
 
     const data = {
@@ -60,13 +59,13 @@ export default function Expense() {
     }
 
     try {
-      const response = await addExpense(data); // Ensure your `addExpense` function handles `FormData`
+      const response = await addExpense(data);
       console.log(response.data);
       setCreateData({ title: '', description: '', date: '', amount: '' });
       setBillFile(null);
       getExpenseData()
       handleCreateModalClose();
-      // setExpenseData(updatedData.data.records); // Refresh data
+
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +74,7 @@ export default function Expense() {
   // edite expense
   const [showEditeModal, setshowEditeModal] = useState(false)
   const handalEditClose = () => setshowEditeModal(false)
-  
+
   const [editeData, setediteData] = useState({})
 
   async function haldleEditId(id) {
@@ -124,13 +123,13 @@ export default function Expense() {
   // delete Modal 
 
   const [ShoweDeleteModal, setShoweDeleteModal] = useState(false)
-  const handleDeleteColse = ()=> setShoweDeleteModal(false) 
+  const handleDeleteColse = () => setShoweDeleteModal(false)
   const [_id, setid] = useState("")
 
   async function DeleteExpense(id) {
     try {
       await deleteExpense(id)
-     
+
       getExpenseData()
       handleDeleteColse()
     } catch (error) {
@@ -258,11 +257,16 @@ export default function Expense() {
                         </svg>
 
                       </span>
+
+                   
+                    
+
                       <span className="status-badge-delete cursor" style={DELETE} onClick={()=> setid(item._id)|| setShoweDeleteModal(true)}>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M21.0697 5.23C19.4597 5.07 17.8497 4.95 16.2297 4.86V4.85L16.0097 3.55C15.8597 2.63 15.6397 1.25 13.2997 1.25H10.6797C8.34967 1.25 8.12967 2.57 7.96967 3.54L7.75967 4.82C6.82967 4.88 5.89967 4.94 4.96967 5.03L2.92967 5.23C2.50967 5.27 2.20967 5.64 2.24967 6.05C2.28967 6.46 2.64967 6.76 3.06967 6.72L5.10967 6.52C10.3497 6 15.6297 6.2 20.9297 6.73C20.9597 6.73 20.9797 6.73 21.0097 6.73C21.3897 6.73 21.7197 6.44 21.7597 6.05C21.7897 5.64 21.4897 5.27 21.0697 5.23Z" fill="#E74C3C" />
                           <path d="M19.2297 8.14C18.9897 7.89 18.6597 7.75 18.3197 7.75H5.67975C5.33975 7.75 4.99975 7.89 4.76975 8.14C4.53975 8.39 4.40975 8.73 4.42975 9.08L5.04975 19.34C5.15975 20.86 5.29975 22.76 8.78975 22.76H15.2097C18.6997 22.76 18.8398 20.87 18.9497 19.34L19.5697 9.09C19.5897 8.73 19.4597 8.39 19.2297 8.14ZM13.6597 17.75H10.3297C9.91975 17.75 9.57975 17.41 9.57975 17C9.57975 16.59 9.91975 16.25 10.3297 16.25H13.6597C14.0697 16.25 14.4097 16.59 14.4097 17C14.4097 17.41 14.0697 17.75 13.6597 17.75ZM14.4997 13.75H9.49975C9.08975 13.75 8.74975 13.41 8.74975 13C8.74975 12.59 9.08975 12.25 9.49975 12.25H14.4997C14.9097 12.25 15.2497 12.59 15.2497 13C15.2497 13.41 14.9097 13.75 14.4997 13.75Z" fill="#E74C3C" />
                         </svg>
+
                       </span>
                     </div>
                   </td>
@@ -329,7 +333,7 @@ export default function Expense() {
                     <small>PNG, JPG, GIF up to 10MB</small>
                   </div>
                 </div>
-                {billFile && <p>Selected File: {billFile.name}</p>} {/* Display selected file */}
+                {billFile && <p>Selected File: {billFile.name}</p>}
               </Form.Group>
               <div className="d-flex gap-3 mt-3">
                 <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }} variant="outlined" onClick={handleCreateModalClose} >
@@ -430,7 +434,7 @@ export default function Expense() {
                         <small>PNG, JPG, GIF up to 10MB</small>
                       </div>
                     </div>
-                    {billFile && <p>Selected File: {billFile.name}</p>} {/* Display selected file */}
+                    {billFile && <p>Selected File: {billFile.name}</p>}
                   </div>
                 )}
 
@@ -464,10 +468,7 @@ export default function Expense() {
 
 
           <Modal.Header className='bg-white' style={{ height: "60px" }}>
-            {/* <Modal.Title>
-           
-           
-          </Modal.Title> */}
+
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
               <h> View Expense Details</h>
             </DialogTitle>
@@ -477,12 +478,12 @@ export default function Expense() {
             </span>
           </Modal.Header>
           <Modal.Body className='viewcomplete'>
-            {/* title */}
+
             <div className="Description mt-3">
               <p className='mode-date '>Title</p>
               <h6 className=''>{viewdetils.title}</h6>
             </div>
-            {/* Description  */}
+
             <div className="Description mt-3">
               <h6 className='mode-date '>Description</h6>
               <h6 className=''>{viewdetils.description}</h6>
@@ -504,10 +505,10 @@ export default function Expense() {
                   <Image className='fs-3' />
                 </div>
                 <div className="icon me-1">
-               <p style={{ textTransform: "capitalize",textWrap:"wrap", width:"215px" }}> {viewdetils.bill ? viewdetils.bill.split("/image/upload/")[1].split("/")[1]:""}
-               <p >2.3 MB</p> </p>
-             
-               
+                  <p style={{ textTransform: "capitalize", textWrap: "wrap", width: "215px" }}> {viewdetils.bill ? viewdetils.bill.split("/image/upload/")[1].split("/")[1] : ""}
+                    <p >2.3 MB</p> </p>
+
+
                 </div>
                 <div className="icon me-1 document-view cursor">
                   <VisibilityIcon className='fs-3 ' />
@@ -518,8 +519,7 @@ export default function Expense() {
         </div>
       </Modal>
 
-{/* delete Modal */}
-<Modal show={ShoweDeleteModal}>
+      <Modal show={ShoweDeleteModal}>
         <Modal.Header>
           <Modal.Title>Delete Expense?</Modal.Title>
         </Modal.Header>

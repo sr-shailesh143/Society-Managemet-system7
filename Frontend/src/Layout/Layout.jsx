@@ -30,7 +30,7 @@ import { getProfiles } from '../apiservices/profileservice';
 
 export default function Layout({ component }) {
     const [show, setShow] = useState(false);
-    const [profile, setProfile] = useState(null); // To hold the fetched profile data
+    const [profile, setProfile] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [serch, setserch] = useState("")
@@ -58,14 +58,14 @@ export default function Layout({ component }) {
         }
     };
 
-    // Fetch profiles on component mount
+    
     useEffect(() => {
         const fetchProfile = async () => {
             try {
                 const response = await getProfiles();
-                const profiles = response.data; // Adjust based on API response structure
+                const profiles = response.data; 
                 if (profiles && profiles.length > 0) {
-                    setProfile(profiles[0]); // Assuming you want the first profile
+                    setProfile(profiles[0]); 
                 }
             } catch (error) {
                 console.error("Error fetching profiles:", error);
@@ -77,14 +77,14 @@ export default function Layout({ component }) {
 
 
 
-    // Toggle Financial Management submenu
+   
     const toggleFinancialSubmenu = () => setShowFinancialSubmenu2(!showFinancialSubmenu2);
     const toggleFinancialSubmenu1 = () => setShowFinancialSubmenu3(!showFinancialSubmenu3);
     const toggleFinancialSubmenu2 = () => setShowFinancialSubmenu4(!showFinancialSubmenu4);
 
 
 
-    // notification 
+   
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -243,6 +243,12 @@ left:-23px;
                         <NavLinks className='h-50'>
 
 
+
+                            <Link className='link-tag' to={"/deshbord"}  > <div className='side-design' style={{ display: location.pathname === "/deshbord" || location.pathname === "/profile" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/deshbord" || location.pathname === "/profile" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" || location.pathname === "/profile" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <MdDashboard className=' fs-3 mb-1' />Dashboard  </NavLink></Link>
+                            <Link className='link-tag' to={"/resident"} >  <div className='side-design' style={{ display: location.pathname === "/resident" || location.pathname === "/owner" || location.pathname === "/Tenant" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink style={{ background: location.pathname === "/resident" || location.pathname === "/owner" || location.pathname === "/Tenant" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/resident" || location.pathname === "/owner" || location.pathname === "/Tenant" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious'>  <MdAddHomeWork className=' fs-3 mb-1' />Resident Management </NavLink></Link>
+
+                            <Link className='link-tag' to={"/Financial"} onClick={toggleFinancialSubmenu} >  <div className='side-design' style={{ display: location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? "block" : "none" }}><SidebarMiniButton /> </div>   <NavLink style={{ background: location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-2  radious'><HiMiniCurrencyDollar className=' fs-3 mb-1 ' /> Financial Management   {location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <ArrowDropDownIcon className='' /> : ""}</NavLink>  </Link>
+
                             <Link className='link-tag hover-deshbord' to={"/deshbord"}   > <div className='side-design' style={{ display: location.pathname === "/deshbord" || location.pathname === "/profile" ? "block" : "none" }}><SidebarMiniButton /> </div>    <NavLink style={{ background: location.pathname === "/deshbord" || location.pathname === "/profile" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/deshbord" || location.pathname === "/profile" ? "white" : "", textDecoration: "none" }} className=' d-flex gap-3 radious link-tag'>    <svg width="24" height="24" viewBox="0 0 24 24" className='hover-deshbord' fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21.5 10.9V4.1C21.5 2.6 20.86 2 19.27 2H15.23C13.64 2 13 2.6 13 4.1V10.9C13 12.4 13.64 13 15.23 13H19.27C20.86 13 21.5 12.4 21.5 10.9Z" fill={`${location.pathname === "/deshbord" || location.pathname === "/profile" ? "white" : "#292D32"}`} />
                                 <path d="M11 13.1V19.9C11 21.4 10.36 22 8.77 22H4.73C3.14 22 2.5 21.4 2.5 19.9V13.1C2.5 11.6 3.14 11 4.73 11H8.77C10.36 11 11 11.6 11 13.1Z" fill={`${location.pathname === "/deshbord" || location.pathname === "/profile" ? "white" : "#292D32"}`} />
@@ -264,7 +270,8 @@ left:-23px;
 
 
 
-                            {/* acoding */}
+
+                         
                             {
                                 location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu2 && (
                                     <Submenu>
@@ -275,6 +282,10 @@ left:-23px;
                                 )} </div> : ""
                             }
 
+
+
+                            <Link className='link-tag' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><PiBuildingsFill className='fs-3 mb-1' />  Facility Management</NavLink></Link>
+                            <Link className='link-tag' to={"/traking"} onClick={toggleFinancialSubmenu2}  > <div className='side-design' style={{ display: location.pathname === "/traking" || location.pathname === "/RequestTracking" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/traking" || location.pathname === "/RequestTracking" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/traking" || location.pathname === "/RequestTracking" ? "white" : "", textDecoration: "none" }}><MdAttachEmail className='mb-1 fs-3' />   Complaint Tracking    {location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <ArrowDropDownIcon /> : ""}</NavLink></Link>
 
                             <Link className='link-tag hover-deshbord' to={"/FacilityManagement"} >  <div className='side-design' style={{ display: location.pathname === "/FacilityManagement" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/FacilityManagement" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/FacilityManagement" ? "white" : "", textDecoration: "none" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.7497 4.6401L6.31973 2.4501C3.92973 1.2801 1.96973 2.47011 1.96973 5.09011V19.9301C1.96973 21.0701 2.91973 22.0001 4.07973 22.0001H11.4997C12.0497 22.0001 12.4997 21.5501 12.4997 21.0001V7.4101C12.4997 6.3601 11.7097 5.1101 10.7497 4.6401ZM8.96973 13.7501H5.49973C5.08973 13.7501 4.74973 13.4101 4.74973 13.0001C4.74973 12.5901 5.08973 12.2501 5.49973 12.2501H8.96973C9.37973 12.2501 9.71973 12.5901 9.71973 13.0001C9.71973 13.4101 9.38973 13.7501 8.96973 13.7501ZM8.96973 9.7501H5.49973C5.08973 9.7501 4.74973 9.4101 4.74973 9.0001C4.74973 8.59011 5.08973 8.2501 5.49973 8.2501H8.96973C9.37973 8.2501 9.71973 8.59011 9.71973 9.0001C9.71973 9.4101 9.38973 9.7501 8.96973 9.7501Z" fill={`${location.pathname === "/FacilityManagement" ? "white" : "#4F4F4F"}`} />
@@ -287,6 +298,7 @@ left:-23px;
                                 <path d="M17 3H7C4 3 2 4.5 2 8V11.14C2 11.87 2.75 12.33 3.42 12.04C4.52 11.56 5.77 11.38 7.08 11.59C9.7 12.02 11.84 14.09 12.37 16.69C12.52 17.45 12.54 18.19 12.44 18.9C12.36 19.49 12.84 20.01 13.43 20.01H17C20 20.01 22 18.51 22 15.01V8C22 4.5 20 3 17 3ZM17.47 8.59L14.34 11.09C13.68 11.62 12.84 11.88 12 11.88C11.16 11.88 10.31 11.62 9.66 11.09L6.53 8.59C6.21 8.33 6.16 7.85 6.41 7.53C6.67 7.21 7.14 7.15 7.46 7.41L10.59 9.91C11.35 10.52 12.64 10.52 13.4 9.91L16.53 7.41C16.85 7.15 17.33 7.2 17.58 7.53C17.84 7.85 17.79 8.33 17.47 8.59Z" fill={`${location.pathname === "/traking" || location.pathname === "/RequestTracking" ? "white" : "#4F4F4F"}`} />
                             </svg>
                                 Complaint Tracking    {location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <ArrowDropDownIcon /> : ""}</NavLink></Link>
+
                             {
                                 location.pathname === "/traking" || location.pathname === "/RequestTracking" ? <div>
                                     {showFinancialSubmenu4 && (
@@ -301,6 +313,9 @@ left:-23px;
 
 
 
+
+                            <Link className='link-tag' to={"/Visitor"} onClick={toggleFinancialSubmenu1} > <div className='side-design' style={{ display: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "white" : "", textDecoration: "none" }}><SiSpringsecurity className='fs-3 mb-1' />  Security Management     {location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? <ArrowDropDownIcon /> : ""}</NavLink></Link>
+
                             <Link className='link-tag hover-deshbord' to={"/Visitor"} onClick={toggleFinancialSubmenu1} > <div className='side-design' style={{ display: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "block" : "none" }}><SidebarMiniButton /> </div>  <NavLink className=' d-flex gap-3 radious' style={{ background: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "linear-gradient(90deg, #FE512E 0%, #F09619 100%)" : "", color: location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "white" : "", textDecoration: "none" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.5398 4.16989L13.0398 2.10989C12.4698 1.89989 11.5398 1.89989 10.9698 2.10989L5.4698 4.16989C4.4098 4.56989 3.5498 5.80989 3.5498 6.93989V15.0399C3.5498 15.8499 4.0798 16.9199 4.7298 17.3999L10.2298 21.5099C11.1998 22.2399 12.7898 22.2399 13.7598 21.5099L19.2598 17.3999C19.9098 16.9099 20.4398 15.8499 20.4398 15.0399V6.93989C20.4498 5.80989 19.5898 4.56989 18.5398 4.16989ZM12.7498 12.8699V15.4999C12.7498 15.9099 12.4098 16.2499 11.9998 16.2499C11.5898 16.2499 11.2498 15.9099 11.2498 15.4999V12.8699C10.2398 12.5499 9.4998 11.6099 9.4998 10.4999C9.4998 9.11989 10.6198 7.99989 11.9998 7.99989C13.3798 7.99989 14.4998 9.11989 14.4998 10.4999C14.4998 11.6199 13.7598 12.5499 12.7498 12.8699Z" fill={`${location.pathname === "/Visitor" || location.pathname === "/Securityprotocols" ? "white" : "#4F4F4F"}`} />
                             </svg>
@@ -308,6 +323,7 @@ left:-23px;
                                     <path d="M17.9202 8.18005H11.6902H6.08024C5.12024 8.18005 4.64024 9.34005 5.32024 10.0201L10.5002 15.2001C11.3302 16.0301 12.6802 16.0301 13.5102 15.2001L15.4802 13.2301L18.6902 10.0201C19.3602 9.34005 18.8802 8.18005 17.9202 8.18005Z" fill="white" />
                                 </svg>
                                     : ""}</NavLink></Link>
+
 
 
                             {
@@ -363,7 +379,7 @@ left:-23px;
 
 
 
-                                        {/* sidebar for A mobail sceen */}
+                                    
                                         <NavLinks className='h-50'>
 
 
@@ -374,7 +390,7 @@ left:-23px;
 
 
 
-                                            {/* acoding */}
+                                         
                                             {
                                                 location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu2 && (
                                                     <Submenu>
@@ -532,23 +548,23 @@ left:-23px;
                                 <UserAvatar
                                     onClick={() => navigate("/profile")}
                                     className=""
-                                    src={profile?.image || "src/assets/Avatar.png"} // Use dynamic image URL if available
-                                    alt={profile?.name || "User"} // Use dynamic name if available
+                                    src={profile?.image || "src/assets/Avatar.png"}
+                                    alt={profile?.name || "User"}
                                     style={{ cursor: "pointer" }}
                                 />
 
 
                                 <UserName className="search">
-                                    {profile?.firstName || "Unknown User"}  {profile?.lastName || "Unknown User"} {/* Display name dynamically */}
+                                    {profile?.firstName || "Unknown User"}  {profile?.lastName || "Unknown User"}
                                     <br />
-                                    <span className="mx-1 text-color">{profile?.role || "Admin"}</span> {/* Display role dynamically */}
+                                    <span className="mx-1 text-color">{profile?.role || "Admin"}</span>
                                 </UserName>
                             </UserInfo>
                         </div>
                         <div className="component-layout     ">
 
                             <br />
-                            <div className="p-4">
+                            <div>
                                 <div className="container-fluid">
 
 

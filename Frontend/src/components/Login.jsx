@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import useForm from "/src/hooks/useForm"; // Assuming useForm is a custom hook for validation
+import useForm from "/src/hooks/useForm";
 import { login } from '../apiservices/Authentication';
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -37,34 +37,34 @@ export default function Login() {
         e.preventDefault();
     
         try {
-            // Default credentials
+            
             const defaultCredentials = [
                 { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
                 { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
             ];
     
-            // Check if the entered credentials match any of the default ones
+     
             const matchedDefault = defaultCredentials.find(
                 (cred) => cred.email === user.EmailOrPhone && cred.password === user.password
             );
     
             if (matchedDefault) {
-                // If matched with default credentials, set the default password and role
-                user.password = matchedDefault.password;  // Set default password for the user
+             
+                user.password = matchedDefault.password;  
     
-                // Proceed with the login call using the default credentials
+             
                 const response = await login(user);
     
                 toast.success(response.data.message);
                 dispatch(StoreUser(response.data.user));
-                navigate(matchedDefault.redirectUrl);  // Redirect based on the matched default
+                navigate(matchedDefault.redirectUrl); 
             } else {
-                // If not matched with default credentials, proceed with normal login
+            
                 const response = await login(user);
     
                 toast.success(response.data.message);
                 dispatch(StoreUser(response.data.user));
-                navigate("/deshbord");  // Navigate to the default dashboard
+                navigate("/deshbord"); 
             }
         } catch (error) {
             toast.error(error.response?.data?.message || "Something went wrong.");

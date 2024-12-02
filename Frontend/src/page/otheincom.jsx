@@ -37,7 +37,6 @@ const Otherincome = () => {
             display: 'flex',
             justifyContent: 'space-between',
             marginBottom: '8px',
-            //styleName: H7- Regular;
             fonty: "Poppins",
             fontSize: "14px",
             fontWeight: "400",
@@ -62,9 +61,10 @@ const Otherincome = () => {
     };
 
 
+
     const naviget = useNavigate()
 
-    // State to control modals and store note data
+
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [selectedTitle, setSelectedTitle] = useState('');
@@ -77,7 +77,7 @@ const Otherincome = () => {
 
     ]);
 
-    // Functions to open and close modals
+
     const handleEditModalOpen = (title, description) => {
         setSelectedTitle(title);
         setSelectedDescription(description);
@@ -87,10 +87,14 @@ const Otherincome = () => {
     const handleCreateModalOpen = () => setShowCreateModal(true);
     const handleCreateModalClose = () => setShowCreateModal(false);
 
-    const navigate = useNavigate(); // React Router ka navigate hook
+    const navigate = useNavigate();
 
     const handleViewClick = () => {
-        navigate('/ViewOtherIncome'); // Yahan aapka route specify karein
+        navigate('/ViewOtherIncome');
+    };
+    const handleCancel = () => {
+        console.log("Cancel button clicked");
+
     };
 
     return (
@@ -106,7 +110,7 @@ const Otherincome = () => {
                 </div>
             </div>
             <div className="container-fluid d-flex flex-column bg-light shadow" style={{ width: "100%" }}>
-                {/* Title and Create Note button aligned in a single line */}
+
                 <div className="d-flex justify-content-between align-items-center mb-3 p-3">
                     <h2>Other Income</h2>
                     <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00' }} onClick={handleCreateModalOpen}>
@@ -114,7 +118,6 @@ const Otherincome = () => {
                     </Button>
                 </div>
 
-                {/* Notes Grid */}
                 <Row className="g-3 mb-5">
                     {noteData.map((note, idx) => (
                         <Col xs={12} sm={6} md={4} lg={3} key={idx}>
@@ -188,26 +191,43 @@ const Otherincome = () => {
                             <Form.Label> Title <span style={{ color: "red" }}>*</span></Form.Label>
                             <Form.Control type="text" placeholder="Enter title" />
                         </Form.Group>
-                        <Form.Group className="mb-3 d-flex gap-1 ">
-                            <div className="date w-50 ">
-                                <Form.Label> Date <span style={{ color: "red" }}>*</span></Form.Label>
-                                <Form.Control className='' type="date" />
+                        <Form.Group className="mb-3 d-flex gap-2">
+                            <div className="date w-50">
+                                <Form.Label>
+                                    Date <span style={{ color: "red" }}>*</span>
+                                </Form.Label>
+                                <Form.Control type="date" />
                             </div>
-                            <div className="time w-50 me-3">
-                                <Form.Label> Due Date <span style={{ color: "red" }}>*</span></Form.Label>
-                                <Form.Control type="date" className='' />
+                            <div className="time w-50" style={{ background: "none" }}>
+                                <Form.Label>
+                                    Due Date <span style={{ color: "red" }}>*</span>
+                                </Form.Label>
+                                <Form.Control type="date" />
                             </div>
                         </Form.Group>
+
                         <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
                         <Form.Control as="textarea" rows={2} />
                         <Form.Label className='mt-2'> Amount <span style={{ color: "red" }}>*</span></Form.Label>
                         <Form.Control type="number" placeholder="₹ 0000" />
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <div className="d-flex gap-3">
-                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={""}  >  Cancel </Button>
-                        <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={handleCreateModalClose}  >
+                <Modal.Footer className="d-flex justify-content-center w-100">
+                    <div className="d-flex gap-3 w-100 justify-content-center">
+                        <Button
+                            className="cancel-btn radious"
+                            style={{ border: "1px solid white", background: "lightgrey" }}
+                            onClick={handleCreateModalClose}
+                        >
+                            Cancel
+                        </Button>
+
+
+                        <Button
+                            className="save-btn radious l-btn "
+                            style={{ color: "white", border: "none", cursor: "pointer" }}
+                            onClick={handleCreateModalClose}
+                        >
                             Save
                         </Button>
                     </div>
@@ -229,8 +249,8 @@ const Otherincome = () => {
                                 <Form.Label> Date <span style={{ color: "red" }}>*</span></Form.Label>
                                 <Form.Control className='' type="date" />
                             </div>
-                            <div className="time w-50 me-3">
-                                <Form.Label> Due Date <span style={{ color: "red" }}>*</span></Form.Label>
+                            <div className="time w-50 me-3" style={{ background: "none" }}>
+                                <Form.Label> Due Date <span style={{ color: "red", background: "none" }}>*</span></Form.Label>
                                 <Form.Control type="date" className='' />
                             </div>
 

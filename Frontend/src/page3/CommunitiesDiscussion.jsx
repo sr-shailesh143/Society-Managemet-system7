@@ -134,7 +134,7 @@ export default function CommunitiesDiscussion() {
             </div>
           </nav>
 
-          {/* Questions Section or Messages */}
+         
           {showQuestions ? (
             <div className="question-form-container d-flex flex-column justify-content-center align-items-center">
               <div
@@ -166,7 +166,7 @@ export default function CommunitiesDiscussion() {
                 </ul>
               </div>
 
-              {/* Question Form */}
+           
               <div
                 className="question-form"
                 style={{

@@ -31,13 +31,12 @@ export default function Requesttracking() {
   }
 
 
-  // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
-  // delete
+
   const [showDelete, setshowDelete] = useState(false)
   const [id, setid] = useState("")
-  // detele api 
+
   async function deletecomplelnt(id) {
 
     await deleteRequest(id)
@@ -46,7 +45,6 @@ export default function Requesttracking() {
 
   }
 
-  // crate api data
   const [compleltData, setcompleltData] = useState({
     complainerName: "",
     complaintName: "",
@@ -79,7 +77,7 @@ export default function Requesttracking() {
     }
 
   }
-  // data fatch api 
+
   const [datalist, setdatalist] = useState([])
 
   const getalldata = async () => {
@@ -346,7 +344,7 @@ export default function Requesttracking() {
 
                   {datalist.map((item) => (
                     <tr key={item._id}>
-                      {/* Requester Info */}
+
                       <td style={{ textAlign: "center" }}>
                         {item.requesterName === "" || item.img === "" ? (
                           <span>
@@ -361,12 +359,12 @@ export default function Requesttracking() {
                         )}
                       </td>
 
-                      {/* Request Name */}
+
                       <td style={{ textAlign: "center" }}>
                         <span className="ms-3">{item.requestName}</span>
                       </td>
 
-                      {/* Request Date */}
+
                       <td style={{ textAlign: "center" }}>
                         <span>
                           {new Date(item.requestDate).toLocaleDateString("en-GB", {
@@ -377,12 +375,11 @@ export default function Requesttracking() {
                         </span>
                       </td>
 
-                      {/* Wing and Unit */}
+
                       <td style={{ textAlign: "center" }}>
                         <span className="status-badge-wing" style={wing}>{item.wing}</span> {item.unit}
                       </td>
 
-                      {/* Priority */}
                       <td style={{ textAlign: "center" }}>
                         {item.priority === "Medium" ? (
                           <span style={Medium}>{item.priority}</span>
@@ -393,7 +390,7 @@ export default function Requesttracking() {
                         )}
                       </td>
 
-                      {/* Status */}
+
                       <td style={{ textAlign: "center" }}>
                         {item.status === "Pending" ? (
                           <span style={Pending}>{item.status}</span>
@@ -404,10 +401,10 @@ export default function Requesttracking() {
                         )}
                       </td>
 
-                      {/* Action Buttons */}
+
                       <td className="action-buttons" style={{ textAlign: "center" }}>
                         <span>
-                          {/* Edit */}
+
                           <span
                             className="status-badge-edit mx-2"
                             onClick={() => {
@@ -421,7 +418,7 @@ export default function Requesttracking() {
                         </svg>
                           </span>
 
-                          {/* View */}
+
                           <span
                             className="status-badge-view"
                             onClick={() => {
@@ -436,7 +433,7 @@ export default function Requesttracking() {
                         </svg>
                           </span>
 
-                          {/* Delete */}
+
                           <span
                             className="status-badge-delete ms-2"
                             onClick={() => {
@@ -566,10 +563,7 @@ export default function Requesttracking() {
 
 
               <Modal.Header className='bg-white' style={{ height: "60px" }}>
-                {/* <Modal.Title>
-           
-           
-          </Modal.Title> */}
+
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                   <h> View Complain </h>
                 </DialogTitle>
@@ -579,7 +573,7 @@ export default function Requesttracking() {
                 </span>
               </Modal.Header>
               <Modal.Body className='viewcomplete'>
-                {/* profile */}
+
                 <div className="profile-name d-flex gap-2 ">
                   <div className="" style={{ width: "70px", height: "70px", }}>
                     <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
@@ -593,7 +587,7 @@ export default function Requesttracking() {
                     })}</p>
                   </div>
                 </div>
-                {/* requist name */}
+
                 <div className="requistname mt-2">
                   <h6 className='mode-date fs-5'>
                     Request Name
@@ -602,12 +596,12 @@ export default function Requesttracking() {
                     {viewdetils.requestName}
                   </h6>
                 </div>
-                {/* Description  */}
+
                 <div className="Description mt-3">
                   <h6 className='mode-date fs-5'>Description</h6>
                   <p>{viewdetils.Description}</p>
                 </div>
-                {/* wing-unit-priority-status */}
+
                 <div className="additional-info d-flex gap-3">
                   <div>
                     <h6 className='mode-date'>Wing</h6>
