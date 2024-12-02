@@ -7,10 +7,13 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+require("dotenv").config();
+
 
 const port = process.env.PORT || 3000;
 const cors = require("cors");
 require("./src/config/db.js");
+
 
 
 // for all origin

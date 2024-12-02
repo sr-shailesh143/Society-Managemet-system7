@@ -14,7 +14,6 @@ import '../index.css'
 import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiservices/impnumberservice';
 import { Box, DialogTitle } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-import EditablePage from '../practice/EditablePage';
 import { getAnnouncements } from '../apiservices/announcementservice';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);

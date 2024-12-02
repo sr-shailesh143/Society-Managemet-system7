@@ -25,6 +25,11 @@ export default function CommunitiesDiscussion() {
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
   ]);
 
   const handleClick = () => {
@@ -167,7 +172,7 @@ export default function CommunitiesDiscussion() {
                 style={{
                   width: '130%',
                   height: '229px',
-                  backgroundColor: 'transparent',
+                  backgroundColor : 'transparent',
                   boxShadow: 'none',
                   border: '1px solid #D3D3D3',
                   alignContent: 'center',
@@ -197,36 +202,76 @@ export default function CommunitiesDiscussion() {
               </div>
             </div>
           ) : (
-            <div className="messages-section mt-3">
-              {questions.map((question, index) => (
-                <div key={index} className="message-block">
-                  <div className="message-header">
-                    <div className="message-icons">
-                      <div className="vote-section">
-                        <span className="votes text-success">{question.votes} votes</span>
-                      </div>
+            <div className="messages-section mt-3" style={{ maxHeight: '600px', overflowY: 'auto' }}>
+            {questions.map((question, index) => (
+              <div key={index} className="message-block">
+                <div className="message-header">
+                  <div className="message-icons">
+                    <div className="vote-section">
+                      <span className="votes text-success">{question.votes} votes</span>
                     </div>
-                    <h5 className="message-question">{question.title}</h5>
-                    <span className="views" style={{ fontSize: '12px', color: '#888', display: 'flex', alignItems: 'center', background: 'white', padding: '5px', borderRadius: '30px', textAlign: 'center' }}>
-                      <i className="eye-icon" style={{ marginRight: '5px', color: '#4F4F4F' }}>
-                        <FaEye />
-                      </i>
-                      {question.views}
+                  </div>
+                  <h5 className="message-question">{question.title}</h5>
+                  <span
+                    className="views"
+                    style={{
+                      fontSize: '12px',
+                      color: '#888',
+                      display: 'flex',
+                      alignItems: 'center',
+                      background: 'white',
+                      padding: '5px',
+                      borderRadius: '30px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <i className="eye-icon" style={{ marginRight: '5px', color: '#4F4F4F' }}>
+                      <FaEye />
+                    </i>
+                    {question.views}
+                  </span>
+                </div>
+                <div
+                  className="message-footer"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginTop: '10px',
+                  }}
+                >
+                  <div
+                    className="answer-section"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <span
+                      className="answers text-primary"
+                      style={{
+                        fontSize: '12px',
+                        marginRight: '30px',
+                      }}
+                    >
+                      {question.answers} answers
+                    </span>
+                    <span
+                      className="message-text"
+                      style={{
+                        fontSize: '14px',
+                        flexShrink: 0,
+                      }}
+                    >
+                      {question.content}
                     </span>
                   </div>
-                  <div className="message-footer" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '10px' }}>
-                    <div className="answer-section" style={{ display: 'flex', alignItems: 'center' }}>
-                      <span className="answers text-primary" style={{ fontSize: '12px', marginRight: '30px' }}>
-                        {question.answers} answers
-                      </span>
-                      <span className="message-text" style={{ fontSize: '14px', flexShrink: 0 }}>
-                        {question.content}
-                      </span>
-                    </div>
-                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+          
+          
           )}
         </div>
       </div>

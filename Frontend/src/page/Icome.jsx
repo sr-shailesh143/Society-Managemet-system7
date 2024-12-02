@@ -286,14 +286,35 @@ export default function Icome() {
               </span>
             </div>
           </Modal.Body>
-          <Modal.Footer>
-            <div className="d-flex gap-3">
-              <Button className=" cancel-btn radious" style={{ border: "1px solid #D3D3D3", }} onClick={handleClosesetmantence} >
-                Cancel
-              </Button>
-              <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={comform} > Continue </Button>
-            </div>
-          </Modal.Footer>
+          <Modal.Footer className="d-flex justify-content-center w-100">
+  <div className="d-flex gap-3 w-100 justify-content-center">
+    <Button
+      className="cancel-btn radious"
+      style={{
+        border: "1px solid #D3D3D3",
+        width: "45%",
+        textAlign: "center",
+      }}
+      onClick={handleClosesetmantence}
+    >
+      Cancel
+    </Button>
+    <Button
+      className="save-btn radious l-btn"
+      style={{
+        color: "white",
+        border: "none",
+        cursor: "pointer",
+        width: "45%",
+        textAlign: "center",
+      }}
+      onClick={comform}
+    >
+      Continue
+    </Button>
+  </div>
+</Modal.Footer>
+
         </Modal>
         <Modal show={showsetmantenencdetels} >
           <Modal.Header closeButton>
