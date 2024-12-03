@@ -20,17 +20,17 @@ const SecurityProtocols = () => {
     const fetchProtocols = async () => {
       try {
         const response = await getAllSecurityProtocols();
-        console.log('API Response:', response);  
+        console.log('API Response:', response);
 
         if (response.data && Array.isArray(response.data.records)) {
           setProtocols(response.data.records);
         } else {
           console.error("API response does not have 'records' as an array:", response);
-          setProtocols([]);  
+          setProtocols([]);
         }
       } catch (error) {
         console.error('Error fetching protocols:', error);
-        toast.error('Failed to fetch protocols');  
+        toast.error('Failed to fetch protocols');
       }
     };
     fetchProtocols();
@@ -57,21 +57,18 @@ const SecurityProtocols = () => {
       handleCloseModal();
       setNewProtocol({ title: '', description: '', date: '', time: '' });
 
-      toast.success('Protocol created successfully!');  
+      toast.success('Protocol created successfully!');
     } catch (error) {
       console.error('Error creating protocol:', error);
-      toast.error('Failed to create protocol');  
+      toast.error('Failed to create protocol');
 
     }
   };
-
   const handleEdit = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
     setEditProtocol(protocol);
     setShowEditModal(true);
   };
-
-
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditProtocol({ ...editProtocol, [name]: value });
@@ -85,14 +82,13 @@ const SecurityProtocols = () => {
       );
       setProtocols(updatedProtocols);
       setShowEditModal(false);
-      toast.success('Protocol updated successfully!');  
+      toast.success('Protocol updated successfully!');
     } catch (error) {
       console.error('Error updating protocol:', error);
-      toast.error('Failed to update protocol');  
+      toast.error('Failed to update protocol');
 
     }
   };
-
   const handleView = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
     setViewProtocol(protocol);
@@ -109,10 +105,10 @@ const SecurityProtocols = () => {
       const updatedProtocols = protocols.filter((_, index) => index !== deleteIndex);
       setProtocols(updatedProtocols);
       setShowDeleteModal(false);
-      toast.success('Protocol deleted successfully!');  
+      toast.success('Protocol deleted successfully!');
     } catch (error) {
       console.error('Error deleting protocol:', error);
-      toast.error('Failed to delete protocol'); 
+      toast.error('Failed to delete protocol');
 
     }
   };
@@ -135,24 +131,21 @@ const SecurityProtocols = () => {
     backgroundColor: '#F6F8FB',
   };
   const blanck = { backgroundColor: '#F6F8FB', padding: '5px 12px 5px 12px', borderRadius: '16px', color: '#4F4F4F', }
-
-
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleCloseViewModal = () => setShowViewModal(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
   return (
-    <div className="container-fluid bg-white p-4 " style={{height:"770px"}}>
+    <div className="container-fluid bg-white p-4 " style={{ height: "770px" }}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Security Protocols</h2>
         <Button
           className="text-white"
           style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
-      <div className="responsive-table-container"  style={{height:"670px"}}>
+      <div className="responsive-table-container" style={{ height: "670px" }}>
         <table className="responsive-table">
           <thead className='tabal-header'>
             <tr>
-
               <th className='redious'> &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  Title</th>
               <th>  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;Description</th>
               <th> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; Date</th>
@@ -219,7 +212,6 @@ const SecurityProtocols = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
       {/* Modal for editing a protocol */}
       <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header>
