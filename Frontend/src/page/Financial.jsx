@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Dropdown, Modal, Form } from 'react-bootstrap';
-import { HiOutlineDotsVertical } from 'react-icons/hi';
+import {  Button,  Modal, Form } from 'react-bootstrap';
 import { addNote, getAllNotes, updateNote } from '../apiservices/noteservice';
-import FileUploadForm from '../practice/EditablePage';
+import { FaEllipsisV } from 'react-icons/fa';
 
 const Financial = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -29,7 +28,7 @@ const Financial = () => {
       console.error('Error fetching notes:', error);
     }
   };
-
+console.log(selectedDate);
   const handleEditModalOpen = (note) => {
     if (note && note._id) {
       setSelectedNoteId(note._id);
@@ -97,50 +96,45 @@ const Financial = () => {
   };
 
   return (
-    <Container fluid style={{ minHeight: '100vh' }}>
-      <div className="d-flex flex-column bg-light shadow" style={{ width: '100%' }}>
-        <div className="d-flex justify-content-between align-items-center mb-3 p-3">
-          <h2>Note</h2>
-          <Button
-            style={{
-              background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
-              borderColor: '#ff6b00',
-            }}
-            onClick={handleCreateModalOpen}
-          >
-            Create Note
-          </Button>
+    <div>
+      <div className="note m-3">
+        <div className="row  d-flex justify-content-between align-items-center  p-2 ">
+          <h4 className=' col-12 col-md-3 mt-4' style={{ textWrap: "wrap" }}>Note</h4>
+          <div className="col-12 col-md-2 mt-2 add-p-btn">
+            <button className=' add-btn w-75' onClick={handleCreateModalOpen}>  <span>Create Note</span> </button>
+          </div>
         </div>
+        <div className="row mt-4">
+          {noteData.map((note, index) => (
+            <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 Card " key={index}>
+              <div className="card h-100 shadow-sm">
+                <div className="card-header custom-card-header">
+                  <h5 className="card-title mb-0">{note.title}</h5>
+                  <div className="dropdown">
+                    <button className="btn btn-sm text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <FaEllipsisV size={23} className='three-dot p-1' />
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <button className="dropdown-item  dot-btn" onClick={() =>handleEditModalOpen(note)}>
+                        Edit
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
 
-        <Row className="g-3 mb-5">
-          {noteData.map((note) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={note._id}>
-              <Card className="h-100" style={{ borderRadius: '8px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-                <Card.Header
-                  className="d-flex justify-content-between align-items-center"
-                  style={{ backgroundColor: '#407bff', color: '#fff' }}
-                >
-                  <div>{note.title}</div>
-                  <Dropdown align="end">
-                    <Dropdown.Toggle variant="link" bsPrefix="p-0">
-                      <HiOutlineDotsVertical style={{ color: '#fff', fontSize: '1.2rem' }} />
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handleEditModalOpen(note)}>Edit</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Card.Header>
-                <Card.Body>
-                  <Card.Text>
-                    <strong>Description:</strong> {note.description}
-                    <br />
-               
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
+                <div className="card-body">
+           
+                  <p className="card-text">
+                    <p style={{ color: "rgba(79, 79, 79, 1)" ,fontWeight:"400",font:"Poppins"}}>Description:</p>
+                    <h6 style={{ color: "rgba(32, 34, 36, 1)", fontWeight: "500" }}>{note.description}</h6>
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
-        </Row>
+        </div>
       </div>
 
       {/* Edit Modal */}
@@ -178,11 +172,11 @@ const Financial = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary"  style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleEditModalClose} className='p-3'>
+          <Button variant="secondary" style={{ backgroundColor: "lightgrey", color: "white", border: "none", width: "45%" }} onClick={handleEditModalClose} className='p-3'>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges}  style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3'>
-            Save 
+          <Button variant="primary" onClick={handleSaveChanges} style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00', color: "white", width: "45%" }} className='p-3'>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
@@ -195,15 +189,15 @@ const Financial = () => {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Note Title <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control  type="text"  placeholder="Enter title"onChange={(e) => setSelectedTitle(e.target.value)} />
+              <Form.Control type="text" placeholder="Enter title" onChange={(e) => setSelectedTitle(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control  as="textarea" rows={3} placeholder="Enter description" onChange={(e) => setSelectedDescription(e.target.value)}  />
+              <Form.Control as="textarea" rows={3} placeholder="Enter description" onChange={(e) => setSelectedDescription(e.target.value)} />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
-              <Form.Control type="date"   value={selectedDate}  onChange={(e) => setSelectedDate(e.target.value)}
+              <Form.Control type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
               />
             </Form.Group>
           </Form>
@@ -218,7 +212,7 @@ const Financial = () => {
         </Modal.Footer>
       </Modal>
 
-    </Container>
+    </div>
   );
 };
 

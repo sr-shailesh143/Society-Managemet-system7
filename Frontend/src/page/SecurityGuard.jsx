@@ -307,8 +307,8 @@ export default function SecurityGuard() {
 
         <Modal show={CreateSecurityOpen} >
 
-          {
-            loading ? <Loader loading={loading} /> : <div>
+        
+          
 
               <Modal.Header >
                 <Modal.Title>Add Security</Modal.Title>
@@ -410,8 +410,8 @@ export default function SecurityGuard() {
                 </div>
               </Modal.Body>
 
-            </div>
-          }
+          
+        
 
         </Modal>
       </form>
