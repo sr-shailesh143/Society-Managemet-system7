@@ -819,7 +819,7 @@ const Dashboard = () => {
         </Col>
 
 
-                <ListGroup variant="flush" className="mt-3">
+                {/* <ListGroup variant="flush" className="mt-3">
                   {eventsData.map((item, index) => (
                     <ListGroup.Item key={index} className="d-flex align-items-start">
                       <div
@@ -856,7 +856,7 @@ const Dashboard = () => {
               )}
             </Card.Body>
           </Card>
-        </Col>
+        </Col> */}
 
       </Row>
       {/* Modals  for complain table*/}

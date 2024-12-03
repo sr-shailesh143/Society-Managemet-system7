@@ -89,6 +89,7 @@ const Polls = () => {
                 </Modal.Header>
                 <Modal.Body>
                     
+                    
                 </Modal.Body>
             </Modal>
 
