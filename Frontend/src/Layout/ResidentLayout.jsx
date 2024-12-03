@@ -20,7 +20,7 @@ export default function ResidentManageMentLayout({ component }) {
     const [show, setShow] = useState(false);
     const naviget = useNavigate()
     const [serch, setserch] = useState("")
-   
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 

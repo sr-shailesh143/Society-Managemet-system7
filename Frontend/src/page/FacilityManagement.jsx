@@ -135,12 +135,12 @@ const FacilityManagement = () => {
   return (
     <div className="container-fluid" style={{ minHeight: '100vh' }}>
       <div className="container-fluid d-flex flex-column  rounded bg-light shadow" style={{ width: "100%" }}>
-       
+
         <div className="d-flex justify-content-between align-items-center mb-4 p-3">
           <h2>Facility Management</h2>
           <button className="btn p-2" style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white" }} onClick={handleCreateModalOpen}  > Create Facility </button>
         </div>
-     
+
         <div className="row">
           {facilities.length === 0 ? (
             <p>No facilities available</p>
@@ -176,7 +176,7 @@ const FacilityManagement = () => {
           )}
         </div>
       </div>
-   
+
       <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Create Facility</Modal.Title>
@@ -216,7 +216,7 @@ const FacilityManagement = () => {
           >Save</Button>
         </Modal.Footer>
       </Modal>
-     
+
       <Modal show={showModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Facility</Modal.Title>
@@ -252,7 +252,7 @@ const FacilityManagement = () => {
           <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white", width: "45%" }} className='p-3' onClick={handleModalSave}>Save</Button>
         </Modal.Footer>
       </Modal>
-  
+
       <Modal show={showViewModal} onHide={() => setShowViewModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>View Facility</Modal.Title>
@@ -267,7 +267,7 @@ const FacilityManagement = () => {
           <Button variant="secondary" onClick={() => setShowViewModal(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
-     
+
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Deletion</Modal.Title>

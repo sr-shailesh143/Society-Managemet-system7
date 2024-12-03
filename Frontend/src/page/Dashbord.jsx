@@ -409,12 +409,8 @@ const Dashboard = () => {
       getalldata()
 
     } catch (error) {
-
     }
-
   }
-
-
   return (
     <Container fluid>
       <Row className="mb-3">
@@ -850,13 +846,13 @@ const Dashboard = () => {
           <button
             onClick={selectedNumber ? handleEditNumber : handleAddNumber}
             className="btn p-3"
-            style={{ 
+            style={{
               background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
               border: "none",
               color: "white",
               width: "45%"
             }}
-            disabled={!isFormValid} 
+            disabled={!isFormValid}
           >
             {selectedNumber ? "Save Changes" : "Add Number"}
           </button>
@@ -1017,16 +1013,12 @@ const Dashboard = () => {
 
       <Modal show={showview} onHide={handleClose}  >
         <div className="div" style={{ borderRadius: "10%" }}>
-
-
           <Modal.Header className='bg-white' style={{ height: "60px" }}>
-
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
               <h> View Complain </h>
             </DialogTitle>
             <span style={{ cursor: "pointer" }} onClick={handleClose}>
               <CloseIcon className='mb-2 fs-3' />
-
             </span>
           </Modal.Header>
           <Modal.Body className='viewcomplete'>
@@ -1084,8 +1076,6 @@ const Dashboard = () => {
           </Modal.Body>
         </div>
       </Modal>
-
-
     </Container>
   );
 };
