@@ -5,8 +5,6 @@ import { createRequest, getAllRequests, GetRequest, deleteRequest, updateRequest
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { Button } from '@mui/material';
-
-
 export default function RequestSubmission() {
     const location = useLocation()
     const [complaints, setRequist] = useState([]);
@@ -30,8 +28,6 @@ const [compleltData, setcompleltData] = useState({
     requestDate:""
 
 })
-
-
 const [status2, setStatus2] = useState("");
 const [prourity, setprourity] = useState("");
 const handleStatusChange2 = (event) => setStatus2(event.target.value);
@@ -44,13 +40,8 @@ const proorety = (event) => setprourity(event.target.value);
         status: "Open",
         description: "",
     });
-
-
-
 const [showDeleteModal, setShowDeleteModal] = useState(false);
 const handleClose = () => setShowDeleteModal(false)
-
-
 const handleInputChange = async () => {
     const data = {
         requesterName: compleltData.complainerName,
@@ -66,7 +57,6 @@ const handleInputChange = async () => {
     getllrequist()
     setShowModal(false)
 }
-
 const [id, setid] = useState("")
 
    async function handlenDeleteModal(id){
@@ -82,8 +72,6 @@ function handleOpenDeleteModal(index){
     setid(index)
     setShowDeleteModal(true)
 }
-   
-
     const handleAddComplaint = () => {
         setComplaints((prev) => [...prev, { ...newComplaint }]);
         setShowModal(false); 
@@ -94,15 +82,6 @@ function handleOpenDeleteModal(index){
             description: "",
         });
     };
-
-
- 
-
-
-
-   
-
-
     const naviget = useNavigate()
     return (
         <div>

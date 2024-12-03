@@ -95,8 +95,6 @@ export default function ServiceComplain() {
                     </div>
                 </div>
             </div>
-
-
             <div className="complaints-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="font-weight-bold" style={{ fontWeight: "bold" }}>Complaint</h4>
@@ -104,7 +102,6 @@ export default function ServiceComplain() {
                         Create Complaint
                     </button>
                 </div>
-
                 <div className="row">
                     {complaints.map((complaint, index) => (
                         <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
@@ -175,14 +172,12 @@ export default function ServiceComplain() {
                         </div>
                     ))}
                 </div>
-
             </div>
-
             {/* Create Complaint Modal */}
             <Modal className='complet-model' show={showModal} >
                 <div className="model">
                     <Modal.Header>
-                        <Modal.Title>Edit Complaint</Modal.Title>
+                        <Modal.Title>create Complaint</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div className="complete-name">
@@ -251,7 +246,7 @@ export default function ServiceComplain() {
                                     <p className='mt-3 '>Pending</p>
                                 </div>
                                 <div onClick={() => setStatus2("Solve")} className={` col-md-3  d-flex  align-items-center gap-2  ${status2 === "Solve" ? "selected" : ""} `} style={{ border: "1px solid #D3D3D3", borderColor: status2 === "Solve" ? "#FE512E #F09619 " : "#D3D3D3", color: status2 === "Solve" ? "black" : "#D3D3D3", borderRadius: "10px" }}>
-                                    <input  type="radio" className='radio polls-radio' checked={status2 === "Solve"} onChange={handleStatusChange2} value={"Solve"} />
+                                    <input type="radio" className='radio polls-radio' checked={status2 === "Solve"} onChange={handleStatusChange2} value={"Solve"} />
                                     <p className='mt-3'>Solve</p>
                                 </div>
                             </div>
@@ -266,17 +261,25 @@ export default function ServiceComplain() {
                                 Cancel
                             </Button>
                             <Button
-                                className="save-btn radious l-btn "
+                                className="save-btn radious l-btn"
                                 style={{
                                     color: "white",
                                     border: "none",
                                     cursor: "pointer"
                                 }}
-
                                 onClick={handleInputChange}
+                                disabled={
+                                    !compleltData.complainerName ||
+                                    !compleltData.complaintName ||
+                                    !compleltData.description ||
+                                    !compleltData.wing ||
+                                    !compleltData.unit ||
+                                    !prourity
+                                }
                             >
                                 Save
                             </Button>
+
                         </div>
                     </Modal.Body>
                 </div>

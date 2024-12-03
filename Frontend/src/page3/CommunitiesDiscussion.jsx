@@ -22,7 +22,7 @@ export default function CommunitiesDiscussion() {
   ]);
 
   const [questions, setQuestions] = useState([
-    { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
+  
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
@@ -107,7 +107,7 @@ export default function CommunitiesDiscussion() {
           </div>
         </div>
 
-        <div className="col-12 col-md-7 side-chet" style={{ height: '904px' }}>
+        <div className="col-12 col-md-7 side-chet " style={{ height: '904px' }}>
           <nav className="nav-bar-chet">
             <div className="ms-2 d-flex justify-content-between">
               <div className="chetprofile d-flex m-3">
@@ -136,7 +136,7 @@ export default function CommunitiesDiscussion() {
 
          
           {showQuestions ? (
-            <div className="question-form-container d-flex flex-column justify-content-center align-items-center">
+            <div className="question-form-container d-flex flex-column justify-content-center align-items-center ">
               <div
                 className="new-box"
                 style={{
@@ -168,7 +168,7 @@ export default function CommunitiesDiscussion() {
 
            
               <div
-                className="question-form"
+                className="question-form "
                 style={{
                   width: '130%',
                   height: '229px',
@@ -202,10 +202,10 @@ export default function CommunitiesDiscussion() {
               </div>
             </div>
           ) : (
-            <div className="messages-section mt-3" style={{ maxHeight: '600px', overflowY: 'auto' }}>
+            <div className="messages-section mt-3 " style={{ maxHeight: '700px', overflowY: 'auto' }}>
             {questions.map((question, index) => (
-              <div key={index} className="message-block">
-                <div className="message-header">
+              <div key={index} className="message-block ">
+                <div className="message-header ">
                   <div className="message-icons">
                     <div className="vote-section">
                       <span className="votes text-success">{question.votes} votes</span>
