@@ -367,7 +367,7 @@ left:-23px;
 
                             <br />
                             <div>
-                                <div className="container-fluid" >
+                                <div className="container-fluid p-4" >
 
 
                                     {component}
