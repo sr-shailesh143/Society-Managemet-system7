@@ -64,7 +64,6 @@ const Otherincome = () => {
 
     const naviget = useNavigate()
 
-
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [selectedTitle, setSelectedTitle] = useState('');
@@ -77,7 +76,6 @@ const Otherincome = () => {
 
     ]);
 
-
     const handleEditModalOpen = (title, description) => {
         setSelectedTitle(title);
         setSelectedDescription(description);
@@ -86,6 +84,7 @@ const Otherincome = () => {
     const handleEditModalClose = () => setShowEditModal(false);
     const handleCreateModalOpen = () => setShowCreateModal(true);
     const handleCreateModalClose = () => setShowCreateModal(false);
+
 
     const navigate = useNavigate();
 

@@ -15,21 +15,22 @@ const SecurityProtocols = () => {
   const [editProtocol, setEditProtocol] = useState(null);
   const [viewProtocol, setViewProtocol] = useState(null);
   const [deleteIndex, setDeleteIndex] = useState(null);
- 
+
   useEffect(() => {
     const fetchProtocols = async () => {
       try {
         const response = await getAllSecurityProtocols();
-        console.log('API Response:', response);
+        console.log('API Response:', response);  
+
         if (response.data && Array.isArray(response.data.records)) {
           setProtocols(response.data.records);
         } else {
           console.error("API response does not have 'records' as an array:", response);
-          setProtocols([]);
+          setProtocols([]);  
         }
       } catch (error) {
         console.error('Error fetching protocols:', error);
-        toast.error('Failed to fetch protocols');
+        toast.error('Failed to fetch protocols');  
       }
     };
     fetchProtocols();
@@ -55,10 +56,12 @@ const SecurityProtocols = () => {
       setProtocols([...protocols, newProtocol]);
       handleCloseModal();
       setNewProtocol({ title: '', description: '', date: '', time: '' });
-      toast.success('Protocol created successfully!');
+
+      toast.success('Protocol created successfully!');  
     } catch (error) {
       console.error('Error creating protocol:', error);
-      toast.error('Failed to create protocol');
+      toast.error('Failed to create protocol');  
+
     }
   };
 
@@ -82,10 +85,11 @@ const SecurityProtocols = () => {
       );
       setProtocols(updatedProtocols);
       setShowEditModal(false);
-      toast.success('Protocol updated successfully!');
+      toast.success('Protocol updated successfully!');  
     } catch (error) {
       console.error('Error updating protocol:', error);
-      toast.error('Failed to update protocol');
+      toast.error('Failed to update protocol');  
+
     }
   };
 
@@ -105,10 +109,11 @@ const SecurityProtocols = () => {
       const updatedProtocols = protocols.filter((_, index) => index !== deleteIndex);
       setProtocols(updatedProtocols);
       setShowDeleteModal(false);
-      toast.success('Protocol deleted successfully!');
+      toast.success('Protocol deleted successfully!');  
     } catch (error) {
       console.error('Error deleting protocol:', error);
-      toast.error('Failed to delete protocol');
+      toast.error('Failed to delete protocol'); 
+
     }
   };
   const EDITE = {
@@ -136,14 +141,14 @@ const SecurityProtocols = () => {
   const handleCloseViewModal = () => setShowViewModal(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
   return (
-    <div className="container-fluid bg-white p-4">
+    <div className="container-fluid bg-white p-4 " style={{height:"770px"}}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Security Protocols</h2>
         <Button
           className="text-white"
           style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
-      <div className="responsive-table-container">
+      <div className="responsive-table-container"  style={{height:"670px"}}>
         <table className="responsive-table">
           <thead className='tabal-header'>
             <tr>

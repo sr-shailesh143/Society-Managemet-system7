@@ -24,10 +24,10 @@ export default function Tenant() {
         },
     });
 
-    const [vaicalCount, setvaicalCount] = useState(2); // Default to 2 members
-    const totalvaical = 5; // Total number of rows available
-    const [memberCount, setMemberCount] = useState(2); // Default to 2 members
-    const totalRows = 5; // Total number of rows available
+    const [vaicalCount, setvaicalCount] = useState(2); 
+    const totalvaical = 5; 
+    const [memberCount, setMemberCount] = useState(2); 
+    const totalRows = 5; 
 
     const handleMemberCountChange = (event) => {
         setMemberCount(Number(event.target.value));
@@ -37,10 +37,10 @@ export default function Tenant() {
     };
     const naviget = useNavigate()
     return (
-        <div div className=''>
+        <div className=''>
 
             <div className='row'>
-                <div className="d-flex mt-4 ">
+                <div className="d-flex ">
                     <div onClick={() => naviget("/owner")} style={{ background: location.pathname === "/owner" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/owner" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
                         <p >Owner</p>
                     </div>

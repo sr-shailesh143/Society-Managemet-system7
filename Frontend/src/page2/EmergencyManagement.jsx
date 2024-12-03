@@ -21,12 +21,12 @@ export default function EmergencyManagement() {
       const response = await createAlert(alert);
       console.log("API Response:", response);
       setSuccessMessage("Alert created successfully!");
-      toast.success("Alert created successfully!"); // Display success toast
+      toast.success("Alert created successfully!"); 
       setAlert({ alertType: "", description: "" }); 
     } catch (error) {
       console.error("Error creating alert:", error);
       setErrorMessage("Failed to create alert. Please try again.");
-      toast.error("Failed to create alert. Please try again."); // Display error toast
+      toast.error("Failed to create alert. Please try again."); 
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
-import { createProfile, getProfiles, updateProfile } from "../apiservices/profileservice"; // Ensure this import is correct
-
+import { createProfile, getProfiles, updateProfile } from "../apiservices/profileservice"; 
 export default function UpdateProfile() {
   const [formData, setFormData] = useState({
     firstName: "Arlene",
@@ -24,7 +23,7 @@ export default function UpdateProfile() {
       try {
         const response = await getProfiles();
         setProfiles(response.data); 
-        console.log(response.data)// Adjust based on the API response structure
+        console.log(response.data)
       } catch (error) {
         console.error("Error fetching profiles:", error);
       }
