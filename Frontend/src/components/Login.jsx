@@ -107,7 +107,7 @@ export default function Login() {
                                     id="email"
                                     name="EmailOrPhone"
                                     type="text"
-                                    className='form-control radious p-3 mt-2'
+                                    className='form-control  p-3 mt-2 input-redious'
                                     placeholder="Enter your email or phone"
                                     value={user.EmailOrPhone}
                                     onChange={handleChange}
@@ -123,7 +123,7 @@ export default function Login() {
                                     id="password"
                                     name="password"
                                     type={showPassword ? 'text' : 'password'}
-                                    className='form-control radious p-3 mt-2'
+                                    className='form-control  p-3 mt-2 input-redious'
                                     placeholder="Enter your password"
                                     value={user.password}
                                     onChange={handleChange}
@@ -147,13 +147,13 @@ export default function Login() {
                             </div>
 
                             <div className="col-12 mt-3 d-flex justify-content-between">
-                                <div className="form-check">
+                                <div className="form-check  d-flex gap-2  ">
                                     <input
                                         type="checkbox"
                                         className='form-check-input'
                                         id="rememberMe"
                                     />
-                                    <label htmlFor="rememberMe" className='form-check-label' style={{ color: "gray" }}>
+                                    <label htmlFor="rememberMe" className='form-check-label  ' style={{ color: "gray" }}>
                                         Remember me
                                     </label>
                                 </div>

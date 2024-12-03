@@ -275,9 +275,9 @@ left:-23px;
                             {
                                 location.pathname === "/Financial" || location.pathname === "/Icome" || location.pathname === "/Expense" ? <div> {showFinancialSubmenu2 && (
                                     <Submenu>
-                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Financial")} >Note</span></SubmenuItem>
                                         <SubmenuItem>   <span className='p-1' style={{ borderLeft: location.pathname === "/Icome" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Icome")}> Income</span></SubmenuItem>
                                         <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Expense" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Expense")}>Expense</span></SubmenuItem>
+                                        <SubmenuItem> <span className='p-1' style={{ borderLeft: location.pathname === "/Financial" ? "2px solid black" : "2px solid gray" }} onClick={() => navigate("/Financial")} >Note</span></SubmenuItem>
                                     </Submenu>
                                 )} </div> : ""
                             }

@@ -11,6 +11,7 @@ import { useDropzone } from 'react-dropzone';
 import { FaPlusCircle } from 'react-icons/fa';
 
 import CloseIcon from '@mui/icons-material/Close';
+import ImagePopup from '../practice/EditablePage';
 
 export default function Expense() {
   const [expenseData, setExpenseData] = useState([]);
@@ -47,6 +48,7 @@ export default function Expense() {
     date: '',
     amount: '',
   });
+
 
 
   async function handleCreateExpense() {
@@ -132,6 +134,11 @@ export default function Expense() {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  function showIMG(img){
+    
+
   }
   // Styles for action buttons
   const EDITE = {
@@ -509,7 +516,7 @@ export default function Expense() {
 
 
                 </div>
-                <div className="icon me-1 document-view cursor">
+                <div className="icon me-1 document-view cursor" onClick={()=>showIMG(viewdetils.bill)}>
                   <VisibilityIcon className='fs-3 ' />
                 </div>
               </div>
@@ -554,7 +561,8 @@ export default function Expense() {
           </div>
         </Modal.Footer>
       </Modal>
-
+    
+      <ImagePopup />
 
     </div>
   );

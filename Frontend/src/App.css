@@ -94,9 +94,26 @@ body {
   box-shadow: 0 0 2px #bfbcbc;
 
 }
+.note{
+ /* width: 98%; */
+
+padding: 20px ;
+gap: 10px;
+border-radius: 15px;
+opacity: 0px;
+background: rgba(255, 255, 255, 1);
+
+}
 
 .form-check {
   text-align: left;
+
+}
+.form-check-input{
+  margin-left: 20px;
+}
+.form-check-label{
+  margin-right: 20px ;
 }
 
 
@@ -1088,6 +1105,14 @@ input[type="email"] {
   border-bottom-right-radius: 12px;
 }
 
+.Card{
+  /* width: 370px; */
+/* height: 54px; */
+gap: 0px;
+border-radius: 10%  !important ;
+opacity: 0px;
+
+}
 
 .balance-card-orange::before {
   background-color: #FFA64D;
@@ -2468,6 +2493,14 @@ width: 75px;
   border-radius: 15px 0px 0px 0px;
 
 }
+.input-redious{
+  padding: 9px 13px 9px 13px;
+  gap: 4px;
+  border-radius: 15px;
+  border: 1px solid rgba(32, 34, 36, 1);
+  opacity: 0px;
+  
+}
 
 .redious1 {
   border-radius: 0px 15px 0px 0px;
@@ -2680,7 +2713,28 @@ margin-right: 20px;
   fill: white !important; /* Change fill to white on hover */
   transition: fill 0.2s ease; /* Smooth transition effect */
 }
+.custom-card-header{
+  /* width: 370px; */
+height: 54px;
+gap: 0px;
+border-radius: 20px 20px ;
+opacity: 0px;
 
+}
+.three-dot{
+  background: #FFFFFF;
+  border-radius: 4px;
+  color: rgba(86, 120, 233, 1);
+}
+.dot-btn{
+  width: Fixed (100px);
+height:  (41px);
+padding: 10px ;
+gap: 10px;
+border-radius: 10px ;
+opacity: 0px;
+
+}
 
 /* Change fill color on hover */
 
