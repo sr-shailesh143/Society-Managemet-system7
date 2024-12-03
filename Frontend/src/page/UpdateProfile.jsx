@@ -57,10 +57,10 @@ export default function UpdateProfile() {
 
     try {
       if (formData._id) {
-        // If the profile has an ID, update the profile
+    
         await updateProfile(formData._id, formData);
       } else {
-        // If no profile ID, create a new profile
+       
         await createProfile(formData);
       }
     } catch (error) {

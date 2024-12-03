@@ -21,6 +21,7 @@ const SecurityProtocols = () => {
       try {
         const response = await getAllSecurityProtocols();
         console.log('API Response:', response);  
+
         if (response.data && Array.isArray(response.data.records)) {
           setProtocols(response.data.records);
         } else {
@@ -43,6 +44,7 @@ const SecurityProtocols = () => {
     setShowModal(true);
   };
   const handleCloseModal = () => setShowModal(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProtocol({ ...newProtocol, [name]: value });
@@ -54,20 +56,22 @@ const SecurityProtocols = () => {
       setProtocols([...protocols, newProtocol]);
       handleCloseModal();
       setNewProtocol({ title: '', description: '', date: '', time: '' });
+
       toast.success('Protocol created successfully!');  
     } catch (error) {
       console.error('Error creating protocol:', error);
       toast.error('Failed to create protocol');  
+
     }
   };
-  // Handle Edit
+
   const handleEdit = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
     setEditProtocol(protocol);
     setShowEditModal(true);
   };
 
-  // Handle Edit Changes
+
   const handleEditChange = (e) => {
     const { name, value } = e.target;
     setEditProtocol({ ...editProtocol, [name]: value });
@@ -85,15 +89,16 @@ const SecurityProtocols = () => {
     } catch (error) {
       console.error('Error updating protocol:', error);
       toast.error('Failed to update protocol');  
+
     }
   };
-  // Handle View
+
   const handleView = async (protocolIndex) => {
     const protocol = protocols[protocolIndex];
     setViewProtocol(protocol);
     setShowViewModal(true);
   };
-  // Handle Delete
+
   const handleDelete = (protocolIndex) => {
     setDeleteIndex(protocolIndex);
     setShowDeleteModal(true);
@@ -108,6 +113,7 @@ const SecurityProtocols = () => {
     } catch (error) {
       console.error('Error deleting protocol:', error);
       toast.error('Failed to delete protocol'); 
+
     }
   };
   const EDITE = {
@@ -130,19 +136,19 @@ const SecurityProtocols = () => {
   };
   const blanck = { backgroundColor: '#F6F8FB', padding: '5px 12px 5px 12px', borderRadius: '16px', color: '#4F4F4F', }
 
-  // Close Modals
+
   const handleCloseEditModal = () => setShowEditModal(false);
   const handleCloseViewModal = () => setShowViewModal(false);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
   return (
-    <div className="container-fluid bg-white p-4">
+    <div className="container-fluid bg-white p-4 " style={{height:"770px"}}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Security Protocols</h2>
         <Button
           className="text-white"
           style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }} onClick={handleShowModal} > Create Protocol</Button>
       </div>
-      <div className="responsive-table-container">
+      <div className="responsive-table-container"  style={{height:"670px"}}>
         <table className="responsive-table">
           <thead className='tabal-header'>
             <tr>
@@ -163,10 +169,10 @@ const SecurityProtocols = () => {
                 <td><span className='m-5' style={blanck}> {item.time}</span></td>
                 <td className="action-buttons">
                   <div className="d-flex gap-2">
-                    <span className="status-badge-edit" style={EDITE}   onClick={() => handleEdit(index)} >
+                    <span className="status-badge-edit" style={EDITE} onClick={() => handleEdit(index)} >
                       <Edit style={{ cursor: 'pointer' }} />
                     </span>
-                    <span className="status-badge-view" style={VIEW}  onClick={() => handleView(index)} >
+                    <span className="status-badge-view" style={VIEW} onClick={() => handleView(index)} >
                       <VisibilityIcon style={{ cursor: 'pointer' }} />
                     </span>
                     <span className="status-badge-delete" style={DELETE} onClick={() => handleDelete(index)} >

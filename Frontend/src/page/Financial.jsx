@@ -134,7 +134,7 @@ const Financial = () => {
                   <Card.Text>
                     <strong>Description:</strong> {note.description}
                     <br />
-                    {/* <strong>Date:</strong> {new Date(note.date).toLocaleDateString()} */}
+               
                   </Card.Text>
                 </Card.Body>
               </Card>

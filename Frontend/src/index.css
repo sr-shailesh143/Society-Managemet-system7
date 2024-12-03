@@ -274,10 +274,12 @@ h1 {
   border-top: 2px solid;
   border-right: 2px solid;
   border-top-right-radius: 12px;
+
 }
 
 .balance-card-orange::after {
   border-color: #FFA64D;
+
 }
 
 .balance-card-green::after {
@@ -823,7 +825,7 @@ body {
   background-color: #eee;
 }
 
-/* service & complaint */
+
 
 .custom-nav-tabs {
   display: flex;
@@ -896,7 +898,8 @@ body {
 .card {
   border: none !important;
   border-radius: 8px;
-  margin: 10px;
+  width: 100%;
+
 }
 
 
@@ -1436,4 +1439,38 @@ body{
 
 .custom-th2 {
   border-radius: 0px 15px 0px 0px;
+}
+.balance-card {
+  transition: transform 0.3s ease;
+}
+
+.balance-card:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .balance-card {
+    height: auto; /* Allow height to adjust on smaller screens */
+  }
+}
+
+.card-body-content {
+  flex-wrap: wrap;
+}
+.scrollbar-custom {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #e0e0e0; /* Track and Thumb colors */
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
 }
