@@ -13,10 +13,8 @@ import { FaPlusCircle } from 'react-icons/fa';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function Expense() {
-  // State to store expenses data
   const [expenseData, setExpenseData] = useState([]);
 
-  // Fetch all expenses
   async function getExpenseData() {
     try {
       const response = await getAllExpenses();
@@ -35,12 +33,12 @@ export default function Expense() {
   const handleCreateModalClose = () => setCreateShowModal(false);
 
 
-  const [billFile, setBillFile] = useState(null);
+  const [billFile, setBillFile] = useState(null); 
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/png, image/jpeg, image/gif',
-    maxSize: 10 * 1024 * 1024,
-    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]),
+    maxSize: 10 * 1024 * 1024, 
+    onDrop: (acceptedFiles) => setBillFile(acceptedFiles[0]), 
   });
 
   const [createData, setCreateData] = useState({
@@ -71,7 +69,6 @@ export default function Expense() {
     }
   }
 
-  // edite expense
   const [showEditeModal, setshowEditeModal] = useState(false)
   const handalEditClose = () => setshowEditeModal(false)
 
@@ -434,7 +431,9 @@ export default function Expense() {
                         <small>PNG, JPG, GIF up to 10MB</small>
                       </div>
                     </div>
-                    {billFile && <p>Selected File: {billFile.name}</p>}
+
+                    {billFile && <p>Selected File: {billFile.name}</p>} 
+
                   </div>
                 )}
 

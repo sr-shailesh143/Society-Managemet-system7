@@ -132,13 +132,13 @@ const Announcement = () => {
         </Card.Header>
         <Card.Body className="justify-content-between">
           <p>
-            <strong style={{ color: "grey" }}> Announcement Date:</strong>
+            <strong style={{ color: "grey" }}> Announcement Date</strong>
             <span style={{ marginLeft: "150px" }}>
               {new Date(announcement.announcementDate).toLocaleDateString()}
             </span>
           </p>
           <p>
-            <strong style={{ color: "grey" }}> Announcement Time:</strong>
+            <strong style={{ color: "grey" }}> Announcement Time</strong>
             <span style={{ marginLeft: "150px" }}>
               {formatTime(announcement.announcementTime)}
             </span>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAllVisitors } from '../apiservices/visitourtrackingservice';
+import { getAllVisitors } from '../apiservices/visitourtrackingservice'; 
+
 
 const Visitor = () => {
   const [visitors, setVisitors] = useState([]); 
@@ -11,7 +12,8 @@ const Visitor = () => {
     try {
       setLoading(true);
       const response = await getAllVisitors(); 
-      setVisitors(response.data.records || []); 
+      setVisitors(response.data.records || []);
+
       setLoading(false);
     } catch (err) {
       setError('Failed to load visitor data. Please try again later.');
@@ -31,7 +33,7 @@ const Visitor = () => {
     date.setHours(parseInt(hours));
     date.setMinutes(parseInt(minutes));
     
-    
+
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   };
   

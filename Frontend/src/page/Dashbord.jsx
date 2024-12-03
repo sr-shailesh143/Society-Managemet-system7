@@ -83,8 +83,6 @@ const Dashboard = () => {
   };
 
 
-
-
   const fetchImportantNumbers = async () => {
     try {
       const response = await viewnumber();
@@ -122,7 +120,6 @@ const Dashboard = () => {
       return;
     }
     try {
-
       await updatenumber(selectedNumber._id, editedNumber);
 
 
@@ -131,7 +128,6 @@ const Dashboard = () => {
           item._id === selectedNumber._id ? { ...item, ...editedNumber } : item
         )
       );
-
 
       setShowEditNumberModal(false);
       fetchImportantNumbers()
@@ -153,15 +149,18 @@ const Dashboard = () => {
 
   ]);
   const [eventsData, setEventsData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
+
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
-      setError("");
+
+      setError(""); 
+
       try {
-        const response = await getAnnouncements();
+        const response = await getAnnouncements(); 
         console.log("API Response:", response);
 
 
@@ -178,12 +177,13 @@ const Dashboard = () => {
       }
     };
 
-    fetchAnnouncements();
-  }, []);
 
+    fetchAnnouncements(); 
+  }, []); 
 
   const formatLocalDate = (dateString) => {
-    const date = new Date(dateString);
+    const date = new Date(dateString); 
+
     return date.toLocaleDateString();
   };
 
@@ -340,7 +340,6 @@ const Dashboard = () => {
 
   }, [])
 
-  // edit 
   const [editShow, seteditShow] = useState(false)
   const handlecancleEdit = () => seteditShow(false);
   const [status2, setStatus2] = useState("");
@@ -348,15 +347,12 @@ const Dashboard = () => {
   const handleStatusChange2 = (event) => setStatus2(event.target.value);
   const handleStatusChange3 = (event) => setStatus3(event.target.value);
 
-  // view 
   const [showview, setshowview] = useState(false)
   const handleClose = () => setshowview(false);
-  // delete
   const [showDelete, setshowDelete] = useState(false)
   const [id, setid] = useState({
     id: ""
   })
-  // detele api 
   async function deletecomplelnt(id) {
 
     await deleteComplaint(id)
@@ -391,10 +387,9 @@ const Dashboard = () => {
       console.log(error)
     }
   }
-
   async function edithandel() {
     try {
-      const data = {
+      const updatedComplaintData = {
         complainerName: content.complainerName,
         complaintName: content.complaintName,
         description: content.description,
@@ -402,18 +397,24 @@ const Dashboard = () => {
         unit: content.unit,
         priority: status2,
         status: status3,
-      }
-      console.log(data)
-      const response = await updateComplaint(content._id, data)
-      console.log(response.data.data)
-      seteditShow(false)
-      getalldata()
-
+      };
+  
+      console.log("Data to be sent for update:", updatedComplaintData);
+  
+      const response = await updateComplaint(content._id, updatedComplaintData);
+  
+      console.log("Update response:", response.data?.data);
+  
+      seteditShow(false);
+  
+      getalldata();
+  
     } catch (error) {
-
+      console.error("Error occurred while updating complaint:", error);
+        alert("An error occurred while updating the complaint. Please try again.");
     }
-
   }
+  
 
 
   return (
