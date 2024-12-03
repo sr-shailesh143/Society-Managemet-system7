@@ -149,18 +149,18 @@ const Dashboard = () => {
 
   ]);
   const [eventsData, setEventsData] = useState([]);
-  const [loading, setLoading] = useState(false); 
-  const [error, setError] = useState(""); 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
       setLoading(true);
 
-      setError(""); 
+      setError("");
 
       try {
-        const response = await getAnnouncements(); 
+        const response = await getAnnouncements();
         console.log("API Response:", response);
 
 
@@ -178,11 +178,11 @@ const Dashboard = () => {
     };
 
 
-    fetchAnnouncements(); 
-  }, []); 
+    fetchAnnouncements();
+  }, []);
 
   const formatLocalDate = (dateString) => {
-    const date = new Date(dateString); 
+    const date = new Date(dateString);
 
     return date.toLocaleDateString();
   };
@@ -398,21 +398,21 @@ const Dashboard = () => {
         priority: status2,
         status: status3,
       };
-  
+
       console.log("Data to be sent for update:", updatedComplaintData);
-  
+
       const response = await updateComplaint(content._id, updatedComplaintData);
-  
+
       console.log("Update response:", response.data?.data);
-  
+
       seteditShow(false);
-  
+
       getalldata();
-  
+
     } catch (error) {
 
       console.error("Error occurred while updating complaint:", error);
-        alert("An error occurred while updating the complaint. Please try again.");
+      alert("An error occurred while updating the complaint. Please try again.");
     }
   }
 
@@ -513,7 +513,7 @@ const Dashboard = () => {
                         </div>
                       </div>
                       <div className="d-flex">
-                        <span  onClick={() => handleDeleteNumber(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
+                        <span onClick={() => handleDeleteNumber(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
 
                           <svg className='cursor' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.0697 5.23C19.4597 5.07 17.8497 4.95 16.2297 4.86V4.85L16.0097 3.55C15.8597 2.63 15.6397 1.25 13.2997 1.25H10.6797C8.34967 1.25 8.12967 2.57 7.96967 3.54L7.75967 4.82C6.82967 4.88 5.89967 4.94 4.96967 5.03L2.92967 5.23C2.50967 5.27 2.20967 5.64 2.24967 6.05C2.28967 6.46 2.64967 6.76 3.06967 6.72L5.10967 6.52C10.3497 6 15.6297 6.2 20.9297 6.73C20.9597 6.73 20.9797 6.73 21.0097 6.73C21.3897 6.73 21.7197 6.44 21.7597 6.05C21.7897 5.64 21.4897 5.27 21.0697 5.23Z" fill="#E74C3C" />
@@ -537,7 +537,7 @@ const Dashboard = () => {
                 )}
               </ListGroup>
             </Card.Body>
-           
+
 
           </Card>
 
@@ -658,7 +658,7 @@ const Dashboard = () => {
       <Row>
         {/* Complaint List */}
 
-     
+
 
         <Col xs={12} md={12} lg={9}>
           <Box className="radious mt-3 mb-1 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '98%', padding: 2 }}>
@@ -747,7 +747,7 @@ const Dashboard = () => {
         <Col xs={12} sm={12} md={12} lg={12} xl={3}>
           <Card className="mb-4 scroll" style={{ borderRadius: "15px", height: "350px", overflowY: "hidden" }}>
 
-       
+
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
                 <Card.Title>Upcoming Activity</Card.Title>
@@ -818,8 +818,10 @@ const Dashboard = () => {
           </Card>
         </Col>
 
+       
 
                 {/* <ListGroup variant="flush" className="mt-3">
+
                   {eventsData.map((item, index) => (
                     <ListGroup.Item key={index} className="d-flex align-items-start">
                       <div
