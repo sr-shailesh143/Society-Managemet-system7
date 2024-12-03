@@ -67,7 +67,7 @@ export default function RecidencTarent() {
                             </div>
                             <div className="col-12 col-md-3 p-2" style={{ marginLeft: "-40px", width: "286px" }}>
                                 <div className="document-ditels d-flex align-items-center p-3"
-                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "360px", height: "100px" }}>
+                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "37s0px", height: "100px" }}>
                                     <div className="img-icon">
                                         <Image style={{ width: "30px", height: "30px" }} />
                                     </div>
@@ -102,7 +102,7 @@ export default function RecidencTarent() {
                             </div>
                             <div className="col-12 col-md-3 p-2" style={{ marginLeft: "-40px", width: "286px" }}>
                                 <div className="document-ditels d-flex align-items-center p-3"
-                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "360px", height: "100px" }}>
+                                    style={{ border: "2px solid #D3D3D3", borderRadius: "10px", justifyContent: "flex-start", width: "370px", height: "100px" }}>
                                     <div className="img-icon">
                                         <ArticleIcon className='fs-2 text-danger' />
                                     </div>

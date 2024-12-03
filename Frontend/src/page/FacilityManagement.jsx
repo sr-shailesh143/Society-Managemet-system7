@@ -147,7 +147,7 @@ const FacilityManagement = () => {
           ) : (
             facilities.map((facility, facilityId) => (
               <div key={facilityId} className="col-md-4 col-lg-3 mb-4 d-flex">
-                <div className="card w-100" style={{ borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', minHeight: '220px', maxHeight: '300px', }} >
+                <div className="card w-100" style={{ borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', minHeight: '220px', maxHeight: '301px', }} >
                   <div className="card-header bg-primary p-3" style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', }} >
                     <span className="text-truncate" style={{ maxWidth: '200px' }}>{facility.facilityName}</span>
                     <Dropdown>

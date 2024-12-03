@@ -493,7 +493,7 @@ const Dashboard = () => {
               <ListGroup
                 variant="flush"
                 className="scrollable-list"
-                style={{ maxHeight: "250px", overflowY: "auto" }}
+                style={{ maxHeight: "290px", overflowY: "auto" }}
               >
                 {Array.isArray(importantNumbers) && importantNumbers.length > 0 ? (
                   importantNumbers.map((item, index) => (
@@ -661,7 +661,7 @@ const Dashboard = () => {
 
 
         <Col xs={12} md={12} lg={9}>
-          <Box className="radious mt-3 mb-1 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '98%', padding: 2 }}>
+          <Box className="radious mt-1 mb-2 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '99%', padding: "10px" }}>
             <div className="d-flex justify-content-between align-items-center ">
               <Card.Title className='ms-3'>Complaint List</Card.Title>
 
@@ -818,9 +818,9 @@ const Dashboard = () => {
           </Card>
         </Col>
 
-       
 
-                {/* <ListGroup variant="flush" className="mt-3">
+
+        {/* <ListGroup variant="flush" className="mt-3">
 
                   {eventsData.map((item, index) => (
                     <ListGroup.Item key={index} className="d-flex align-items-start">
@@ -1034,7 +1034,6 @@ const Dashboard = () => {
           </Modal.Body>
         </div>
       </Modal>
-
       {/* Delete Modal */}
       <Modal show={showDelete}>
         <Modal.Header>
@@ -1047,12 +1046,7 @@ const Dashboard = () => {
           <div className="d-flex gap-3 mt-3">
             <Button
               className="save-btn radious   "
-              style={{
-
-                color: "#202224",
-                border: "1px solid #D3D3D3",
-                cursor: "pointer"
-              }}
+              style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }}
               variant="outlined"
               onClick={() => setshowDelete(false)}
             >

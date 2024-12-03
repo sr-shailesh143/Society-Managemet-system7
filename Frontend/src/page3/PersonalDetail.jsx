@@ -54,7 +54,7 @@ export default function PersonalDetail() {
                                         border: "2px solid #D3D3D3",
                                         borderRadius: "10px",
                                         justifyContent: "flex-start",
-                                        width: "360px",
+                                        width: "370px",
                                         height: "100px"
 
                                     }}>
@@ -104,7 +104,7 @@ export default function PersonalDetail() {
                                         border: "2px solid #D3D3D3",
                                         borderRadius: "10px",
                                         justifyContent: "flex-start",
-                                        width: "360px",
+                                        width: "370px",
                                         height: "100px"
 
                                     }}>

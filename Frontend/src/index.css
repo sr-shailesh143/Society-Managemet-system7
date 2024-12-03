@@ -1,6 +1,7 @@
-*{
+* {
   font-family: "Poppins" !important;
 }
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -148,11 +149,13 @@ h1 {
   color: #333;
   margin-bottom: 20px;
 }
+
 .messages-section {
   max-height: 600px;
   overflow-y: auto;
-  padding-right: 10px; 
+  padding-right: 10px;
 }
+
 .no-wrap {
   white-space: nowrap;
   overflow: hidden;
@@ -164,7 +167,7 @@ h1 {
 }
 
 .chat-list {
-  max-height: 600px; 
+  max-height: 600px;
   overflow-y: auto;
   padding-right: 10px;
 }
@@ -235,7 +238,7 @@ h1 {
 /* dashbord2 css */
 .scrollable-list {
   max-height: 330px;
- 
+
 
   max-width: 100%;
   height: 500px;
@@ -956,7 +959,8 @@ body {
   color: white;
   width: 45%;
 }
-body{
+
+body {
   font-family: "Poppins" !important;
 }
 
@@ -992,6 +996,7 @@ body{
   color: #000;
   text-align: center;
 }
+
 .time-badge2 {
   background: #F6F8FB;
   padding: 5px 10px;
@@ -1394,6 +1399,7 @@ body{
   color: #333;
   margin-bottom: 10px;
 }
+
 .new-box h6 {
   font-size: 1.2rem;
   font-weight: 600;
@@ -1431,6 +1437,7 @@ body{
 .custom-th2 {
   border-radius: 0px 15px 0px 0px;
 }
+
 .balance-card {
   transition: transform 0.3s ease;
 }
@@ -1441,16 +1448,17 @@ body{
 
 @media (max-width: 768px) {
   .balance-card {
-    height: auto; 
+    height: auto;
   }
 }
 
 .card-body-content {
   flex-wrap: wrap;
 }
+
 .scrollbar-custom {
   scrollbar-width: thin;
-  scrollbar-color: #888 #e0e0e0; 
+  scrollbar-color: #888 #e0e0e0;
 }
 
 .scrollbar-custom::-webkit-scrollbar {

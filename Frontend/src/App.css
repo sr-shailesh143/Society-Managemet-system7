@@ -10,7 +10,6 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-style: normal;
-  overflow: hidden;
 
 }
 
@@ -255,8 +254,8 @@ body {
 
 .hide {
   position: sticky;
- margin: -39px 14px 0px 0px;
-float: right;
+  margin: -39px 14px 0px 0px;
+  float: right;
 
 }
 
@@ -306,22 +305,12 @@ float: right;
 }
 
 .side-bar {
-  width: 16.9% !important;
-  height: 95% !important;
-  position: sticky;
- 
-  scrollbar-width: thin;
+  width: 17% !important;
+  height: 20% !important;
 }
 
 .component-layout {
   width: 100vw !important;
-  height: 92vh;
-  overflow-y: auto;
-  /* Enables vertical scrolling */
-  scrollbar-width: thin;
-  /* For Firefox */
-  scrollbar-color: #888 #f1f1f1;
-  /* For Firefox */
 }
 
 .side-design {
@@ -583,7 +572,8 @@ float: right;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
 }
-.notification-child{
+
+.notification-child {
   position: sticky;
 }
 
@@ -1120,7 +1110,7 @@ input[type="email"] {
 .balance-card {
   background-color: #ffffff;
   border-radius: 12px;
- 
+
   max-width: 350px;
   position: relative;
   height: 75px;
@@ -1143,7 +1133,7 @@ input[type="email"] {
 
 
 .balance-card-orange::after {
-  border-color: #FFA64D;
+  border-color: #FF6A00 !important;
 }
 
 .balance-card-green::after {
@@ -1240,7 +1230,7 @@ input[type="email"] {
   background-color: #FE512E;
 
   border-color: #FE512E #F09619;
-  
+
 
 }
 
@@ -1602,7 +1592,7 @@ input[type="email"] {
 
 .member-row {
   display: contents;
- 
+
 }
 
 .member-row input,
@@ -1719,7 +1709,7 @@ input[type="email"] {
   .member-row input,
   .member-row select {
     width: 100%;
-  
+
   }
 }
 
@@ -1738,7 +1728,7 @@ input[type="email"] {
   .member-row input,
   .member-row select {
     width: 100%;
-  
+
   }
 
   .f-btn,
@@ -1933,8 +1923,9 @@ input[type="email"] {
   border: 1px solid #F4F4F4;
   margin: 14px;
 }
+
 .document12 {
-width: 100%;
+  width: 100%;
   height: 80px;
   padding: 15px;
   gap: 10px;
@@ -2336,7 +2327,7 @@ width: 100%;
 
 .createTraking {
   /* width: 1580px; */
-  height: 770px;
+  height: 904px;
   top: 130px;
   left: 310px;
   gap: 0px;
@@ -2380,7 +2371,7 @@ width: 100%;
 
 .open {
   background-color: #EFF2FD;
-width: 75px;
+  width: 75px;
   padding: 10px;
   border-radius: 12px;
   color: #5678E9;
@@ -2398,6 +2389,7 @@ width: 75px;
   scrollbar-width: thin;
 
 }
+
 .responsive-table-container1 {
   padding: 20px;
   max-width: 100%;
@@ -2442,10 +2434,13 @@ width: 75px;
   white-space: nowrap;
 
 }
-.tr{
- 
-  max-height: 400px; /* Set desired scrollable height */
-  overflow-y: auto; /* Vertical scroll */
+
+.tr {
+
+  max-height: 400px;
+  /* Set desired scrollable height */
+  overflow-y: auto;
+  /* Vertical scroll */
   overflow-x: hidden;
 }
 
@@ -2547,47 +2542,51 @@ width: 75px;
   border-radius: 10px 10px;
 
 }
-.viewcomplete{
+
+.viewcomplete {
   width: 285px;
-height: auto;
-gap: 15px;
-opacity: 0px;
+  height: auto;
+  gap: 15px;
+  opacity: 0px;
 
 }
 
-.doc{
+.doc {
   width: 320px;
-height: 74px;
-padding: 15px 0px 0px 0px;
-gap: 10px;
-border-radius: 10px 0px 0px 0px;
-border: 1px solid #F4F4F4;
-opacity: 0px;
+  height: 74px;
+  padding: 15px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 10px 0px 0px 0px;
+  border: 1px solid #F4F4F4;
+  opacity: 0px;
 
 }
-.gender{
- padding: 9px 2px 9px 2px;
-gap: 4px;
-border-radius: 10px ;
-border: 1px solid #D3D3D3;
-opacity: 0px;
-color: #A7A7A7;
+
+.gender {
+  padding: 9px 2px 9px 2px;
+  gap: 4px;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  opacity: 0px;
+  color: #A7A7A7;
 }
-.gender1{
- padding: 9px 15px 9px 15px;
-gap: 4px;
-border-radius: 10px ;
-border: 1px solid #D3D3D3;
-opacity: 0px;
-color: #A7A7A7;
+
+.gender1 {
+  padding: 9px 15px 9px 15px;
+  gap: 4px;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
+  opacity: 0px;
+  color: #A7A7A7;
 }
-.edit-img{
+
+.edit-img {
   width: 65px;
-height: 65px;
-gap: 0px;
-border: 3px 0px 0px 0px;
-opacity: 0px;
-border-radius: 50%;
+  height: 65px;
+  gap: 0px;
+  border: 3px 0px 0px 0px;
+  opacity: 0px;
+  border-radius: 50%;
 
 }
 
@@ -2599,54 +2598,60 @@ border-radius: 50%;
   justify-content: space-between;
   margin-top: 20px;
 }
+
 .additional-info1 {
   display: flex;
-    margin-top: 20px;
+  margin-top: 20px;
 }
-.DAY{
-  width: Fixed (90px);
-height: Fixed (28px);
-padding: 5px 12px;
-gap: 5px;
-border-radius: 58px ;
-opacity: 0px;
-background: #F4F4F4;
 
-}
-.NIGHT{
-  width: Fixed (90px);
-height: Fixed (28px);
-padding: 5px 12px;
-gap: 5px;
-border-radius: 58px ;
-opacity: 0px;
-background:#202224; 
-color: white;
-
-}
-.time1{
-  width: Fixed (92px);
-height: Fixed (28px);
-padding: 5px 15px 5px 15px;
-gap: 10px;
-border-radius: 80px ;
-opacity: 0px;
-background: #F6F8FB;
-
-
-}
-.Female{
+.DAY {
   width: Fixed (90px);
   height: Fixed (28px);
-  padding: 5px 20px ;
+  padding: 5px 12px;
   gap: 5px;
-  border-radius: 58px ;
+  border-radius: 58px;
+  opacity: 0px;
+  background: #F4F4F4;
+
+}
+
+.NIGHT {
+  width: Fixed (90px);
+  height: Fixed (28px);
+  padding: 5px 12px;
+  gap: 5px;
+  border-radius: 58px;
+  opacity: 0px;
+  background: #202224;
+  color: white;
+
+}
+
+.time {
+  width: Fixed (92px);
+  height: Fixed (28px);
+  padding: 5px 15px 5px 15px;
+  gap: 10px;
+  border-radius: 80px;
+  opacity: 0px;
+  background: #F6F8FB;
+
+
+}
+
+.Female {
+  width: Fixed (90px);
+  height: Fixed (28px);
+  padding: 5px 20px;
+  gap: 5px;
+  border-radius: 58px;
   opacity: 0px;
   background: #FE76A81A;
   color: #FE76A8;
 
 }
-.Male{
+
+.Male {
   width: Fixed (90px);
   height: Fixed (28px);
   padding: 5px 20px;
@@ -2661,29 +2666,3 @@ background: #F6F8FB;
 .additional-info div {
   text-align: center;
 }
-.notification-bell{
-  width:  (32px);
-height:  (32px);
-padding: 3px ;
-gap: 10px;
-border-radius: 10px ;
-border: 1px 0px 0px 0px;
-opacity: 0px;
-border: 1px solid #D3D3D3;
-margin-right: 20px;
-}
-
-.hover-deshbord:hover{
-  fill: white !important;
-}
-.hover-deshbord:hover path {
-  fill: white !important; /* Change fill to white on hover */
-  transition: fill 0.2s ease; /* Smooth transition effect */
-}
-
-
-/* Change fill color on hover */
-
-
-
-
