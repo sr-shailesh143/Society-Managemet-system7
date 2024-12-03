@@ -1,9 +1,21 @@
 const { Schema, model } = require("mongoose");
 
-// Define the schema for an owner
-const OwnerSchema = new Schema(
+// Define the Tenant schema
+const TenantSchema = new Schema(
   {
-    profileImage: {
+    tenantImage: {
+      type: String,
+      required: true,
+    },
+    ownerFullName: {
+      type: String,
+      required: true,
+    },
+    ownerPhoneNumber: {
+      type: String,
+      required: true,
+    },
+    ownerAddress: {
       type: String,
       required: true,
     },
@@ -86,6 +98,6 @@ const OwnerSchema = new Schema(
   { timestamps: true }
 );
 
-// Create and export the model
-const Owner = model("Owner", OwnerSchema);
-module.exports = Owner;
+// Create and export the Tenant model
+const Tenant = model("Tenant", TenantSchema);
+module.exports = Tenant;

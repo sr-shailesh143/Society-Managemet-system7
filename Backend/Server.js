@@ -31,9 +31,7 @@ const Societyroute = require("./src/routes/societyroute.js");
 const Userroute = require("./src/routes/userroute");
 const profileRoutes = require("./src/routes/profileRoutes");
 const Numberroute = require("./src/routes/numberroute");
-// const Residentroute = require("./src/routes/residentroute");
 const maintenanceRoutes = require("./src/routes/maintenanceRoutes");
-const ResidentRoutes = require("./src/routes/ResidentRoutes");
 const complaintRoutes = require("./src/routes/complaintRoutes.js");
 const requestRoutes = require("./src/routes/requestRoutes.js");
 const noteRoutes = require("./src/routes/noteRoutes.js");
@@ -48,6 +46,8 @@ const TrvisitorRoutes = require("./src/routes/TrvisitorRoutes");
 const alertRoutes = require("./src/routes/alertRoutes.js");
 const incomeRoutes = require("./src/routes/incomeRoutes.js");
 
+const ownerRoute = require("./src/routes/OwnerRouts.js")
+
 //user registration and login part
 app.use("/api/auth", Userroute);
 app.use("/api/society", Societyroute);
@@ -55,11 +55,8 @@ app.use("/api/society", Societyroute);
 //Important Number
 app.use("/api/number", Numberroute);
 
-//Resident For S_P Patel
-// app.use("/api/resident", Residentroute);
 
-//resident --Md
-app.use("/api/resident", ResidentRoutes);
+
 
 app.use("/api/profile", profileRoutes);
 app.use("/api/maintenance", maintenanceRoutes);
@@ -75,6 +72,11 @@ app.use("/api/visitor-logs", visitorLogRoutes);
 app.use("/api/visitors-tracking", TrvisitorRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/income", incomeRoutes);
+
+//resident apis
+app.use('/api/Resident', ownerRoute);
+// app.use('/api/tenant', tenantRoute);
+
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(port, () =>

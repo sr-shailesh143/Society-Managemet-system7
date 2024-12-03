@@ -1,173 +1,331 @@
-const crypto = require("crypto");
+const Owner = require('../models/OwnerModel');
+const cloudinary = require('../config/cloudinaryConfig');
 const fs = require("fs");
-const { cloudinary } = require("../utils/cloudinary");
-const Owner = require("../models/OwnerModel");
-const { hash } = require("../utils/hashPassword");
-const { sendData } = require("../config/mailer");
-const { ForgotFormatResident } = require("../utils/emailTemplates");
+const crypto = require("crypto");
+const sendOtpUi = require('../config/mailer');
+const { hash } = require('../utils/hashpassword');
 
-exports.addOwnerData = async (req, res) => {
-  try {
-    // Function to generate a random numeric password
-    const generatePassword = (length = 6) => {
-      const password = crypto.randomInt(0, Math.pow(10, length)).toString();
-      return password.padStart(length, "0");
-    };
+// Add Owner Data
+exports.CreateOwnerData = async (req, res) => {
+    try {
+        // Function to generate a 6-digit random password
+        function generatePassword(length = 6) {
+            const password = crypto.randomInt(0, Math.pow(10, length)).toString();
+            return password.padStart(length, "0");
+        }
 
-    // Generate a random password and hash it
-    const password = generatePassword();
-    const hashedPassword = await hash(password);
+        // Destructure request body
+        const {
+            fullName,
+            phoneNumber,
+            emailAddress,
+            age,
+            gender,
+            wing,
+            unit,
+            relation,
+            memberCounting,
+            vehicleCounting,
+            role,
+            residentStatus,
+            unitStatus
+        } = req.body;
 
-    console.log("Generated Password:", password);
+        const password = generatePassword();
+        const hashedPassword = await hash(password);
 
-    // // Utility to upload files to Cloudinary and delete local files
-    // const uploadAndDeleteLocal = async (fileArray) => {
-    //   if (fileArray && fileArray[0]) {
-    //     const filePath = fileArray[0].path;
-    //     try {
-    //       const result = await cloudinary.uploader.upload(filePath);
-    //       fs.unlink(filePath, (err) => {
-    //         if (err) console.error("Error deleting local file:", err);
-    //       });
-    //       return result.secure_url;
-    //     } catch (error) {
-    //       console.error("Error uploading file to Cloudinary:", error.message);
-    //       throw error;
-    //     }
-    //   }
-    //   return null;
-    // };
-    
-    const uploadAndDeleteLocal = async (file) => {
-      const { buffer, originalname } = file; // Ensure file contains these properties
-      const folderName = 'your_folder_name';
-  
-      try {
-          const result = await new Promise((resolve, reject) => {
-              const uploadStream = cloudinary.uploader.upload_stream({ folder: folderName }, (err, result) => {
-                  if (err) return reject(err);
-                  resolve(result);
-              });
-  
-              // Pipe buffer to upload stream
-              const stream = require('stream');
-              const readableStream = new stream.PassThrough();
-              readableStream.end(buffer);
-              readableStream.pipe(uploadStream);
-          });
-  
-          return result;
-      } catch (err) {
-          console.error('Error uploading file to Cloudinary:', err);
-          throw err;
-      }
-  };
-  
-    
+        // Helper function to upload files to Cloudinary and delete local copies
+        const uploadAndDeleteLocal = async (fileArray) => {
+            if (fileArray && fileArray[0]) {
+                const filePath = fileArray[0].path;
+                try {
+                    const result = await cloudinary.uploader.upload(filePath);
+                    fs.unlink(filePath, (err) => {
+                        if (err) console.error("❌ Error deleting local file:", err);
+                    });
+                    return result.secure_url;
+                } catch (error) {
+                    console.error("❌ Error uploading to Cloudinary:", error);
+                    throw error;
+                }
+            }
+            return '';
+        };
 
-    // Extracting fields from request body
-    const {
-      Fullname,
-      Phonenumber,
-      Emailaddress,
-      Age,
-      Gender,
-      Wing,
-      Unit,
-      Relation,
-      Member_Counting,
-      Vehicle_Counting,
-      role,
-      Resident_status,
-      UnitStatus,
-    } = req.body;
+        // Upload images
+        const profileImage = await uploadAndDeleteLocal(req.files?.profileImage);
+        const aadharFront = await uploadAndDeleteLocal(req.files?.aadharFront);
+        const aadharBack = await uploadAndDeleteLocal(req.files?.aadharBack);
+        const addressProof = await uploadAndDeleteLocal(req.files?.addressProof);
+        const rentAgreement = await uploadAndDeleteLocal(req.files?.rentAgreement);
 
-    // Log incoming files
-    console.log("Received Files:", req.files);
+        // Validate required fields
+        if (
+            !fullName || !phoneNumber || !emailAddress || !age || !gender || !wing || 
+            !unit || !relation || !profileImage || !aadharFront || !aadharBack || 
+            !addressProof || !rentAgreement
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "🚫 All fields are required!",
+            });
+        }
 
-    // Upload files to Cloudinary
-    const filesToUpload = [
-      { key: "profile", file: req.files?.profile },
-      { key: "Aadharfront", file: req.files?.Aadharfront },
-      { key: "Aadharback", file: req.files?.Aadharback },
-      { key: "Addressproof", file: req.files?.Addressproof },
-      { key: "Rent_Agreement", file: req.files?.Rent_Agreement },
-    ];
+        // Check for existing Wing and Unit
+        const existingWingUnit = await Owner.findOne({ wing, unit });
+        if (existingWingUnit) {
+            return res.status(400).json({
+                success: false,
+                message: "⚠️ This Wing and Unit combination already exists!",
+            });
+        }
 
-    const uploadedFiles = await Promise.all(
-      filesToUpload.map(({ file }) => uploadAndDeleteLocal(file))
-    );
+        // Create a new Owner document
+        const newOwner = new Owner({
+            profileImage,
+            fullName,
+            phoneNumber,
+            emailAddress,
+            age,
+            gender,
+            wing,
+            unit,
+            relation,
+            aadharFront,
+            aadharBack,
+            addressProof,
+            rentAgreement,
+            role: role || "resident",
+            residentStatus: residentStatus || "Owner",
+            unitStatus: unitStatus || "Occupied",
+            password: hashedPassword
+        });
 
-    const [profile, Aadharfront, Aadharback, Addressproof, Rent_Agreement] =
-      uploadedFiles;
+        await newOwner.save();
 
-    // Validate required fields
-    if (
-      !Fullname ||
-      !Phonenumber ||
-      !Emailaddress ||
-      !Age ||
-      !Gender ||
-      !Wing ||
-      !Unit ||
-      !Relation ||
-      !Member_Counting ||
-      !Vehicle_Counting ||
-      !profile ||
-      !Aadharfront ||
-      !Aadharback ||
-      !Addressproof ||
-      !Rent_Agreement
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
+        // Send email with login details
+        await sendOtpUi(
+            newOwner.emailAddress,
+            "🎉 Registration Successful - Login Details",
+            `Dear ${newOwner.fullName},\n\nYou have successfully registered as a resident. 🏡\n\nHere are your login details:\n📧 Email: ${newOwner.emailAddress}\n🔑 Password: <b>${password}</b>\n\nPlease keep this information secure. 🔒\n\nBest Regards,\nManagement`
+        );
+
+        // Add family members if provided
+        if (memberCounting) {
+            const members = JSON.parse(memberCounting);
+            await Owner.updateOne(
+                { _id: newOwner._id },
+                { $push: { familyMembers: { $each: members } } }
+            );
+        }
+
+        // Add vehicles if provided
+        if (vehicleCounting) {
+            const vehicles = JSON.parse(vehicleCounting);
+            await Owner.updateOne(
+                { _id: newOwner._id },
+                { $push: { vehicles: { $each: vehicles } } }
+            );
+        }
+
+        return res.status(201).json({
+            success: true,
+            message: "✅ Owner data added successfully!",
+        });
+
+    } catch (error) {
+        console.error("❌ Error adding owner data:", error);
+        return res.status(500).json({
+            success: false,
+            message: "🚨 Something went wrong while adding owner data.",
+        });
     }
+};
 
-    // Create a new Owner document
-    const newOwner = new Owner({
-      Fullname,
-      Phonenumber,
-      Emailaddress,
-      Age,
-      Gender,
-      Wing,
-      Unit,
-      Relation,
-      profile,
-      Aadharfront,
-      Aadharback,
-      Addressproof,
-      Rent_Agreement,
-      password: hashedPassword,
-      role: role || "resident", // Default to "resident"
-      Resident_status: Resident_status || "Owner", // Default to "Owner"
-      UnitStatus: UnitStatus || "Occupied", // Default to "Occupied"
-      Member_Counting: Member_Counting ? JSON.parse(Member_Counting) : [], // Parse if provided
-      Vehicle_Counting: Vehicle_Counting ? JSON.parse(Vehicle_Counting) : [], // Parse if provided
-    });
+// Get All Owners
+exports.GetAllOwners = async (req, res) => {
+    try {
+        const owners = await Owner.find();
+        if (!owners.length) {
+            return res.status(404).json({
+                success: false,
+                message: "❌ No owner data found!",
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "✅ Owners retrieved successfully!",
+            owners,
+        });
+    } catch (error) {
+        console.error("❌ Error retrieving owners:", error);
+        return res.status(500).json({
+            success: false,
+            message: "🚨 Something went wrong while retrieving owners.",
+        });
+    }
+};
 
-    await newOwner.save();
 
-    // Send email with login details
-    await sendData(
-      Emailaddress,
-      "Welcome to the Society",
-      ForgotFormatResident(Fullname, Emailaddress, password)
-    );
+// Get Owner by ID
+exports.getOwnerById = async (req, res) => {
+  try {
+      const { id } = req.params;
 
-    res.status(201).json({
-      success: true,
-      message: "Owner data added successfully",
-    });
+      const owner = await Owner.findById(id);
+      if (!owner) {
+          return res.status(404).json({
+              success: false,
+              message: "❌ Owner not found!",
+          });
+      }
+
+      return res.status(200).json({
+          success: true,
+          message: "✅ Owner retrieved successfully!",
+          owner,
+      });
   } catch (error) {
-    console.error("Error adding owner data:", error);
+      console.error("❌ Error retrieving owner by ID:", error);
+      return res.status(500).json({
+          success: false,
+          message: "🚨 Something went wrong while retrieving the owner.",
+      });
+  }
+};
 
-    // Return a generic error response
-    res.status(500).json({
-      success: false,
-      message: "Failed to add owner data",
-    });
+// Update Owner Data
+exports.updateOwner = async (req, res) => {
+  try {
+      const { id } = req.params;
+
+      // Destructure request body
+      const {
+          fullName,
+          phoneNumber,
+          emailAddress,
+          age,
+          gender,
+          wing,
+          unit,
+          relation,
+          residentStatus,
+          unitStatus,
+      } = req.body;
+
+      // Validate required fields
+      if (!fullName || !phoneNumber || !emailAddress || !age || !gender || !wing || !unit || !relation) {
+          return res.status(400).json({
+              success: false,
+              message: "🚫 All fields are required!",
+          });
+      }
+
+      // Update owner details
+      const updatedOwner = await Owner.findByIdAndUpdate(
+          id,
+          {
+              fullName,
+              phoneNumber,
+              emailAddress,
+              age,
+              gender,
+              wing,
+              unit,
+              relation,
+              residentStatus,
+              unitStatus,
+          },
+          { new: true }
+      );
+
+      if (!updatedOwner) {
+          return res.status(404).json({
+              success: false,
+              message: "❌ Owner not found!",
+          });
+      }
+
+      return res.status(200).json({
+          success: true,
+          message: "✅ Owner updated successfully!",
+          owner: updatedOwner,
+      });
+  } catch (error) {
+      console.error("❌ Error updating owner:", error);
+      return res.status(500).json({
+          success: false,
+          message: "🚨 Something went wrong while updating the owner.",
+      });
+  }
+};
+
+// Delete Owner by ID
+exports.deleteOwnerById = async (req, res) => {
+  try {
+      const { id } = req.params;
+
+      const deletedOwner = await Owner.findByIdAndDelete(id);
+      if (!deletedOwner) {
+          return res.status(404).json({
+              success: false,
+              message: "❌ Owner not found!",
+          });
+      }
+
+      return res.status(200).json({
+          success: true,
+          message: "✅ Owner deleted successfully!",
+      });
+  } catch (error) {
+      console.error("❌ Error deleting owner:", error);
+      return res.status(500).json({
+          success: false,
+          message: "🚨 Something went wrong while deleting the owner.",
+      });
+  }
+};
+
+// Update Owner by ID (Partial Update)
+exports.updateOwnerById = async (req, res) => {
+  try {
+      const { id } = req.params;
+
+      const updateFields = req.body;
+
+      const updatedOwner = await Owner.findByIdAndUpdate(id, updateFields, { new: true });
+      if (!updatedOwner) {
+          return res.status(404).json({
+              success: false,
+              message: "❌ Owner not found!",
+          });
+      }
+
+      return res.status(200).json({
+          success: true,
+          message: "✅ Owner data updated successfully!",
+          owner: updatedOwner,
+      });
+  } catch (error) {
+      console.error("❌ Error updating owner by ID:", error);
+      return res.status(500).json({
+          success: false,
+          message: "🚨 Something went wrong while updating the owner.",
+      });
+  }
+};
+
+
+// Get total occupied units
+exports.getTotalOccupiedUnits = async (req, res) => {
+  try {
+    const tenantUnits = await Tenant.find({ UnitStatus: "Occupied" }).select("Unit");
+    const ownerUnits = await Owner.find({ UnitStatus: "Occupied" }).select("Unit");
+
+    const uniqueOccupiedUnits = new Set([...tenantUnits, ...ownerUnits].map(unit => unit.Unit));
+    res.status(200).json({ success: true, UnitTotal: uniqueOccupiedUnits.size });
+  } catch (error) {
+    console.error("Error calculating occupied units:", error);
+    res.status(500).json({ success: false, message: "Error calculating occupied units" });
   }
 };
