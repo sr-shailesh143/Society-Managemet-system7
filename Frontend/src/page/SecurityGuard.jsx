@@ -10,8 +10,8 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { useDropzone } from 'react-dropzone';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloseIcon from '@mui/icons-material/Close';
-import EditablePage from '../practice/EditablePage';
-import Loader from '../practice/EditablePage';
+import Loder from '../loder/Loder';
+
 
 export default function SecurityGuard() {
 
@@ -80,6 +80,7 @@ export default function SecurityGuard() {
       setloading(false)
       closeCreateModal()
       GetAllSecurityData()
+      setloading(false)
       toast.success(" CreateSecurity Guard  successfully!")
 
     } catch (error) {
@@ -405,7 +406,7 @@ export default function SecurityGuard() {
                     onClick={CREATESECURITY}
                   >
 
-                    Create
+                    {loading ? <Loder />:"Create"}
                   </Button>
                 </div>
               </Modal.Body>
