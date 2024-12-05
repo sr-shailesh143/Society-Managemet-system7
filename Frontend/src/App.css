@@ -10,7 +10,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-style: normal;
-
+  overflow: hidden;
 }
 
 .left-section {
@@ -328,6 +328,14 @@ background: rgba(255, 255, 255, 1);
 
 .component-layout {
   width: 100vw !important;
+  height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Enables vertical scrolling */
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #888 #f1f1f1;
+  /* For Firefox */
 }
 
 .side-design {
@@ -349,7 +357,17 @@ background: rgba(255, 255, 255, 1);
   }
 }
 
+.uplod-text{
+font: "Poppins";
+font-size: 14px;
+font-weight: 700;
+line-height: 21px;
+text-align: left;
+text-underline-position: "from-font";
+text-decoration-skip-ink: none;
+color: rgba(86, 120, 233, 1);
 
+}
 
 
 
@@ -1106,7 +1124,7 @@ opacity: 0px;
 
 .balance-card-orange::before {
   background-color: #FFA64D;
-}
+} 
 
 .balance-card-green::before {
   background-color: #4CAF50;
@@ -2660,7 +2678,7 @@ opacity: 0px;
 
 }
 
-.time {
+.time1 {
   width: Fixed (92px);
   height: Fixed (28px);
   padding: 5px 15px 5px 15px;

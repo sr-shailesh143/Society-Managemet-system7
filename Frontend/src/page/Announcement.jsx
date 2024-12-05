@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, Card, Dropdown } from "react-bootstrap";
+import { Button, Modal, Form, Card, Dropdown, Row } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { toast } from "react-hot-toast";
 import {
@@ -8,7 +8,7 @@ import {
   deleteAnnouncement,
   updateAnnouncement,
 } from "../apiservices/announcementservice";
-
+import { Col } from 'react-bootstrap';
 const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [currentAnnouncement, setCurrentAnnouncement] = useState({});
@@ -164,28 +164,47 @@ const Announcement = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="announcementType">
+  <Form.Label>Announcements Type <span className="text-danger"> *</span></Form.Label>
+  <Form.Select
+    value={currentAnnouncement.type || ""}
+    onChange={(e) =>
+      setCurrentAnnouncement({ ...currentAnnouncement, type: e.target.value })
+    }
+    required
+    className="w-100"  // Ensures full width
+  >
+    <option value="">Select Type</option>
+    <option value="Event">Event</option>
+    <option value="Activity">Activity</option>
+  </Form.Select>
+</Form.Group>
+
             <Form.Group>
-              <Form.Label>Title</Form.Label>
+              <Form.Label>Announcements Title <span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="text"
                 value={currentAnnouncement.title || ""}
                 onChange={(e) => setCurrentAnnouncement({ ...currentAnnouncement, title: e.target.value })}
                 required
+                placeholder="Enter title"
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>Description</Form.Label>
+              <Form.Label> Announcements Description <span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 as="textarea"
                 value={currentAnnouncement.description || ""}
+                placeholder="Enter Description"
                 onChange={(e) =>
                   setCurrentAnnouncement({ ...currentAnnouncement, description: e.target.value })
                 }
                 required
               />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Date</Form.Label>
+          <Row style={{justifyContent:"space-between"}}>
+          <Form.Group as={Col} style={{width:"175px"}}>
+              <Form.Label>Date <span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="date"
                 value={currentAnnouncement.announcementDate || ""}
@@ -195,8 +214,8 @@ const Announcement = () => {
                 required
               />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Time</Form.Label>
+            <Form.Group as={Col} style={{width:"175px"}}>
+              <Form.Label>Time<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="time"
                 value={currentAnnouncement.announcementTime || ""}
@@ -206,6 +225,7 @@ const Announcement = () => {
                 required 
               />
             </Form.Group>
+          </Row >
             <Modal.Footer>
             <Button onClick={handleModalClose} style={{width:"47%",alignItems:"center",justifyContent:"center",background:"lightgrey",border:"none",color:"white"}} className="mt-3 p-3">
               Cancel

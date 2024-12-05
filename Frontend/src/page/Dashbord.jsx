@@ -430,27 +430,45 @@ const Dashboard = () => {
               className={`text-start balance-card balance-card-${card.color}`}
               style={{ borderRadius: "15px" }}
             >
-              <Card.Body style={{ padding: "0" }}>
-                <div
-                  className="card-body-content"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
+           <Card.Body style={{ padding: "0" }}>
+  <div
+    className="card-body-content"
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}
+  >
+    <div
+      className="text-start total-b me-5"
+      style={{
+        fontWeight: "bold",
+        marginLeft: "0", 
+      }}
+    >
+      Total Balance<br />
+      <h6
+        className="text-start"
+        style={{
+          fontWeight: "bold",
+          margin: "0",
+        }}
+      >
+        ₹ 2,22,520
+      </h6>
+    </div>
+    <img
+      className="total-i"
+      src={card.imgSrc}
+      alt="Balance Icon"
+      style={{
+        maxWidth: "50px",
+        height: "auto",
+      }}
+    />
+  </div>
+</Card.Body>
 
-
-                  }}
-                >
-                  <div className='text-start me-5 ' style={{ fontWeight: "bold", marginLeft: "-20px" }}>
-                    Total Balance<br />
-                    <h6 className='text-start' style={{ fontWeight: "bold" }}>₹ 2,22,520</h6>
-                  </div>
-                  <img
-                    src={card.imgSrc}
-                    alt="Button"
-                    style={{ maxWidth: "50px", height: "auto" }}
-                  />
-                </div>
-              </Card.Body>
             </Card>
           </Col>
         ))}
