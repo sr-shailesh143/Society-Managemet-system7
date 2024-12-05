@@ -561,7 +561,7 @@ left:-23px;
                                 </UserName>
                             </UserInfo>
                         </div>
-                        <div className="component-layout     ">
+                        <div className="component-layout ">
 
                             <br />
                             <div>

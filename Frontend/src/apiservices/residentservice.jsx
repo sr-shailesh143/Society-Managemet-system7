@@ -7,6 +7,7 @@ export const CreateOwner = async (data) => {
     headers: {
       "Content-Type": "multipart/form-data",
     },
+    body: JSON.stringify({ members: data }),
   });
   return response;
 };

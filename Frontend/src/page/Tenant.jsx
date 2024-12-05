@@ -189,12 +189,14 @@ export default function Tenant() {
                         </div>
                     </div>
                     <div className="col-12 col-md-3 mt-4">
+                        <label htmlFor="file1"></label>
                         <div className="text-img">
 
                             <span className='t-img'>Address Proof (Vera Bill OR Light Bill)</span>
                         </div>
-                        <div className="file-upload" {...getRootProps()}>
-                            <input {...getInputProps()} />
+                        <div  className="file-upload" >
+                            <div htmlFor={"file"}  />
+                            <input type="file" id='file1' className='d-none' />
                             <div className="upload-area">
                                 <center>
 
