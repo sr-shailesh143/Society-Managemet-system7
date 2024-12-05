@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Edit, Image, PlusOne } from '@mui/icons-material';
 import ArticleIcon from '@mui/icons-material/Article';
 import { useNavigate } from 'react-router-dom';
 import PaymentModal from './PaymentModal';
+import { getAnnouncements } from '../apiservices/announcementservice';
 export default function PersonalDetail() {
     const naviget = useNavigate()
+    const [announcements, setAnnouncements] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedAmount, setSelectedAmount] = useState(null);
     const handlePayNowClick = (amount) => {
@@ -14,6 +16,29 @@ export default function PersonalDetail() {
     const item = {
         grandTotal: 100,
     };
+
+    const fetchAnnouncements = async () => {
+        try {
+          const response = await getAnnouncements();
+          setAnnouncements(response.data.records);
+        } catch (error) {
+          console.error("Error fetching announcements:", error);
+        }
+      };
+    
+      useEffect(() => {
+        fetchAnnouncements();
+      }, []);
+
+      const formatTime = (timeStr) => {
+        if (!timeStr) return "Invalid Time"; 
+        const [hours, minutes] = timeStr.split(":");
+        const date = new Date();
+        date.setHours(parseInt(hours));
+        date.setMinutes(parseInt(minutes));
+        return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+      };
+
     return (
         <div className='p-detels'>
 
@@ -394,36 +419,58 @@ export default function PersonalDetail() {
                     </div>
                 </div>
             </div>
-            <div className=" Announcement Details  mt-3 h-100 member">
-                <div className="memberlist ">
-                    <h6 className='title-member fs-4 m-3 mx-4'>Announcement Details</h6>
-                    <div className="list-member row ms-2 mt-4">
-                        <div className="col-md-4 col-lg-3 mb-4 d-flex">
-                            <div className=" w-100"
-                                style={{ borderRadius: '10px 10px', overflow: 'hidden', boxShadow: '0 4px 8px #5678E94D', width: "100%", display: 'flex', flexDirection: 'column', }} >
-                                <div className="card-header " style={{ color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px', backgroundColor: "#5678E9" }}>
-                                    <span className="text-truncate" style={{ maxWidth: '200px' }}>Community Initiatives  </span>
-                                </div>
-                                <div className="card-body flex-column justify-content-between m-1 p-2" style={{ overflow: 'hidden', flexGrow: 1 }}>
-                                    <div className="d-flex justify-content-between ">
-                                        <p> Announcement Date</p>
-                                        <p>11/01/2024</p>
+            <div className="Announcement Details mt-3 h-100 member">
+            <div className="memberlist">
+                <h6 className="title-member fs-4 m-3 mx-4">Announcement Details</h6>
+                <div className="list-member row ms-2 mt-4">
+                    {announcements.length > 0 ? (
+                        announcements.map((announcement) => (
+                            <div key={announcement._id} className="col-md-4 col-lg-3 mb-4 d-flex">
+                                <div className="w-100"
+                                    style={{
+                                        borderRadius: '10px 10px',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 4px 8px #5678E94D',
+                                        width: "100%",
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                    }}>
+                                    <div className="card-header"
+                                        style={{
+                                            color: 'white',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            padding: '15px',
+                                            backgroundColor: "#5678E9"
+                                        }}>
+                                        <span className="text-truncate" style={{ maxWidth: '200px' }}>
+                                            {announcement.title || 'Community Initiatives'}
+                                        </span>
                                     </div>
-                                    <div className="d-flex justify-content-between ">
-                                        <p>Announcement Time</p>
-                                        <p>10:15 AM</p>
-                                    </div>
-                                    <div className=" ">
-                                        <p > Description</p>
-                                        <p className='mb-3'>The celebration of Ganesh Chaturthi involves the installation of clay idols of Ganesa in.</p>
+                                    <div className="card-body flex-column justify-content-between m-1 p-2" style={{ overflow: 'hidden', flexGrow: 1 }}>
+                                        <div className="d-flex justify-content-between">
+                                            <p>Announcement Date</p>
+                                            <p>{new Date(announcement.announcementDate).toLocaleDateString()}</p> {/* Format the date */}
+                                        </div>
+                                        <div className="d-flex justify-content-between">
+                                            <p>Announcement Time</p>
+                                            <p>{formatTime(announcement.announcementTime)}</p> {/* Format the time */}
+                                        </div>
+                                        <div className="">
+                                            <p>Description</p>
+                                            <p className="mb-3">{announcement.description || 'No description available'}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
+                        ))
+                    ) : (
+                        <p>No announcements available.</p> // Display message if no announcements
+                    )}
                 </div>
             </div>
+        </div>
             <PaymentModal show={showModal} handleClose={() => setShowModal(false)} amount={selectedAmount} />
         </div>
     )

@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { createProfile, getProfiles, updateProfile } from "../apiservices/profileservice";
+
 export default function UpdateProfile() {
   const [formData, setFormData] = useState({
-    firstName: "Arlene",
-    lastName: "McCoy",
-    phone: "+91 99130 44537",
-    email: "ArleneMcCoy25@gmail.com",
-    society: "Shantigram Residency",
-    country: "India",
-    state: "Gujarat",
-    city: "Baroda",
-    image: "file",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    emailAddress: "",
+    selectSociety: "",
+    country: "",
+    state: "",
+    city: "",
+    image: "", // image field for saving the image in formData
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null); // For displaying the selected image in the UI
   const [profiles, setProfiles] = useState([]);
 
   // Fetch profiles on component mount
@@ -23,7 +24,11 @@ export default function UpdateProfile() {
       try {
         const response = await getProfiles();
         setProfiles(response.data);
-        console.log(response.data)
+        // Set formData to the first profile fetched if available
+        if (response.data && response.data.length > 0) {
+          const profile = response.data[0];  // Assuming we use the first profile for edit
+          setFormData(profile);
+        }
       } catch (error) {
         console.error("Error fetching profiles:", error);
       }
@@ -35,9 +40,9 @@ export default function UpdateProfile() {
   const fields = [
     { label: "First Name", name: "firstName", type: "text" },
     { label: "Last Name", name: "lastName", type: "text" },
-    { label: "Phone Number", name: "phone", type: "tel" },
-    { label: "Email Address", name: "email", type: "email" },
-    { label: "Select Society", name: "society", type: "text" },
+    { label: "Phone Number", name: "phoneNumber", type: "tel" },
+    { label: "Email Address", name: "emailAddress", type: "email" },
+    { label: "Select Society", name: "selectSociety", type: "text" },
     { label: "Country", name: "country", type: "text" },
     { label: "State", name: "state", type: "text" },
     { label: "City", name: "city", type: "text" },
@@ -50,33 +55,60 @@ export default function UpdateProfile() {
 
   const handleCancel = () => {
     setIsEditing(false);
+    // Reset the form to original profile data
+    const profile = profiles[0];  // Assuming we reset to the first profile
+    setFormData(profile);
+    setSelectedImage(null); // Reset selected image
   };
 
   const handleSave = async () => {
     setIsEditing(false);
-
+  
+    // Prepare FormData to handle both image and text fields
+    const formDataToSubmit = new FormData();
+  
+    // Append all text fields from formData to formDataToSubmit
+    for (let key in formData) {
+      if (key !== "image") {
+        formDataToSubmit.append(key, formData[key]);
+      }
+    }
+  
+    // If an image is selected, append it as a file
+    if (formData.image && formData.image instanceof File) {
+      formDataToSubmit.append("image", formData.image);  // Append the image file
+    }
+  
     try {
+      // Check if it's an update or a new profile
       if (formData._id) {
-
-        await updateProfile(formData._id, formData);
+        await updateProfile(formData._id, formDataToSubmit);  // Update profile
       } else {
-
-        await createProfile(formData);
+        await createProfile(formDataToSubmit);  // Create new profile
       }
     } catch (error) {
       console.error("Error saving profile:", error);
     }
   };
+  
+  
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]; // Only take the first file
     if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+      // If a file is selected, set it in the formData
+      setSelectedImage(URL.createObjectURL(file));  // For previewing the image
+      setFormData({ ...formData, image: file });    // Set the file in the form data
+    } else {
+      // If no file is selected, reset the image field to null
+      setFormData({ ...formData, image: null });
     }
   };
+  
+  
 
   return (
-    <div className="container-fluid " style={{ position: "relative" }}>
+    <div className="container-fluid" style={{ position: "relative" }}>
       <div className="bg-profile">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h1 className="mb-0 fw-bold">{isEditing ? "Edit Profile" : "Profile"}</h1>
@@ -108,7 +140,7 @@ export default function UpdateProfile() {
             >
               <div style={{ position: "relative", display: "inline-block" }}>
                 <img
-                  src={selectedImage || "src/assets/Avatar.png"}
+                  src={selectedImage || formData.image || "src/assets/Avatar.png"}  // Show the selected image or existing image
                   alt="Profile"
                   className="rounded-circle img-fluid mb-3"
                   style={{
@@ -197,6 +229,13 @@ export default function UpdateProfile() {
                       }}
                     >
                       Update Profile
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={handleCancel}
+                    >
+                      Cancel
                     </button>
                   </div>
                 </form>
