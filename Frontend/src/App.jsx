@@ -45,7 +45,7 @@ import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
 import Requesttracking from './page/Requesttraking';
 import Viewotherincome from './page/VIEWOTHERINCOME.JSX';
-
+import Question from './page3/Question';
 function App() {
   return (
     <BrowserRouter>
@@ -114,6 +114,8 @@ function App() {
         <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />
         {/* Community */}
         <Route path='/Community' element={<ResidentManageMentLayout component={<Community />} />} />
+        <Route path='/Question' element={<ResidentManageMentLayout component={<Question />} />} />
+   
         <Route path='/polls' element={<ResidentManageMentLayout component={<Polls />} />} />
         <Route path='/MaintananceInvoice' element={<ResidentManageMentLayout component={<MaintananceInvoice />} />} />
         <Route path='/InvoicePage' element={<ResidentManageMentLayout component={<InvoicePage />} />} />
