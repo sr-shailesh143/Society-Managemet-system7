@@ -60,27 +60,7 @@ export default function Icome() {
       img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
       Status: "Pending",
       Payment: "Online"
-    },
-    {
-      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
-      Status: "Pending",
-      Payment: "Online"
-    }, {
-      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
-      Status: "Pending",
-      Payment: "Online"
-    }, {
-      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
-      Status: "Pending",
-      Payment: "Online"
-    }, {
-      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D", Status: "Pending",
-      Payment: "Online"
-    }, {
-      img: "src/assets/notification-img.png", fullName: "Evelyn Harper", unitNumber: "1001", Date: "13/02/2024", residentStatus: "Owner", phoneNumber: "97587 85828", Amount: 1000, Penalty: 250, wing: "D",
-      Status: "Pending",
-      Payment: "Online"
-    },
+    }, 
   ];
   const wing = { backgroundColor: '#F6F8FB', width: "131px", padding: '5px 10px', borderRadius: '12px', color: '#5678E9', }
   const Done = { backgroundColor: '#39973D1A', width: "131px", padding: '5px 20px', borderRadius: '12px', color: '#39973D', }

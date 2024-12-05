@@ -1,29 +1,55 @@
 const express = require("express");
 const router = express.Router();
-const { auth } = require("../middlewares/Auth"); // Middleware to validate user authentication
-const {
-  validatePassword,
-  addMaintenance,
-  getAllMaintenance,
-  updateMaintenance,
-  deleteMaintenance,
-} = require("../controllers/maintenanceController");
+const FinancialController = require("../controllers/maintenanceController");
+const { auth } = require("../middlewares/Auth");
 
-// Routes for maintenance management
+// Verify Maintenance Password
+router.post(
+  "/verifyMaintenancePassword",
+  auth,
+  FinancialController.verifyMaintenancePassword
+);
 
-// Password validation and authentication required
-router.post("/validate-password",auth,validatePassword);
+// Add Maintenance Record
+router.post(
+  "/addMaintenanceRecord",
+  auth,
+  FinancialController.addMaintenanceRecord
+);
 
-// Route to add a new maintenance record
-router.post("/add", auth, addMaintenance);
+// Get All Maintenance Records
+router.get(
+  "/fetchAllMaintenanceRecords",
+  auth,
+  FinancialController.fetchAllMaintenanceRecords
+);
 
-// Get all maintenance records 
-router.get('/all', auth, getAllMaintenance);
+// Update Payment Mode for a Resident in Maintenance
+router.put(
+  "/maintenance/:maintenanceId/resident/updatePaymentMethod",
+  auth,
+  FinancialController.updatePaymentMethod
+);
 
-// Route to update an existing maintenance record
-router.patch("/update/:id", auth, updateMaintenance);
+// Get User and Maintenance Data by ID
+router.get(
+  "/maintenance/fetchUserAndMaintenanceById",
+  auth,
+  FinancialController.fetchUserAndMaintenanceById
+);
 
-// Route to delete a maintenance record
-router.delete("/delete/:id", auth, deleteMaintenance);
+// Apply Penalty for Overdue Payments
+router.post(
+  "/maintenance/applyOverduePenalties",
+  auth,
+  FinancialController.applyOverduePenalties
+);
+
+// Fetch Maintenance Records with Completed Payments
+router.get(
+  "/maintenance/fetchCompletedPayments",
+  auth,
+  FinancialController.fetchCompletedPayments
+);
 
 module.exports = router;
