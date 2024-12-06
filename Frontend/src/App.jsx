@@ -108,14 +108,14 @@ function App() {
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
         {/* ResidentManageMentLayout */}
-        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={<Dashbord/>} />} />
+        <Route path='/ResidentManageMent' element={<ResidentManageMentLayout component={<Dashbord />} />} />
         {/* PersonalDetail */}
         <Route path='/PersonalDetail' element={<ResidentManageMentLayout component={<PersonalDetail />} />} />
         <Route path='/RecidencTarent' element={<ResidentManageMentLayout component={<RecidencTarent />} />} />
         {/* Community */}
         <Route path='/Community' element={<ResidentManageMentLayout component={<Community />} />} />
         <Route path='/Question' element={<ResidentManageMentLayout component={<Question />} />} />
-   
+
         <Route path='/polls' element={<ResidentManageMentLayout component={<Polls />} />} />
         <Route path='/MaintananceInvoice' element={<ResidentManageMentLayout component={<MaintananceInvoice />} />} />
         <Route path='/InvoicePage' element={<ResidentManageMentLayout component={<InvoicePage />} />} />
