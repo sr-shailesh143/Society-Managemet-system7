@@ -48,6 +48,10 @@ const incomeRoutes = require("./src/routes/incomeRoutes.js");
 
 const ownerRoute = require("./src/routes/OwnerRouts.js")
 
+const NotificationRoute = require('./src/routes/notificationRoutes.js')
+
+const PollRoutes = require('./src/routes/pollRoutes.js')
+
 //user registration and login part
 app.use("/api/auth", Userroute);
 app.use("/api/society", Societyroute);
@@ -76,6 +80,11 @@ app.use("/api/income", incomeRoutes);
 //resident apis
 app.use('/api/Resident', ownerRoute);
 // app.use('/api/tenant', tenantRoute);
+
+app.use('/api/notification',NotificationRoute)
+
+app.use('/api/poll',PollRoutes)
+
 
 
 app.get("/", (req, res) => res.send("Hello World!"));

@@ -17,6 +17,8 @@ export default function SecurityGuard() {
 
   const [SecurityData, setSecurityData] = useState([])
   const [loading, setloading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null); // For storing the clicked image URL
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   async function GetAllSecurityData() {
     try {
       const response = await GetallSecurityGuards()
@@ -202,6 +204,18 @@ export default function SecurityGuard() {
     cursor: "pointer"
   };
 
+  // Function to handle image click
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl); // Set the clicked image
+    setIsModalOpen(true); // Open the modal
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setSelectedImage(null); // Clear the selected image
+    setIsModalOpen(false); // Close the modal
+  };
+
   return (
     <div className='createTraking '>
 
@@ -229,18 +243,24 @@ export default function SecurityGuard() {
             <tbody className='sroll'>
               {SecurityData.map((item, index) => (
                 <tr key={index}>
-                  <td>
-                    {
-                      item.fullName === "" || item.photo === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
-                        <span> <UserAvatar
-
-                          src={item?.photo || "src/assets/Avatar.png"}
-                          alt={item?.photo || "User"}
-                          style={{ cursor: "pointer" }}
-                        />
-                          <span className='ms-2'>  {item.fullName}</span> </span>
-                    }
-                  </td>
+                <td>
+                {item.fullName === "" || item.photo === "" ? (
+                  <span>
+                    <img src="/src/assets/blenck.png" alt="" />
+                    <span>--</span>
+                  </span>
+                ) : (
+                  <span>
+                    <UserAvatar
+                      src={item.photo || "src/assets/Avatar.png"}
+                      alt={item.fullName || "User"}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleImageClick(item.photo)} // Add click handler
+                    />
+                    <span className="ms-2">{item.fullName}</span>
+                  </span>
+                )}
+              </td>
                   <td><span className=''>{item.MailOrPhone}</span></td>
                   <td>{item.shift === "Day" ? <span style={Day}>  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19Z" fill="#FF9300" />
@@ -299,6 +319,54 @@ export default function SecurityGuard() {
               ))}
             </tbody>
           </table>
+           {/* Modal for showing the clicked image */}
+      {isModalOpen && selectedImage && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={handleCloseModal} // Close modal on background click
+        >
+          <div
+            style={{
+              position: "relative",
+              backgroundColor: "white",
+              padding: "20px",
+              borderRadius: "10px",
+            }}
+          >
+            <img
+              src={selectedImage}
+              alt="Selected"
+              style={{ maxWidth: "100%", maxHeight: "80vh", borderRadius: "10px" }}
+            />
+            <button
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                background: "none",
+                border: "none",
+                color: "white",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
+              onClick={handleCloseModal}
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
         </div>
       </Box>
 

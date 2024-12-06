@@ -39,7 +39,7 @@ const InvoicePage = () => {
         doc.setFontSize(12);
         doc.text(`Invoice ID: ${selectedInvoice.id}`, 20, 40);
         doc.text(`Owner Name: ${selectedInvoice.ownerName}`, 20, 50);
-        doc.text(`Bill Date: ${selectedInvoice.billDate}`, 20, 60);
+        doc.text(`Due date: ${selectedInvoice.billDate}`, 20, 60);
         doc.text(`Payment Date: ${selectedInvoice.paymentDate}`, 20, 70);
         doc.text(`Phone Number: ${selectedInvoice.phoneNumber}`, 20, 80);
         doc.text(`Email: ${selectedInvoice.email}`, 20, 90);
@@ -55,6 +55,12 @@ const InvoicePage = () => {
         doc.text("Thank you for your payment!", 20, 150);
         doc.save(`Invoice_${selectedInvoice.id}.pdf`);
     };
+    const view = {
+        padding: '10px 10px',
+        borderRadius: '12px',
+        color: '#5678E9',
+        backgroundColor: '#F6F8FB',
+      }
     return (
         <div className="container-fluid bg-white p-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -70,11 +76,10 @@ const InvoicePage = () => {
                     <thead className="table-primary" style={{ textAlign: "center" }}>
                         <tr>
                             <th style={{ borderRadius: '15px 0px 0px 0px' }}>Invoice ID</th>
-                            <th>Owner Name</th>
-                            <th>Bill Date</th>
+                          
+                            <th>Due date</th>
                             <th>Payment Date</th>
-                            <th>Phone Number</th>
-                            <th>Email</th>
+                          
                             <th>Maintenance Amount</th>
                             <th> Pending Amount </th>
                             <th style={{ borderRadius: '  0px    15px 0px 0px' }}>Action</th>
@@ -84,11 +89,10 @@ const InvoicePage = () => {
                         {invoices.map((invoice, index) => (
                             <tr key={index}>
                                 <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.id}</td>
-                                <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.ownerName}</td>
+                           
                                 <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.billDate}</td>
                                 <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.paymentDate}</td>
-                                <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.phoneNumber}</td>
-                                <td style={{ textAlign: "center", boxShadow: "none" }}>{invoice.email}</td>
+                              
                                 <td className="text-success" style={{ textAlign: "center", boxShadow: "none" }}>
                                     ₹{invoice.maintenanceAmount}
                                 </td>
@@ -97,9 +101,19 @@ const InvoicePage = () => {
                                 </td>
                                 <td style={{ textAlign: "center", boxShadow: "none" }}>
                                     <button
-                                        className="btn btn-primary btn-sm"
+                                        className="btn  btn-sm"
                                         onClick={() => handleViewClick(invoice)}
-                                    > <FiEye />
+
+
+                                    >  
+                                    
+                                    <span style={view}>
+                                    <svg className='cursor VIEW-INVOICE' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.25 9.15005C18.94 5.52005 15.56 3.43005 12 3.43005C10.22 3.43005 8.49 3.95005 6.91 4.92005C5.33 5.90005 3.91 7.33005 2.75 9.15005C1.75 10.7201 1.75 13.2701 2.75 14.8401C5.06 18.4801 8.44 20.5601 12 20.5601C13.78 20.5601 15.51 20.0401 17.09 19.0701C18.67 18.0901 20.09 16.6601 21.25 14.8401C22.25 13.2801 22.25 10.7201 21.25 9.15005ZM12 16.0401C9.76 16.0401 7.96 14.2301 7.96 12.0001C7.96 9.77005 9.76 7.96005 12 7.96005C14.24 7.96005 16.04 9.77005 16.04 12.0001C16.04 14.2301 14.24 16.0401 12 16.0401Z" fill="#5678E9" />
+                                    <path d="M12.0004 9.14001C10.4304 9.14001 9.15039 10.42 9.15039 12C9.15039 13.57 10.4304 14.85 12.0004 14.85C13.5704 14.85 14.8604 13.57 14.8604 12C14.8604 10.43 13.5704 9.14001 12.0004 9.14001Z" fill="#5678E9" />
+                                  </svg>
+                                    </span>
+                                  
                                     </button>
                                 </td>
                             </tr>
@@ -131,13 +145,11 @@ const InvoicePage = () => {
                                     <p>
                                         <strong style={{ color: "#A7A7A7" }}>Invoice ID:</strong> <span style={{ color: "#202224" }}>{selectedInvoice.id}</span>
                                     </p>
-                                    <p>
-                                        <strong style={{ color: "#A7A7A7" }}>Owner Name:</strong> <span style={{ color: "#202224" }}>{selectedInvoice.ownerName}</span>
-                                    </p>
+                                   
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                                     <p>
-                                        <strong style={{ color: "#A7A7A7" }}>Bill Date:</strong> {selectedInvoice.billDate}
+                                        <strong style={{ color: "#A7A7A7" }}>Due date:</strong> {selectedInvoice.billDate}
                                     </p>
                                     <p>
                                         <strong style={{ color: "#A7A7A7" }}>Payment Date:</strong> {selectedInvoice.paymentDate}

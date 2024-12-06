@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Dropdown, Modal, Form } from 'react-bootstrap';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
+import { CreateIncome, GetIncomes, DeleteIncome, UpdateIncome } from '../apiservices/incomeservice';
 
 const Otherincome = () => {
-    const [showsetmantenenc, setShowsetmantenenc] = useState(false);
-    const handleClosesetmantence = () => setShowsetmantenenc(false);
     const styles = {
         cardContainer: {
             width: '300px',
@@ -14,7 +13,6 @@ const Otherincome = () => {
             overflow: 'hidden',
             fontFamily: 'Arial, sans-serif',
         },
-
         title: {
             fontSize: '18px',
             fontWeight: 'bold',
@@ -32,17 +30,13 @@ const Otherincome = () => {
             marginBottom: "-20px"
         },
         detailItem: {
-
             color: '#4F4F4F',
             display: 'flex',
             justifyContent: 'space-between',
             marginBottom: '8px',
-            fonty: "Poppins",
+            fontFamily: "Poppins",
             fontSize: "14px",
             fontWeight: "400",
-
-
-
         },
         description: {
             marginTop: '10px',
@@ -56,235 +50,322 @@ const Otherincome = () => {
             color: '#5678E9',
             fontSize: "15px",
             fontWeight: '500',
-
         }
     };
 
-
-
-    const naviget = useNavigate()
-
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
-    const [selectedTitle, setSelectedTitle] = useState('');
-    const [selectedDescription, setSelectedDescription] = useState('');
-    const [noteData, setNoteData] = useState([
-        { title: 'Ganesh chaturthi', description: 'A visual representation of your spending categories visual representation.' },
-        { title: 'Navratri', description: 'Detailed breakdown of your housing expenses.' },
-        { title: 'Diwali', description: 'Overview of annual property taxes.' },
-        { title: 'Ganesh chaturthi', description: 'Monthly maintenance fees breakdown.' },
-
-    ]);
-
-    const handleEditModalOpen = (title, description) => {
-        setSelectedTitle(title);
-        setSelectedDescription(description);
-        setShowEditModal(true);
-    };
-    const handleEditModalClose = () => setShowEditModal(false);
-    const handleCreateModalOpen = () => setShowCreateModal(true);
-    const handleCreateModalClose = () => setShowCreateModal(false);
-
+    const [incomes, setIncomes] = useState([]); 
+    const [selectedIncome, setSelectedIncome] = useState(null);
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        amount: '',
+        date: '',
+        dueDate: ''
+    });
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchIncomes();
+    }, []); // Empty dependency array to only run on mount
+
+    const fetchIncomes = async () => {
+        try {
+            const response = await GetIncomes();
+            const data = response.data;
+            if (data.success && Array.isArray(data.records)) {
+                setIncomes(data.records);
+            } else {
+                console.error('Invalid data structure from API:', data);
+                setIncomes([]);
+            }
+        } catch (error) {
+            console.error('Error fetching incomes:', error);
+            setIncomes([]);
+        }
+    };
 
     const handleViewClick = () => {
         navigate('/ViewOtherIncome');
     };
-    const handleCancel = () => {
-        console.log("Cancel button clicked");
 
+    const handleCreate = async () => {
+        try {
+            await CreateIncome(formData);
+            fetchIncomes();
+            setShowCreateModal(false);
+        } catch (error) {
+            console.error('Error creating income:', error);
+        }
+    };
+
+    const handleEdit = (income) => {
+        setSelectedIncome(income);
+        setFormData(income);
+        setShowEditModal(true);
+    };
+
+    const handleDelete = (income) => {
+        setSelectedIncome(income); 
+        setShowDeleteModal(true);
+    };
+
+    const handleUpdate = async () => {
+        try {
+            if (selectedIncome?._id) {
+                await UpdateIncome(selectedIncome._id, formData);
+                fetchIncomes();
+                setShowEditModal(false); // Close the modal after updating
+            }
+        } catch (error) {
+            console.error('Error updating income:', error);
+        }
+    };
+
+    const handleDeleteConfirm = async () => {
+        try {
+            if (selectedIncome?._id) {
+                await DeleteIncome(selectedIncome._id);
+                fetchIncomes();
+                setShowDeleteModal(false);
+            }
+        } catch (error) {
+            console.error('Error deleting income:', error);
+        }
     };
 
     return (
-        <Container fluid className="container-fluid" style={{ minHeight: '100vh' }}>
+        <Container fluid style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
             <div className='row'>
-                <div className="d-flex mt-4 ">
-                    <div onClick={() => naviget("/Icome")} style={{ background: location.pathname === "/Icome" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Icome" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
-                        <p >Maintenance</p>
+                <div className="d-flex mt-4">
+                    <div onClick={() => navigate("/Icome")} style={{ background: location.pathname === "/Icome" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Icome" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                        <p>Maintenance</p>
                     </div>
-                    <div onClick={() => naviget("/Otherincome")} style={{ background: location.pathname === "/Otherincome" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Otherincome" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
-                        <p >Other Income</p>
+                    <div onClick={() => navigate("/Otherincome")} style={{ background: location.pathname === "/Otherincome" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/Otherincome" ? "white" : "black" }} className='f-btn d-flex justify-content-center'>
+                        <p>Other Income</p>
                     </div>
                 </div>
             </div>
-            <div className="container-fluid d-flex flex-column bg-light shadow" style={{ width: "100%" }}>
 
-                <div className="d-flex justify-content-between align-items-center mb-3 p-3">
-                    <h2>Other Income</h2>
-                    <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", borderColor: '#ff6b00' }} onClick={handleCreateModalOpen}>
+            {/* Content Section */}
+            <div className="bg-white shadow p-4 mt-4 rounded">
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2 className="m-0" style={{ fontWeight: 600 }}>Other Income</h2>
+                    <Button
+                        style={{
+                            background: "linear-gradient(90deg, #FE512E, #F09619)",
+                            borderColor: "#ff6b00",
+                        }}
+                        onClick={() => setShowCreateModal(true)}
+                    >
                         Create Other Income
                     </Button>
                 </div>
 
-                <Row className="g-3 mb-5">
-                    {noteData.map((note, idx) => (
-                        <Col xs={12} sm={6} md={4} lg={3} key={idx}>
-                            <Card className="h-100" style={{ backgroundColor: '#fff', color: '#333', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-                                <Card.Header
-                                    className="d-flex justify-content-between align-items-center"
-                                    style={{ backgroundColor: '#407bff', color: '#fff', fontSize: '1rem', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}
-                                >
-                                    <div style={{ backgroundColor: '#407bff', padding: '5px 10px', borderRadius: '5px', color: '#fff', fontSize: '1rem' }}>
-                                        {note.title}
-                                    </div>
-                                    <Dropdown align="end">
-                                        <Dropdown.Toggle variant="link" bsPrefix="p-0" id={`dropdown-${idx}`}>
-                                            <HiOutlineDotsVertical style={{ color: '#fff', fontSize: '1.2rem' }} />
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item onClick={() => handleEditModalOpen(note.title, note.description)}>Edit</Dropdown.Item>
-                                            <Dropdown.Item
-                                                style={{ color: "#A7A7A7" }}
-                                                onClick={handleViewClick}
-                                            >
-                                                View
-                                            </Dropdown.Item>
-                                            <Dropdown.Item style={{ color: "#A7A7A7" }} onClick={() => setShowsetmantenenc(true)}>Delate</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </Card.Header>
-                                <Card.Body>
-
-                                    <div style={styles.details}>
-                                        <div style={styles.detailItem} className=''>
-                                            <span>Amount Per Member</span>
-                                            <span style={styles.bg}>₹ 1,500</span>
-                                        </div>
-                                        <div style={styles.detailItem}>
-                                            <span>Total Member</span>
-                                            <span style={{ color: "#202224", fontWeight: "500" }}>12</span>
-                                        </div>
-                                        <div style={styles.detailItem}>
-                                            <span>Date</span>
-                                            <span style={{ color: "#202224", fontWeight: "500" }}>01/07/2024</span>
-                                        </div>
-                                        <div style={styles.detailItem}>
-                                            <span>Due Date</span>
-                                            <span style={{ color: "#202224", fontWeight: "500" }}>10/07/2024</span>
-                                        </div>
-                                        <div style={styles.description}>
-                                            <span>Due Date</span>
-                                            <p style={{ color: "#202224", fontWeight: "500" }}>
-                                                The celebration of Ganesh Chaturthi involves the installation of clay idols of Ganesha.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
+                {/* Cards Grid */}
+                <Row className="g-4">
+                    {incomes.length > 0 ? (
+                        incomes.map((income) => (
+                            <Col key={income._id} xs={12} sm={6} md={4} lg={3}>
+                                <Card className="h-100 shadow-sm">
+                                    <Card.Header className="d-flex justify-content-between align-items-center bg-primary text-white">
+                                        <span>{income.title}</span>
+                                        <Dropdown>
+                                            <Dropdown.Toggle variant="link" className="text-white p-0 border-0">
+                                                <HiOutlineDotsVertical />
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item style={{ color: "#A7A7A7" }} onClick={handleViewClick}>
+                                                    View
+                                                </Dropdown.Item>
+                                                <Dropdown.Item onClick={() => handleEdit(income)}>Edit</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => handleDelete(income)}>Delete</Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </Card.Header>
+                                    <Card.Body>
+                                        <p>{income.description}</p>
+                                        <p><strong>Amount:</strong> ₹{income.amount}</p>
+                                        <p><strong>Date:</strong>{new Date(income.date).toLocaleDateString()}</p>
+                                        <p><strong>Due Date:</strong>{new Date(income.dueDate).toLocaleDateString()}</p>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))
+                    ) : (
+                        <p>No incomes found.</p>
+                    )}
                 </Row>
-
-                <div style={styles.cardContainer}>
-                </div>
             </div>
-            {/* Create Note Modal */}
-            <Modal show={showCreateModal} >
-                <Modal.Header >
-                    <Modal.Title>Create a New Note</Modal.Title>
+
+            {/* Create Income Modal */}
+            <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Create Other Income</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3">
-                            <Form.Label> Title <span style={{ color: "red" }}>*</span></Form.Label>
-                            <Form.Control type="text" placeholder="Enter title" />
+                            <Form.Label>Title <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter title"
+                                value={formData.title}
+                                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            />
                         </Form.Group>
+
                         <Form.Group className="mb-3 d-flex gap-2">
-                            <div className="date w-50">
-                                <Form.Label>
-                                    Date <span style={{ color: "red" }}>*</span>
-                                </Form.Label>
-                                <Form.Control type="date" />
+                            <div className="w-50">
+                                <Form.Label>Amount <span style={{ color: "red" }}>*</span></Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Enter amount"
+                                    value={formData.amount}
+                                    onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                                />
                             </div>
-                            <div className="time w-50" style={{ background: "none" }}>
-                                <Form.Label>
-                                    Due Date <span style={{ color: "red" }}>*</span>
-                                </Form.Label>
-                                <Form.Control type="date" />
+
+                            <div className="w-50">
+                                <Form.Label>Date <span style={{ color: "red" }}>*</span></Form.Label>
+                                <Form.Control
+                                    type="date"
+                                    value={formData.date}
+                                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                                />
                             </div>
                         </Form.Group>
 
-                        <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control as="textarea" rows={2} />
-                        <Form.Label className='mt-2'> Amount <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control type="number" placeholder="₹ 0000" />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                placeholder="Enter description"
+                                value={formData.description}
+                                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Due Date <span style={{ color: "red" }}>*</span></Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={formData.dueDate}
+                                onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                            />
+                        </Form.Group>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer className="d-flex justify-content-center w-100">
-                    <div className="d-flex gap-3 w-100 justify-content-center">
-                        <Button
-                            className="cancel-btn radious"
-                            style={{ border: "1px solid white", background: "lightgrey" }}
-                            onClick={handleCreateModalClose}
-                        >
-                            Cancel
-                        </Button>
-
-
-                        <Button
-                            className="save-btn radious l-btn "
-                            style={{ color: "white", border: "none", cursor: "pointer" }}
-                            onClick={handleCreateModalClose}
-                        >
-                            Save
-                        </Button>
-                    </div>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowCreateModal(false)}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleCreate}>
+                        Create
+                    </Button>
                 </Modal.Footer>
             </Modal>
-            {/* edit model */}
-            <Modal show={showEditModal} >
-                <Modal.Header >
-                    <Modal.Title>Create a New Note</Modal.Title>
+
+            {/* Edit Income Modal */}
+            <Modal show={showEditModal} onHide={() => setShowEditModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Other Income</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3">
-                            <Form.Label> Title <span style={{ color: "red" }}>*</span></Form.Label>
-                            <Form.Control type="text" placeholder="Enter title" onChange={(e) => setSelectedTitle(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="mb-3 d-flex gap-1 ">
-                            <div className="date w-50 ">
-                                <Form.Label> Date <span style={{ color: "red" }}>*</span></Form.Label>
-                                <Form.Control className='' type="date" />
-                            </div>
-                            <div className="time w-50 me-3" style={{ background: "none" }}>
-                                <Form.Label> Due Date <span style={{ color: "red", background: "none" }}>*</span></Form.Label>
-                                <Form.Control type="date" className='' />
-                            </div>
+                         {/* Title Field */}
+      <Form.Group className="mb-3">
+        <Form.Label>
+          Title <span style={{ color: "red" }}>*</span>
+        </Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter title"
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+        />
+      </Form.Group>
 
-                        </Form.Group>
-                        <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-                        <Form.Control as="textarea" rows={2} />
+      {/* Date and Due Date Fields */}
+      <Form.Group className="mb-3 d-flex gap-2">
+        <div className="w-50">
+          <Form.Label>
+            Date <span style={{ color: "red" }}>*</span>
+          </Form.Label>
+          <Form.Control
+            type="date"
+            value={formData.date}
+            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          />
+        </div>
+        <div className="w-50">
+          <Form.Label>
+            Due Date <span style={{ color: "red" }}>*</span>
+          </Form.Label>
+          <Form.Control
+            type="date"
+            value={formData.dueDate}
+            onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+          />
+        </div>
+      </Form.Group>
+
+      {/* Description Field */}
+      <Form.Group className="mb-3">
+        <Form.Label>
+          Description <span style={{ color: "red" }}>*</span>
+        </Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={2}
+          placeholder="Enter description"
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+        />
+      </Form.Group>
+
+      {/* Amount Field */}
+      <Form.Group className="mb-3">
+        <Form.Label>
+          Amount <span style={{ color: "red" }}>*</span>
+        </Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="₹ 0000"
+          value={formData.amount}
+          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+        />
+      </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className="d-flex gap-3">
-                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={handleEditModalClose} >
-                            Cancel
-                        </Button>
-                        <Button className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={handleEditModalClose}  >
-                            Save
-                        </Button>
-                    </div>
+                    <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleUpdate}>
+                        Update
+                    </Button>
                 </Modal.Footer>
             </Modal>
-            <Modal show={showsetmantenenc} >
-                <Modal.Header >
-                    <Modal.Title>Delete Ganesh Chaturthi?</Modal.Title>
+
+            {/* Delete Income Modal */}
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p style={{ color: "#A7A7A7" }}>Are you sure you want to delate this?</p>
+                    <p>Are you sure you want to delete this income record?</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className="d-flex gap-3">
-                        <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} onClick={handleClosesetmantence} >
-                            Cancel
-                        </Button>
-                        <Button className="save-btn radious l-btn " style={{ background: "#E74C3C", border: "none", color: "white", cursor: "pointer" }} onClick={() => setShowsetmantenenc(false)} >
-                            Delate
-                        </Button>
-                    </div>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleDeleteConfirm}>
+                        Delete
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </Container>
