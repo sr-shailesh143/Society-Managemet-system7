@@ -8,34 +8,137 @@ export default function Tenant() {
     const [selectedOption, setSelectedOption] = useState("Male");
     const [isOpen, setIsOpen] = useState(false);
 
+    const [TerentData, setTerentData] = useState({
+        fullName: "",
+        phoneNumber: "",
+        emailAddress: "",
+        age: 0,
+        gender: "",
+        wing: "",
+        unit: "",
+        relation: ""
+    });
+
+    const [photo, setPhoto] = useState(null);
+
+    // const handleSelect = (option) => {
+    //     setSelectedOption(option);
+    //     setIsOpen(false);
+    // };
+    // Handle form input changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setTerentData(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const [files, setFiles] = useState({
+        aadharFront: null,
+        aadharBack: null,
+        addressProof: null,
+        rentAgreement: null,
+        profileImage:null
+    });
+
+    // Handle file selection
+    const handleFileChange = (e) => {
+        const { name, files: selectedFiles } = e.target;
+        setFiles((prev) => ({
+            ...prev,
+            [name]: selectedFiles[0], // Save only the first file
+        }));
+    };
+
+
+    // Handle file input change
+
+
+    // Handle text input change
+   
+
+
     const handleSelect = (option) => {
         setSelectedOption(option);
+        setOwnerData(prevState => ({
+            ...prevState,
+            gender: option
+        }));
         setIsOpen(false);
     };
 
-    const [photo, setPhoto] = useState(null);
-    ;
 
-    const { getRootProps, getInputProps } = useDropzone({
-        accept: 'image/png, image/jpeg, image/gif',
-        maxSize: 10 * 1024 * 1024, // 10 MB
-        onDrop: (acceptedFiles) => {
-            console.log(acceptedFiles);
-        },
-    });
 
-    const [vaicalCount, setvaicalCount] = useState(2); 
-    const totalvaical = 5; 
-    const [memberCount, setMemberCount] = useState(2); 
-    const totalRows = 5; 
 
-    const handleMemberCountChange = (event) => {
-        setMemberCount(Number(event.target.value));
-    };
-    const handlevaicalCountchange = (event) => {
-        setvaicalCount(Number(event.target.value));
-    };
+
+
+    const [vaicalCount, setvaicalCount] = useState(1);
+    const totalvaical = 5;
+    const [memberCount, setMemberCount] = useState(1);
+    const totalRows = 5;
+    const [vehicleData, setVehicleData] = useState([]);
+    const [loding, setloding] = useState(false);
+    
+   
     const naviget = useNavigate()
+    
+     const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data ={
+            ...TerentData,
+            ...files,
+           familyMembers:formData,
+           vehicles:vehicleData
+            
+        }
+        try { 
+            setloding(true)
+            // const risponse =  await  CreateOwner(data)
+            console.log(data);
+            setloding(false)
+            // setOwnerData(null)
+        } catch (error) {
+            console.log(error)
+        }
+        
+    };
+    const handleVaicalTextChange = (e, fieldName, index) => {
+        const updatedData = [...vehicleData];
+        updatedData[index] = { ...updatedData[index], [fieldName]: e.target.value };
+        setVehicleData(updatedData);
+    };
+
+    const [formData, setFormData] = useState([]);
+    const handleTextChange1 = (e, fieldName, index) => {
+        const updatedData = [...formData];
+        updatedData[index] = { ...updatedData[index], [fieldName]: e.target.value };
+        setFormData(updatedData);
+    };
+    
+    const handleMemberCountChange = (e) => {
+        const count = parseInt(e.target.value, 10);
+        setMemberCount(count);
+
+        // Initialize form data for additional rows if required
+        if (count > formData.length) {
+            const additionalRows = Array(count - formData.length).fill({});
+            setFormData([...formData, ...additionalRows]);
+        }
+    };
+
+
+    const handleVaicalCountChange = (e) => {
+        const count = parseInt(e.target.value, 10);
+        setvaicalCount(count);
+
+        // Add more rows to data array if needed
+        if (count > vehicleData.length) {
+            const additionalRows = Array(count - vehicleData.length).fill({});
+            setVehicleData([...vehicleData, ...additionalRows]);
+        }
+    }
+
     return (
         <div className=''>
 
@@ -152,80 +255,56 @@ export default function Tenant() {
                         </div>
                     </div>
                 </div>
-                <div className="row ">
-                    <div className="col-12 col-md-3 mt-4">
-                        <div className="text-img">
-
-                            <span className='t-img'>Upload Aadhar Card (Front Side)</span>
+                <div>
+                        <div>
+                            <label>Upload Aadhar Card (Front Side)</label>
+                            <input
+                                type="file"
+                                name="aadharFront"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
                         </div>
-                        <div className="file-upload" {...getRootProps()}>
 
-                            <input {...getInputProps()} />
-                            <div className="upload-area">
-                                <center>
-
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
+                        <div>
+                            <label>Upload Aadhar Card (Back Side)
+                            <input
+                                type="file"
+                                name="aadharBack"
+                                className='d-none'
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                            </label>
                         </div>
+
+                        <div>
+                            <label htmlFor='file1'>Address Proof (Vera Bill or Light Bill)</label>
+                            <input
+                                type="file"
+                                name="addressProof"
+                                accept="image/*"
+                                id='file1'
+                                className='d-none'
+                                onChange={handleFileChange}
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor='file'>Rent Agreement</label>
+
+                            <input
+                                type="file"
+                                className='d-none'
+                                name="rentAgreement"
+                                accept="image/*"
+                                id='file'
+                                onChange={handleFileChange}
+                            />
+                        </div>
+
+                      
                     </div>
-                    <div className="col-12 col-md-3 mt-4">
-                        <div className="text-img">
-
-                            <span className='t-img'>Upload Aadhar Card (Back Side)</span>
-                        </div>
-                        <div className="file-upload" {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <div className="upload-area">
-                                <center>
-
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-3 mt-4">
-                        <label htmlFor="file1"></label>
-                        <div className="text-img">
-
-                            <span className='t-img'>Address Proof (Vera Bill OR Light Bill)</span>
-                        </div>
-                        <div  className="file-upload" >
-                            <div htmlFor={"file"}  />
-                            <input type="file" id='file1' className='d-none' />
-                            <div className="upload-area">
-                                <center>
-
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-3 mt-4">
-                        <div className="text-img">
-
-                            <span className='t-img'>Rent Agreement</span>
-                        </div>
-                        <div className="file-upload  " {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <div className="upload-area">
-                                <center>
-
-                                    <div className="icon"><AddPhotoAlternateIcon className='miui-icon fs-1 ms-3' /></div>
-                                </center>
-                                <p> <span className='img-text'>Upload a file </span> or drag and drop</p>
-                                <small>PNG, JPG, GIF up to 10MB</small>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
             </div>
             <div className="section-2 mt-3">
@@ -333,7 +412,7 @@ export default function Tenant() {
                     <button className='Cancel-btn  '>Cancel</button>
                 </div>
                 <div className="col-12 col-md-4  ">
-                    <button disabled className='Create-btn '>Create</button>
+                    <button disabled className='Create-btn ' onClick={handleSubmit}>Create</button>
                 </div>
 
             </div>

@@ -112,25 +112,26 @@ exports.CreateOwnerData = async (req, res) => {
 
         // Add family members if provided
         if (memberCounting) {
-            const members = JSON.parse(memberCounting);
+            // const members = JSON.parse(memberCounting);
             await Owner.updateOne(
                 { _id: newOwner._id },
-                { $push: { familyMembers: { $each: members } } }
+                { $push: { familyMembers: { $each: memberCounting } } }
             );
         }
 
         // Add vehicles if provided
         if (vehicleCounting) {
-            const vehicles = JSON.parse(vehicleCounting);
+            // const vehicles = JSON.parse(vehicleCounting);
             await Owner.updateOne(
                 { _id: newOwner._id },
-                { $push: { vehicles: { $each: vehicles } } }
+                { $push: { vehicles: { $each: vehicleCounting } } }
             );
         }
 
         return res.status(201).json({
             success: true,
             message: "✅ Owner data added successfully!",
+            
         });
 
     } catch (error) {
