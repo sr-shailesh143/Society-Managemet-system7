@@ -1418,7 +1418,9 @@ body {
   margin-bottom: 8px;
 }
 
-
+.svg-plus{
+  color: white !important;
+}
 @media (max-width: 768px) {
   .new-box {
     max-width: 100%;

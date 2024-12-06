@@ -9,29 +9,29 @@ export default function RequestSubmission() {
     const location = useLocation()
     const [complaints, setRequist] = useState([]);
 
-async function getllrequist() {
-    
-const respones = await getAllRequests()
-setRequist(respones.data.records)
-    
-}
-useEffect(() => {
- getllrequist()
-}, [])
+    async function getllrequist() {
 
-const [compleltData, setcompleltData] = useState({
-    complainerName: "",
-    complaintName: "",
-    Description: "",
-    wing: "",
-    unit: "",
-    requestDate:""
+        const respones = await getAllRequests()
+        setRequist(respones.data.records)
 
-})
-const [status2, setStatus2] = useState("");
-const [prourity, setprourity] = useState("");
-const handleStatusChange2 = (event) => setStatus2(event.target.value);
-const proorety = (event) => setprourity(event.target.value);
+    }
+    useEffect(() => {
+        getllrequist()
+    }, [])
+
+    const [compleltData, setcompleltData] = useState({
+        complainerName: "",
+        complaintName: "",
+        Description: "",
+        wing: "",
+        unit: "",
+        requestDate: ""
+
+    })
+    const [status2, setStatus2] = useState("");
+    const [prourity, setprourity] = useState("");
+    const handleStatusChange2 = (event) => setStatus2(event.target.value);
+    const proorety = (event) => setprourity(event.target.value);
 
     const [showModal, setShowModal] = useState(false);
     const [newComplaint, setNewComplaint] = useState({
@@ -40,45 +40,45 @@ const proorety = (event) => setprourity(event.target.value);
         status: "Open",
         description: "",
     });
-const [showDeleteModal, setShowDeleteModal] = useState(false);
-const handleClose = () => setShowDeleteModal(false)
-const handleInputChange = async () => {
-    const data = {
-        requesterName: compleltData.complainerName,
-        requestName: compleltData.complaintName,
-        Description: compleltData.Description,
-        wing: compleltData.wing,
-        unit: compleltData.unit,
-        priority: prourity,
-        status: status2,
-        requestDate:compleltData.requestDate
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const handleClose = () => setShowDeleteModal(false)
+    const handleInputChange = async () => {
+        const data = {
+            requesterName: compleltData.complainerName,
+            requestName: compleltData.complaintName,
+            Description: compleltData.Description,
+            wing: compleltData.wing,
+            unit: compleltData.unit,
+            priority: prourity,
+            status: status2,
+            requestDate: compleltData.requestDate
+        }
+        await createRequest(data)
+        getllrequist()
+        setShowModal(false)
     }
-    await createRequest(data)
-    getllrequist()
-    setShowModal(false)
-}
-const [id, setid] = useState("")
+    const [id, setid] = useState("")
 
-   async function handlenDeleteModal(id){
-    try {
-        await deleteRequest(id)
+    async function handlenDeleteModal(id) {
+        try {
+            await deleteRequest(id)
             setShowDeleteModal(false);
             getllrequist()
-    } catch (error) {
-        console.log(error)
+        } catch (error) {
+            console.log(error)
+        }
     }
-   }
-function handleOpenDeleteModal(index){
-    setid(index)
-    setShowDeleteModal(true)
-}
+    function handleOpenDeleteModal(index) {
+        setid(index)
+        setShowDeleteModal(true)
+    }
     const handleAddComplaint = () => {
         setComplaints((prev) => [...prev, { ...newComplaint }]);
-        setShowModal(false); 
+        setShowModal(false);
         setNewComplaint({
             title: "",
             date: "",
-            status: "Open", 
+            status: "Open",
             description: "",
         });
     };
@@ -87,14 +87,14 @@ function handleOpenDeleteModal(index){
         <div>
             <div className='row '>
                 <div className="d-flex  ">
-                    <div onClick={() => naviget("/ServiceComplain")} 
-                         style={{ background: location.pathname === "/ServiceComplain" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/ServiceComplain" ? "white" : "black" }} 
-                         className='b-btn d-flex justify-content-center'>
+                    <div onClick={() => naviget("/ServiceComplain")}
+                        style={{ background: location.pathname === "/ServiceComplain" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/ServiceComplain" ? "white" : "black" }}
+                        className='b-btn d-flex justify-content-center'>
                         <p >Complaint Submission</p>
                     </div>
-                    <div onClick={() => naviget("/RequestSubmission")} 
-                         style={{ background: location.pathname === "/RequestSubmission" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/RequestSubmission" ? "white" : "black" }} 
-                         className='b-btn d-flex justify-content-center'>
+                    <div onClick={() => naviget("/RequestSubmission")}
+                        style={{ background: location.pathname === "/RequestSubmission" ? "linear-gradient(90deg, #FE512E, #F09619)" : "#ffff", color: location.pathname === "/RequestSubmission" ? "white" : "black" }}
+                        className='b-btn d-flex justify-content-center'>
                         <p >Request Submission</p>
                     </div>
                 </div>
@@ -145,10 +145,10 @@ function handleOpenDeleteModal(index){
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Request Date:</strong>
                                         <span style={{ color: "#202224", fontWeight: "bold" }}> {new Date(complaint.requestDate).toLocaleDateString('en-GB', {
-                                                day: '2-digit',
-                                                month: '2-digit',
-                                                year: '2-digit',
-                                            })}</span>
+                                            day: '2-digit',
+                                            month: '2-digit',
+                                            year: '2-digit',
+                                        })}</span>
                                     </p>
                                     <p className="card-text mb-2 d-flex justify-content-between">
                                         <strong style={{ color: "#4F4F4F" }}>Status:</strong>
@@ -193,7 +193,7 @@ function handleOpenDeleteModal(index){
             </div>
 
             {/* Create Complaint Modal */}
-           
+
             <Modal className='complet-model' show={showModal} >
                 <div className="model">
                     <Modal.Header>

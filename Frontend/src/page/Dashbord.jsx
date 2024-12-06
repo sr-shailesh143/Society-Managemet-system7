@@ -417,7 +417,7 @@ const Dashboard = () => {
   }
 
   return (
-    <Container fluid>
+    <Container fluid key={""}>
       <Row className="mb-3">
         {[
           { color: "orange", imgSrc: "src/assets/button1.png" },
@@ -430,44 +430,44 @@ const Dashboard = () => {
               className={`text-start balance-card balance-card-${card.color}`}
               style={{ borderRadius: "15px" }}
             >
-           <Card.Body style={{ padding: "0" }}>
-  <div
-    className="card-body-content"
-    style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-    }}
-  >
-    <div
-      className="text-start total-b me-5"
-      style={{
-        fontWeight: "bold",
-        marginLeft: "0", 
-      }}
-    >
-      Total Balance<br />
-      <h6
-        className="text-start"
-        style={{
-          fontWeight: "bold",
-          margin: "0",
-        }}
-      >
-        ₹ 2,22,520
-      </h6>
-    </div>
-    <img
-      className="total-i"
-      src={card.imgSrc}
-      alt="Balance Icon"
-      style={{
-        maxWidth: "50px",
-        height: "auto",
-      }}
-    />
-  </div>
-</Card.Body>
+              <Card.Body style={{ padding: "0" }}>
+                <div
+                  className="card-body-content"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div
+                    className="text-start total-b me-5"
+                    style={{
+                      fontWeight: "bold",
+                      marginLeft: "0",
+                    }}
+                  >
+                    Total Balance<br />
+                    <h6
+                      className="text-start"
+                      style={{
+                        fontWeight: "bold",
+                        margin: "0",
+                      }}
+                    >
+                      ₹ 2,22,520
+                    </h6>
+                  </div>
+                  <img
+                    className="total-i"
+                    src={card.imgSrc}
+                    alt="Balance Icon"
+                    style={{
+                      maxWidth: "50px",
+                      height: "auto",
+                    }}
+                  />
+                </div>
+              </Card.Body>
 
             </Card>
           </Col>
@@ -475,7 +475,7 @@ const Dashboard = () => {
       </Row>
 
       <Row>
-        <Col xs={12} sm={12} md={6} lg={4} xl={6} xxl={6}>
+        <Col xs={12} sm={12} md={6} lg={4} xl={6} xxl={6} >
           <Card className="mb-4" style={{ borderRadius: "15px", height: '460px' }}>
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
