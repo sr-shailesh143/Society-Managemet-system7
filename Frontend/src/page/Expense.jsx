@@ -562,7 +562,7 @@ export default function Expense() {
         </Modal.Footer>
       </Modal>
     
-      <ImagePopup />
+     
 
     </div>
   );

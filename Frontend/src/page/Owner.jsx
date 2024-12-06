@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-import { useDropzone } from 'react-dropzone';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { CreateOwner } from '../apiservices/residentservice';
-import FileUploadForm from '../practice/EditablePage';
+import Loder from '../loder/Loder';
 
 export default function Owner() {
     const location = useLocation()
@@ -58,16 +56,7 @@ export default function Owner() {
 
 
     // Handle text input change
-    const handleTextChange = (e, key) => {
-        const value = e.target.value;
-        setOwnerData((prev) => ({
-            ...prev,
-            otherFields: {
-                ...prev.otherFields,
-                [key]: value,
-            },
-        }));
-    };
+   
 
 
     const handleSelect = (option) => {
@@ -84,14 +73,14 @@ export default function Owner() {
 
 
 
-    const [vaicalCount, setvaicalCount] = useState(2);
+    const [vaicalCount, setvaicalCount] = useState(1);
     const totalvaical = 5;
     const [memberCount, setMemberCount] = useState(1);
     const totalRows = 5;
+    const [vehicleData, setVehicleData] = useState([]);
+    const [loding, setloding] = useState(false);
     
-    const handlevaicalCountchange = (event) => {
-        setvaicalCount(Number(event.target.value));
-    };
+   
     const naviget = useNavigate()
     
      const handleSubmit = async (e) => {
@@ -99,17 +88,28 @@ export default function Owner() {
         const data ={
             ...OwnerData,
             ...files,
-            formData
+            memberCounting :formData,
+            vehicleCounting:vehicleData
+            
         }
         try { 
+            setloding(true)
             const risponse =  await  CreateOwner(data)
-            console.log(data);
+                
+            console.log(risponse);
+            setloding(false)
             // setOwnerData(null)
         } catch (error) {
             console.log(error)
         }
         
     };
+    const handleVaicalTextChange = (e, fieldName, index) => {
+        const updatedData = [...vehicleData];
+        updatedData[index] = { ...updatedData[index], [fieldName]: e.target.value };
+        setVehicleData(updatedData);
+    };
+
     const [formData, setFormData] = useState([]);
     const handleTextChange1 = (e, fieldName, index) => {
         const updatedData = [...formData];
@@ -127,6 +127,18 @@ export default function Owner() {
             setFormData([...formData, ...additionalRows]);
         }
     };
+
+
+    const handleVaicalCountChange = (e) => {
+        const count = parseInt(e.target.value, 10);
+        setvaicalCount(count);
+
+        // Add more rows to data array if needed
+        if (count > vehicleData.length) {
+            const additionalRows = Array(count - vehicleData.length).fill({});
+            setVehicleData([...vehicleData, ...additionalRows]);
+        }
+    }
 
 
     return (
@@ -395,50 +407,73 @@ export default function Owner() {
                 Submit
             </button> */}
         </div>
-                <div className="section-2 mt-3">
-                    <div className=" mt-3">
-                        <div className="header d-flex justify-content-between align-items-center">
-                            <h6 className='MEMBER-TEX'>Vehicle Counting :  </h6>
-                            <div className="select-member">
-                                <label className="me-2 SELECT-MEMBER">Select Vehicle</label>
-                                <select value={vaicalCount} onChange={handlevaicalCountchange} className="form-select ">
-                                    {[...Array(totalvaical).keys()].map((num) => (
-                                        <option key={num} value={num + 1}>  {num + 1}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
+        <div className="section-2 mt-3">
+            <div className="header d-flex justify-content-between align-items-center">
+                <h6 className="MEMBER-TEX">Vehicle Counting:</h6>
+                <div className="select-member">
+                    <label className="me-2 SELECT-MEMBER">Select Vehicle</label>
+                    <select
+                        value={vaicalCount}
+                        onChange={handleVaicalCountChange}
+                        className="form-select"
+                    >
+                        {[...Array(totalvaical).keys()].map((num) => (
+                            <option key={num} value={num + 1}>
+                                {num + 1}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
 
-                        <div className="member-rows mt-3">
-                            {[...Array(totalvaical).keys()].map((index) => (
-                                <div key={index} className={`row gy-3  member-row ${index < vaicalCount ? '' : 'd-none'}`} >
-                                    <div className="col-md-3 col-12">
-                                        <label className='text-wrap'>Vehicle Type<span className='text-danger1 '>*</span></label>
-                                        <select className="form-select  input-text mt-1 input-style" >
-                                            <option>Select Vehicle</option>
-                                            <option>Two Wheelers</option>
-                                            <option>Four Wheeler</option>
-                                        </select>
-                                    </div>
-                                    <div className="col-md-4 col-12">
-                                        <label className='text-wrap'>Vehicle Name</label>
-                                        <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
-                                    </div>
-                                    <div className="col-md-3 col-12">
-                                        <label className='text-wrap'>Vehicle Number</label>
-                                        <input type="text" className="form-control  input-text input-style" placeholder="Enter Relation" />
-                                    </div>
-                                </div>
-                            ))}
+            <div className="member-rows mt-3">
+                {[...Array(totalvaical).keys()].map((index) => (
+                    <div
+                        key={index}
+                        className={`row gy-3 member-row ${index < vaicalCount ? "" : "d-none"}`}
+                    >
+                        <div className="col-md-3 col-12">
+                            <label className="text-wrap">
+                                Vehicle Type<span className="text-danger1">*</span>
+                            </label>
+                            <select
+                                className="form-select input-text mt-1 input-style"
+                                onChange={(e) => handleVaicalTextChange(e, "vehicleType", index)}
+                            >
+                                <option value="">Select Vehicle</option>
+                                <option value="Two Wheeler">Two Wheeler</option>
+                                <option value="Four Wheeler">Four Wheeler</option>
+                            </select>
+                        </div>
+                        <div className="col-md-4 col-12">
+                            <label className="text-wrap">Vehicle Name</label>
+                            <input
+                                type="text"
+                                className="form-control input-text input-style"
+                                placeholder="Enter Vehicle Name"
+                                onChange={(e) => handleVaicalTextChange(e, "vehicleName", index)}
+                            />
+                        </div>
+                        <div className="col-md-3 col-12">
+                            <label className="text-wrap">Vehicle Number</label>
+                            <input
+                                type="text"
+                                className="form-control input-text input-style"
+                                placeholder="Enter Vehicle Number"
+                                onChange={(e) => handleVaicalTextChange(e, "vehicleNumber", index)}
+                            />
                         </div>
                     </div>
-                </div>
+                ))}
+            </div>
+           
+        </div>
                 <div className=" row  section-button d-flex gap-3 mt-3">
                     <div className="col-12 col-md-4  ">
                         <button className='Cancel-btn  '>Cancel</button>
                     </div>
                     <div className="col-12 col-md-4  ">
-                        <button className='Create-btn  l-btn text-white' onClick={handleSubmit}>Create</button>
+                        <button className='Create-btn  l-btn text-white' onClick={handleSubmit}>{loding ? <Loder/> :"Create"}</button>
                     </div>
 
                 </div>
