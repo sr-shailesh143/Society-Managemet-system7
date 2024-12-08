@@ -87,7 +87,7 @@ exports.Register = async (req, res) => {
       });
     }
 
-    const hashpassword = await hash(password);
+    const hashpassword = await bcrypt.hash(password);
 
     // Create user with hashed password, excluding Cpassword
     const user = await User.create({
