@@ -12,6 +12,7 @@ const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { hash } = require("../utils/hashpassword");
+
 const OTP_EXPIRATION_TIME = 30 * 1000;
 
 exports.Register = async (req, res) => {
