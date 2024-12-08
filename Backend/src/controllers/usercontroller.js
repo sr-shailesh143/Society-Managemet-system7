@@ -3,7 +3,7 @@ const otpGnerator = require("otp-generator");
 const twilio = require("twilio");
 const crypto = require("crypto");
 const senData = require("../config/mailer");
-const { hash } = require("../utils/hashPassword");
+
 const { compare } = require("../utils/Machpass");
 const { generateToeken } = require("../utils/Tokengenerate");
 const accountsid = process.env.TWILIO_ACCOUNT_SID;
@@ -11,6 +11,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { hash } = require("../utils/hashpassword");
 const OTP_EXPIRATION_TIME = 30 * 1000;
 
 exports.Register = async (req, res) => {
@@ -113,9 +114,7 @@ exports.Register = async (req, res) => {
     });
   }
 };
-const generateToken = (userId) => {
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
-};
+
 
 // Login endpoint
 exports.login = async (req, res) => {
@@ -175,7 +174,7 @@ exports.login = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = generateToken(user._id);
+    const token = generateToeken(user._id,res);
 
     return res.status(200).json({
       success: true,
@@ -184,7 +183,8 @@ exports.login = async (req, res) => {
       user: { email: user.Email, role: user.role },
     });
   } catch (error) {
-    return res.status(500).json({
+    console.log(error);
+        return res.status(500).json({
       success: false,
       message: "Internal server error",
     });
