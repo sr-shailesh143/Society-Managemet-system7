@@ -1,3 +1,5 @@
-export default {
-    API : import.meta.env.URL_FROM_BACKEND,
+const constant = {
+  API: import.meta.env.VITE_API_URL, // Access the environment variable
 };
+
+export default constant;
