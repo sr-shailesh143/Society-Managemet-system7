@@ -11,7 +11,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { hash } = require("../utils/hashpassword");
+const { hash } = require("../utils/Hashpassword");
 
 const OTP_EXPIRATION_TIME = 30 * 1000;
 
