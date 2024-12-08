@@ -13,7 +13,7 @@ export const signup = async (data) =>
   await api.post("http://localhost:8001/api/auth/signup", data);
 
 // Login
-export const login = async (data) => await api.post("https://society-managemet-system7-87o7.onrender.com/api/auth/login", data);
+export const login = async (data) => await api.post("api/auth/login", data);
 
 // Logout
 export const logout = async () => await api.post("https://society-managemet-system7-87o7.onrender.com/api/auth/logout");
