@@ -46,7 +46,7 @@ function RegistrationPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...formData, [name]: value });
-    setFormData({
+    setUserData({
       ...formData,
       [e.target.name]: e.target.value
     });
@@ -66,10 +66,13 @@ function RegistrationPage() {
   const societySubmit = async (data) => {
     try {
       const response = await signup(data);
+      console.log("Data not found",data);
+        // Pass the form data directly to the signup function
       toast.success(response.data.message);
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || 'Something went wrong');
+      console.log(error);
       
     } finally {
       setUserData({
@@ -155,13 +158,13 @@ function RegistrationPage() {
       const response = await viewSociety(); 
       setSocietiesList(response.data.Society || []);
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Failed to fetch society');
+      console.error('Error fetching societies:', error);
+      toast.error('Failed to fetch societies');
       setSocietiesList([]); 
     } finally {
       setIsLoading(false); 
     }
   };
-  
   
   useEffect(() => {
     fetchSocieties(); 
@@ -171,7 +174,10 @@ function RegistrationPage() {
   };
 
 
-
+const onSubmit = (data) => {
+  // Handle form submission
+  console.log(data);
+};
 
   return (
     <div className="registration-container">
