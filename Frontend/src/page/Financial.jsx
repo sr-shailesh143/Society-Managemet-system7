@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {  Button,  Modal, Form } from 'react-bootstrap';
 import { addNote, getAllNotes, updateNote } from '../apiservices/noteservice';
 import { FaEllipsisV } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 const Financial = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -22,13 +23,13 @@ const Financial = () => {
       if (response.data && Array.isArray(response.data.records)) {
         setNoteData(response.data.records);
       } else {
-        console.error('Expected an array in records but got:', response.data);
+        toast.error('Expected an array in records but got:', response.data);
       }
     } catch (error) {
-      console.error('Error fetching notes:', error);
+      toast.error('Error fetching notes:', error);
     }
   };
-console.log(selectedDate);
+  toast.log(selectedDate);
   const handleEditModalOpen = (note) => {
     if (note && note._id) {
       setSelectedNoteId(note._id);
@@ -37,7 +38,7 @@ console.log(selectedDate);
       setSelectedDate(note.date || '');
       setShowEditModal(true);
     } else {
-      console.error('Note object is missing _id or is undefined:', note);
+      toast.error('Note object is missing _id or is undefined:', note);
     }
   };
 
@@ -74,10 +75,10 @@ console.log(selectedDate);
         fetchNotes();
         handleEditModalClose();
       } catch (error) {
-        console.error('Error updating note:', error);
+        toast.error('Error updating note:', error);
       }
     } else {
-      console.warn('No note ID selected for update.');
+      toast.warn('No note ID selected for update.');
     }
   };
 
@@ -91,7 +92,7 @@ console.log(selectedDate);
       fetchNotes();
       handleCreateModalClose();
     } catch (error) {
-      console.error('Error creating note:', error);
+      toast.error('Error creating note:', error);
     }
   };
 
