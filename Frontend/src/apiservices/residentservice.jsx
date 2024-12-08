@@ -3,7 +3,7 @@ import api from "./api";
 
 // create new Owner
 export const CreateOwner = async (data) => {
-  const response = await api.post("https://society-managemet-system7-87o7.onrender.com/api/Resident/addowner", data, {
+  const response = await api.post("Resident/addowner", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -13,14 +13,14 @@ export const CreateOwner = async (data) => {
 };
 
 // get all Owner
-export const GetOwners = async () => await api.get("https://society-managemet-system7-87o7.onrender.com/api/Resident/viewowner");
+export const GetOwners = async () => await api.get("Resident/viewowner");
 
 // get single Owner by id
-export const GetOwner = async (id) => await api.get(`https://society-managemet-system7-87o7.onrender.com/api/Resident/Owner/${id}`);
+export const GetOwner = async (id) => await api.get(`Resident/Owner/${id}`);
 
 //update Owner by id
 export const UpdateOwner = async (id, data) => {
-  const response = await api.patch(`https://society-managemet-system7-87o7.onrender.com/api/Resident/Owner/${id}`, data, {
+  const response = await api.patch(`Resident/Owner/${id}`, data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -30,7 +30,7 @@ export const UpdateOwner = async (id, data) => {
 
 //update Tenant by id
 export const UpdateTenant = async (id, data) => {
-  const response = await api.put(`https://society-managemet-system7-87o7.onrender.com/api/Resident/tenante/${id}`, data, {
+  const response = await api.put(`Resident/tenante/${id}`, data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -42,7 +42,7 @@ export const UpdateTenant = async (id, data) => {
 
 // create new Tenant
 export const CreateTenant = async (data) => {
-  const response = await api.post("https://society-managemet-system7-87o7.onrender.com/api/Resident/addtenante", data, {
+  const response = await api.post("Resident/addtenante", data, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -51,20 +51,20 @@ export const CreateTenant = async (data) => {
 };
 
 // get all Tenant
-export const GetTenants = async () => await api.get("https://society-managemet-system7-87o7.onrender.com/api/Resident/viewtenante");
+export const GetTenants = async () => await api.get("Resident/viewtenante");
 
 // get single Tenant by id
 export const GetTenant = async (id) =>
-  await api.get(`https://society-managemet-system7-87o7.onrender.com/api/Resident/tenante/${id}`);
+  await api.get(`Resident/tenante/${id}`);
 
 // get all resident
 export const GetResidents = async () =>
-  await api.get("https://society-managemet-system7-87o7.onrender.com/api/Resident/allresident");
+  await api.get("Resident/allresident");
 
 // get resident by id
 export const GetResident = async (id) =>
-  await api.get(`https://society-managemet-system7-87o7.onrender.com/api/Resident/resident/${id}`);
+  await api.get(`Resident/resident/${id}`);
 
 // delete resident by id
 export const VacantResident = async (id) =>
-  await api.put(`https://society-managemet-system7-87o7.onrender.com/api/Resident/update/${id}`, {});
+  await api.put(`Resident/update/${id}`, {});
