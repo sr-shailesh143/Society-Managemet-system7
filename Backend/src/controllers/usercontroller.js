@@ -3,7 +3,7 @@ const otpGnerator = require("otp-generator");
 const twilio = require("twilio");
 const crypto = require("crypto");
 const senData = require("../config/mailer");
-
+const { hash } = require("../utils/hashPassword");
 const { compare } = require("../utils/Machpass");
 const { generateToeken } = require("../utils/Tokengenerate");
 const accountsid = process.env.TWILIO_ACCOUNT_SID;
@@ -11,8 +11,6 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = new twilio(accountsid, authToken);
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { hash } = require("../utils/hashpassword");
-
 const OTP_EXPIRATION_TIME = 30 * 1000;
 
 exports.Register = async (req, res) => {
@@ -49,6 +47,7 @@ exports.Register = async (req, res) => {
       });
     }
 
+    // Email validation on site
     const emailAdd = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailAdd.test(Email)) {
       return res.status(400).json({
@@ -57,6 +56,7 @@ exports.Register = async (req, res) => {
       });
     }
 
+    // Password length validation for verification
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
@@ -64,6 +64,7 @@ exports.Register = async (req, res) => {
       });
     }
 
+    // Confirm password length validation for change Password
     if (Cpassword.length < 6) {
       return res.status(400).json({
         success: false,
@@ -71,6 +72,7 @@ exports.Register = async (req, res) => {
       });
     }
 
+    // Check if email exists
     const UserByEmail = await User.findOne({ Email });
     if (UserByEmail) {
       return res.status(400).json({
@@ -87,7 +89,7 @@ exports.Register = async (req, res) => {
       });
     }
 
-    const hashpassword = await bcrypt.hash(password);
+    const hashpassword = await hash(password);
 
     // Create user with hashed password, excluding Cpassword
     const user = await User.create({
@@ -109,18 +111,22 @@ exports.Register = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server error",
     });
   }
 };
-
+const generateToken = (userId) => {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "1h" });
+};
 
 // Login endpoint
 exports.login = async (req, res) => {
   const { EmailOrPhone, password } = req.body;
 
+  // Default credentials for user and security roles
   const defaultCredentials = [
     {
       email: "user7@gmail.com",
@@ -137,11 +143,13 @@ exports.login = async (req, res) => {
   ];
 
   try {
+    // Check if provided credentials match default credentials
     const matchedDefault = defaultCredentials.find(
       (cred) => cred.email === EmailOrPhone && cred.password === password
     );
 
     if (matchedDefault) {
+      // Direct login for default users, no token generation
       return res.status(200).json({
         success: true,
         message: `${matchedDefault.role} logged in successfully`,
@@ -150,14 +158,15 @@ exports.login = async (req, res) => {
       });
     }
 
+    // If not default credentials, proceed with normal login logic
     let query = {};
     if (EmailOrPhone.includes("@")) {
-      query = { Email: EmailOrPhone }; 
+      query = { Email: EmailOrPhone }; // email query
     } else {
-      query = { Phone: EmailOrPhone }; 
+      query = { Phone: EmailOrPhone }; // phone query
     }
 
-    const user = await User.findOne(query); 
+    const user = await User.findOne(query); // Replace with your DB model
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -175,7 +184,7 @@ exports.login = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = gen(user._id,res);
+    const token = generateToken(user._id);
 
     return res.status(200).json({
       success: true,
@@ -184,6 +193,7 @@ exports.login = async (req, res) => {
       user: { email: user.Email, role: user.role },
     });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -192,6 +202,7 @@ exports.login = async (req, res) => {
 };
 exports.logout = async (req, res) => {
   try {
+    console.log("Logout request received");
 
     // Clear the authentication cookie
     res.clearCookie("society-auth", {
@@ -207,6 +218,7 @@ exports.logout = async (req, res) => {
       message: "Logged out successfully",
     });
   } catch (error) {
+    console.error("Error in logout controller:", error);
 
     // Handle error in case something goes wrong
     return res.status(500).json({
@@ -244,6 +256,7 @@ exports.GetOtp = async (req, res) => {
         });
       }
 
+      // Check if OTP is expired
       if (user.otpExpiration && user.otpExpiration > currentTime) {
         return res.status(400).json({
           success: false,
@@ -251,6 +264,7 @@ exports.GetOtp = async (req, res) => {
         });
       }
 
+      // Generate and set OTP with new expiration
       const otpExpiration = new Date(
         currentTime.getTime() + OTP_EXPIRATION_TIME
       );
@@ -307,6 +321,7 @@ exports.GetOtp = async (req, res) => {
       });
     }
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -347,6 +362,7 @@ exports.Otpverification = async (req, res) => {
       message: "OTP verified successfully",
     });
   } catch (error) {
+    console.log(error);
 
     return res.status(500).json({
       success: false,
@@ -392,6 +408,7 @@ exports.ResetingPassword = async (req, res) => {
 
     return res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -469,6 +486,7 @@ exports.Updateform = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server error",
@@ -492,6 +510,7 @@ exports.FindByIdUser = async (req, res) => {
       Profile: find,
     });
   } catch (error) {
+    console.log("Error in logout controller", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
