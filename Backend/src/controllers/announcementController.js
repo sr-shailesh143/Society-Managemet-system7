@@ -22,7 +22,6 @@ exports.createAnnouncement = async (req,res)=>{
           });
       }
   } catch (error) {
-    console.log(error);
   }
 }
 
@@ -42,7 +41,6 @@ exports.getAllAnnouncements = async(req,res)=>{
           });
       }
   } catch (error) {
-      console.log(error);
   }
 }
 
@@ -63,7 +61,6 @@ exports.getAnnouncementById = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -97,7 +94,6 @@ exports.updateAnnouncement = async(req,res)=>{
       });
     }
   } catch (error) {
-     console.log(error)
   }
  }
 
@@ -121,6 +117,5 @@ exports.deleteAnnouncement = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };

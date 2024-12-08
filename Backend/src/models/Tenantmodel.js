@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// Define the Tenant schema
 const TenantSchema = new Schema(
   {
     tenantImage: {
@@ -98,6 +97,5 @@ const TenantSchema = new Schema(
   { timestamps: true }
 );
 
-// Create and export the Tenant model
 const Tenant = model("Tenant", TenantSchema);
 module.exports = Tenant;

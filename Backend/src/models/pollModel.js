@@ -2,16 +2,16 @@ const { Schema, model, default: mongoose } = require('mongoose');
 
 const surveySchema = new Schema(
   {
-    surveyType: {  // Renamed pollType to surveyType
+    surveyType: {  
       type: String,
       enum: ['multichoice', 'ranking', 'rating', 'numeric', 'text'],
       required: true,
     },
-    questionText: {  // Renamed question to questionText
+    questionText: {  
       type: String,
       required: true,
     },
-    answerOptions: [  // Renamed options to answerOptions
+    answerOptions: [  
       {
         text: String,
         votes: {
@@ -20,19 +20,18 @@ const surveySchema = new Schema(
         },
       },
     ],
-    createdBy: {  // Renamed to indicate the creator of the survey
+    createdBy: {
       type: Schema.Types.ObjectId,
-      refPath: 'creatorRole',  // Updated to reflect the new creatorRole field
+      refPath: 'creatorRole',  
     },
-    creatorRole: {  // Updated to refer to the role of the creator
+    creatorRole: {  
       type: String,
-      enum: ['Owner', 'Tenant'],  // Updated 'Tenante' to 'Tenant' for correct spelling
+      enum: ['Owner', 'Tenant'], 
     },
   },
-  { timestamps: true } // This will automatically add createdAt and updatedAt fields
+  { timestamps: true } 
 );
 
-// Changed model name from 'Poll' to 'Survey'
 const Survey = model('Survey', surveySchema);
 
 module.exports = Survey;

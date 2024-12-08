@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// Define the schema for an owner
 const OwnerSchema = new Schema(
   {
     profileImage: {
@@ -86,6 +85,5 @@ const OwnerSchema = new Schema(
   { timestamps: true }
 );
 
-// Create and export the model
 const Owner = model("Owner", OwnerSchema);
 module.exports = Owner;

@@ -23,7 +23,7 @@ const visitorSchema = new mongoose.Schema({
   },
   time: {
     type: String,
-    required: true // Store time as a string in HH:mm format
+    required: true 
   },
 
 });

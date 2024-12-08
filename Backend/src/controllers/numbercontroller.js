@@ -4,7 +4,6 @@ const ImpNumber = require("../models/numbermodel");
 exports.CreateNumber = async (req, res) => {
     try {
         const { Name, Number, Work } = req.body;
-        console.log(req.body);
     
         const findPhone= await ImpNumber.findOne({Number: Number})
         if(findPhone){
@@ -13,7 +12,6 @@ exports.CreateNumber = async (req, res) => {
                 message:"Phone Number Already Exist in our Database..."
             })
         }
-        // Check if required fields are present
         if (!Name || ! Number || !Work) {
             return res.status(400).json({
                 success: false,
@@ -30,7 +28,6 @@ exports.CreateNumber = async (req, res) => {
         //     });
         // }
 
-        // Create and save the new number
         const numbersave = new ImpNumber({
             Name,
              Number,
@@ -46,7 +43,6 @@ exports.CreateNumber = async (req, res) => {
         });
         
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server error 😔"
@@ -68,7 +64,6 @@ exports.Viewnumber=async(req,res)=>{
             ImpNumber:find
         })
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server error 😔"
@@ -90,7 +85,6 @@ exports.GetById =async(req,res)=>{
             ImpNumber:find
         })
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server error 😔"
@@ -112,7 +106,6 @@ exports.DeleteNumber =async(req,res)=>{
             message:"Number Deleted"
         })
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server error 😔"
@@ -123,7 +116,6 @@ exports.DeleteNumber =async(req,res)=>{
 exports.UpdateNumber=async(req,res)=>{
     try {
         const { Name, Number, Work } = req.body;
-        console.log(req.body);
     
        
         // Check if required fields are present
@@ -159,7 +151,6 @@ exports.UpdateNumber=async(req,res)=>{
         });
         
     } catch (error) {
-        console.log(error);
         res.status(500).json({
             success: false,
             message: "Internal Server error 😔"

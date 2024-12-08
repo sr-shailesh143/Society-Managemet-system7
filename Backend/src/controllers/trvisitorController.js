@@ -12,7 +12,6 @@ exports.createVisitor = async (req, res) => {
       unit,
       date,
       time,
-    //   visitorImg: req.file.path // Image URL from Cloudinary
     });
 
     await visitor.save();
@@ -38,7 +37,6 @@ exports.getAllVisitors = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 // Get a single visitor by ID
@@ -58,7 +56,6 @@ exports.getVisitorById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -94,7 +91,6 @@ exports.updateVisitor = async(req,res)=>{
         });
       }
     } catch (error) {
-       console.log(error)
     }
    }
 
@@ -118,7 +114,6 @@ exports.deleteVisitor = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
