@@ -44,7 +44,7 @@ import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
 import Requesttracking from './page/Requesttraking';
-import Viewotherincome from './page/VIEWOTHERINCOME.JSX';
+import Viewotherincome from './page/Viewotherincome';
 import Question from './page3/Question';
 function App() {
   return (
