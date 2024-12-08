@@ -227,4 +227,4 @@ In addition to the core technologies, several other tools and libraries are used
 This document provides the sample login data for different roles in the **Society Management System7**. You can use these credentials to test the functionalities of the system.
 
 
-### THANK YOU !
+### THANKS FOR GIVING YOUR ATTENTION !
