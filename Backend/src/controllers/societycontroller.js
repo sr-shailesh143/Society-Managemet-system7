@@ -32,7 +32,6 @@ exports.createSociety = async (req,res)=>{
          message:"Society Are Created successfully 👍" 
       })
    } catch (error) {
-    console.log(error);
     
     return res.status(500).json({
         success:false,
@@ -57,7 +56,6 @@ exports.viewSociety= async(req,res)=>{
             Society:findSociety
         })
     } catch (error) {
-        console.log(error);
     
     return res.status(500).json({
         success:false,

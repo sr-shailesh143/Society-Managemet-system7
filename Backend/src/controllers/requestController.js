@@ -37,7 +37,6 @@ exports.createRequest = async (req, res) => {
         await newRequest.save();
         res.status(201).json(newRequest);
     } catch (error) {
-        console.error("Error creating request:", error);
         res.status(500).json({ error: error.message });
     }
 };
@@ -58,7 +57,6 @@ exports.getAllRequests = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 
@@ -79,7 +77,6 @@ exports.getRequestById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -110,7 +107,6 @@ exports.updateRequest = async (req, res) => {
 
         res.status(200).json(updatedRequest);
     } catch (error) {
-        console.error("Error updating request:", error);
         res.status(500).json({ error: "An error occurred while updating the request." });
     }
 };
@@ -135,6 +131,5 @@ exports.deleteRequest = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

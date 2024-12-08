@@ -30,7 +30,6 @@ exports.verifyMaintenancePassword = async (req, res) => {
       message: "✅ Password verified successfully!",
     });
   } catch (error) {
-    console.error("Error verifying password:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -95,7 +94,6 @@ exports.addMaintenanceRecord = async (req, res) => {
       message: "🎉 Maintenance record added successfully!",
     });
   } catch (error) {
-    console.error("Error adding maintenance:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -114,7 +112,6 @@ exports.fetchAllMaintenanceRecords = async (req, res) => {
       message: "📋 Maintenance records retrieved successfully!",
     });
   } catch (error) {
-    console.error("Error fetching maintenance records:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -161,7 +158,6 @@ exports.updatePaymentMethod = async (req, res) => {
       message: "✅ Payment method updated successfully!",
     });
   } catch (error) {
-    console.error("Error updating payment method:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -197,7 +193,6 @@ exports.applyOverduePenalties = async (req, res) => {
       message: "📌 Penalties applied successfully for overdue payments!",
     });
   } catch (error) {
-    console.error("Error applying penalties:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -218,7 +213,6 @@ exports.fetchCompletedPayments = async (req, res) => {
       message: "✅ Completed payments retrieved successfully!",
     });
   } catch (error) {
-    console.error("Error fetching completed payments:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Internal Server Error. Please try again later.",
@@ -274,7 +268,6 @@ exports.fetchUserAndMaintenanceById = async (req, res) => {
       message: "✅ Maintenance records with pending payments retrieved successfully!",
     });
   } catch (error) {
-    console.error("Error fetching maintenance records:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ An error occurred while fetching maintenance records. Please try again later.",

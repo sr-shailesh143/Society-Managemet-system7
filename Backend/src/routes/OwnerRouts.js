@@ -38,7 +38,7 @@ router.post(
     { name: "aadharBack", maxCount: 1 },
     { name: "addressProof", maxCount: 1 },
     { name: "rentAgreement", maxCount: 1 },
-    { name: "profileImage", maxCount: 1 },
+    { name: "tenantImage", maxCount: 1 },
   ]),
   TenateController.addTenantData
 );

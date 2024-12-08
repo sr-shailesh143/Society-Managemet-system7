@@ -4,7 +4,6 @@ const Survey = require("../models/pollModel");
 exports.createSurvey = async (req, res) => {
   try {
     const { surveyType, questionText, answerOptions } = req.body;
-    console.log(req.body);
 
     if (!surveyType || !questionText || !answerOptions) {
       return res.status(400).json({
@@ -36,7 +35,6 @@ exports.createSurvey = async (req, res) => {
       message: "🎉 Survey created successfully! Thank you for your participation.",
     });
   } catch (error) {
-    console.error("Error creating survey:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ There was an error creating the survey. Please try again later.",
@@ -64,7 +62,6 @@ exports.getSurveys = async (req, res) => {
       message: "📋 Surveys fetched successfully!",
     });
   } catch (error) {
-    console.error("Error fetching surveys:", error);
     return res.status(500).json({
       success: false,
       message: "⚠️ Error fetching surveys. Please try again later.",

@@ -47,7 +47,6 @@ exports.Register = async (req, res) => {
       });
     }
 
-    // Email validation on site
     const emailAdd = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailAdd.test(Email)) {
       return res.status(400).json({
@@ -56,7 +55,6 @@ exports.Register = async (req, res) => {
       });
     }
 
-    // Password length validation for verification
     if (password.length < 6) {
       return res.status(400).json({
         success: false,
@@ -64,7 +62,6 @@ exports.Register = async (req, res) => {
       });
     }
 
-    // Confirm password length validation for change Password
     if (Cpassword.length < 6) {
       return res.status(400).json({
         success: false,
@@ -72,7 +69,6 @@ exports.Register = async (req, res) => {
       });
     }
 
-    // Check if email exists
     const UserByEmail = await User.findOne({ Email });
     if (UserByEmail) {
       return res.status(400).json({
@@ -111,7 +107,6 @@ exports.Register = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server error",
@@ -126,7 +121,6 @@ const generateToken = (userId) => {
 exports.login = async (req, res) => {
   const { EmailOrPhone, password } = req.body;
 
-  // Default credentials for user and security roles
   const defaultCredentials = [
     {
       email: "user7@gmail.com",
@@ -143,13 +137,11 @@ exports.login = async (req, res) => {
   ];
 
   try {
-    // Check if provided credentials match default credentials
     const matchedDefault = defaultCredentials.find(
       (cred) => cred.email === EmailOrPhone && cred.password === password
     );
 
     if (matchedDefault) {
-      // Direct login for default users, no token generation
       return res.status(200).json({
         success: true,
         message: `${matchedDefault.role} logged in successfully`,
@@ -158,15 +150,14 @@ exports.login = async (req, res) => {
       });
     }
 
-    // If not default credentials, proceed with normal login logic
     let query = {};
     if (EmailOrPhone.includes("@")) {
-      query = { Email: EmailOrPhone }; // email query
+      query = { Email: EmailOrPhone }; 
     } else {
-      query = { Phone: EmailOrPhone }; // phone query
+      query = { Phone: EmailOrPhone }; 
     }
 
-    const user = await User.findOne(query); // Replace with your DB model
+    const user = await User.findOne(query); 
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -193,7 +184,6 @@ exports.login = async (req, res) => {
       user: { email: user.Email, role: user.role },
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -202,7 +192,6 @@ exports.login = async (req, res) => {
 };
 exports.logout = async (req, res) => {
   try {
-    console.log("Logout request received");
 
     // Clear the authentication cookie
     res.clearCookie("society-auth", {
@@ -218,7 +207,6 @@ exports.logout = async (req, res) => {
       message: "Logged out successfully",
     });
   } catch (error) {
-    console.error("Error in logout controller:", error);
 
     // Handle error in case something goes wrong
     return res.status(500).json({
@@ -256,7 +244,6 @@ exports.GetOtp = async (req, res) => {
         });
       }
 
-      // Check if OTP is expired
       if (user.otpExpiration && user.otpExpiration > currentTime) {
         return res.status(400).json({
           success: false,
@@ -264,7 +251,6 @@ exports.GetOtp = async (req, res) => {
         });
       }
 
-      // Generate and set OTP with new expiration
       const otpExpiration = new Date(
         currentTime.getTime() + OTP_EXPIRATION_TIME
       );
@@ -321,7 +307,6 @@ exports.GetOtp = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -362,7 +347,6 @@ exports.Otpverification = async (req, res) => {
       message: "OTP verified successfully",
     });
   } catch (error) {
-    console.log(error);
 
     return res.status(500).json({
       success: false,
@@ -408,7 +392,6 @@ exports.ResetingPassword = async (req, res) => {
 
     return res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -486,7 +469,6 @@ exports.Updateform = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Internal Server error",
@@ -510,7 +492,6 @@ exports.FindByIdUser = async (req, res) => {
       Profile: find,
     });
   } catch (error) {
-    console.log("Error in logout controller", error.message);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

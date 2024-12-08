@@ -3,7 +3,6 @@ const cloudinary = require("../config/cloudinaryConfig");
 const fs = require("fs"); 
 
 exports.createProfile = async (req, res) => {
-  console.log("createProfile");
 
   try {
     // Check if a file is uploaded
@@ -18,13 +17,11 @@ exports.createProfile = async (req, res) => {
           resource_type: "auto",
         });
       } catch (error) {
-        console.error("Cloudinary upload error:", error);
         throw new Error("Failed to upload file to Cloudinary");
       }
     };
 
     const cloudinaryResult = await uploadFileToCloudinary(req.file.path);
-    console.log("Cloudinary result:", cloudinaryResult.secure_url);
 
   
     const {
@@ -51,17 +48,15 @@ exports.createProfile = async (req, res) => {
       image: cloudinaryResult.secure_url, 
     });
 
-    console.log("Profile created:", profile);
 
    
     fs.unlink(req.file.path, (err) => {
-      if (err) console.error("Failed to delete temporary file:", err);
+      
     });
 
    
     res.status(201).json({ message: "User created successfully", profile });
   } catch (error) {
-    console.error("Error during profile creation:", error);
 
    
     if (error.message.includes("Cloudinary")) {
@@ -79,7 +74,6 @@ exports.getProfiles = async (req, res) => {
     const profiles = await Profile.find();
     res.status(200).json(profiles);
   } catch (error) {
-    console.error("Error fetching profiles:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -96,7 +90,6 @@ exports.updateProfile = async (req, res) => {
       const cloudinaryResult = await uploadFileToCloudinary(req.file.path);
       updatedData.image = cloudinaryResult.secure_url;
       fs.unlink(req.file.path, (err) => {
-        if (err) console.error("Failed to delete temporary file:", err);
       });
     }
 
@@ -105,7 +98,6 @@ exports.updateProfile = async (req, res) => {
 
     res.status(200).json({ message: "Profile updated successfully", profile });
   } catch (error) {
-    console.error("Error updating profile:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
