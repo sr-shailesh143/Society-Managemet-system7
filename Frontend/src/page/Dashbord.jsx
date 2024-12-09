@@ -149,31 +149,37 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
-      setLoading(true);
-
-      setError("");
+      setLoading(true); 
+      setError(""); 
 
       try {
         const response = await getAnnouncements();
-        toast.log("API Response:", response);
+        console.log("API Response:", response); 
 
-
-        if (response && response.data && Array.isArray(response.data.records)) {
-          setEventsData(response.data.records);
+        if (
+          response &&
+          response.data &&
+          response.data.records &&
+          Array.isArray(response.data.records)
+        ) {
+          setEventsData(response.data.records); 
+          toast.success("Announcements loaded successfully!");
         } else {
-          setError("No announcements found or data is in an unexpected format");
+          setError("No announcements found or invalid data format.");
+          console.error("Unexpected Response Format:", response);
         }
       } catch (err) {
-        toast.error("Error fetching announcements:", err);
-        setError("Failed to load announcements");
+        console.error("Error fetching announcements:", err);
+        toast.error("Error fetching announcements. Please try again later.");
+        setError("Failed to load announcements.");
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
 
-
     fetchAnnouncements();
-  }, []);
+  }, []); 
+
 
   const formatLocalDate = (dateString) => {
     const date = new Date(dateString);
