@@ -29,7 +29,7 @@ const Financial = () => {
       toast.error('Error fetching notes:', error);
     }
   };
-  
+
   const handleEditModalOpen = (note) => {
     if (note && note._id) {
       setSelectedNoteId(note._id);

@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
-
+import logo from "../assets/Logo.png"
+import sideIMG from "../assets/sideIMG.png"
 
 export default function Login() {
     const { errors, handleError, clearError } = useForm({
@@ -39,8 +40,8 @@ export default function Login() {
         try {
             
             const defaultCredentials = [
-                { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
-                { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
+                { email: "resident@society.com", password: "Resident@123", role: "user", redirectUrl: "/ResidentManageMent" },
+                { email: "security@society.com", password: "Security@123", role: "security", redirectUrl: "/VisitorTracking" },
             ];
     
      
@@ -84,9 +85,9 @@ export default function Login() {
             <div className="row d-flex gap-5">
                 <div className="col-12 col-md-6 d-none d-md-flex bg-color justify-content-center align-items-center">
                     <div>
-                        <img style={{ width: "230px", marginLeft: "-100px", marginTop: "-80px" }} className='' src="src/assets/Logo.png" alt="Logo" />
+                        <img style={{ width: "230px", marginLeft: "-100px", marginTop: "-80px" }} className='' src={logo} alt="Logo" />
                         <div className="mailImg mt-5 text-center">
-                            <img style={{ width: "507px", height: "491px", position: "sticky" }} src="src/assets/sideIMG.png" alt="Logo" className="img-fluid mt-3" />
+                            <img style={{ width: "507px", height: "491px", position: "sticky" }} src={sideIMG} alt="Logo" className="img-fluid mt-3" />
                         </div>
                     </div>
                 </div>
