@@ -197,10 +197,10 @@ const SecurityProtocols = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer style={{ textAlign: 'center', justifyContent: 'center' }}>
-          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '40%' }} onClick={handleCloseModal}>
+          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '40%' }}className='cancel-btn radious' onClick={handleCloseModal}>
             Cancel
           </Button>
-          <Button style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '40%' }} onClick={handleSubmit}>
+          <Button className='cancel-btn radious m-2' style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '40%' }} onClick={handleSubmit}>
             Save Protocol
           </Button>
         </Modal.Footer>
@@ -237,10 +237,10 @@ const SecurityProtocols = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer style={{ textAlign: 'center', justifyContent: 'center' }}>
-          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '45%' }} onClick={handleCloseEditModal}>
+          <Button style={{ backgroundColor: 'lightgrey', color: 'white', border: 'none', width: '45%' }}className='cancel-btn radious' onClick={handleCloseEditModal}>
             Cancel
           </Button>
-          <Button style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '45%' }} onClick={handleSaveEdit}>
+          <Button className='cancel-btn radious m-2' style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', width: '45%' }} onClick={handleSaveEdit}>
             Save Changes
           </Button>
         </Modal.Footer>
