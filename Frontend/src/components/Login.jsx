@@ -40,8 +40,8 @@ export default function Login() {
         try {
             
             const defaultCredentials = [
-                { email: "user7@gmail.com", password: "user@7", role: "user", redirectUrl: "/ResidentManageMent" },
-                { email: "security72@gmail.com", password: "secur7", role: "security", redirectUrl: "/VisitorTracking" },
+                { email: "resident@society.com", password: "Resident@123", role: "user", redirectUrl: "/ResidentManageMent" },
+                { email: "security@society.com", password: "Security@123", role: "security", redirectUrl: "/VisitorTracking" },
             ];
     
      
