@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { GetOtp, Otpverification } from '../apiservices/Authentication';
 import toast from 'react-hot-toast';
+import logo from "../assets/Logo.png"
+import side_Logout from "../assets/forget-img.png"
 
 const Button = styled.button`
   width: 100%;
@@ -125,22 +127,22 @@ const OTPVerification = () => {
 
   return (
     <div className='container-fluid'>
-      <div className="col-12 d-sm-block d-md-none mt-5 text-center">
-        <img className='w-50 mt-5 h-50 img-fluid' src="src/assets/Logo.png" alt="Logo" />
+      <div className="col-12 d-sm-block d-md-none  text-center">
+        <img className='w-50 mt-5 h-50 img-fluid' src={logo} alt="Logo" />
       </div>
       <div className="row container-img">
         <div className="col-12 col-md-6 d-none d-md-block bg-color">
           <div className="logo mt-4 ms-3 ">
-            <img className='w-25 h-25 ms-4' src="src/assets/Logo.png" alt="Logo" />
+            <img className='w-25 h-25 ms-4' src={logo} alt="Logo" />
           </div>
           <div className="mailImg  text-center">
-            <img className="img-fluid mt-5" style={{ width: "100%", maxWidth: "507px", height: "auto" }} src="src/assets/forget-img.png" alt="Forget" />
+            <img className="img-fluid mt-5" style={{ width: "100%", maxWidth: "507px", height: "auto" }} src={side_Logout} alt="Forget" />
           </div>
         </div>
 
         <div className="col-12  mt-5 col-md-6 mb-5 d-flex justify-content-center align-items-center">
           <div className="from1 row mt-5  row mb-5 p-5">
-            <img className='d-sm-block d-md-none' src="src/assets/forget-img.png" alt="" />
+            <img className='d-sm-block d-md-none' src={side_Logout} alt="" />
             <h2>Enter OTP</h2>
             <p>Please enter the 6-digit code sent to your phone number.</p>
             <form className=''>

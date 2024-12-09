@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { resetpass } from '../apiservices/Authentication';
 import toast from 'react-hot-toast';
+import logo from "../assets/Logo.png"
+import side_Logout from "../assets/forget-img.png"
 
 export default function ResetPassword() {
     const navigate = useNavigate();
@@ -41,8 +43,8 @@ export default function ResetPassword() {
 
     return (
         <div className='container-fluid'>
-            <div className="col-12 d-block d-md-none mt-5 text-center">
-                <img className='w-50 h-50 img-fluid mb-5' src="src/assets/Logo.png" alt="Logo" />
+            <div className="col-12 d-block d-md-none  text-center">
+                <img className='w-50 h-50 img-fluid mb-5 mt-4' src={logo} alt="Logo" />
             </div>
             <div className="row container-img">
                 {/* Logo for small screens */}
@@ -50,10 +52,10 @@ export default function ResetPassword() {
                 {/* Left section for larger screens */}
                 <div className="col-12 col-md-6 d-none d-md-block bg-color">
                     <div className="logo mt-3 ">
-                        <img className='w-25 h-25 mt-4 ms-4' src="src/assets/Logo.png" alt="Logo" />
+                        <img className='w-25 h-25 mt-4 ms-4' src={logo} alt="Logo" />
                     </div>
                     <div className="mailImg  text-center">
-                        <img className="img-fluid mt-5" style={{ width: "100%", maxWidth: "507px", height: "auto" }} src="src/assets/forget-img.png" alt="Forget" />
+                        <img className="img-fluid mt-5" style={{ width: "100%", maxWidth: "507px", height: "auto" }} src={side_Logout} alt="Forget" />
                     </div>
                 </div>
 
@@ -62,7 +64,7 @@ export default function ResetPassword() {
                     <from className="from1 row mt-5 mb-5 p-3">
                         {/* Image for smaller screens */}
                         <div className="col-12 d-sm-block  d-md-none mb-4 text-center">
-                            <img style={{ height: "332.99px", width: "355.11px" }} className='img-fluid' src="src/assets/forget-img.png" alt="Forget" />
+                            <img style={{ height: "332.99px", width: "355.11px" }} className='img-fluid' src={side_Logout} alt="Forget" />
                         </div>
 
                         {/* Form Title */}
