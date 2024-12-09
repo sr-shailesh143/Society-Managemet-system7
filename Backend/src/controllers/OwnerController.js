@@ -1,21 +1,22 @@
 const Owner = require('../models/OwnerModel');
+const Tenant = require("../models/Tenantmodel");
+
 const cloudinary = require('../config/cloudinaryConfig');
 const fs = require("fs");
 const crypto = require("crypto");
 const sendOtpUi = require('../config/mailer');
 const { hash } = require('../utils/hashpassword');
 
-
-
-
+// Add Owner Data
 exports.CreateOwnerData = async (req, res) => {
     try {
+        // Function to generate a 6-digit random password
         function generatePassword(length = 6) {
             const password = crypto.randomInt(0, Math.pow(10, length)).toString();
             return password.padStart(length, "0");
         }
 
-        // Destructure data from the request body
+        // Destructure request body
         const {
             fullName,
             phoneNumber,
@@ -29,91 +30,54 @@ exports.CreateOwnerData = async (req, res) => {
             vehicleCounting,
             role,
             residentStatus,
-            unitStatus,
+            unitStatus
         } = req.body;
 
-        // Validate required fields
-        if (!fullName || !phoneNumber || !emailAddress || !age || !gender || !wing || !unit || !relation) {
-            return res.status(400).json({
-                success: false,
-                message: "All required fields must be provided.",
-            });
-        }
-
-        // Generate password and hash it
         const password = generatePassword();
-        const hashedPassword = await hash(password, 10);
+        const hashedPassword = await hash(password);
 
-        // Helper function to upload files to Cloudinary
+        // Helper function to upload files to Cloudinary and delete local copies
         const uploadAndDeleteLocal = async (fileArray) => {
             if (fileArray && fileArray[0]) {
                 const filePath = fileArray[0].path;
                 try {
                     const result = await cloudinary.uploader.upload(filePath);
                     fs.unlink(filePath, (err) => {
-                        
                     });
                     return result.secure_url;
                 } catch (error) {
                     throw error;
                 }
             }
-            return "";
+            return '';
         };
 
-        // Upload required documents
+        // Upload images
         const profileImage = await uploadAndDeleteLocal(req.files?.profileImage);
         const aadharFront = await uploadAndDeleteLocal(req.files?.aadharFront);
         const aadharBack = await uploadAndDeleteLocal(req.files?.aadharBack);
         const addressProof = await uploadAndDeleteLocal(req.files?.addressProof);
         const rentAgreement = await uploadAndDeleteLocal(req.files?.rentAgreement);
 
-        // Validate if required files are uploaded
-        if (!profileImage || !aadharFront || !aadharBack || !addressProof || !rentAgreement) {
+        // Validate required fields
+        if (
+            !fullName || !phoneNumber || !emailAddress || !age || !gender || !wing || 
+            !unit || !relation || !profileImage || !aadharFront || !aadharBack || 
+            !addressProof || !rentAgreement
+        ) {
             return res.status(400).json({
                 success: false,
-                message: "All files are required.",
+                message: "🚫 All fields are required!",
             });
         }
 
-        // Check if the Wing and Unit combination already exists
+        // Check for existing Wing and Unit
         const existingWingUnit = await Owner.findOne({ wing, unit });
         if (existingWingUnit) {
             return res.status(400).json({
                 success: false,
-                message: "This Wing and Unit combination already exists.",
+                message: "⚠️ This Wing and Unit combination already exists!",
             });
-        }
-
-        // Parse and validate the member and vehicle data, defaulting to empty arrays
-        let members = [];
-        if (memberCounting) {
-            try {
-                members = JSON.parse(memberCounting);
-                if (!Array.isArray(members)) {
-                    return res.status(400).json({
-                        success: false,
-                        message: "Member data must be an array.",
-                    });
-                }
-            } catch (err) {
-                members = [];
-            }
-        }
-
-        let vehicles = [];
-        if (vehicleCounting) {
-            try {
-                vehicles = JSON.parse(vehicleCounting);
-                if (!Array.isArray(vehicles)) {
-                    return res.status(400).json({
-                        success: false,
-                        message: "Vehicle data must be an array.",
-                    });
-                }
-            } catch (err) {
-                vehicles = [];
-            }
         }
 
         // Create a new Owner document
@@ -134,47 +98,66 @@ exports.CreateOwnerData = async (req, res) => {
             role: role || "resident",
             residentStatus: residentStatus || "Owner",
             unitStatus: unitStatus || "Occupied",
-            password: hashedPassword,
-            familyMembers: members, 
-            vehicles: vehicles, 
+            password: hashedPassword
         });
 
-        const savedOwner = await newOwner.save();
+        await newOwner.save();
 
+        // Send email with login details
         await sendOtpUi(
-            savedOwner.emailAddress,
-            "Registration Successful - Login Details",
-            `Dear ${savedOwner.fullName},\n\nYou have successfully registered as a resident.\n\nHere are your login details:\nEmail: ${savedOwner.emailAddress}\nPassword: <b>${password}</b>\n\nPlease keep this information secure.\n\nBest Regards,\nManagement`
+            newOwner.emailAddress,
+            "🎉 Registration Successful - Login Details",
+            `Dear ${newOwner.fullName},\n\nYou have successfully registered as a resident. 🏡\n\nHere are your login details:\n📧 Email: ${newOwner.emailAddress}\n🔑 Password: <b>${password}</b>\n\nPlease keep this information secure. 🔒\n\nBest Regards,\nManagement`
         );
+
+        // Add family members if provided
+        if (memberCounting) {
+            // const members = JSON.parse(memberCounting);
+            await Owner.updateOne(
+                { _id: newOwner._id },
+                { $push: { familyMembers: { $each: memberCounting } } }
+            );
+        }
+
+        // Add vehicles if provided
+        if (vehicleCounting) {
+            // const vehicles = JSON.parse(vehicleCounting);
+            await Owner.updateOne(
+                { _id: newOwner._id },
+                { $push: { vehicles: { $each: vehicleCounting } } }
+            );
+        }
 
         return res.status(201).json({
             success: true,
-            message: "Owner data added successfully.",
+            message: "✅ Owner data added successfully!",
         });
+
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Something went wrong while adding owner data.",
+            message: "🚨 Something went wrong while adding owner data.",
         });
     }
 };
-
-
 
 // Get All Owners
 exports.GetAllOwners = async (req, res) => {
     try {
         const owners = await Owner.find();
-        if (!owners.length) {
+        const terent = await Tenant.find() 
+        if (!owners.length || !terent.length) {
             return res.status(404).json({
                 success: false,
                 message: "❌ No owner data found!",
             });
         }
+
+        const mergeData = [...owners,terent]
         return res.status(200).json({
             success: true,
             message: "✅ Owners retrieved successfully!",
-            owners,
+            mergeData,
         });
     } catch (error) {
         return res.status(500).json({
@@ -216,6 +199,7 @@ exports.updateOwner = async (req, res) => {
   try {
       const { id } = req.params;
 
+      // Destructure request body
       const {
           fullName,
           phoneNumber,
@@ -229,6 +213,7 @@ exports.updateOwner = async (req, res) => {
           unitStatus,
       } = req.body;
 
+      // Validate required fields
       if (!fullName || !phoneNumber || !emailAddress || !age || !gender || !wing || !unit || !relation) {
           return res.status(400).json({
               success: false,
@@ -236,6 +221,7 @@ exports.updateOwner = async (req, res) => {
           });
       }
 
+      // Update owner details
       const updatedOwner = await Owner.findByIdAndUpdate(
           id,
           {
@@ -266,6 +252,7 @@ exports.updateOwner = async (req, res) => {
           owner: updatedOwner,
       });
   } catch (error) {
+     
       return res.status(500).json({
           success: false,
           message: "🚨 Something went wrong while updating the owner.",

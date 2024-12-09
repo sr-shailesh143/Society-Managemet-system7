@@ -93,14 +93,15 @@ body {
   box-shadow: 0 0 2px #bfbcbc;
 
 }
-.note{
- /* width: 98%; */
 
-padding: 20px ;
-gap: 10px;
-border-radius: 15px;
-opacity: 0px;
-background: rgba(255, 255, 255, 1);
+.note {
+  /* width: 98%; */
+
+  padding: 20px;
+  gap: 10px;
+  border-radius: 15px;
+  opacity: 0px;
+  background: rgba(255, 255, 255, 1);
 
 }
 
@@ -108,11 +109,13 @@ background: rgba(255, 255, 255, 1);
   text-align: left;
 
 }
-.form-check-input{
+
+.form-check-input {
   margin-left: 20px;
 }
-.form-check-label{
-  margin-right: 20px ;
+
+.form-check-label {
+  margin-right: 20px;
 }
 
 
@@ -357,15 +360,15 @@ background: rgba(255, 255, 255, 1);
   }
 }
 
-.uplod-text{
-font: "Poppins";
-font-size: 14px;
-font-weight: 700;
-line-height: 21px;
-text-align: left;
-text-underline-position: "from-font";
-text-decoration-skip-ink: none;
-color: rgba(86, 120, 233, 1);
+.uplod-text {
+  font: "Poppins";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  text-align: left;
+  text-underline-position: "from-font";
+  text-decoration-skip-ink: none;
+  color: rgba(86, 120, 233, 1);
 
 }
 
@@ -1113,18 +1116,18 @@ input[type="email"] {
   border-bottom-right-radius: 12px;
 }
 
-.Card{
+.Card {
   /* width: 370px; */
-/* height: 54px; */
-gap: 0px;
-border-radius: 10%  !important ;
-opacity: 0px;
+  /* height: 54px; */
+  gap: 0px;
+  border-radius: 10% !important;
+  opacity: 0px;
 
 }
 
 .balance-card-orange::before {
   background-color: #FFA64D;
-} 
+}
 
 .balance-card-green::before {
   background-color: #4CAF50;
@@ -2506,13 +2509,14 @@ opacity: 0px;
   border-radius: 15px 0px 0px 0px;
 
 }
-.input-redious{
+
+.input-redious {
   padding: 9px 13px 9px 13px;
   gap: 4px;
   border-radius: 15px;
   border: 1px solid rgba(32, 34, 36, 1);
   opacity: 0px;
-  
+
 }
 
 .redious1 {
@@ -2717,47 +2721,76 @@ opacity: 0px;
 .additional-info div {
   text-align: center;
 }
-.notification-bell{
-  width:  (32px);
-height:  (32px);
-padding: 3px ;
-gap: 10px;
-border-radius: 10px ;
-border: 1px 0px 0px 0px;
-opacity: 0px;
-border: 1px solid #D3D3D3;
-margin-right: 20px;
+
+.notification-bell {
+  width: (32px);
+  height: (32px);
+  padding: 3px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid #D3D3D3;
+  margin-right: 20px;
 }
 
-.hover-deshbord:hover{
+.hover-deshbord:hover {
   fill: white !important;
 }
+
 .hover-deshbord:hover path {
-  fill: white !important; /* Change fill to white on hover */
-  transition: fill 0.2s ease; /* Smooth transition effect */
+  fill: white !important;
+  /* Change fill to white on hover */
+  transition: fill 0.2s ease;
+  /* Smooth transition effect */
 }
-.custom-card-header{
+
+.custom-card-header {
   /* width: 370px; */
-height: 54px;
-gap: 0px;
-border-radius: 20px 20px ;
-opacity: 0px;
+  height: 54px;
+  gap: 0px;
+  border-radius: 20px 20px;
+  opacity: 0px;
 
 }
-.three-dot{
+
+.three-dot {
   background: #FFFFFF;
   border-radius: 4px;
   color: rgba(86, 120, 233, 1);
 }
-.dot-btn{
+
+.dot-btn {
   width: Fixed (100px);
-height:  (41px);
-padding: 10px ;
-gap: 10px;
-border-radius: 10px ;
-opacity: 0px;
+  height: (41px);
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+  opacity: 0px;
 
 }
 
+.uplode-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 150px;
+  border: 2px dashed  #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+.uploade{
+font-family: "Poppins";
+font-size: 14px;
+font-weight: 700;
+line-height: 21px;
+text-align: left;
+text-underline-position:" from-font";
+text-decoration-skip-ink: none;
+color:  rgba(86, 120, 233, 1);
+;
 
-
+}
