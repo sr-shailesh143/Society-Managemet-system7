@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { StoreUser } from '../redux/authslice';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
+import{side_img} from "../assets/sideIMG.png"
+import{LOGO} from "../assets/Logo.png"
 
 
 export default function Login() {
@@ -79,14 +81,14 @@ export default function Login() {
     return (
         <div className='container-fluid container-img ' >
             <div className="col-12 d-sm-block d-md-none   text-center">
-                <img className='w-70 h-50 img-fluid mt-5 ' src="src/assets/Logo.png" alt="Logo" />
+                <img className='w-70 h-50 img-fluid mt-5 ' src={LOGO} alt="Logo" />
             </div>
             <div className="row d-flex gap-5">
                 <div className="col-12 col-md-6 d-none d-md-flex bg-color justify-content-center align-items-center">
                     <div>
                         <img style={{ width: "230px", marginLeft: "-100px", marginTop: "-80px" }} className='' src="src/assets/Logo.png" alt="Logo" />
                         <div className="mailImg mt-5 text-center">
-                            <img style={{ width: "507px", height: "491px", position: "sticky" }} src="src/assets/sideIMG.png" alt="Logo" className="img-fluid mt-3" />
+                            <img style={{ width: "507px", height: "491px", position: "sticky" }} src={side_img} alt="Logo" className="img-fluid mt-3" />
                         </div>
                     </div>
                 </div>
