@@ -80,7 +80,7 @@ export default function Login() {
     return (
         <div className='container-fluid container-img ' >
             <div className="col-12 d-sm-block d-md-none   text-center">
-                <img className='w-70 h-50 img-fluid mt-5 ' src="src/assets/Logo.png" alt="Logo" />
+                <img className='w-70 h-50 img-fluid mt-5 ' src={logo} alt="Logo" />
             </div>
             <div className="row d-flex gap-5">
                 <div className="col-12 col-md-6 d-none d-md-flex bg-color justify-content-center align-items-center">
@@ -96,7 +96,7 @@ export default function Login() {
                     <form className="form-container from container radious border p-4" onSubmit={handleLogin} noValidate>
                         <div className="row">
                             <div className="col-12 d-sm-block d-md-none mt-5 text-center">
-                                <img className='w-75 h-75 img-fluid mb-5' src="src/assets/sideIMG.png" alt="Logo" />
+                                <img className='w-75 h-75 img-fluid mb-5' src={sideIMG} alt="Logo" />
                             </div>
 
                             <div className="col-12 mt-3">

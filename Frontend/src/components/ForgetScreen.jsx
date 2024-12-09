@@ -1,9 +1,13 @@
+
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "/src/hooks/useForm";
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { GetOtp } from '../apiservices/Authentication';
+import logo from "../assets/Logo.png"
+import side_Logout from "../assets/forget-img.png"
+
 
 
 export default function ForgetScreen() {
@@ -30,14 +34,14 @@ export default function ForgetScreen() {
 
     return (
         <div className='container-fluid'>
-            <div className="col-12 d-sm-block d-md-none mt-5 text-center">
-                <img className='w-50 h-50 img-fluid mb-5' src="src/assets/Logo.png" alt="Logo" />
+            <div className="col-12 d-sm-block d-md-none  text-center">
+                <img className='w-50 h-50 img-fluid mb-5 mt-5' src={logo} alt="Logo" />
             </div>
             <div className="row container-img">
 
                 <div className="col-12 col-md-6 d-none d-md-block bg-color">
                     <div className="logo">
-                        <img className='w-25 h-25 mt-5 ms-4' src="src/assets/Logo.png" alt="Logo" />
+                        <img className='w-25 h-25 mt-5 ms-4' src={logo} alt="Logo" />
                     </div>
                     <div className="mailImg mt-4 text-center">
                         <img  className="img-fluid mt-4" style={{ width: "100%", maxWidth: "507px", height: "auto"  ,position:"sticky"}} src="src/assets/forget-img.png" alt="Forget" />
@@ -47,7 +51,7 @@ export default function ForgetScreen() {
                 <div className="col-12 col-md-6 mt-5 d-flex justify-content-center align-items-center">
                     <from className="from1 row mb-5 mt-5 p-3">
                         <div className="col-12 d-sm-block d-md-none mb-4 text-center">
-                            <img style={{ height: "332.99px", width: "355.11px" }} className='img-fluid' src="src/assets/forget-img.png" alt="Forget" />
+                            <img style={{ height: "332.99px", width: "355.11px" }} className='img-fluid' src={side_Logout} alt="Forget" />
                         </div>
 
                         <h3 className='mt-5 mb-4'>Forget Password</h3>
