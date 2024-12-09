@@ -21,11 +21,7 @@ export default function Owner() {
 
     const [photo, setPhoto] = useState(null);
 
-    // const handleSelect = (option) => {
-    //     setSelectedOption(option);
-    //     setIsOpen(false);
-    // };
-    // Handle form input changes
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setOwnerData(prevState => ({
@@ -47,16 +43,10 @@ export default function Owner() {
         const { name, files: selectedFiles } = e.target;
         setFiles((prev) => ({
             ...prev,
-            [name]: selectedFiles[0], // Save only the first file
+            [name]: selectedFiles[0], 
         }));
     };
 
-
-    // Handle file input change
-
-
-    // Handle text input change
-   
 
 
     const handleSelect = (option) => {
@@ -98,7 +88,7 @@ export default function Owner() {
                 
             console.log(risponse);
             setloding(false)
-            // setOwnerData(null)
+           
         } catch (error) {
             console.log(error)
         }
@@ -121,7 +111,7 @@ export default function Owner() {
         const count = parseInt(e.target.value, 10);
         setMemberCount(count);
 
-        // Initialize form data for additional rows if required
+     
         if (count > formData.length) {
             const additionalRows = Array(count - formData.length).fill({});
             setFormData([...formData, ...additionalRows]);
@@ -133,7 +123,7 @@ export default function Owner() {
         const count = parseInt(e.target.value, 10);
         setvaicalCount(count);
 
-        // Add more rows to data array if needed
+       
         if (count > vehicleData.length) {
             const additionalRows = Array(count - vehicleData.length).fill({});
             setVehicleData([...vehicleData, ...additionalRows]);
@@ -403,9 +393,7 @@ export default function Owner() {
                     </div>
                 ))}
             </div>
-            {/* <button className="btn btn-primary mt-3" onClick={handleSubmit}>
-                Submit
-            </button> */}
+           
         </div>
         <div className="section-2 mt-3">
             <div className="header d-flex justify-content-between align-items-center">

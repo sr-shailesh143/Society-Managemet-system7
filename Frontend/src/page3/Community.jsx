@@ -64,7 +64,7 @@ export default function Community() {
 
   ];
   const handleVideoCall = () => {
-    setcamera(true); // Open the camera view (this will trigger the modal to show)
+    setcamera(true); 
   };
 
   return (
@@ -96,8 +96,7 @@ export default function Community() {
                     {chat.status === "typing" ? <span className="typing">Typing...</span> : chat.message}
                   </div>
                 </div>
-                {/* {chat.status === "unread" && <div className="badge">{chat.unreadCount}</div>} */}
-                {/* <span className=''><DoneAllIcon/></span> */}
+               
               </div>
             ))}
           </div>
@@ -151,8 +150,7 @@ export default function Community() {
                     {showEmojiPicker && (
                       <div style={{ position: 'absolute', top: '-440px', zIndex: 10, }}  >
                         <Picker onSelect={handleEmojiSelect} /> {/* v3 */}
-                        {/* For v5 */}
-                        {/* <Picker data={data} onEmojiSelect={handleEmojiSelect} /> */}
+                    
                       </div>
                     )}
                   </div>

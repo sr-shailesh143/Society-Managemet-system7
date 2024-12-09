@@ -13,7 +13,8 @@ export default function Question() {
   const [showQuestions, setShowQuestions] = useState(false);
   const [newQuestion, setNewQuestion] = useState({ title: '', content: '' });
 
-  const [vote, setVote] = useState(0); // Adding state to track the vote count
+  const [vote, setVote] = useState(0);
+
 
   const [chats] = useState([
     { id: 1, name: 'Michael John', message: 'Hi, John! How are you doing?', time: '10:27', status: 'read' },
@@ -26,15 +27,15 @@ export default function Question() {
 
   const [questions, setQuestions] = useState([
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
-    // Additional questions
+
   ]);
 
   const increaseVote = () => {
-    setVote(vote + 1); // Increase the vote count by 1
+    setVote(vote + 1);
   };
 
   const decreaseVote = () => {
-    setVote(vote - 1); // Decrease the vote count by 1
+    setVote(vote - 1);
   };
 
   const handleClick = () => {
@@ -139,137 +140,53 @@ export default function Question() {
               </div>
             </div>
           </nav>
-
-        
-            <div className="question-form-container d-flex flex-column justify-content-center align-items-center ">
-      <div className="d-flex flex-column align-items-center p-3" style={{ marginRight: "800px", marginBottom: "-180px" }}>
-     
-        <button
-          className="btn btn-outline-secondary btn-sm rounded-squeare bg-white"
-          onClick={increaseVote}
-          style={{
-            width: "30px",
-            height: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <i className="bi bi-caret-up text-dark" style={{ fontSize: "20px" }}></i> {/* Bootstrap Icon */}
-        </button>
-
-       
-        <span
-          id="voteCount"
-          className="my-2 fw-bold "
-          style={{ fontSize: "1.5rem", color: "#FE512E" }}
-        >
-          {vote}
-        </span>
-
-
-        <button
-          className="btn btn-outline-secondary btn-sm rounded-squeare bg-white"
-          onClick={decreaseVote}
-          style={{
-            width: "30px",
-            height: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <i className="bi bi-caret-down" style={{ color: "black", fontSize: "20px" }}></i> {/* Bootstrap Icon */}
-        </button>
-      </div>
-      <div
-        className="new-box"
-        style={{
-          backgroundColor: '#5678E90D',
-          marginBottom: '-4px',
-          borderRadius: '8px',
-          width: '100%',
-          maxWidth: '906px',
-          marginLeft: "200px",
-         
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
-    
-          <h5 className="text-start" style={{ marginRight: '10px' }}>
-            What is the capital of France?
-          </h5>
-
-       
-          <span
-            className="views text-end"
-            style={{
-              fontSize: '12px',
-              color: '#888',
-              display: 'inline-flex', 
-              alignItems: 'center',
-              background: 'white',
-              padding: '5px',
-              borderRadius: '30px',
-              textAlign: 'center',
-            }}
-          >
-            <i className="eye-icon" style={{ marginRight: '5px', color: '#4F4F4F' }}>
-              <FaEye />
-            </i>
-            20
-          </span>
-        </div>
-        <p className="text-start">
-          Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.
-        </p>
-        <hr style={{ color: "#F6F8FB", border: "2px solid" }} />
-
-        <h6 style={{ color: "#5678E9" }}>Answers</h6>
-        <ul>
-          <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
-          <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
-          <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
-        </ul>
-      </div>
-
-      <p style={{ marginLeft: "-85%", marginBottom: "-10px" }}>Your Answer</p>
-      <div
-        className="question-form "
-        style={{
-          width: '130%',
-          height: '129px',
-          backgroundColor: 'white',
-          boxShadow: 'none',
-          border: '1px solid #D3D3D3',
-          alignContent: 'center',
-          justifyContent: 'center',
-          marginLeft: '30%',
-        }}
-      >
-        <textarea
-          placeholder="Type Here"
-          value={newQuestion.content}
-          onChange={(e) => setNewQuestion({ ...newQuestion, content: e.target.value })}
-          className="form-control mb-2"
-          style={{ border: "none", height: "100px" }}
-        />
-      </div>
-      <button
-        onClick={handleAddQuestion}
-        style={{
-          background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
-          border: 'none',
-          color: 'white',
-          textAlign: 'right',
-          float: 'right',
-          marginRight: '-140%', 
-        }}
-      >
-        Post Your Answer
-      </button>
-    </div>
-    
+          <div className="question-form-container d-flex flex-column justify-content-center align-items-center ">
+            <div className="d-flex flex-column align-items-center p-3" style={{ marginRight: "800px", marginBottom: "-180px" }}>
+              <button className="btn btn-outline-secondary btn-sm rounded-squeare bg-white"
+                onClick={increaseVote} style={{ width: "30px", height: "30px", display: "flex", justifyContent: "center", alignItems: "center", }} >
+                <i className="bi bi-caret-up text-dark" style={{ fontSize: "20px" }}></i> {/* Bootstrap Icon */}
+              </button>
+              <span id="voteCount" className="my-2 fw-bold " style={{ fontSize: "1.5rem", color: "#FE512E" }}  >
+                {vote}
+              </span>
+              <button className="btn btn-outline-secondary btn-sm rounded-squeare bg-white" onClick={decreaseVote} style={{ width: "30px", height: "30px", display: "flex", justifyContent: "center", alignItems: "center", }} >
+                <i className="bi bi-caret-down" style={{ color: "black", fontSize: "20px" }}></i> {/* Bootstrap Icon */}
+              </button>
+            </div>
+            <div className="new-box" style={{ backgroundColor: '#5678E90D', marginBottom: '-4px', borderRadius: '8px', width: '100%', maxWidth: '906px', marginLeft: "200px", }}  >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
+                <h5 className="text-start" style={{ marginRight: '10px' }}>
+                  What is the capital of France?
+                </h5>
+                <span className="views text-end" style={{ fontSize: '12px', color: '#888', display: 'inline-flex', alignItems: 'center', background: 'white', padding: '5px', borderRadius: '30px', textAlign: 'center', }} >
+                  <i className="eye-icon" style={{ marginRight: '5px', color: '#4F4F4F' }}>
+                    <FaEye />
+                  </i>
+                  20
+                </span>
+              </div>
+              <p className="text-start">
+                Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.
+              </p>
+              <hr style={{ color: "#F6F8FB", border: "2px solid" }} />
+              <h6 style={{ color: "#5678E9" }}>Answers</h6>
+              <ul>
+                <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
+                <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
+                <li>Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your dummy content! Feel free to let me know if you need more examples or if there's anything specific you'd like to include in your.</li>
+              </ul>
+            </div>
+            <p style={{ marginLeft: "-85%", marginBottom: "-10px" }}>Your Answer</p>
+            <div
+              className="question-form "
+              style={{ width: '130%', height: '129px', backgroundColor: 'white', boxShadow: 'none', border: '1px solid #D3D3D3', alignContent: 'center', justifyContent: 'center', marginLeft: '30%', }} >
+              <textarea placeholder="Type Here" value={newQuestion.content} onChange={(e) => setNewQuestion({ ...newQuestion, content: e.target.value })} className="form-control mb-2"
+                style={{ border: "none", height: "100px" }} />
+            </div>
+            <button onClick={handleAddQuestion} style={{
+              background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', textAlign: 'right', float: 'right', marginRight: '-140%',
+            }} >Post Your Answer  </button>
+          </div>
         </div>
       </div>
     </div>

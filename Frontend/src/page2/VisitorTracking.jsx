@@ -73,7 +73,7 @@ const VisitorTracking = () => {
         await createVisitor(newVisitor);
       }
       handleCloseModal();
-      fetchVisitors(); // Fetch updated visitors list
+      fetchVisitors(); 
     } catch (error) {
       console.error(isEditing ? "Error updating visitor:" : "Error adding visitor:", error);
     }
@@ -89,7 +89,7 @@ const VisitorTracking = () => {
   const handleDeleteVisitor = async (id) => {
     try {
       await deleteVisitor(id);
-      fetchVisitors(); // Fetch updated visitors list
+      fetchVisitors(); 
     } catch (error) {
       console.error("Error deleting visitor:", error);
     }

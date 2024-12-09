@@ -102,7 +102,7 @@ export default function Expense() {
 
   }
 
-  // view modal 
+
 
   const [operviewModal, setoperviewModal] = useState(false)
   const handleClose = () => setoperviewModal(false);
@@ -140,7 +140,7 @@ export default function Expense() {
     
 
   }
-  // Styles for action buttons
+
   const EDITE = {
     backgroundColor: '#F6F8FB',
     padding: '10px 10px',

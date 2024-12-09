@@ -46,7 +46,7 @@ const Dashboard = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // Check if all fields are filled
+
     const isValid =
       editedNumber.Name.trim() !== "" &&
       editedNumber.Number.trim() !== "" &&
@@ -105,11 +105,7 @@ const Dashboard = () => {
 
 
 
-  // const handleShowEditNumberModal = (number) => {
-  //   setSelectedNumber(number);
-  //   setEditedNumber(number);
-  //   setShowEditNumberModal(true);
-  // };
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedNumber({ ...editedNumber, [name]: value });
@@ -431,41 +427,14 @@ const Dashboard = () => {
               style={{ borderRadius: "15px" }}
             >
               <Card.Body style={{ padding: "0" }}>
-                <div
-                  className="card-body-content"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div
-                    className="text-start total-b me-5"
-                    style={{
-                      fontWeight: "bold",
-                      marginLeft: "0",
-                    }}
-                  >
+                <div className="card-body-content" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", }} >
+                  <div className="text-start total-b me-5" style={{ fontWeight: "bold", marginLeft: "0", }} >
                     Total Balance<br />
-                    <h6
-                      className="text-start"
-                      style={{
-                        fontWeight: "bold",
-                        margin: "0",
-                      }}
-                    >
+                    <h6 className="text-start" style={{ fontWeight: "bold", margin: "0", }} >
                       ₹ 2,22,520
                     </h6>
                   </div>
-                  <img
-                    className="total-i"
-                    src={card.imgSrc}
-                    alt="Balance Icon"
-                    style={{
-                      maxWidth: "50px",
-                      height: "auto",
-                    }}
-                  />
+                  <img className="total-i" src={card.imgSrc} alt="Balance Icon" style={{ maxWidth: "50px", height: "auto", }} />
                 </div>
               </Card.Body>
 
@@ -473,7 +442,6 @@ const Dashboard = () => {
           </Col>
         ))}
       </Row>
-
       <Row>
         <Col xs={12} sm={12} md={6} lg={4} xl={6} xxl={6} >
           <Card className="mb-4" style={{ borderRadius: "15px", height: '460px' }}>
@@ -495,30 +463,15 @@ const Dashboard = () => {
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <Card.Title>Important Numbers</Card.Title>
-                <Button
-                  style={{
-                    background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                    border: "none",
-                    color: "white",
-                  }}
-                  size="sm"
-                  onClick={() => setShowAddNumberModal(true)}
-                >
+                <Button style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white", }} size="sm" onClick={() => setShowAddNumberModal(true)} >
                   <FaPlus className="me-1" />
                   Add
                 </Button>
               </div>
-              <ListGroup
-                variant="flush"
-                className="scrollable-list"
-                style={{ maxHeight: "290px", overflowY: "auto" }}
-              >
+              <ListGroup variant="flush" className="scrollable-list" style={{ maxHeight: "290px", overflowY: "auto" }} >
                 {Array.isArray(importantNumbers) && importantNumbers.length > 0 ? (
                   importantNumbers.map((item, index) => (
-                    <ListGroup.Item
-                      key={item._id || index}
-                      className="d-flex justify-content-between align-items-center"
-                    >
+                    <ListGroup.Item key={item._id || index} className="d-flex justify-content-between align-items-center">
                       <div>
                         <div style={{ color: "grey" }}>
                           <strong style={{ color: "black" }}>Name:</strong> {item.Name}
@@ -532,7 +485,6 @@ const Dashboard = () => {
                       </div>
                       <div className="d-flex">
                         <span onClick={() => handleDeleteNumber(item._id)} className={`status-badge-delete ms-2 `} style={DELETE}>
-
                           <svg className='cursor' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.0697 5.23C19.4597 5.07 17.8497 4.95 16.2297 4.86V4.85L16.0097 3.55C15.8597 2.63 15.6397 1.25 13.2997 1.25H10.6797C8.34967 1.25 8.12967 2.57 7.96967 3.54L7.75967 4.82C6.82967 4.88 5.89967 4.94 4.96967 5.03L2.92967 5.23C2.50967 5.27 2.20967 5.64 2.24967 6.05C2.28967 6.46 2.64967 6.76 3.06967 6.72L5.10967 6.52C10.3497 6 15.6297 6.2 20.9297 6.73C20.9597 6.73 20.9797 6.73 21.0097 6.73C21.3897 6.73 21.7197 6.44 21.7597 6.05C21.7897 5.64 21.4897 5.27 21.0697 5.23Z" fill="#E74C3C" />
                             <path d="M19.2297 8.14C18.9897 7.89 18.6597 7.75 18.3197 7.75H5.67975C5.33975 7.75 4.99975 7.89 4.76975 8.14C4.53975 8.39 4.40975 8.73 4.42975 9.08L5.04975 19.34C5.15975 20.86 5.29975 22.76 8.78975 22.76H15.2097C18.6997 22.76 18.8398 20.87 18.9497 19.34L19.5697 9.09C19.5897 8.73 19.4597 8.39 19.2297 8.14ZM13.6597 17.75H10.3297C9.91975 17.75 9.57975 17.41 9.57975 17C9.57975 16.59 9.91975 16.25 10.3297 16.25H13.6597C14.0697 16.25 14.4097 16.59 14.4097 17C14.4097 17.41 14.0697 17.75 13.6597 17.75ZM14.4997 13.75H9.49975C9.08975 13.75 8.74975 13.41 8.74975 13C8.74975 12.59 9.08975 12.25 9.49975 12.25H14.4997C14.9097 12.25 15.2497 12.59 15.2497 13C15.2497 13.41 14.9097 13.75 14.4997 13.75Z" fill="#E74C3C" />
@@ -550,8 +502,7 @@ const Dashboard = () => {
                       </div>
                     </ListGroup.Item>
                   ))
-                ) : (
-                  <ListGroup.Item>No important numbers found.</ListGroup.Item>
+                ) : (<ListGroup.Item>No important numbers found.</ListGroup.Item>
                 )}
               </ListGroup>
             </Card.Body>
@@ -578,45 +529,20 @@ const Dashboard = () => {
                 </Form.Group>
                 <Form.Group controlId="formNumber" className="mb-3">
                   <Form.Label>Phone Number</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter phone number"
-                    name="Number"
-                    value={editedNumber.Number}
-                    onChange={(e) => setEditedNumber({ ...editedNumber, Number: e.target.value })}
-                  />
+                  <Form.Control type="text" placeholder="Enter phone number" name="Number" value={editedNumber.Number} onChange={(e) => setEditedNumber({ ...editedNumber, Number: e.target.value })} />
                 </Form.Group>
                 <Form.Group controlId="formWork" className="mb-3">
                   <Form.Label>Work</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter work type"
-                    name="Work"
-                    value={editedNumber.Work}
-                    onChange={(e) => setEditedNumber({ ...editedNumber, Work: e.target.value })}
-                  />
+                  <Form.Control type="text" placeholder="Enter work type" name="Work" value={editedNumber.Work} onChange={(e) => setEditedNumber({ ...editedNumber, Work: e.target.value })} />
                 </Form.Group>
               </Form>
             </Modal.Body>
             <Modal.Footer className="justify-content-center">
-              <Button
-                variant="secondary"
-                className="p-3"
-                onClick={() => {
-                  setShowEditNumberModal(false);
-                  setEditedNumber({ Name: "", Number: "", Work: "" });
-                }}
-              >
-                Cancel
+              <Button variant="secondary" className="p-3" onClick={() => { setShowEditNumberModal(false); setEditedNumber({ Name: "", Number: "", Work: "" }); }} > Cancel
               </Button>
-              <Button
-                style={{
-                  background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-                  border: "none",
-                  width: "45%",
-                }}
-                className="p-3"
-                onClick={handleEditNumber}
+              <Button style={{
+                background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", width: "45%",
+              }} className="p-3" onClick={handleEditNumber}
               >
                 Save
               </Button>
@@ -670,19 +596,13 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-
-
       </Row>
       <Row>
         {/* Complaint List */}
-
-
-
         <Col xs={12} md={12} lg={9}>
           <Box className="radious mt-1 mb-2 ms-2" bgcolor={"white"} sx={{ height: '350px', width: '99%', padding: "10px" }}>
             <div className="d-flex justify-content-between align-items-center ">
               <Card.Title className='ms-3'>Complaint List</Card.Title>
-
               <select id="dropdown-basic-button" title="select month" style={{ border: "1px solid grey", borderRadius: "8px", padding: "12px 14px 12px 14px" }} className='p-1 mx-4' size="sm">
                 <option href="#action1">Last Year</option>
                 <option href="#action2">Last Week</option>
@@ -702,14 +622,10 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-
                   {datalist.map((item) => (
                     <tr >
-                      <td>
-                        {
-                          item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
-                            <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>
-                        }
+                      <td> {item.complainerName === "" || item.img === "" ? <span><img src="\src\assets\blenck.png" alt="" /> <span>--</span></span> :
+                        <span><img src="\src\assets\Avatar.png" alt="" /> <span>  {item.complainerName}</span> </span>}
                       </td>
                       <td > <spa className='ms-3'> {item.complaintName}</spa> </td>
 
@@ -718,11 +634,8 @@ const Dashboard = () => {
                         month: '2-digit',
                         year: '2-digit',
                       })}</span>  </td>
-                      <td >
-                        {
-                          item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
-                        }
-                      </td>
+                      <td >  {item.priority === "Medium" ? <span style={Medium}>{item.priority}</span> : item.priority === "Low" ? <span style={Low}>{item.priority}</span> : <span style={High}>{item.priority}</span>
+                      } </td>
                       <td >
                         {
                           item.status === "Pending" ? <span style={Pending}>{item.status}</span> : item.status === "Open" ? <span style={Open}>{item.status}</span> : <span style={Solve}>{item.status}</span>
@@ -764,22 +677,14 @@ const Dashboard = () => {
 
         <Col xs={12} sm={12} md={12} lg={12} xl={3}>
           <Card className="mb-4 scroll" style={{ borderRadius: "15px", height: "350px", overflowY: "hidden" }}>
-
-
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center">
                 <Card.Title>Upcoming Activity</Card.Title>
-                <select
-                  id="dropdown-basic-button"
-                  title="Select Month"
+                <select id="dropdown-basic-button" title="Select Month"
                   style={{
-                    border: "1px solid grey",
-                    borderRadius: "5px",
-                    padding: "5px",
-                    fontSize: "14px",
+                    border: "1px solid grey", borderRadius: "5px", padding: "5px", fontSize: "14px",
                   }}
-                  className="p-1"
-                >
+                  className="p-1" >
                   <option value="lastYear">Last Year</option>
                   <option value="lastWeek">Last Week</option>
                   <option value="lastMonth">Last Month</option>
@@ -791,29 +696,14 @@ const Dashboard = () => {
                 <p style={{ color: "red" }}>{error}</p>
               ) : (
 
-                <div
-                  style={{
-                    maxHeight: "250px",
-                    overflowY: "auto",
-                  }}
-                >
+                <div style={{ maxHeight: "250px", overflowY: "auto", }} >
                   <ListGroup variant="flush" className="mt-3">
                     {eventsData.map((item, index) => (
                       <ListGroup.Item key={index} className="d-flex align-items-start">
-                        <div
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            backgroundColor: getRandomColor(),
-                            borderRadius: "50%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "white",
-                            marginRight: "10px",
-                            fontSize: "14px",
-                          }}
-                        >
+                        <div style={{
+                          width: "30px", height: "30px", backgroundColor: getRandomColor(), borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+                          color: "white", marginRight: "10px", fontSize: "14px",
+                        }} >
                           {(item.event?.charAt(0) || "N").toUpperCase()}
                         </div>
                         <div className="d-flex justify-content-between w-100">
@@ -835,27 +725,13 @@ const Dashboard = () => {
             </Card.Body>
           </Card>
         </Col>
-
-
-
         {/* <ListGroup variant="flush" className="mt-3">
 
                   {eventsData.map((item, index) => (
                     <ListGroup.Item key={index} className="d-flex align-items-start">
                       <div
-                        style={{
-                          width: "30px",
-                          height: "30px",
-                          backgroundColor: getRandomColor(),
-                          borderRadius: "50%",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: "white",
-                          marginRight: "10px",
-                          fontSize: "14px",
-                        }}
-                      >
+                        style={{ width: "30px", height: "30px", backgroundColor: getRandomColor(), borderRadius: "50%",  display: "flex", alignItems: "center", justifyContent: "center",
+                          color: "white", marginRight: "10px",  fontSize: "14px", }} >
                         {(item.event?.charAt(0) || "N").toUpperCase()}
                       </div>
                       <div className="d-flex justify-content-between w-100">
@@ -869,15 +745,12 @@ const Dashboard = () => {
                           <small style={{ color: "grey" }}>{formatLocalDate(item.announcementDate)}</small>
                         </div>
                       </div>
-                    </ListGroup.Item>
-
-                  ))}
+                    </ListGroup.Item> ))}
                 </ListGroup>
               )}
             </Card.Body>
           </Card>
         </Col> */}
-
       </Row>
       {/* Modals  for complain table*/}
       {/* Add Important Number Modal */}
@@ -889,32 +762,15 @@ const Dashboard = () => {
           <form>
             <div className="mb-3">
               <label>Name</label>
-              <input
-                type="text"
-                name="Name"
-                value={editedNumber.Name}
-                onChange={handleInputChange}
-                className="form-control"
-              />
+              <input type="text" name="Name" value={editedNumber.Name} onChange={handleInputChange} className="form-control" />
             </div>
             <div className="mb-3">
               <label>Phone</label>
-              <input
-                type="text"
-                name="Number"
-                value={editedNumber.Number}
-                onChange={handleInputChange}
-                className="form-control"
-              />
+              <input type="text" name="Number" value={editedNumber.Number} onChange={handleInputChange} className="form-control" />
             </div>
             <div className="mb-3">
               <label>Work</label>
-              <input
-                type="text"
-                name="Work"
-                value={editedNumber.Work}
-                onChange={handleInputChange}
-                className="form-control"
+              <input type="text" name="Work" value={editedNumber.Work} onChange={handleInputChange} className="form-control"
               />
             </div>
           </form>
@@ -923,18 +779,11 @@ const Dashboard = () => {
           <button onClick={handleCloseModal} className="btn btn-secondary p-3" style={{ width: "45%" }}>
             Cancel
           </button>
-          <button
-            onClick={selectedNumber ? handleEditNumber : handleAddNumber}
-            className="btn p-3"
+          <button onClick={selectedNumber ? handleEditNumber : handleAddNumber} className="btn p-3"
             style={{
-              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
-              border: "none",
-              color: "white",
-              width: "45%"
-            }}
-            disabled={!isFormValid}
-          >
-            {selectedNumber ? "Save Changes" : "Add Number"}
+              background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white", width: "45%"
+            }} disabled={!isFormValid}  >
+            {selectedNumber ? "Save " : "Add Number"}
           </button>
         </Modal.Footer>
       </Modal>
@@ -964,15 +813,9 @@ const Dashboard = () => {
             </div>
             <div className="complete-name mt-3">
               <Form.Label>Description <span style={{ color: "red" }}>*</span></Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={2}
-                placeholder='Enter Description'
-                onChange={(e) => setContent({
-                  ...content, description: e.target.value
-                })}
-                value={content.description}
-              />
+              <Form.Control as="textarea" rows={2} placeholder='Enter Description' onChange={(e) => setContent({
+                ...content, description: e.target.value
+              })} value={content.description} />
             </div>
             <div className="complete-name mt-2 row d-flex">
               <div className="complent-UnitNumber col-12 col-md-6">
@@ -1028,26 +871,10 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="d-flex gap-3 mt-3">
-              <Button
-                className=" cancel-btn radious  "
-                style={{ border: "1px solid #D3D3D3", }}
-                variant=""
-                onClick={handlecancleEdit}
-              >
+              <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={handlecancleEdit} >
                 Cancel
               </Button>
-              <Button
-                className="save-btn radious l-btn "
-                style={{
-                  color: "white",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-
-                onClick={edithandel}
-              >
-                Save
-              </Button>
+              <Button className="save-btn radious l-btn p-3" style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edithandel} >  Save </Button>
             </div>
           </Modal.Body>
         </div>
@@ -1062,29 +889,14 @@ const Dashboard = () => {
         </Modal.Body>
         <Modal.Footer>
           <div className="d-flex gap-3 mt-3">
-            <Button
-              className="save-btn radious   "
-              style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }}
-              variant="outlined"
-              onClick={() => setshowDelete(false)}
-            >
+            <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }} variant="outlined" onClick={() => setshowDelete(false)} >
               Cancel
             </Button>
-            <Button
-              className="save-btn radious  text-white "
-              style={{
-                backgroundColor: "#E74C3C",
-                border: "none",
-                cursor: "pointer"
-              }}
-              onClick={() => deletecomplelnt(id)}
-            >
-              Conform
+            <Button className="save-btn radious  text-white " style={{ backgroundColor: "#E74C3C", border: "none", cursor: "pointer" }} onClick={() => deletecomplelnt(id)} > Conform
             </Button>
           </div>
         </Modal.Footer>
       </Modal>
-
       <Modal show={showview} onHide={handleClose}  >
         <div className="div" style={{ borderRadius: "10%" }}>
           <Modal.Header className='bg-white' style={{ height: "60px" }}>
@@ -1096,7 +908,6 @@ const Dashboard = () => {
             </span>
           </Modal.Header>
           <Modal.Body className='viewcomplete'>
-
             <div className="profile-name d-flex gap-2 ">
               <div className="" style={{ width: "70px", height: "70px", }}>
                 <img src="\src\assets\Avatar.png" alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
@@ -1110,7 +921,6 @@ const Dashboard = () => {
                 })}</p>
               </div>
             </div>
-
             <div className="requistname mt-2">
               <h6 className='mode-date fs-5'>
                 Request Name

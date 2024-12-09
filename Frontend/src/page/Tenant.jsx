@@ -21,11 +21,7 @@ export default function Tenant() {
 
     const [photo, setPhoto] = useState(null);
 
-    // const handleSelect = (option) => {
-    //     setSelectedOption(option);
-    //     setIsOpen(false);
-    // };
-    // Handle form input changes
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setTerentData(prevState => ({
@@ -42,21 +38,14 @@ export default function Tenant() {
         profileImage:null
     });
 
-    // Handle file selection
+   
     const handleFileChange = (e) => {
         const { name, files: selectedFiles } = e.target;
         setFiles((prev) => ({
             ...prev,
-            [name]: selectedFiles[0], // Save only the first file
+            [name]: selectedFiles[0], 
         }));
     };
-
-
-    // Handle file input change
-
-
-    // Handle text input change
-   
 
 
     const handleSelect = (option) => {

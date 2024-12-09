@@ -12,21 +12,21 @@ export default function UpdateProfile() {
     country: "",
     state: "",
     city: "",
-    image: "", // image field for saving the image in formData
+    image: "",
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null); // For displaying the selected image in the UI
+  const [selectedImage, setSelectedImage] = useState(null); 
   const [profiles, setProfiles] = useState([]);
 
-  // Fetch profiles on component mount
+ 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
         const response = await getProfiles();
         setProfiles(response.data);
-        // Set formData to the first profile fetched if available
+      
         if (response.data && response.data.length > 0) {
-          const profile = response.data[0];  // Assuming we use the first profile for edit
+          const profile = response.data[0]; 
           setFormData(profile);
         }
       } catch (error) {
@@ -55,36 +55,36 @@ export default function UpdateProfile() {
 
   const handleCancel = () => {
     setIsEditing(false);
-    // Reset the form to original profile data
-    const profile = profiles[0];  // Assuming we reset to the first profile
+   
+    const profile = profiles[0];  
     setFormData(profile);
-    setSelectedImage(null); // Reset selected image
+    setSelectedImage(null); 
   };
 
   const handleSave = async () => {
     setIsEditing(false);
   
-    // Prepare FormData to handle both image and text fields
+   
     const formDataToSubmit = new FormData();
   
-    // Append all text fields from formData to formDataToSubmit
+   
     for (let key in formData) {
       if (key !== "image") {
         formDataToSubmit.append(key, formData[key]);
       }
     }
   
-    // If an image is selected, append it as a file
+   
     if (formData.image && formData.image instanceof File) {
-      formDataToSubmit.append("image", formData.image);  // Append the image file
+      formDataToSubmit.append("image", formData.image); 
     }
   
     try {
-      // Check if it's an update or a new profile
+     
       if (formData._id) {
-        await updateProfile(formData._id, formDataToSubmit);  // Update profile
+        await updateProfile(formData._id, formDataToSubmit);  
       } else {
-        await createProfile(formDataToSubmit);  // Create new profile
+        await createProfile(formDataToSubmit);  
       }
     } catch (error) {
       console.error("Error saving profile:", error);
@@ -94,13 +94,13 @@ export default function UpdateProfile() {
   
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0]; // Only take the first file
+    const file = e.target.files[0]; 
     if (file) {
-      // If a file is selected, set it in the formData
-      setSelectedImage(URL.createObjectURL(file));  // For previewing the image
-      setFormData({ ...formData, image: file });    // Set the file in the form data
+      
+      setSelectedImage(URL.createObjectURL(file)); 
+      setFormData({ ...formData, image: file });   
     } else {
-      // If no file is selected, reset the image field to null
+   
       setFormData({ ...formData, image: null });
     }
   };

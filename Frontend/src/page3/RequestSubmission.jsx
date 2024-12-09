@@ -177,8 +177,6 @@ export default function RequestSubmission() {
                                         >
                                             {complaint.status}
                                         </span>
-
-
                                     </p>
 
                                     <p className="card-text">
@@ -191,9 +189,7 @@ export default function RequestSubmission() {
                     ))}
                 </div>
             </div>
-
-            {/* Create Complaint Modal */}
-
+            {/* Create Complaint Modal  */}
             <Modal className='complet-model' show={showModal} >
                 <div className="model">
                     <Modal.Header>
@@ -278,31 +274,17 @@ export default function RequestSubmission() {
                             </div>
                         </div>
                         <div className="d-flex gap-3 mt-3">
-                            <Button
-                                className=" cancel-btn radious  "
-                                style={{ border: "1px solid #D3D3D3", }}
-                                variant=""
-                                onClick={() => setShowModal(false)}
-                            >
+                            <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={() => setShowModal(false)}  >
                                 Cancel
                             </Button>
                             <Button
-                                className="save-btn radious l-btn "
-                                style={{
-                                    color: "white",
-                                    border: "none",
-                                    cursor: "pointer"
-                                }}
-
-                                onClick={handleInputChange}
-                            >
+                                className="save-btn radious l-btn " style={{ color: "white", border: "none", cursor: "pointer" }} onClick={handleInputChange} >
                                 Save
                             </Button>
                         </div>
                     </Modal.Body>
                 </div>
             </Modal>
-
             {/* Delete Confirmation Modal */}
             <Modal show={showDeleteModal}>
                 <Modal.Header>
@@ -313,32 +295,16 @@ export default function RequestSubmission() {
                 </Modal.Body>
                 <Modal.Footer>
                     <div className="d-flex gap-3 mt-3">
-                        <Button
-                            className="save-btn radious   "
-                            style={{
-
-                                color: "#202224",
-                                border: "1px solid #D3D3D3",
-                                cursor: "pointer"
-                            }}
-                            variant="outlined"
-                            onClick={handleClose}
-                        >
+                        <Button className="save-btn radious   " style={{ color: "#202224", border: "1px solid #D3D3D3", cursor: "pointer" }}
+                            variant="outlined" onClick={handleClose} >
                             Cancel
                         </Button>
-                        <Button
-                            className="save-btn radious  text-white "
-                            style={{
-                                backgroundColor: "#E74C3C",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
-                            onClick={() => handlenDeleteModal(id)}
-                        >
+                        <Button className="save-btn radious  text-white " style={{ backgroundColor: "#E74C3C", border: "none", cursor: "pointer" }} onClick={() => handlenDeleteModal(id)}  >
                             Conform
                         </Button>
                     </div>
                 </Modal.Footer>
+         
             </Modal>
         </div>
     )

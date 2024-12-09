@@ -98,12 +98,6 @@ function App() {
 
         <Route path='/profile' element={<Layout component={<UpdateProfile />} />} />
         {/* resident */}
-
-
-
-
-
-
         {/* Security */}
         <Route path='/VisitorTracking' element={<SecurityLayout component={<VisitorTracking />} />} />
         <Route path="/EmergencyManagement" element={<SecurityLayout component={<EmergencyManagement />} />} />
