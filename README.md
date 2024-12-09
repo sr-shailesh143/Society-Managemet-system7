@@ -1,6 +1,6 @@
-# 🏢 Society Management System (MERN Stack)
+# 🏢 Society-Managemet-system7 (MERN Stack)
 
-The **Society Management System** is a web-based application built using the **MERN Stack** (MongoDB, Express, React, Node.js). This platform facilitates society management operations across **Admin**, **Resident**, and **Security** panels.
+The **Society-Managemet-system7** is a web-based application built using the **MERN Stack** (MongoDB, Express, React, Node.js). This platform facilitates society management operations across **Admin**, **Resident**, and **Security** panels.
 
 ---
 
@@ -141,7 +141,7 @@ Backend - npm start
 
 - https://society-managemet-system7-87o7.onrender.com
 
-# Society Management System - Technologies Used
+# Society-Managemet-system7 - Technologies Used
 
 This project utilizes a set of modern technologies for both the frontend and backend to ensure a seamless and efficient experience for users. Below is a list of the key technologies used in the development of this system.
 
@@ -149,7 +149,7 @@ This project utilizes a set of modern technologies for both the frontend and bac
 
 ## Frontend Technologies
 
-The **frontend** of the Society Management System is designed to provide an interactive and responsive user interface. The following technologies are used:
+The **frontend** of the Society-Managemet-system7 is designed to provide an interactive and responsive user interface. The following technologies are used:
 
 ### 1. **React**
 
@@ -175,7 +175,7 @@ The **frontend** of the Society Management System is designed to provide an inte
 
 ## Backend Technologies
 
-The **backend** of the Society Management System is responsible for handling business logic, user authentication, data management, and communication with the database. Below are the technologies used:
+The **backend** of the Society-Managemet-system7 is responsible for handling business logic, user authentication, data management, and communication with the database. Below are the technologies used:
 
 ### 1. **Node.js**
 
@@ -205,7 +205,7 @@ The **backend** of the Society Management System is responsible for handling bus
 
 ## Database
 
-The **database** stores all the data for the Society Management System. The following database technology is used:
+The **database** stores all the data for the Society-Managemet-system7. The following database technology is used:
 
 ### 1. **MongoDB**
 
@@ -222,9 +222,9 @@ In addition to the core technologies, several other tools and libraries are used
 - **Mongoose**: A library used to interact with MongoDB in an easier and more structured way.
 - **Moment.js**: Used for handling and formatting dates and times.
 
-# Sample Data for Society Management System
+# Sample Data for Society-Managemet-system7
 
-This document provides the sample login data for different roles in the **Society Management System7**. You can use these credentials to test the functionalities of the system.
+This document provides the sample login data for different roles in the **Society-Managemet-system7**. You can use these credentials to test the functionalities of the system.
 
 
 ### THANKS FOR GIVING YOUR ATTENTION !
