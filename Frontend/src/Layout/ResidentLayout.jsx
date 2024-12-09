@@ -15,6 +15,8 @@ import { IoMdCalendar } from "react-icons/io";
 import { GiShirtButton } from "react-icons/gi";
 import { IoWallet } from "react-icons/io5";
 import { GiSecurityGate } from "react-icons/gi";
+import logo from "../assets/Logo.png"
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 export default function ResidentManageMentLayout({ component }) {
     const [show, setShow] = useState(false);
@@ -187,7 +189,7 @@ left:-23px;
                     <div className="  layout  col-12 col-md-3 side-bar    ">
                         <Logo className="mt-1">
                             <Link to={"/deshbord"}>
-                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                            <img className='sidebar-logo' src={logo} alt="Logo" />
                             </Link>
                             <center>
                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">

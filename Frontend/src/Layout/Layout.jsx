@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutuser } from '../redux/authslice';
 import { toast } from "react-hot-toast";
 import { getProfiles } from '../apiservices/profileservice';
+import logo from "../assets/Logo.png"
 
 export default function Layout({ component }) {
     const [show, setShow] = useState(false);
@@ -215,7 +216,7 @@ left:-23px;
                     <div className="  layout  col-12 col-md-3 side-bar   ">
                         <Logo className="mt-1">
                             <Link to={"/deshbord"}>
-                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                                <img className='sidebar-logo' src={logo} alt="Logo" />
                             </Link>
                             <center>
                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">

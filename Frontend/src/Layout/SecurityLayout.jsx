@@ -17,8 +17,7 @@ import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { IoMdClose } from "react-icons/io";
 import { FaGreaterThan } from "react-icons/fa6";
-
-
+import logo from "../assets/Logo.png"
 
 
 export default function SecurityLayout({ component }) {
@@ -193,7 +192,7 @@ left:-23px;
                     <div className="  layout  col-12 col-md-3 side-bar   ">
                         <Logo className="mt-1">
                             <Link to={"/deshbord"}>
-                                <img className='sidebar-logo' src="src/assets/Logo.png" alt="Logo" />
+                            <img className='sidebar-logo' src={logo} alt="Logo" />
                             </Link>
                             <center>
                                 <div style={{ border: "1px solid #F4F4F4" }} className="  mt-5 ">
