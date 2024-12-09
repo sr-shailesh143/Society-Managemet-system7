@@ -101,7 +101,7 @@ To get started, clone the repository to your local machine using the following c
 
 - https://github.com/sr-shailesh143/Society-Managemet-system7.git
 
---
+
 
 ## Install Commands
 
@@ -113,7 +113,7 @@ cd Backend
 
 - npm install
 
---
+
 
 ## Folder structure
 
@@ -121,7 +121,7 @@ Client side - ./Frontend
 
 Server side - ./Backend
 
---
+
 
 ## Project run commands
 
@@ -129,7 +129,7 @@ Frontend - npm run dev
 
 Backend - npm start
 
---
+
 
 ## Live url
 
