@@ -544,12 +544,18 @@ const Dashboard = () => {
             <Modal.Footer className="justify-content-center">
               <Button variant="secondary" className="p-3" onClick={() => { setShowEditNumberModal(false); setEditedNumber({ Name: "", Number: "", Work: "" }); }} > Cancel
               </Button>
-              <Button style={{
-                background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", width: "45%",
-              }} className="p-3" onClick={handleEditNumber}
-              >
-                Save
-              </Button>
+            
+              <Button
+                  className="save-btn radious l-btn "
+                  style={{
+                    color: "white",
+                    border: "none",
+                    cursor: "pointer"
+                  }}
+                  onClick={handleEditNumber}
+                >
+                  Save
+                </Button>
             </Modal.Footer>
           </Modal>
 
@@ -561,9 +567,15 @@ const Dashboard = () => {
               Are you sure you want to delete this number?
             </Modal.Body>
             <Modal.Footer>
-              <button onClick={handleCloseModal} className="btn btn-secondary p-3">
-                Cancel
-              </button>
+             
+              <Button
+                  className=" cancel-btn radious  "
+                  style={{ border: "1px solid #D3D3D3", }}
+                  variant=""
+                  onClick={handleCloseModal}
+                >
+                  Cancel
+                </Button>
               <button onClick={handleDeleteNumber} className="btn btn-danger p-3">
                 Delete
               </button>
@@ -780,10 +792,16 @@ const Dashboard = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleCloseModal} className="btn btn-secondary p-3" style={{ width: "45%" }}>
-            Cancel
-          </button>
-          <button onClick={selectedNumber ? handleEditNumber : handleAddNumber} className="btn p-3"
+        
+          <Button
+                  className=" cancel-btn radious  "
+                  style={{ border: "1px solid #D3D3D3", }}
+                  variant=""
+                  onClick={handleCloseModal} 
+                >
+                  Cancel
+                </Button>
+          <button onClick={selectedNumber ? handleEditNumber : handleAddNumber} className="cancel-btn radious m-2"
             style={{
               background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)", border: "none", color: "white", width: "45%"
             }} disabled={!isFormValid}  >
@@ -875,9 +893,15 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="d-flex gap-3 mt-3">
-              <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={handlecancleEdit} >
-                Cancel
-              </Button>
+             
+              <Button
+                  className=" cancel-btn radious  "
+                  style={{ border: "1px solid #D3D3D3", }}
+                  variant=""
+                  onClick={handlecancleEdit}
+                >
+                  Cancel
+                </Button>
               <Button className="save-btn radious l-btn p-3" style={{ color: "white", border: "none", cursor: "pointer" }} onClick={edithandel} >  Save </Button>
             </div>
           </Modal.Body>

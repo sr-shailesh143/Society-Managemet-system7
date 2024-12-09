@@ -230,13 +230,13 @@ const Announcement = () => {
             </Form.Group>
           </Row >
             <Modal.Footer>
-            <Button onClick={handleModalClose} style={{width:"47%",alignItems:"center",justifyContent:"center",background:"lightgrey",border:"none",color:"white"}} className="mt-3 p-3">
+            <Button onClick={handleModalClose} style={{width:"47%",alignItems:"center",justifyContent:"center",background:"lightgrey",border:"none",color:"white"}} className="cancel-btn radious">
               Cancel
             </Button>
             <Button type="submit"style={{ background: "linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)",
             border: "none",
             color: "white",
-            width:"47%",alignItems:"center",justifyContent:"center"}} className="mt-3 p-3">
+            width:"47%",alignItems:"center",justifyContent:"center"}} className="save-btn radious l-btn">
               Save
             </Button>
             </Modal.Footer>
@@ -285,10 +285,10 @@ const Announcement = () => {
           Are you sure you want to delete this announcement?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}className="p-3">
+          <Button variant="secondary" onClick={handleCloseModal}className="cancel-btn radious">
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDelete}className="p-3">
+          <Button variant="danger" onClick={handleDelete}className="p-3 cancel-btn radious m-2">
             Delete
           </Button>
         </Modal.Footer>
