@@ -18,6 +18,10 @@ export default function ServiceComplain() {
         complainerName: "",
         complaintName: "",
         description: "",
+
+
+
+        
         wing: "",
         unit: "",
 
@@ -77,7 +81,6 @@ export default function ServiceComplain() {
         }
 
     };
-
     return (
         <div className='container-fluid'>
 
@@ -252,12 +255,7 @@ export default function ServiceComplain() {
                             </div>
                         </div>
                         <div className="d-flex gap-3 mt-3">
-                            <Button
-                                className=" cancel-btn radious  "
-                                style={{ border: "1px solid #D3D3D3", }}
-                                variant=""
-                                onClick={() => setShowModal(false)}
-                            >
+                            <Button className=" cancel-btn radious  " style={{ border: "1px solid #D3D3D3", }} variant="" onClick={() => setShowModal(false)} >
                                 Cancel
                             </Button>
                             <Button
@@ -275,10 +273,7 @@ export default function ServiceComplain() {
                                     !compleltData.wing ||
                                     !compleltData.unit ||
                                     !prourity
-                                }
-                            >
-                                Save
-                            </Button>
+                                }  >   Save </Button>
 
                         </div>
                     </Modal.Body>
@@ -308,15 +303,7 @@ export default function ServiceComplain() {
                         >
                             Cancel
                         </Button>
-                        <Button
-                            className="save-btn radious  text-white "
-                            style={{
-                                backgroundColor: "#E74C3C",
-                                border: "none",
-                                cursor: "pointer"
-                            }}
-                            onClick={() => handleDeleteComplaint(id)}
-                        >
+                        <Button className="save-btn radious  text-white " style={{ backgroundColor: "#E74C3C", border: "none", cursor: "pointer" }} onClick={() => handleDeleteComplaint(id)} >
                             Conform
                         </Button>
                     </div>

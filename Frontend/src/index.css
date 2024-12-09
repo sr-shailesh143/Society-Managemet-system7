@@ -1487,3 +1487,6 @@ body {
 .card-body-content {
   gap: 8px; 
 }
+.polls-type{
+  width: 100% !important;
+}

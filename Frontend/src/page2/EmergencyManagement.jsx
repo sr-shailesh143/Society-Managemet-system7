@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createAlert } from '../apiservices/emergencyservice'; 
-import { toast } from "react-toastify";  // Import ToastContainer and toast
+import { toast } from "react-toastify";  
 
 
 export default function EmergencyManagement() {

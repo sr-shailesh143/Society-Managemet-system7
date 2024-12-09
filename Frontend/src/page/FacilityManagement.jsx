@@ -167,7 +167,7 @@ const FacilityManagement = () => {
                     </div>
                     <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       <p style={{ fontSize: '0.85em', color: 'gray' }}><strong >Description</strong><br /><p className='text-dark'>{facility.description}</p></p>
-                      {/* <p><strong>Reminder</strong>: {facility.remindBefore}</p> */}
+                    
                     </div>
                   </div>
                 </div>

@@ -22,10 +22,13 @@ const Announcement = () => {
       const response = await getAnnouncements();
       setAnnouncements(response.data.records);
     } catch (error) {
+
+
+
       toast.error("Error fetching announcements:", error);
+
     }
   };
-
   useEffect(() => {
     fetchAnnouncements();
   }, []);
@@ -172,7 +175,7 @@ const Announcement = () => {
       setCurrentAnnouncement({ ...currentAnnouncement, type: e.target.value })
     }
     required
-    className="w-100"  // Ensures full width
+    className="w-100"  
   >
     <option value="">Select Type</option>
     <option value="Event">Event</option>
@@ -245,7 +248,7 @@ const Announcement = () => {
       <Modal show={viewModal} onHide={handleCloseModal}>
   <Modal.Header>
     <Modal.Title>View Announcement</Modal.Title>
-    {/* Custom Close Button */}
+
     <button onClick={handleCloseModal}  style={{background: 'none', border: 'none',  fontSize: '30px', color: 'grey', cursor: 'pointer', position: 'absolute',  right: '-20px', top: '-5px', }} >
       &times;
     </button>

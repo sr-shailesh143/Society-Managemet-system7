@@ -204,16 +204,15 @@ export default function SecurityGuard() {
     cursor: "pointer"
   };
 
-  // Function to handle image click
+ 
   const handleImageClick = (imageUrl) => {
-    setSelectedImage(imageUrl); // Set the clicked image
-    setIsModalOpen(true); // Open the modal
+    setSelectedImage(imageUrl); 
+    setIsModalOpen(true); 
   };
 
-  // Function to close the modal
   const handleCloseModal = () => {
-    setSelectedImage(null); // Clear the selected image
-    setIsModalOpen(false); // Close the modal
+    setSelectedImage(null); 
+    setIsModalOpen(false);
   };
 
   return (
@@ -255,7 +254,7 @@ export default function SecurityGuard() {
                       src={item.photo || "src/assets/Avatar.png"}
                       alt={item.fullName || "User"}
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleImageClick(item.photo)} // Add click handler
+                      onClick={() => handleImageClick(item.photo)} 
                     />
                     <span className="ms-2">{item.fullName}</span>
                   </span>
@@ -319,7 +318,7 @@ export default function SecurityGuard() {
               ))}
             </tbody>
           </table>
-           {/* Modal for showing the clicked image */}
+        
       {isModalOpen && selectedImage && (
         <div
           style={{
@@ -334,7 +333,7 @@ export default function SecurityGuard() {
             alignItems: "center",
             zIndex: 1000,
           }}
-          onClick={handleCloseModal} // Close modal on background click
+          onClick={handleCloseModal}
         >
           <div
             style={{
@@ -611,10 +610,7 @@ export default function SecurityGuard() {
 
 
           <Modal.Header className='bg-white' style={{ height: "60px", }}>
-            {/* <Modal.Title>
-           
-           
-          </Modal.Title> */}
+            
             <DialogTitle sx={{ m: 0, p: 0 }} id="customized-dialog-title">
               <h> View Security Guard Details </h>
             </DialogTitle>
@@ -624,7 +620,7 @@ export default function SecurityGuard() {
             </span>
           </Modal.Header>
           <Modal.Body className='viewcomplete'>
-            {/* profile */}
+        
             <div className="profile-name d-flex gap-2 ">
               <div className="" style={{ width: "70px", height: "70px", }}>
                 <img src={ViewSecurityData.photo} alt="" style={{ width: "70px", height: "70px", border: "3px solid #F4F4F4", borderRadius: "50%" }} />
@@ -639,8 +635,7 @@ export default function SecurityGuard() {
               </div>
             </div>
 
-            {/* wing-unit-priority-status */}
-
+           
             <div className="additional-info1 gap-3  ">
 
               <div className=' ' >

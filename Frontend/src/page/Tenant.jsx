@@ -96,6 +96,7 @@ export default function Tenant() {
         try {
             setloding(true)
             const risponse = await CreateTenant(data)
+            console.log(risponse);
             setloding(false)
             // setOwnerData(null)
         } catch (error) {

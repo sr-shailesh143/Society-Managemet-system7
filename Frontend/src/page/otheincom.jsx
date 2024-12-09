@@ -70,8 +70,7 @@ const Otherincome = () => {
 
     useEffect(() => {
         fetchIncomes();
-    }, []); // Empty dependency array to only run on mount
-
+    }, []);
     const fetchIncomes = async () => {
         try {
             const response = await GetIncomes();
@@ -118,7 +117,7 @@ const Otherincome = () => {
             if (selectedIncome?._id) {
                 await UpdateIncome(selectedIncome._id, formData);
                 fetchIncomes();
-                setShowEditModal(false); // Close the modal after updating
+                setShowEditModal(false); 
             }
         } catch (error) {
             console.error('Error updating income:', error);
@@ -269,14 +268,13 @@ const Otherincome = () => {
                 </Modal.Footer>
             </Modal>
 
-            {/* Edit Income Modal */}
+           
             <Modal show={showEditModal} onHide={() => setShowEditModal(false)} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Other Income</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                         {/* Title Field */}
       <Form.Group className="mb-3">
         <Form.Label>
           Title <span style={{ color: "red" }}>*</span>
@@ -288,8 +286,6 @@ const Otherincome = () => {
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
       </Form.Group>
-
-      {/* Date and Due Date Fields */}
       <Form.Group className="mb-3 d-flex gap-2">
         <div className="w-50">
           <Form.Label>
@@ -313,7 +309,6 @@ const Otherincome = () => {
         </div>
       </Form.Group>
 
-      {/* Description Field */}
       <Form.Group className="mb-3">
         <Form.Label>
           Description <span style={{ color: "red" }}>*</span>
@@ -327,7 +322,7 @@ const Otherincome = () => {
         />
       </Form.Group>
 
-      {/* Amount Field */}
+    
       <Form.Group className="mb-3">
         <Form.Label>
           Amount <span style={{ color: "red" }}>*</span>

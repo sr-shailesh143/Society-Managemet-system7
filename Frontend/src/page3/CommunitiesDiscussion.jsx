@@ -6,13 +6,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { CiSearch } from 'react-icons/ci';
 import { Link } from "react-router-dom";
 export default function CommunitiesDiscussion() {
-
-
   const [selectedChat, setSelectedChat] = useState(null);
   const [open, setOpen] = useState(false);
   const [showQuestions, setShowQuestions] = useState(false);
   const [newQuestion, setNewQuestion] = useState({ title: '', content: '' });
-
   const [chats] = useState([
     { id: 1, name: 'Michael John', message: 'Hi, John! How are you doing?', time: '10:27', status: 'read' },
     { id: 2, name: 'Elizabeth Sarah', message: 'Thank you for your order!', time: '9:20', status: 'read' },
@@ -21,7 +18,6 @@ export default function CommunitiesDiscussion() {
     { id: 5, name: 'Esther Howard', message: 'Hello, Esther', time: '10:27', status: 'read' },
     { id: 6, name: 'Community', message: 'Hello, Esther', time: '10:27', status: 'read' },
   ]);
-
   const [questions, setQuestions] = useState([
 
     { votes: 0, answers: 1, views: 20, title: 'What is the capital of France?', content: 'Feel free to let me know if you need more examples or if there\'s anything specific you\'d like to include in your dummy content!' },
@@ -49,7 +45,6 @@ export default function CommunitiesDiscussion() {
       setShowQuestions(false);
     }
   };
-
   const titles = [
     'How to improve React performance?',
     'What is the best JavaScript framework?',
@@ -59,12 +54,10 @@ export default function CommunitiesDiscussion() {
     'How to create reusable components in React?',
     'What is React Context and when should you use it?'
   ];
-
   const getRandomTitle = () => {
     const randomIndex = Math.floor(Math.random() * titles.length);
     return titles[randomIndex];
   };
-
   useEffect(() => {
     setNewQuestion({ ...newQuestion, title: getRandomTitle() });
   }, []);
@@ -107,7 +100,6 @@ export default function CommunitiesDiscussion() {
             ))}
           </div>
         </div>
-
         <div className="col-12 col-md-7 side-chet " style={{ height: '904px' }}>
           <nav className="nav-bar-chet">
             <div className="ms-2 d-flex justify-content-between">
@@ -134,21 +126,11 @@ export default function CommunitiesDiscussion() {
               </div>
             </div>
           </nav>
-
-
           {showQuestions ? (
             <div className="question-form-container d-flex flex-column justify-content-center align-items-center ">
               <div
                 className="new-box"
-                style={{
-                  backgroundColor: '#5678E91A',
-                  marginBottom: '-4px',
-                  borderRadius: '8px',
-                  width: '100%',
-                  maxWidth: '806px',
-                  border: '4px solid #5678E9',
-                }}
-              >
+                style={{ backgroundColor: '#5678E91A', marginBottom: '-4px', borderRadius: '8px', width: '100%', maxWidth: '806px', border: '4px solid #5678E9', }} >
                 <h5 className="text-start">Writing a good question</h5>
                 <p className="text-start">
                   You're ready to <span className="text-primary">ask</span> a <span className="text-primary">programming-related question</span> and this form will help guide you through the process.
@@ -166,38 +148,17 @@ export default function CommunitiesDiscussion() {
                   <li>Review your question and post it to the site.</li>
                 </ul>
               </div>
-
-
               <div
                 className="question-form "
-                style={{
-                  width: '130%',
-                  height: '229px',
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
-                  border: '1px solid #D3D3D3',
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  marginLeft: '30%',
-                }}
-              >
+                style={{ width: '130%', height: '229px', backgroundColor: 'transparent', boxShadow: 'none', border: '1px solid #D3D3D3', alignContent: 'center', justifyContent: 'center', marginLeft: '30%', }} >
                 <p>Title</p>
                 <p>Be specific and imagine you're asking a question to another person.</p>
-                <textarea
-                  placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-                  value={newQuestion.content}
-                  onChange={(e) => setNewQuestion({ ...newQuestion, content: e.target.value })}
-                  className="form-control mb-2"
+                <textarea placeholder="e.g. Is there an R function for finding the index of an element in a vector?" value={newQuestion.content} onChange={(e) => setNewQuestion({ ...newQuestion, content: e.target.value })} className="form-control mb-2"
                 />
                 <button
                   onClick={handleAddQuestion}
                   className="btn btn-success w-10"
-                  style={{
-                    background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)',
-                    border: 'none',
-                    color: 'white',
-                  }}
-                >
+                  style={{ background: 'linear-gradient(90deg, rgb(254, 81, 46) 0%, rgb(240, 150, 25) 100%)', border: 'none', color: 'white', }}  >
                   Next
                 </button>
               </div>
@@ -217,71 +178,31 @@ export default function CommunitiesDiscussion() {
                         </h5>
                       </div>
                       <h5 className="message-question">
-                        {/* Wrap each question with a Link component */}
-
-
+                      
                       </h5>
-                      <span
-                        className="views"
-                        style={{
-                          fontSize: '12px',
-                          color: '#888',
-                          display: 'flex',
-                          alignItems: 'center',
-                          background: 'white',
-                          padding: '5px',
-                          borderRadius: '30px',
-                          textAlign: 'center',
-                        }}
-                      >
+                      <span className="views" style={{ fontSize: '12px', color: '#888', display: 'flex', alignItems: 'center', background: 'white', padding: '5px', borderRadius: '30px', textAlign: 'center', }}>
                         <i className="eye-icon" style={{ marginRight: '5px', color: '#4F4F4F' }}>
                           <FaEye />
                         </i>
                         {question.views}
                       </span>
                     </div>
-                    <div
-                      className="message-footer"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginTop: '10px',
-                      }}
-                    >
-                      <div
-                        className="answer-section"
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <span
-                          className="answers text-primary"
-                          style={{
-                            fontSize: '12px',
-                            marginRight: '30px',
-                          }}
-                        >
-                          {question.answers} answers
+                    <div className="message-footer"
+                      style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '10px', }} >
+                      <div className="answer-section"
+                        style={{ display: 'flex', alignItems: 'center', }} >
+                        <span className="answers text-primary"
+                          style={{ fontSize: '12px', marginRight: '30px', }}  >  {question.answers} answers
                         </span>
                         <span
                           className="message-text"
-                          style={{
-                            fontSize: '14px',
-                            flexShrink: 0,
-                          }}
-                        >
-                          {question.content}
-                        </span>
+                          style={{ fontSize: '14px', flexShrink: 0, }} > {question.content}  </span>
                       </div>
                     </div>
                   </div>
                 </Link>
               ))}
             </div>
-
-
           )}
         </div>
       </div>

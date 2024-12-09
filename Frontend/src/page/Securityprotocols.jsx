@@ -193,14 +193,7 @@ const SecurityProtocols = () => {
               <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} name="description" value={newProtocol.description} onChange={handleChange} placeholder="Enter protocol description" />
             </Form.Group>
-            {/* <Form.Group className="mb-3">
-              <Form.Label>Date</Form.Label>
-              <Form.Control type="date" name="date" value={newProtocol.date} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Time</Form.Label>
-              <Form.Control type="time" name="time" value={newProtocol.time} onChange={handleChange} />
-            </Form.Group> */}
+           
           </Form>
         </Modal.Body>
         <Modal.Footer style={{ textAlign: 'center', justifyContent: 'center' }}>
