@@ -135,7 +135,7 @@ Backend - npm start
 
 **Frontend Url**
 
-- https://society-managemet-system7-2.onrender.com
+- https://society-managemet-system7-3dlb.vercel.app/
 
 **Backend Url**
 
