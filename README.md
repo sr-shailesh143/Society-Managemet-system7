@@ -1,4 +1,4 @@
-# 🏢 Society-Managemet-system7 (MERN Stack)
+# ⛩️🏡 Society-Managemet-system7 (MERN Stack) 🏡⛩️ 
 
 The **Society-Managemet-system7** is a web-based application built using the **MERN Stack** (MongoDB, Express, React, Node.js). This platform facilitates society management operations across **Admin**, **Resident**, and **Security** panels.
 
