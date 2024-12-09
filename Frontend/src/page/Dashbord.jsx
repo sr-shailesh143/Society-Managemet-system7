@@ -15,7 +15,10 @@ import { createnumber, deletenumber, updatenumber, viewnumber } from '../apiserv
 import { Box, DialogTitle } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { getAnnouncements } from '../apiservices/announcementservice';
-
+import button_img1 from "../assets/button1.png"
+import button_img2 from "../assets/button2.png"
+import button_img3 from "../assets/button3.png"
+import button_img4 from "../assets/button4.png"
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const [showEditNumberModal, setShowEditNumberModal] = useState(false);
@@ -420,10 +423,10 @@ const Dashboard = () => {
     <Container fluid key={""}>
       <Row className="mb-3">
         {[
-          { color: "orange", imgSrc: "src/assets/button1.png" },
-          { color: "green", imgSrc: "src/assets/button2.png" },
-          { color: "blue", imgSrc: "src/assets/button3.png" },
-          { color: "pink", imgSrc: "src/assets/button4.png" },
+          { color: "orange", imgSrc:  button_img1 },
+          { color: "green", imgSrc: button_img2 },
+          { color: "blue", imgSrc: button_img3 },
+          { color: "pink", imgSrc: button_img4},
         ].map((card, index) => (
           <Col xs={12} sm={6} md={6} lg={3} className="mb-3" key={index}>
             <Card
