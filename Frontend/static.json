@@ -1,6 +1,11 @@
 {
     "redirects": [
       { "source": "/*", "destination": "/index.html", "type": 200 }
-    ]
+    ],
+    "headers": {
+      "/**": {
+        "Cache-Control": "no-cache"
+      }
+    }
   }
   
