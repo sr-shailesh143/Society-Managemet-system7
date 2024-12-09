@@ -43,11 +43,9 @@ exports.CreateOwnerData = async (req, res) => {
                 try {
                     const result = await cloudinary.uploader.upload(filePath);
                     fs.unlink(filePath, (err) => {
-                        if (err) console.error("❌ Error deleting local file:", err);
                     });
                     return result.secure_url;
                 } catch (error) {
-                    console.error("❌ Error uploading to Cloudinary:", error);
                     throw error;
                 }
             }
@@ -136,7 +134,6 @@ exports.CreateOwnerData = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Error adding owner data:", error);
         return res.status(500).json({
             success: false,
             message: "🚨 Something went wrong while adding owner data.",
@@ -163,7 +160,6 @@ exports.GetAllOwners = async (req, res) => {
             mergeData,
         });
     } catch (error) {
-        console.error("❌ Error retrieving owners:", error);
         return res.status(500).json({
             success: false,
             message: "🚨 Something went wrong while retrieving owners.",
@@ -191,7 +187,6 @@ exports.getOwnerById = async (req, res) => {
           owner,
       });
   } catch (error) {
-      console.error("❌ Error retrieving owner by ID:", error);
       return res.status(500).json({
           success: false,
           message: "🚨 Something went wrong while retrieving the owner.",
@@ -257,7 +252,7 @@ exports.updateOwner = async (req, res) => {
           owner: updatedOwner,
       });
   } catch (error) {
-      console.error("❌ Error updating owner:", error);
+     
       return res.status(500).json({
           success: false,
           message: "🚨 Something went wrong while updating the owner.",
@@ -283,7 +278,6 @@ exports.deleteOwnerById = async (req, res) => {
           message: "✅ Owner deleted successfully!",
       });
   } catch (error) {
-      console.error("❌ Error deleting owner:", error);
       return res.status(500).json({
           success: false,
           message: "🚨 Something went wrong while deleting the owner.",
@@ -312,7 +306,6 @@ exports.updateOwnerById = async (req, res) => {
           owner: updatedOwner,
       });
   } catch (error) {
-      console.error("❌ Error updating owner by ID:", error);
       return res.status(500).json({
           success: false,
           message: "🚨 Something went wrong while updating the owner.",
@@ -330,7 +323,6 @@ exports.getTotalOccupiedUnits = async (req, res) => {
     const uniqueOccupiedUnits = new Set([...tenantUnits, ...ownerUnits].map(unit => unit.Unit));
     res.status(200).json({ success: true, UnitTotal: uniqueOccupiedUnits.size });
   } catch (error) {
-    console.error("Error calculating occupied units:", error);
     res.status(500).json({ success: false, message: "Error calculating occupied units" });
   }
 };

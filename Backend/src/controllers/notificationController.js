@@ -1,18 +1,16 @@
 const Notification = require("../models/notificationModel");
 
-// Fetch all notifications
 exports.fetchAllNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find()
       .populate({
-        path: "users.userId", // Updated to match renamed field
+        path: "users.userId",
         select: "Full_name Unit Wing FirstName LastName",
         model: function (doc) {
           return doc.model;
         },
       });
 
-    // Format notifications with enhanced user details
     const formattedNotifications = notifications.map((notification) => {
       const formattedUsers = notification.users.map((user) => {
         if (user.userModel === "Owner" || user.userModel === "Tenant") {
@@ -47,7 +45,6 @@ exports.fetchAllNotifications = async (req, res) => {
       notifications: formattedNotifications,
     });
   } catch (error) {
-    console.error("Error fetching notifications:", error);
     return res.status(500).json({
       success: false,
       message: "❌ Error fetching notifications.",
@@ -55,33 +52,27 @@ exports.fetchAllNotifications = async (req, res) => {
   }
 };
 
-// Fetch filtered notifications
 exports.fetchFilteredNotifications = async (req, res) => {
-  const { notificationId, startDate, endDate } = req.query; // Query params for filtering
+  const { notificationId, startDate, endDate } = req.query; 
 
   try {
-    // Build query conditions
     let query = {};
 
-    // Filter by notification ID if provided
     if (notificationId) {
-      query._id = notificationId; // Match by ObjectId
+      query._id = notificationId;
     }
 
-    // Filter by date range if startDate and endDate are provided
     if (startDate && endDate) {
       query.createdAt = {
         $gte: new Date(startDate),
         $lte: new Date(endDate),
-      }; // Date range
+      }; 
     }
 
-    // Find notifications based on the constructed query
     const notifications = await Notification.find(query)
-      .populate("users.userId") // Updated to match renamed field
+      .populate("users.userId") 
       .exec();
 
-    // Check if any notifications were found
     if (!notifications.length) {
       return res.status(404).json({
         success: false,
@@ -95,7 +86,6 @@ exports.fetchFilteredNotifications = async (req, res) => {
       notifications,
     });
   } catch (error) {
-    console.error("Error fetching notifications:", error);
     return res.status(500).json({
       success: false,
       message: "❌ Error fetching notifications.",

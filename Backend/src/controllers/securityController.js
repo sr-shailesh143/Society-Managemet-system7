@@ -5,7 +5,6 @@ const cloudinary = require("../config/cloudinaryConfig");
 exports.addSecurity = async (req, res) => {
     try {
         const { fullName, MailOrPhone, gender, shift, shiftDate, shiftTime } = req.body;
-        console.log(req.body);
 
        
         if (!fullName || !MailOrPhone || !gender || !shift || !shiftDate || !shiftTime ) {
@@ -39,7 +38,6 @@ exports.addSecurity = async (req, res) => {
         await newSecurity.save();
         res.status(201).json({ message: "Security personnel added successfully.", security: newSecurity });
     } catch (error) {
-        console.error("Error adding security personnel:", error);
         res.status(500).json({ error: "Server error while adding security personnel" });
     }
 };
@@ -61,7 +59,6 @@ exports.getAllSecurity = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 
@@ -82,7 +79,6 @@ exports.getSecurityById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -129,7 +125,6 @@ exports.updateSecurity = async (req, res) => {
         await security.save();
         res.status(200).json({ message: "Security personnel updated successfully", security });
     } catch (error) {
-        console.error("Error updating security personnel:", error);
         res.status(500).json({ error: "Error updating security personnel" });
     }
 };
@@ -154,6 +149,5 @@ exports.deleteSecurity = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

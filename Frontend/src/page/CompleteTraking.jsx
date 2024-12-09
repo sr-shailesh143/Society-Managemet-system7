@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import { createComplaint, getAllComplaints, GetComplaint, deleteComplaint, updateComplaint } from "../apiservices/complaintservice"
 import { useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
+import toast from 'react-hot-toast';
 
 export default function CompleteTracking() {
   const [show, setshow] = useState(false)
@@ -66,14 +67,13 @@ export default function CompleteTracking() {
         status: status1,
       }
 
-      const respons = await createComplaint(data)
-      console.log(respons)
+     await createComplaint(data)
       getalldata()
       setshow(false)
       naviget("/traking")
 
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
 
   }
@@ -93,7 +93,7 @@ export default function CompleteTracking() {
       setviewdetils(respons.data.record)
 
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
@@ -116,7 +116,7 @@ export default function CompleteTracking() {
       setStatus3(response.data.data.status)
       setStatus2(response.data.data.priority)
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
@@ -130,17 +130,17 @@ export default function CompleteTracking() {
         unit: content.unit,
         priority: status2,
         status: status3,
-      }
-      console.log(data)
-      const response = await updateComplaint(content._id, data)
-      console.log(response.data.data)
-      seteditShow(false)
-      getalldata()
-
+      };
+  
+      await updateComplaint(content._id, data);
+  
+      toast.success("Complaint updated successfully!");
+  
+      seteditShow(false);
+      getalldata();
     } catch (error) {
-
+      toast.error("Failed to update complaint. Please try again.");
     }
-
   }
 
   const EDITE = {

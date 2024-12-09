@@ -8,9 +8,7 @@ exports.createSecurityProtocol = async (req, res) => {
    
     const newProtocol = new SecurityProtocol({
       title,
-      description,
-      // date: date || undefined, 
-      // time: time || undefined   
+      description, 
     });
 
     await newProtocol.save();
@@ -36,7 +34,6 @@ exports.getAllSecurityProtocols = async(req,res)=>{
           });
       }
   } catch (error) {
-      console.log(error);
   }
 }
 
@@ -57,7 +54,6 @@ exports.getSecurityProtocolById = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -102,6 +98,5 @@ exports.deleteSecurityProtocol = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };

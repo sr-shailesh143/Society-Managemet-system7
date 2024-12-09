@@ -33,7 +33,7 @@ exports.getAllAlerts = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
+       
     }
   }
 
@@ -54,7 +54,6 @@ exports.getAlertById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -87,7 +86,6 @@ exports.updateAlert = async(req,res)=>{
         });
       }
     } catch (error) {
-       console.log(error)
     }
    }
   
@@ -112,6 +110,5 @@ exports.deleteAlert = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

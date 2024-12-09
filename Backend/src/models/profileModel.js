@@ -9,7 +9,7 @@ const profileSchema = new mongoose.Schema({
   country: { type: String, required: true },
   state: { type: String, required: true },
   city: { type: String, required: true },
-  image: { type: String,  required: true}, // URL of the uploaded image
+  image: { type: String,  required: true}, 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Profile', profileSchema);

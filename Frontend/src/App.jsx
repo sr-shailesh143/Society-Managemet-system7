@@ -28,7 +28,7 @@ import Securityprotocols from './page/Securityprotocols';
 import Icome from './page/Icome';
 import Otherincome from './page/otheincom';
 import InvoicePage from './page3/InvoicePage';
-import VisitorTracking from './page2/Visitortracking';
+import VisitorTracking from './page2/VisitorTracking';
 import ServiceComplain from './page3/ServiceComplain';
 import ResidentManageMentLayout from './Layout/ResidentLayout';
 import PersonalDetail from './page3/PersonalDetail';
@@ -44,7 +44,7 @@ import { ToastContainer } from 'react-toastify';
 import Polls from './page3/Polls';
 import CommunitiesDiscussion from './page3/CommunitiesDiscussion';
 import Requesttracking from './page/Requesttraking';
-import Viewotherincome from './page/VIEWOTHERINCOME.JSX';
+import Viewotherincome from './page/Viewotherincome';
 import Question from './page3/Question';
 function App() {
   return (

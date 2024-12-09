@@ -40,7 +40,6 @@ const Dashboard = () => {
       fetchImportantNumbers();
     } catch (error) {
       toast.error("Failed to Delete number. Please try again.");
-      console.error("Failed to delete number:", error);
     }
   };
   const [isFormValid, setIsFormValid] = useState(false);
@@ -77,7 +76,6 @@ const Dashboard = () => {
       fetchImportantNumbers();
       toast.success("Number added successfully!");
     } catch (error) {
-      console.error("Error adding number:", error);
       toast.error("Failed to add number. Please try again.");
     }
   };
@@ -91,10 +89,10 @@ const Dashboard = () => {
       if (data && Array.isArray(data.ImpNumber)) {
         setImportantNumbers(data.ImpNumber);
       } else {
-        console.error("Expected array, but got:", data);
+        toast.error("Expected array, but got:", data);
       }
     } catch (error) {
-      console.error("Failed to fetch important numbers:", error);
+      toast.error("Failed to fetch important numbers:", error);
     }
   };
 
@@ -116,7 +114,7 @@ const Dashboard = () => {
   };
   const handleEditNumber = async () => {
     if (!editedNumber.Name || !editedNumber.Number || !editedNumber.Work) {
-      console.warn("All fields are required.");
+      toast.warn("All fields are required.");
       return;
     }
     try {
@@ -135,7 +133,7 @@ const Dashboard = () => {
       setEditedNumber({ Name: "", Number: "", Work: "" });
     } catch (error) {
       toast.error("Failed to Edit number. Please try again.");
-      console.error("Error updating number:", error);
+      toast.error("Error updating number:", error);
     }
   };
   const [pendingMaintenances, setPendingMaintenances] = useState([
@@ -161,7 +159,7 @@ const Dashboard = () => {
 
       try {
         const response = await getAnnouncements();
-        console.log("API Response:", response);
+        toast.log("API Response:", response);
 
 
         if (response && response.data && Array.isArray(response.data.records)) {
@@ -170,7 +168,7 @@ const Dashboard = () => {
           setError("No announcements found or data is in an unexpected format");
         }
       } catch (err) {
-        console.error("Error fetching announcements:", err);
+        toast.error("Error fetching announcements:", err);
         setError("Failed to load announcements");
       } finally {
         setLoading(false);
@@ -369,7 +367,7 @@ const Dashboard = () => {
       setviewdetils(respons.data.record)
 
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
@@ -384,7 +382,7 @@ const Dashboard = () => {
       setStatus3(response.data.data.status)
       setStatus2(response.data.data.priority)
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
   async function edithandel() {
@@ -399,11 +397,11 @@ const Dashboard = () => {
         status: status3,
       };
 
-      console.log("Data to be sent for update:", updatedComplaintData);
+      toast.log("Data to be sent for update:", updatedComplaintData);
 
       const response = await updateComplaint(content._id, updatedComplaintData);
 
-      console.log("Update response:", response.data?.data);
+      toast.log("Update response:", response.data?.data);
 
       seteditShow(false);
 
@@ -411,7 +409,7 @@ const Dashboard = () => {
 
     } catch (error) {
 
-      console.error("Error occurred while updating complaint:", error);
+      toast.error("Error occurred while updating complaint:", error);
       alert("An error occurred while updating the complaint. Please try again.");
     }
   }

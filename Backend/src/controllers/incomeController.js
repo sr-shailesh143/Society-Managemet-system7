@@ -36,7 +36,6 @@ exports.getAllIncome = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 // Get income entry by ID
@@ -57,7 +56,6 @@ exports.getIncomeById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -94,7 +92,6 @@ exports.updateIncome = async(req,res)=>{
         });
       }
     } catch (error) {
-       console.log(error)
     }
    }
 
@@ -119,6 +116,5 @@ exports.deleteIncome = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

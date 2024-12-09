@@ -74,17 +74,14 @@ const OTPVerification = () => {
       }
   
       const otpDetail = { otp: OTP, EmailOrPhone: EmailOrPhone };
-      console.log("Payload to verify OTP:", otpDetail);
   
       const response = await Otpverification(otpDetail);
       toast.success(response.data.message);
       navigate("/resetpassword");
     } catch (error) {
-      console.error("Error in OTP verification:", error);
   
       // error handling and message
       if (error.response) {
-        console.error("Response from server:", error.response);
         toast.error(error.response?.data?.message || "Error verifying OTP");
       } else {
         toast.error("Unknown error occurred.");
@@ -119,7 +116,6 @@ const OTPVerification = () => {
       const response = await GetOtp({ EmailOrPhone });
       toast.success(response.data.message);
     } catch (error) {
-      console.log(error);
       toast.error(error.response?.data?.message || "Error sending OTP");
     }
   };
