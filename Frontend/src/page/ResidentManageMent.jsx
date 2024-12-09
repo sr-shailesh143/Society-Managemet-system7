@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { Button, Box, styled } from '@mui/material';
-import { Edit, Image, PlusOne } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react';
+import { Button, Box, } from '@mui/material';
+import {  Image, } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { LuBuilding2 } from "react-icons/lu";
-import { FaBuildingUser, FaPlus } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
-import { RiShieldUserFill } from "react-icons/ri";
-
+import {  FaPlus } from "react-icons/fa6";
+import {GetResidents} from "../apiservices/residentservice"
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +12,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 const ResidentManageMent = () => {
     const naviget = useNavigate()
     const [show, setShow] = useState(false);
-
+const [data, setdata] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -72,55 +69,73 @@ const ResidentManageMent = () => {
             console.log(error)
         }
     }
-    const data = [
-        {
-            img: "src/assets/notification-img.png",
-            fullName: "Evelyn Harper",
-            unitNumber: "1001",
-            unitStatus: "Occupied",
-            residentStatus: "Tenant",
-            phoneNumber: "97587 85828",
-            member: 1,
-            vehicle: 2,
-            wing: "A"
-        },
-        {
-            img: "",
 
-            fullName: " ",
-            unitNumber: "1002",
-            unitStatus: "Vacate",
-            residentStatus: "",
-            phoneNumber: "",
-            member: 0,
-            vehicle: 0,
-            wing: "B"
-        },
-        {
-            img: "src/assets/notification-img.png",
+    async function gellResident() {
+        try {
+           const response =  await GetResidents()
+          console.log(response.data);
+           
+        } catch (error) {
+           console.log(error); 
+        }
+    }
 
-            fullName: "Robert Fox",
-            unitNumber: "2002",
-            unitStatus: "Occupied",
-            residentStatus: "Tenant",
-            phoneNumber: "97587 85828",
-            member: 3,
-            vehicle: 1,
-            wing: "C"
-        },
-        {
-            img: "src/assets/notification-img.png",
+    useEffect(() => {
+        
+        gellResident()
+    },[]);
 
-            fullName: "Evelyn Harper",
-            unitNumber: "2004",
-            unitStatus: "Occupied",
-            residentStatus: "Owner",
-            phoneNumber: "97587 85828",
-            member: 6,
-            vehicle: 3,
-            wing: "D"
-        },
-    ];
+    
+    // const data = [
+    //     {
+    //         img: "src/assets/notification-img.png",
+    //         fullName: "Evelyn Harper",
+    //         unitNumber: "1001",
+    //         unitStatus: "Occupied",
+    //         residentStatus: "Tenant",
+    //         phoneNumber: "97587 85828",
+    //         member: 1,
+    //         vehicle: 2,
+    //         wing: "A"
+    //     },
+    //     {
+    //         img: "",
+
+    //         fullName: " ",
+    //         unitNumber: "1002",
+    //         unitStatus: "Vacate",
+    //         residentStatus: "",
+    //         phoneNumber: "",
+    //         member: 0,
+    //         vehicle: 0,
+    //         wing: "B"
+    //     },
+    //     {
+    //         img: "src/assets/notification-img.png",
+
+    //         fullName: "Robert Fox",
+    //         unitNumber: "2002",
+    //         unitStatus: "Occupied",
+    //         residentStatus: "Tenant",
+    //         phoneNumber: "97587 85828",
+    //         member: 3,
+    //         vehicle: 1,
+    //         wing: "C"
+    //     },
+    //     {
+    //         img: "src/assets/notification-img.png",
+
+    //         fullName: "Evelyn Harper",
+    //         unitNumber: "2004",
+    //         unitStatus: "Occupied",
+    //         residentStatus: "Owner",
+    //         phoneNumber: "97587 85828",
+    //         member: 6,
+    //         vehicle: 3,
+    //         wing: "D"
+    //     },
+    // ];
+
 
     const wing = { backgroundColor: '#F6F8FB', width: "131px", padding: '5px 10px', borderRadius: '12px', color: '#5678E9', }
     const occupied = { backgroundColor: '#ECFFFF', width: "131px", padding: '5px 10px', borderRadius: '12px', color: '#14B8A6', }

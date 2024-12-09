@@ -124,22 +124,22 @@ exports.addTenantData = async (req, res) => {
 
     // Handle Member Counting
     if (memberCounting) {
-      const members = JSON.parse(memberCounting);
-      if (Array.isArray(members)) {
+      // const members = JSON.parse(memberCounting);
+      if (Array.isArray(memberCounting)) {
         await Tenant.updateOne(
           { _id: newTenant._id },
-          { $push: { familyMembers: { $each: members } } }
+          { $push: { familyMembers: { $each: memberCounting } } }
         );
       }
     }
 
     // Handle Vehicle Counting
     if (vehicleCounting) {
-      const vehicles = JSON.parse(vehicleCounting);
-      if (Array.isArray(vehicles)) {
+      // const vehicles = JSON.parse(vehicleCounting);
+      if (Array.isArray(vehicleCounting)) {
         await Tenant.updateOne(
           { _id: newTenant._id },
-          { $push: { vehicles: { $each: vehicles } } }
+          { $push: { vehicles: { $each: vehicleCounting } } }
         );
       }
     }
@@ -268,17 +268,17 @@ exports.updateTenantData = async (req, res) => {
   
       // Handle member counting
       if (memberCounting) {
-        const members = JSON.parse(memberCounting);
+        // const members = JSON.parse(memberCounting);
         if (Array.isArray(members)) {
-          tenant.familyMembers = members;
+          tenant.familyMembers = memberCounting;
         }
       }
   
       // Handle vehicle counting
       if (vehicleCounting) {
-        const vehicles = JSON.parse(vehicleCounting);
+        // const vehicles = JSON.parse(vehicleCounting);
         if (Array.isArray(vehicles)) {
-          tenant.vehicles = vehicles;
+          tenant.vehicles = vehicleCounting;
         }
       }
   
