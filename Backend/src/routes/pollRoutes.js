@@ -1,4 +1,4 @@
-const SurveyController = require("../controllers/pollController"); // Updated to match new naming
+const SurveyController = require("../controllers/pollController"); 
 const { auth } = require("../middlewares/Auth");
 const router = require("express").Router();
 

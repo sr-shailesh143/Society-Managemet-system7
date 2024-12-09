@@ -41,11 +41,9 @@ exports.addTenantData = async (req, res) => {
         try {
           const result = await cloudinary.uploader.upload(filePath);
           fs.unlink(filePath, (err) => {
-            if (err) console.error("❌ Error deleting file from server:", err);
           });
           return result.secure_url;
         } catch (error) {
-          console.error("❌ Error uploading to Cloudinary:", error);
           throw error;
         }
       }
@@ -124,22 +122,22 @@ exports.addTenantData = async (req, res) => {
 
     // Handle Member Counting
     if (memberCounting) {
-      const members = JSON.parse(memberCounting);
-      if (Array.isArray(members)) {
+      // const members = JSON.parse(memberCounting);
+      if (Array.isArray(memberCounting)) {
         await Tenant.updateOne(
           { _id: newTenant._id },
-          { $push: { familyMembers: { $each: members } } }
+          { $push: { familyMembers: { $each: memberCounting } } }
         );
       }
     }
 
     // Handle Vehicle Counting
     if (vehicleCounting) {
-      const vehicles = JSON.parse(vehicleCounting);
-      if (Array.isArray(vehicles)) {
+      // const vehicles = JSON.parse(vehicleCounting);
+      if (Array.isArray(vehicleCounting)) {
         await Tenant.updateOne(
           { _id: newTenant._id },
-          { $push: { vehicles: { $each: vehicles } } }
+          { $push: { vehicles: { $each: vehicleCounting } } }
         );
       }
     }
@@ -149,7 +147,6 @@ exports.addTenantData = async (req, res) => {
       message: "✅ Tenant data added successfully! 🎊",
     });
   } catch (error) {
-    console.error("❌ Error adding tenant data:", error);
     return res.status(500).json({
       success: false,
       message: "❌ Oops! Something went wrong. Please try again later.",
@@ -174,7 +171,6 @@ exports.getAllTenants = async (req, res) => {
       message: "✅ Tenant data retrieved successfully! 📋",
     });
   } catch (error) {
-    console.error("❌ Error fetching tenant data:", error);
     return res.status(500).json({
       success: false,
       message: "❌ Oops! Failed to fetch tenant data. Please try again later.",
@@ -213,7 +209,6 @@ exports.updateTenantData = async (req, res) => {
             });
             return result.secure_url;
           } catch (error) {
-            console.error("❌ Error uploading to Cloudinary:", error);
             throw error;
           }
         }
@@ -268,17 +263,17 @@ exports.updateTenantData = async (req, res) => {
   
       // Handle member counting
       if (memberCounting) {
-        const members = JSON.parse(memberCounting);
+        // const members = JSON.parse(memberCounting);
         if (Array.isArray(members)) {
-          tenant.familyMembers = members;
+          tenant.familyMembers = memberCounting;
         }
       }
   
       // Handle vehicle counting
       if (vehicleCounting) {
-        const vehicles = JSON.parse(vehicleCounting);
+        // const vehicles = JSON.parse(vehicleCounting);
         if (Array.isArray(vehicles)) {
-          tenant.vehicles = vehicles;
+          tenant.vehicles = vehicleCounting;
         }
       }
   
@@ -290,7 +285,6 @@ exports.updateTenantData = async (req, res) => {
         message: "✅ Tenant data updated successfully! ✨",
       });
     } catch (error) {
-      console.error("❌ Error updating tenant data:", error);
       return res.status(500).json({
         success: false,
         message: "❌ Oops! Failed to update tenant data. Please try again later.",

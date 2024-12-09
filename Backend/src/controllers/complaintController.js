@@ -23,9 +23,7 @@ exports.createComplaint = async (req,res)=>{
               message: "something wrong",
           });
       }
-      console.log(user)
   } catch (error) {
-    console.log(error);
   }
 }
   
@@ -45,7 +43,6 @@ exports.getAllComplaints = async(req,res)=>{
           });
       }
   } catch (error) {
-      console.log(error);
   }
 }
 
@@ -84,7 +81,6 @@ exports.updateComplaint = async(req,res)=>{
       });
     }
   } catch (error) {
-     console.log(error)
   }
  }
 
@@ -108,7 +104,6 @@ exports.deleteComplaint = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -129,6 +124,5 @@ exports.getComplaintById = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
   }
 };

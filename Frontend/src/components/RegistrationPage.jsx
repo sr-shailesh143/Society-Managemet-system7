@@ -46,7 +46,7 @@ function RegistrationPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...formData, [name]: value });
-    setFormData({
+    setUserData({
       ...formData,
       [e.target.name]: e.target.value
     });
@@ -66,7 +66,7 @@ function RegistrationPage() {
   const societySubmit = async (data) => {
     try {
       const response = await signup(data);
-      console.log(data);
+      console.log("Data not found",data);
         // Pass the form data directly to the signup function
       toast.success(response.data.message);
       navigate("/");

@@ -20,7 +20,6 @@ exports.createFacility = async (req,res)=>{
             });
         }
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -40,7 +39,6 @@ exports.getAllFacilities = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 
@@ -61,7 +59,6 @@ exports.getFacilityById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -95,7 +92,6 @@ exports.updateFacility = async(req,res)=>{
         });
       }
     } catch (error) {
-       console.log(error)
     }
    }
 
@@ -119,6 +115,5 @@ exports.deleteFacility = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

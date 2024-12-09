@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const visitorLogSchema = new mongoose.Schema({
-  visitorImg: { type: String, required: true },  // URL of the visitor's image on Cloudinary
+  visitorImg: { type: String, required: true },  
   visitorName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   date: { type: Date, required: true },

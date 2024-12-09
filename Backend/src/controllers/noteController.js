@@ -21,7 +21,6 @@ exports.addNote = async (req,res)=>{
             });
         }
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -42,7 +41,6 @@ exports.getAllNotes = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 
@@ -63,7 +61,6 @@ exports.getNoteById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -96,7 +93,6 @@ exports.updateNote = async(req,res)=>{
         });
       }
     } catch (error) {
-       console.log(error)
     }
    }
 
@@ -120,6 +116,5 @@ exports.deleteNote = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };

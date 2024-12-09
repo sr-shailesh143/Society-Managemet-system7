@@ -64,7 +64,7 @@ export default function Layout({ component }) {
                     setProfile(profiles[0]);
                 }
             } catch (error) {
-                console.error("Error fetching profiles:", error);
+                toast.error("Error fetching profiles:", error);
             }
         };
 

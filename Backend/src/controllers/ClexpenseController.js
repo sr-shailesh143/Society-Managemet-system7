@@ -21,7 +21,6 @@ exports.addExpense = async (req, res) => {
         await newExpense.save();
         res.status(201).json({ message: "Expense added successfully", expense: newExpense });
     } catch (error) {
-        console.error("Error adding expense:", error);
         res.status(500).json({ error: "Error adding expense" });
     }
 };
@@ -42,7 +41,6 @@ exports.getAllExpenses = async(req,res)=>{
             });
         }
     } catch (error) {
-        console.log(error);
     }
   }
 
@@ -63,7 +61,6 @@ exports.getExpenseById = async (req, res) => {
         });
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -87,7 +84,6 @@ exports.updateExpense = async (req, res) => {
 
         res.status(200).json({ message: "Expense updated successfully", updatedExpense });
     } catch (error) {
-        console.error("Error updating expense:", error);
         res.status(500).json({ error: "Error updating expense" });
     }
 };
@@ -111,7 +107,6 @@ exports.deleteExpense = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Expense not found' });
     }
   } catch (error) {
-    console.error('Error deleting expense:', error);
     return res.status(500).json({ success: false, message: 'Error deleting expense' });
   }
 };

@@ -22,7 +22,11 @@ const Announcement = () => {
       const response = await getAnnouncements();
       setAnnouncements(response.data.records);
     } catch (error) {
-      logError(error); 
+
+
+
+      toast.error("Error fetching announcements:", error);
+
     }
   };
   useEffect(() => {
@@ -57,7 +61,7 @@ const Announcement = () => {
       fetchAnnouncements();
       handleCloseModal();
     } catch (error) {
-      console.error("Error deleting announcement:", error);
+      toast.error("Error deleting announcement:", error);
     }
   };
 
@@ -83,7 +87,7 @@ const Announcement = () => {
       fetchAnnouncements();
       handleCloseModal();
     } catch (error) {
-      console.error("Error saving announcement:", error);
+      toast.error("Error saving announcement:", error);
     }
   };
 

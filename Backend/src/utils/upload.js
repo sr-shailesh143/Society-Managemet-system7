@@ -15,7 +15,7 @@ if (!fs.existsSync(uploadDir)) {
 // Multer setup for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, uploadDir); // You can set a folder to store uploaded files
+        cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname)); 

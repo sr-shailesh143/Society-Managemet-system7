@@ -12,6 +12,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 import CloseIcon from '@mui/icons-material/Close';
 import ImagePopup from '../practice/EditablePage';
+import toast from 'react-hot-toast';
 
 export default function Expense() {
   const [expenseData, setExpenseData] = useState([]);
@@ -21,7 +22,7 @@ export default function Expense() {
       const response = await getAllExpenses();
       setExpenseData(response.data.records);
     } catch (error) {
-      console.log(error);
+      toast.log(error);
     }
   }
 
@@ -60,14 +61,14 @@ export default function Expense() {
 
     try {
       const response = await addExpense(data);
-      console.log(response.data);
+      toast.log(response.data);
       setCreateData({ title: '', description: '', date: '', amount: '' });
       setBillFile(null);
       getExpenseData()
       handleCreateModalClose();
 
     } catch (error) {
-      console.log(error);
+      toast.log(error);
     }
   }
 
@@ -80,9 +81,9 @@ export default function Expense() {
     try {
       const response = await updateExpense(id)
       setediteData(response.data.updatedExpense)
-      console.log(response.data.updatedExpense)
+      toast.log(response.data.updatedExpense)
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
@@ -93,16 +94,16 @@ export default function Expense() {
     }
     try {
       const response = await updateExpense(editeData?._id, data)
-      console.log(response.data)
+      toast.log(response.data)
       handalEditClose()
       getExpenseData()
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
 
   }
 
-
+  // view modal 
 
   const [operviewModal, setoperviewModal] = useState(false)
   const handleClose = () => setoperviewModal(false);
@@ -115,7 +116,7 @@ export default function Expense() {
       const respons = await getExpense(id)
       setviewdetils(respons.data.record)
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
@@ -132,15 +133,12 @@ export default function Expense() {
       getExpenseData()
       handleDeleteColse()
     } catch (error) {
-      console.log(error)
+      toast.log(error)
     }
   }
 
-  function showIMG(img){
-    
 
-  }
-
+  // Styles for action buttons
   const EDITE = {
     backgroundColor: '#F6F8FB',
     padding: '10px 10px',
