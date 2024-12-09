@@ -129,14 +129,14 @@ exports.login = async (req, res) => {
   // Default credentials for user and security roles
   const defaultCredentials = [
     {
-      email: "user7@gmail.com",
-      password: "user@7",
+      email: "resident@society.com",
+      password: "Resident@123",
       role: "user",
       redirectUrl: "/ResidentManageMent",
     },
     {
-      email: "security72@gmail.com",
-      password: "secur7",
+      email: "security@society.com",
+      password: "Security@123",
       role: "security",
       redirectUrl: "/VisitorTracking",
     },
